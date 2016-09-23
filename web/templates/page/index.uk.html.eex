@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>1. Створи гру
+        <br />
+        <small>Обери зображення, розмір поля і кількість гравців.</small>
+      </h3>
+      <h3>2. Відправ лінк супернику (суперникам)
+        <br />
+        <small>Або грай наодинці на точність.</small>
+      </h3>
+      <h3>3. Доведи, що у тебе відмінна пам 'ять:)
+        <br />
+        <small>Без реєстрацій та інших нісенітниць – заходь та грай.</small>
+      </h3>
+
+      <div class="rules text-muted">
+        <em>Правила прості: по черзі шукайте пари однакових карток, перевертаючи їх по дві штуки за раз. Хто знаходить пару, заробляє очко – і може перевернути ще одну пару. Хто знаходить більше пар – виграє.</em>
+      </div>
+
+      <%= link "Створи гру", to: "/uk" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
+    </div>
+    <div class="col-md-5">
+      <div class="screenshot">
+        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+</div>

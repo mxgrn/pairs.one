@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:cc="http://creativecommons.org/ns#"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    id="svg2"
+    sodipodi:docname="cartoon_bee.svg"
+    viewBox="0 0 240 266.97"
+    sodipodi:version="0.32"
+    version="1.0"
+    inkscape:output_extension="org.inkscape.output.svg.inkscape"
+    inkscape:version="0.46"
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      inkscape:pageshadow="2"
+      guidetolerance="10.0"
+      pagecolor="#ffffff"
+      gridtolerance="10.0"
+      inkscape:zoom="1.6824931"
+      objecttolerance="10.0"
+      borderopacity="1.0"
+      inkscape:current-layer="svg2"
+      inkscape:cx="112.53977"
+      inkscape:cy="143.94357"
+      inkscape:window-y="22"
+      inkscape:window-x="335"
+      inkscape:window-height="793"
+      showgrid="false"
+      inkscape:pageopacity="0.0"
+      inkscape:window-width="958"
+  />
+  <defs
+      id="defs4"
+    >
+    <linearGradient
+        id="SVGID_1_"
+        y2="142.69"
+        gradientUnits="userSpaceOnUse"
+        y1="142.69"
+        x2="370.52"
+        x1="255"
+      >
+      <stop
+          id="stop7073"
+          style="stop-color:rgb(175, 224, 237)"
+          offset=".092"
+      />
+      <stop
+          id="stop7075"
+          style="stop-color:rgb(230, 208, 229)"
+          offset="1"
+      />
+    </linearGradient
+    >
+    <linearGradient
+        id="linearGradient8069"
+        y2="142.69"
+        xlink:href="#SVGID_1_"
+        gradientUnits="userSpaceOnUse"
+        x2="370.52"
+        gradientTransform="translate(-106.88 -27.672)"
+        y1="138.53"
+        x1="257.97"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient8072"
+        y2="142.69"
+        xlink:href="#SVGID_1_"
+        gradientUnits="userSpaceOnUse"
+        x2="370.52"
+        gradientTransform="translate(-10.104 -27.34)"
+        y1="138.53"
+        x1="257.97"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient8078"
+        y2="142.69"
+        xlink:href="#SVGID_1_"
+        gradientUnits="userSpaceOnUse"
+        x2="370.52"
+        gradientTransform="matrix(-1 0 0 1 446.26 -26.746)"
+        y1="138.53"
+        x1="257.97"
+        inkscape:collect="always"
+    />
+    <linearGradient
+        id="linearGradient8080"
+        y2="142.69"
+        xlink:href="#SVGID_1_"
+        gradientUnits="userSpaceOnUse"
+        x2="370.52"
+        gradientTransform="matrix(-1 0 0 1 348.64 -27.078)"
+        y1="138.53"
+        x1="257.97"
+        inkscape:collect="always"
+    />
+  </defs
+  >
+  <g
+      id="g8082"
+    >
+    <path
+        id="path8064"
+        style="stroke:#000000;stroke-width:4;fill:url(#linearGradient8069)"
+        d="m236.55 96.617c3.46 12.033 2.41 26.013-5.55 36.093-7.04 9.17-18.79 15.05-30.45 13.45-11.46-0.82-23.83-2.17-33.12-9.61-5.15-4.09-7.58-10.59-7.92-16.99-0.93-8.74-3.7-17.64-1.54-26.383 1.97-7.394 9.73-10.803 16.6-12.188 12.42-2.208 25.23-3.247 37.78-1.517 8.88 1.305 18.64 4.873 22.82 13.453 0.58 1.181 1.03 2.421 1.38 3.692z"
+    />
+    <path
+        id="path8076"
+        style="stroke:#000000;stroke-width:4;fill:url(#linearGradient8080)"
+        d="m5.212 97.211c-3.465 12.029-2.4109 26.009 5.544 36.099 7.039 9.16 18.787 15.04 30.453 13.44 11.454-0.82 23.83-2.16 33.117-9.61 5.151-4.09 7.579-10.58 7.922-16.99 0.934-8.73 3.697-17.63 1.539-26.378-1.973-7.394-9.733-10.803-16.603-12.189-12.421-2.207-25.23-3.247-37.78-1.517-8.878 1.306-18.638 4.874-22.814 13.453-0.5788 1.182-1.036 2.422-1.378 3.692z"
+    />
+    <g
+        id="Left_x5F_Wing"
+        transform="translate(-97.201 -45.507)"
+      >
+      <path
+          id="path7077"
+          style="stroke:#000000;stroke-width:4;fill:url(#linearGradient8072)"
+          d="m334.51 89.816c-6.42 17.394-24.21 30.504-43.01 29.514-12.5 0.58-24.46 4.99-36.93 5.91-6.18 0.42-13.75 0.54-17.93-4.85-2.95-4.64-2.41-10.53-2.18-15.77 0.54-7.754 5.52-14.746 12.49-18.084 12.45-6.244 26.68-6.707 40.2-8.746 12.54-1.378 25.31-3.242 37.89-1.28 4.47 0.732 10.25 2.983 10.44 8.293 0.07 1.719-0.36 3.419-0.97 5.013z"
+      />
+      <path
+          id="path8074"
+          style="stroke:#000000;stroke-width:4;fill:url(#linearGradient8078)"
+          d="m101.65 90.41c6.42 17.39 24.21 30.5 43.02 29.52 12.49 0.58 24.45 4.98 36.92 5.91 6.18 0.41 13.75 0.54 17.93-4.86 2.95-4.64 2.41-10.52 2.18-15.77-0.54-7.75-5.52-14.742-12.49-18.079-12.45-6.245-26.68-6.707-40.2-8.747-12.54-1.378-25.31-3.242-37.89-1.28-4.47 0.732-10.25 2.983-10.44 8.293-0.07 1.72 0.36 3.419 0.97 5.013z"
+      />
+    </g
+    >
+    <path
+        id="path7957"
+        sodipodi:nodetypes="cszc"
+        style="fill-rule:evenodd;stroke:#000000;stroke-linecap:square;stroke-width:4;fill:#4a4a4a"
+        d="m182.59 225.11c43.91-15.57 46.7-20.51 48.75-24.37 1.74-3.27-15.23 5.8-26.06 2.1-10.44-3.57-11.51-4.09-16.39-10.93"
+    />
+    <path
+        id="path7955"
+        style="stroke:#000000;stroke-width:6;fill:none"
+        d="m203.21 250.96c0-2.52-11.34-26.06-11.34-26.06l0.42-0.42"
+    />
+    <path
+        id="path7953"
+        style="stroke:#000000;stroke-width:6;fill:none"
+        d="m39.306 248.86c0-2.53 11.347-26.06 11.347-26.06l-0.42-0.42"
+    />
+    <path
+        id="path2383"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#f3c31c"
+        d="m231.77 146.23c0.02 60.5-49.03 109.56-109.54 109.56-60.503 0-109.55-49.06-109.53-109.56-0.02-60.513 49.027-109.57 109.53-109.57 60.51-0.004 109.56 49.057 109.54 109.57z"
+    />
+    <path
+        id="path3221"
+        sodipodi:nodetypes="csscssc"
+        style="fill:#000000"
+        d="m225.15 108.65c0.08 1.68-0.29 19.36-0.29 21.06 0 60.47-48.65 93.56-109.12 93.56-47.258 0-87.587-30-102.93-71.97 2.65 58.12 50.67 104.47 109.43 104.47 60.47 0 109.54-49.07 109.54-109.53 0-13.2-2.34-25.87-6.63-37.59z"
+    />
+    <path
+        id="path3236"
+        sodipodi:nodetypes="csssc"
+        style="fill:#000000"
+        d="m221.16 106.32c5.88 35.93-46.72 97.22-102.43 96.97-43.792-0.2-104.11-47.59-98.649-91.09 5.63-44.819 26.738 74.2 100.33 72.83 73.19-1.36 92.35-131.87 100.75-78.71z"
+    />
+    <path
+        id="path3155"
+        sodipodi:nodetypes="csss"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#ffcd01"
+        d="m40.386 97.744c0.649 45.166 35.534 77.826 81.004 78.066 46.05 0.24 84.96-33.81 82.68-78.066-5.53-107.43-164.95-88.752-163.68 0z"
+    />
+    <path
+        id="path3157"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#ffffff"
+        d="m118.61 85.757c0 12.519-10.15 22.673-22.667 22.673-12.519 0-22.666-10.154-22.663-22.673-0.003-12.519 10.144-22.669 22.663-22.669 12.517 0 22.667 10.15 22.667 22.669z"
+    />
+    <path
+        id="path3159"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#ffffff"
+        d="m171.34 85.757c0 12.519-10.14 22.673-22.66 22.673s-22.67-10.154-22.67-22.673 10.15-22.669 22.67-22.669 22.66 10.15 22.66 22.669z"
+    />
+    <path
+        id="path3161"
+        style="fill:#000000"
+        d="m151.19 89.757c0 4.173-3.38 7.556-7.55 7.556s-7.56-3.383-7.55-7.556c-0.01-4.173 3.38-7.557 7.55-7.557s7.55 3.384 7.55 7.557z"
+    />
+    <path
+        id="path3163"
+        style="fill:#000000"
+        d="m109.16 89.757c0 4.173-3.38 7.556-7.55 7.556-4.174 0-7.556-3.383-7.555-7.556-0.001-4.173 3.381-7.557 7.555-7.557 4.17 0 7.55 3.384 7.55 7.557z"
+    />
+    <path
+        id="path3210"
+        sodipodi:nodetypes="cccc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:3.2159;fill:#000000"
+        d="m120.97 152.77c-16.36 0-29.637-10.37-29.637-23.14 19.197 22.38 44.857 19.58 59.307 0-0.7 13.1-13.3 23.14-29.67 23.14z"
+    />
+    <path
+        id="path3231"
+        sodipodi:nodetypes="ccsscssc"
+        style="fill:#000000;fill-opacity:.31373"
+        d="m200.79 70.931l-1.87 2.657c0.25 3.075 0.34 6.202 0.34 9.375 0 45.177-36.22 80.527-77.64 81.007-31.213 0.36-65.299-22.92-80.265-55.76 7.616 40.25 43.316 67.25 80.455 68.02 41.86 0.86 82.26-33.31 82.26-78.486 0-9.392-1.07-18.41-3.28-26.813z"
+    />
+    <path
+        id="path3329"
+        sodipodi:nodetypes="csssc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#333333"
+        d="m59.942 256.38c0 9.09-12.561 7.64-22.228 7.28-9.647-0.37-23.709 0.18-20.547-9.38 2.522-7.63 12.583-10.64 23.069-10.24 9.247 0.35 17.605 3.87 19.706 12.34z"
+    />
+    <path
+        id="path2399"
+        sodipodi:nodetypes="csssc"
+        style="fill-rule:evenodd;stroke:#000000;stroke-width:4;fill:#333333"
+        d="m80.43 39.464c-3.666 1.438-9.191-7.81-10.899-18.251-3.717-22.727-29.805 20.211-32.281 17.547-3.23-3.475 18.178-65.604 39.188-16.339 1.879 4.405 12.266 16.172 3.992 17.043z"
+    />
+    <path
+        id="path7943"
+        sodipodi:nodetypes="csssc"
+        style="fill-rule:evenodd;stroke:#000000;stroke-width:4;fill:#333333"
+        d="m157.4 38.554c3.67 1.437 9.19-7.81 10.9-18.252 3.72-22.727 29.81 20.211 32.28 17.548 3.23-3.475-18.18-65.605-39.19-16.34-1.87 4.405-12.26 16.173-3.99 17.044z"
+    />
+    <path
+        id="path7945"
+        sodipodi:nodetypes="csssc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#333333"
+        d="m186.08 256.38c0 9.09 12.57 7.64 22.23 7.28 9.65-0.37 23.71 0.18 20.55-9.38-2.52-7.63-12.58-10.64-23.07-10.24-9.25 0.35-17.61 3.87-19.71 12.34z"
+    />
+    <path
+        id="path7947"
+        sodipodi:nodetypes="csssc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#333333"
+        d="m135.37 257.13c0 9.1 12.56 7.65 22.23 7.28 9.64-0.36 23.71 0.19 20.54-9.38-2.52-7.63-12.58-10.64-23.07-10.24-9.24 0.36-17.6 3.87-19.7 12.34z"
+    />
+    <path
+        id="path7949"
+        sodipodi:nodetypes="csssc"
+        style="stroke-linejoin:round;stroke:#000000;stroke-linecap:round;stroke-width:4;fill:#333333"
+        d="m113.03 257.98c0 9.09-12.56 7.64-22.224 7.28-9.647-0.37-23.709 0.18-20.547-9.39 2.522-7.63 12.583-10.64 23.069-10.24 9.242 0.36 17.602 3.88 19.702 12.35z"
+    />
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >Cartoon Bee</dc:title
+        >
+        <dc:date
+          >2010-07-03T09:39:09</dc:date
+        >
+        <dc:description
+          >An honey bee remix based on the cartoon animal style by StudioFibonacci and lemmling.</dc:description
+        >
+        <dc:source
+          >https://openclipart.org/detail/69817/cartoon-bee-by-roland81</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >roland81</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >animal</rdf:li
+            >
+            <rdf:li
+              >cartoon</rdf:li
+            >
+            <rdf:li
+              >funny</rdf:li
+            >
+            <rdf:li
+              >honey</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>

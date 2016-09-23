@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>1. Create new game
+        <br />
+        <small>Choose theme, field size and number of players.</small>
+      </h3>
+      <h3>2. Send link to your opponent(s)
+        <br />
+        <small>Or play alone - and try to beat yourself in being accurate.</small>
+      </h3>
+      <h3>3. Prove you have a great memory :)
+        <br />
+        <small>No registration, no emails to enter - just fun.</small>
+      </h3>
+
+      <div class="rules text-muted">
+        <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
+      </div>
+
+      <%= link "Start new game", to: "/en" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
+    </div>
+    <div class="col-md-5">
+      <div class="screenshot">
+        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:cc="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    id="svg15051"
+    sodipodi:docname="linuxien_tiger.svg"
+    viewBox="0 0 110 110"
+    sodipodi:version="0.32"
+    version="1.0"
+    inkscape:output_extension="org.inkscape.output.svg.inkscape"
+    inkscape:version="0.45.1"
+    sodipodi:docbase="/home/eric/graphique/svg/publication"
+  >
+  <sodipodi:namedview
+      id="base"
+      bordercolor="#666666"
+      inkscape:pageshadow="2"
+      inkscape:window-y="30"
+      pagecolor="#ffffff"
+      inkscape:window-height="684"
+      width="110px"
+      inkscape:zoom="3.959798"
+      inkscape:window-x="0"
+      height="110px"
+      borderopacity="1.0"
+      inkscape:current-layer="layer1"
+      inkscape:cx="54.338284"
+      inkscape:cy="55.271761"
+      inkscape:window-width="1018"
+      inkscape:pageopacity="0.0"
+      inkscape:document-units="px"
+  />
+  <g
+      id="layer1"
+      inkscape:label="Calque 1"
+      inkscape:groupmode="layer"
+    >
+    <g
+        id="g15077"
+        transform="translate(-30.557 18.94)"
+      >
+      <g
+          id="g14030"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-xdpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          transform="matrix(-1 0 0 1 135.36 -13.994)"
+        >
+        <path
+            id="path14032"
+            sodipodi:nodetypes="cccccc"
+            style="fill-rule:evenodd;stroke:#000000;stroke-width:2.3366;fill:#ffa72a"
+            d="m76.172 9.3389c6.392-3.4972 12.45-5.9947 20.549-7.9924 0.636-0.1972 1.644-0.2702 1.909-0.0118 0.348 0.269 0.179 1.4078-0.01 1.8631-1.746 7.5092-4.315 14.043-7.489 20.634l-14.959-14.493z"
+        />
+        <path
+            id="path14034"
+            sodipodi:nodetypes="cccc"
+            style="fill-rule:evenodd;stroke:#000000;stroke-width:1px;fill:#ffd5d5"
+            d="m79.701 10.933c4.418-2.6702 14.019-6.2242 14.726-5.4192 1.021 0.7069-3.495 11.899-5.183 14.726l-9.543-9.307z"
+        />
+      </g
+      >
+      <g
+          id="g14026"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-xdpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          transform="translate(35.358 -13.994)"
+        >
+        <path
+            id="path12078"
+            sodipodi:nodetypes="cccccc"
+            style="fill-rule:evenodd;stroke:#000000;stroke-width:2.3366;fill:#ffa72a"
+            d="m76.172 9.3389c6.392-3.4972 12.45-5.9947 20.549-7.9924 0.636-0.1972 1.644-0.2702 1.909-0.0118 0.348 0.269 0.179 1.4078-0.01 1.8631-1.746 7.5092-4.315 14.043-7.489 20.634l-14.959-14.493z"
+        />
+        <path
+            id="path13055"
+            sodipodi:nodetypes="cccc"
+            style="fill-rule:evenodd;stroke:#000000;stroke-width:1px;fill:#ffd5d5"
+            d="m79.701 10.933c4.418-2.6702 14.019-6.2242 14.726-5.4192 1.021 0.7069-3.495 11.899-5.183 14.726l-9.543-9.307z"
+        />
+      </g
+      >
+      <path
+          id="path9114"
+          sodipodi:rx="50.128819"
+          sodipodi:ry="49.750011"
+          style="stroke:#000000;stroke-linecap:round;stroke-width:2.5;fill:#ffa72a"
+          sodipodi:cy="49.997448"
+          sodipodi:type="arc"
+          d="m100.26 49.997a50.129 49.75 0 1 1 -100.26 0 50.129 49.75 0 1 1 100.26 0z"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          transform="matrix(.97307 0 0 .98048 36.579 -13.015)"
+          inkscape:export-xdpi="18.9"
+          sodipodi:cx="50.128819"
+      />
+      <path
+          id="path11074"
+          style="fill-rule:evenodd;stroke:#000000;stroke-width:.89808px;fill:#aa4400"
+          d="m85.353-11.045c-10.98 0.019-17.77 2.3683-24.546 6.893l11.98 14.236 6.343-17.612 6.32 17.399 6.191-17.431c0-0.0003 6.261 17.869 6.351 17.616l11.918-14.282c-4-3.127-12.988-6.781-24.557-6.819z"
+          inkscape:export-ydpi="18.9"
+          sodipodi:nodetypes="ccccccccc"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          inkscape:export-xdpi="18.9"
+      />
+      <path
+          id="path12066"
+          style="fill-rule:evenodd;stroke:#000000;stroke-width:.89808px;fill:#aa4400"
+          d="m38.245 36.015c0.018 10.98 2.368 17.77 6.892 24.546l14.236-11.98-17.611-6.343 17.398-6.32-17.431-6.191s17.87-6.261 17.617-6.351l-14.283-11.921c-3.127 3.999-6.781 12.991-6.818 24.56z"
+          inkscape:export-ydpi="18.9"
+          sodipodi:nodetypes="ccccccccc"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          inkscape:export-xdpi="18.9"
+      />
+      <path
+          id="path12072"
+          style="fill-rule:evenodd;stroke:#000000;stroke-width:.90724px;fill:#aa4400"
+          d="m132.85 36.001c-0.02-10.977-2.42-17.767-7.03-24.541l-14.53 11.978 17.97 6.341-17.76 6.32 17.79 6.19s-18.24 6.259-17.98 6.349l14.58 11.919c3.19-3.999 6.92-12.989 6.96-24.556z"
+          inkscape:export-ydpi="18.9"
+          sodipodi:nodetypes="ccccccccc"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          inkscape:export-xdpi="18.9"
+      />
+      <g
+          id="g14051"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-xdpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          transform="translate(-51.196 -15.244)"
+        >
+        <path
+            id="path8062"
+            sodipodi:rx="7.0395007"
+            sodipodi:ry="6.976366"
+            style="stroke:#000000;stroke-linecap:round;stroke-width:1.0011;fill:#ffffff"
+            sodipodi:type="arc"
+            d="m42.048 35.003a7.0395 6.9764 0 1 1 -14.079 0 7.0395 6.9764 0 1 1 14.079 0z"
+            inkscape:export-ydpi="18.9"
+            inkscape:export-filename="/home/eric/graphique/png/cochon.png"
+            transform="matrix(.99439 0 0 1.0034 89.242 3.629)"
+            sodipodi:cy="35.002998"
+            sodipodi:cx="35.008099"
+            inkscape:export-xdpi="18.9"
+        />
+        <path
+            id="path8408"
+            sodipodi:rx="5.0191956"
+            sodipodi:ry="4.987628"
+            style="fill:#000000"
+            sodipodi:type="arc"
+            d="m40.027 35.098a5.0192 4.9876 0 1 1 -10.038 0 5.0192 4.9876 0 1 1 10.038 0z"
+            inkscape:export-ydpi="18.9"
+            inkscape:export-filename="/home/eric/graphique/png/cochon.png"
+            transform="matrix(.99618 0 0 1.0025 89.179 3.5658)"
+            sodipodi:cy="35.097698"
+            sodipodi:cx="35.008099"
+            inkscape:export-xdpi="18.9"
+        />
+      </g
+      >
+      <path
+          id="path14055"
+          sodipodi:rx="7.0395007"
+          sodipodi:ry="6.976366"
+          style="stroke:#000000;stroke-linecap:round;stroke-width:1.0011;fill:#ffffff"
+          sodipodi:cy="35.002998"
+          sodipodi:type="arc"
+          d="m42.048 35.003a7.0395 6.9764 0 1 1 -14.079 0 7.0395 6.9764 0 1 1 14.079 0z"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          transform="matrix(.99439 0 0 1.0034 63.046 -11.615)"
+          inkscape:export-xdpi="18.9"
+          sodipodi:cx="35.008099"
+      />
+      <path
+          id="path14057"
+          sodipodi:rx="5.0191956"
+          sodipodi:ry="4.987628"
+          style="fill:#000000"
+          sodipodi:cy="35.097698"
+          sodipodi:type="arc"
+          d="m40.027 35.098a5.0192 4.9876 0 1 1 -10.038 0 5.0192 4.9876 0 1 1 10.038 0z"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          transform="matrix(.99618 0 0 1.0025 62.984 -11.678)"
+          inkscape:export-xdpi="18.9"
+          sodipodi:cx="35.008099"
+      />
+      <path
+          id="path14065"
+          style="fill-rule:evenodd;stroke:#000000;stroke-width:.77320px;fill:#4d4d4d"
+          d="m75.745 36.372c-0.081-1.286 19.23-1.325 19.226 0-1.534 3.496-3.379 9.173-6.701 9.202l-5.744 0.046c-3.387-0.006-5.298-5.698-6.781-9.248z"
+          inkscape:export-ydpi="18.9"
+          sodipodi:nodetypes="ccccc"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          inkscape:export-xdpi="18.9"
+      />
+      <path
+          id="path14073"
+          style="stroke:#000000;stroke-width:2.5;fill:none"
+          d="m85.36 46.006v15.283"
+          inkscape:export-ydpi="18.9"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          inkscape:export-xdpi="18.9"
+      />
+      <path
+          id="path6430"
+          style="stroke:#000000;stroke-linecap:round;stroke-width:2.2999;fill:none"
+          d="m66.508 54.343c5.813 3.956 11.373 7.469 18.954 7.7 7.441-0.239 12.861-3.699 18.728-7.727"
+          inkscape:export-ydpi="18.9"
+          sodipodi:nodetypes="ccc"
+          inkscape:export-filename="/home/eric/graphique/png/tigre.png"
+          inkscape:export-xdpi="18.9"
+      />
+    </g
+    >
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >Tigre</dc:title
+        >
+        <dc:date
+          >2008-04-10T12:09:03</dc:date
+        >
+        <dc:description
+          >Little tiger of the jungle</dc:description
+        >
+        <dc:source
+          >https://openclipart.org/detail/16291/tigre-by-linuxien</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >Linuxien</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >animal</rdf:li
+            >
+            <rdf:li
+              >cartoon</rdf:li
+            >
+            <rdf:li
+              >face</rdf:li
+            >
+            <rdf:li
+              >smiley</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>

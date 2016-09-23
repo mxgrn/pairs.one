@@ -1,0 +1,343 @@
+<?xml version="1.0"?>
+<svg
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:cc="http://web.resource.org/cc/"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:svg="http://www.w3.org/2000/svg"
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    viewBox="0 0 219 252"
+  >
+  <g
+      id="imagebot_2"
+    >
+    <g
+        id="imagebot_40"
+        transform="translate(1) matrix(.74796 0 0 .72813 22.488 60.733)"
+      >
+      <path
+          id="imagebot_42"
+          stroke-linejoin="round"
+          d="m221.07 131.19c0.02 60.51-49.02 109.57-109.53 109.57-60.512 0-109.56-49.06-109.54-109.57-0.019-60.506 49.028-109.57 109.54-109.57 60.51 0.003 109.55 49.064 109.53 109.57z"
+          stroke="#010101"
+          stroke-linecap="round"
+          stroke-width="4"
+          fill="#939dac"
+      />
+      <path
+          id="imagebot_41"
+          fill-opacity=".3137"
+          fill="#010101"
+          d="m220.65 140.78c-20.83 45.7-66.93 77.47-120.44 77.47-30.323 0-58.247-10.21-80.559-27.38 19.534 30.03 53.378 49.88 91.879 49.88 57.28 0 104.28-43.95 109.12-99.97z"
+      />
+    </g
+    >
+    <title
+      >imagebot_2</title
+    >
+    <path
+        id="imagebot_160"
+        stroke-linejoin="round"
+        d="m163.89 186.2c-18.38-2.93-1.55 12.84-4.37 18.55-11.15-4.69-6.9 10.84-11.94 15.15-9.55-0.44-11.04 7.81-17.7 10.22-8.05-3.82-13.98 3.75-21.67 3.75-7.68 0-12.228-7.27-21.664-3.75-6.661-2.41-8.151-10.36-17.7-10.22-5.039-4.31-4.261-20.73-11.936-15.15-2.819-5.71 10.19-22.67-4.378-18.55 0-6.58 15.433-18.79 4.378-18.55 2.819-5.71 16.956-9.95 11.936-15.16 10.079-8.63 23.999-13.97 39.364-13.97 15.37 0 29.29 5.34 39.37 13.97-7.45 3.13 9.12 9.45 11.94 15.16-12.45-0.54 4.37 11.97 4.37 18.55z"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="4.4118"
+        fill="#ccc"
+    />
+  </g
+  >
+  <g
+      id="imagebot_175"
+    >
+    <title
+      >Layer 2</title
+    >
+    <path
+        id="imagebot_176"
+        stroke-linejoin="round"
+        d="m24.556 228.99c-0.006 20.84 16.887 23.5 37.729 23.5s37.735-2.66 37.725-23.5c0.01-20.84-17.594-32.35-37.725-37.74-31.318-8.39-37.735 16.9-37.729 37.74z"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#939dac"
+    />
+    <path
+        id="imagebot_177"
+        stroke-linejoin="round"
+        d="m91.653 240.74c1.51 5.64-2.987 7.61-8.773 9.16s-10.667 2.09-12.174-3.54c-1.511-5.63 0.956-18.46 6.741-20.01s12.698 8.76 14.206 14.39z"
+        transform="rotate(165 81.11 238.57) matrix(-1 0 0 1 162.22 0)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_178"
+        stroke-linejoin="round"
+        d="m53.571 246.84c-1.507 5.64-6.389 5.1-12.174 3.55-5.786-1.55-10.284-3.53-8.773-9.16 1.507-5.63 8.42-17.94 14.206-16.39 5.785 1.55 8.251 16.37 6.741 22z"
+        transform="rotate(187 43.167 238.07) matrix(-1 0 0 1 86.335 0)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_179"
+        stroke-linejoin="round"
+        d="m72.209 245.92c0.002 5.83-4.853 6.57-10.843 6.57-5.989 0-10.844-0.74-10.842-6.57-0.002-5.83 3.853-19.56 9.842-19.56 5.99 0 11.845 13.73 11.843 19.56z"
+        transform="rotate(180 61.366 239.42) matrix(-1 0 0 1 122.73 0)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_180"
+        fill-opacity=".3137"
+        fill="#010101"
+        d="m74.227 195.38c5.162 6.76 8.33 15.21 8.328 25.64 0.006 24.65-16.893 27.8-37.734 27.8-3.225 0-6.345-0.1-9.333-0.32 6.836 3.32 16.312 4 26.793 4 20.841 0 37.739-2.68 37.729-23.52 0.01-16.56-11.115-27.21-25.783-33.6z"
+    />
+    <path
+        id="imagebot_181"
+        stroke-linejoin="round"
+        d="m196.54 230.99c0 20.84-16.89 23.5-37.73 23.5s-37.74-2.66-37.73-23.5c-0.01-20.84 17.6-32.35 37.73-37.74 31.32-8.39 37.73 16.9 37.73 37.74z"
+        transform="translate(-1.981 -2)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#939dac"
+    />
+    <path
+        id="imagebot_182"
+        stroke-linejoin="round"
+        d="m187.12 240.74c1.5 5.64-2.99 7.61-8.78 9.16-5.78 1.55-10.66 2.09-12.17-3.54s1.95-18.46 7.74-20.01c5.78-1.55 11.7 8.76 13.21 14.39z"
+        transform="rotate(180 176.61 238.57) matrix(-1 0 0 1 353.22 5.6843e-14)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_183"
+        stroke-linejoin="round"
+        d="m149.03 246.84c-1.51 5.64-6.39 5.1-12.17 3.55-5.79-1.55-10.28-3.53-8.77-9.16 1.5-5.63 7.42-15.94 13.2-14.39 5.79 1.55 9.25 14.37 7.74 20z"
+        transform="rotate(180 138.59 239.06) matrix(-1 0 0 1 277.18 5.6843e-14)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_184"
+        stroke-linejoin="round"
+        d="m167.67 245.92c0 5.83-4.85 6.57-10.84 6.57s-10.85-0.74-10.85-6.57 4.86-20.56 10.85-20.56 10.84 14.73 10.84 20.56z"
+        transform="rotate(180 156.83 238.92) matrix(-1 0 0 1 313.65 5.6843e-14)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_185"
+        d="m175.83 192.16c9.7 7.49 12.26 22.67 12.26 36.07 0.01 21.56-17.47 24.32-39.03 24.32-4.67 0-9.14-0.15-13.29-0.57 6.37 2.04 14.35 2.5 23.03 2.5 20.84 0 37.74-2.65 37.73-23.5 0.01-16.32-3.93-35.37-20.7-38.82z"
+        fill="#010101"
+        transform="translate(-1.981 -2)"
+        fill-opacity=".3137"
+    />
+    <path
+        id="imagebot_186"
+        d="m170.55 82.16c0.02 37.79-30.62 68.43-68.41 68.43s-68.424-30.64-68.412-68.43c-0.012-37.792 30.622-68.434 68.412-68.434s68.43 30.642 68.41 68.434z"
+        fill="#010101"
+        transform="translate(6 -18) matrix(1 0 0 1 1.019 56)"
+        fill-opacity=".3137"
+    />
+    <path
+        id="imagebot_187"
+        stroke-linejoin="round"
+        d="m201.27 65.672c7.27-4.565 17.12-28.646 17.12-37.863 0-14.245-19.57-26.809-33.81-26.809-8.82 0-25.56 3.459-30.21 10.212-11.8-4.875-26.81-7.589-45.82-7.589-18.065 0-32.546 2.552-44.106 7.144-4.684-6.506-18.29-10.767-26.912-10.767-14.243 0-32.809 20.564-32.809 34.809 9.028 62.797 28.274 35.596 28.279 51.383-0.001 2.988 0.107 5.956 0.321 8.896 1.385 11.592 1.915 14.432 2.548 17.212 0.633 2.79 1.369 5.53 2.205 8.21-2.942-10.96-1.673-5.36 0 0 3.46 5.7 6.782 10.85 9.994 15.5s6.313 8.81 9.331 12.51c3.019 3.7 5.953 6.96 8.832 9.81 2.878 2.85 5.7 5.3 8.492 7.39 2.793 2.09 5.556 3.83 8.316 5.26 2.761 1.42 5.519 2.54 8.301 3.4s5.589 1.45 8.447 1.83c2.861 0.38 9.771 0.55 12.751 0.55 5.98 0 10.56-0.78 14.76-2.23s8.01-3.59 12.44-6.29c2.21-1.35 4.33-2.85 6.35-4.48 2.03-1.63 3.95-3.39 5.79-5.26 3.67-3.76 6.96-7.99 9.87-12.6 1.46-2.3 3.32-4.69 5.09-7.17 1.78-2.48 3.45-5.03 4.54-7.66 2.17-5.25 1.98-10.77 3.42-16.47 1.44-5.69 2.51-11.55 3.22-17.49 0.72-5.936 1.07-11.942 1.07-17.918 9.07-4.237 14.38-6.592 17.54-8.4s4.17-3.07 4.64-5.12z"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#939dac"
+    />
+    <path
+        id="imagebot_188"
+        stroke-linejoin="round"
+        d="m125.89 55.407c0 9.559-7.75 17.309-17.3 17.309-9.563 0-17.311-7.75-17.308-17.309-0.003-9.558 7.746-17.308 17.308-17.308 9.55-0.001 17.3 7.75 17.3 17.308z"
+        transform="translate(24 7) matrix(1 0 0 1 6.019 14)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#fff"
+    />
+    <path
+        id="imagebot_189"
+        fill="#010101"
+        transform="translate(16 3) matrix(1 0 0 1 -83.981 -3)"
+        d="m218.34 77.011c0 6.616-5.36 11.981-11.97 11.981-6.62 0-11.98-5.365-11.98-11.981 0-6.615 5.36-11.98 11.98-11.98 6.61 0 11.97 5.365 11.97 11.98z"
+    />
+    <path
+        id="imagebot_190"
+        stroke-linejoin="round"
+        d="m134.89 45.113c0 9.46-7.67 17.129-17.13 17.129s-17.12-7.669-17.12-17.129 7.66-17.129 17.12-17.129 17.13 7.669 17.13 17.129z"
+        transform="translate(-1) matrix(1 0 0 1 -42.981 32)"
+        stroke="#010101"
+        stroke-linecap="round"
+        stroke-width="4"
+        fill="#fff"
+    />
+    <path
+        id="imagebot_191"
+        fill="#010101"
+        transform="translate(0 1) matrix(1 0 0 1 -36.981 -4)"
+        d="m123.45 80.107c0 6.823-5.53 12.356-12.35 12.356s-12.354-5.533-12.353-12.356c-0.001-6.823 5.533-12.355 12.353-12.355s12.35 5.532 12.35 12.355z"
+    />
+    <path
+        id="imagebot_192"
+        stroke-linejoin="round"
+        d="m428.26 490.71c10.21-3.51 20.75 5.78 22.77 10.81-10.3-2.63-15.03-3.38-17.7-1.05 1.15 2.57 13.27 5.14 17.03 22-9.48-6.57-17-14.16-20.03-11.04 2.2 3.84 4.73 11.05 3.02 18.2-5.44-7.18-11-14.77-16.11-14.97"
+        fill-rule="evenodd"
+        transform="rotate(-51 186.42 35.015) matrix(1 0 0 1 -247.71 -474.77)"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="5"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_193"
+        d="m116.42 141.24a12.795 18.279 0 1 1 -23.244 -51.312 12.795 18.279 0 1 1 23.244 51.312z"
+        transform="rotate(1 105.8 115.58) matrix(1 0 0 1 1 0)"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="3.1693"
+    />
+    <path
+        id="imagebot_194"
+        stroke-linejoin="round"
+        d="m428.26 490.71c10.21-3.51 20.75 5.78 22.77 10.81-10.3-2.63-15.03-3.38-17.7-1.05 1.15 2.57 13.27 5.14 17.03 22-9.48-6.57-17-14.16-20.03-11.04 2.2 3.84 4.73 11.05 3.02 18.2-5.44-7.18-11-14.77-16.11-14.97"
+        fill-rule="evenodd"
+        transform="rotate(57 33.42 35.014) matrix(-1 0 0 1 467.55 -474.77)"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="5"
+        fill="#ccc"
+    />
+    <path
+        id="imagebot_196"
+        d="m80.128 28.829c0.004 14.744-9.901 26.698-22.121 26.698-12.219 0-22.124-11.955-22.12-26.698-0.004-14.744 9.901-26.698 22.12-26.698 12.22 0.0001 22.125 11.954 22.121 26.698z"
+        fill="#010101"
+        transform="rotate(2 109.03 124.83) matrix(1 0 0 1 51.019 96)"
+        fill-opacity=".3137"
+    />
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+        <dc:title
+          >Cartoon Koala</dc:title
+        >
+        <dc:date
+          >2013-04-19T00:38:57</dc:date
+        >
+        <dc:description
+          >Remix of Cartoon Rhino into Cartoon Koala!</dc:description
+        >
+        <dc:source
+          >https://openclipart.org/detail/177288/cartoon-koala-by-apaulcalypse-177288</dc:source
+        >
+        <dc:creator
+          >
+          <cc:Agent
+            >
+            <dc:title
+              >aPAULcalypse</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:creator
+        >
+        <dc:subject
+          >
+          <rdf:Bag
+            >
+            <rdf:li
+              >Australia</rdf:li
+            >
+            <rdf:li
+              >animal</rdf:li
+            >
+            <rdf:li
+              >bear</rdf:li
+            >
+            <rdf:li
+              >cartoon</rdf:li
+            >
+            <rdf:li
+              >cute</rdf:li
+            >
+            <rdf:li
+              >grey</rdf:li
+            >
+            <rdf:li
+              >koala</rdf:li
+            >
+            <rdf:li
+              >outback</rdf:li
+            >
+            <rdf:li
+              >remix</rdf:li
+            >
+          </rdf:Bag
+          >
+        </dc:subject
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>

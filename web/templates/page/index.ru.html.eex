@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>1. Создай игру
+        <br />
+        <small>Выбери картинки, размер поля и количество игроков.</small>
+      </h3>
+      <h3>2. Отошли линк сопернику (соперникам)
+        <br />
+        <small>Или играй в одиночку на точность.</small>
+      </h3>
+      <h3>3. Докажи, что у тебя отличная память :)
+        <br />
+        <small>Без регистраций и прочей ерунды - заходи и играй.</small>
+      </h3>
+
+      <div class="rules text-muted">
+        <em>Правила простые: по очереди ищите пары одинаковых карточек, переворачивая их по две штуки за раз. Кто находит пару, зарабатывает очко - и может перевернуть еще одну пару. Кто находит больше пар - выигрывает.</em>
+      </div>
+
+      <%= link "Создай игру", to: "/ru" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
+    </div>
+    <div class="col-md-5">
+      <div class="screenshot">
+        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+</div>

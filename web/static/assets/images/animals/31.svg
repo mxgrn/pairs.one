@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+    xmlns="http://www.w3.org/2000/svg"
+    xmlns:dc="http://purl.org/dc/elements/1.1/"
+    xmlns:ns1="http://sozi.baierouge.fr"
+    xmlns:cc="http://web.resource.org/cc/"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+    viewBox="0 0 126 133"
+  >
+  <defs
+    >
+    <filter
+        id="imagebot_14"
+        color-interpolation-filters="sRGB"
+      >
+      <feGaussianBlur
+          id="imagebot_17"
+          stdDeviation="3.42031"
+      />
+    </filter
+    >
+    <linearGradient
+        id="imagebot_18"
+        y2="1"
+      >
+      <stop
+          stop-color="#d1ff52"
+          offset="0"
+      />
+      <stop
+          stop-color="#90e842"
+          offset="1"
+      />
+    </linearGradient
+    >
+  </defs
+  >
+  <g
+      id="imagebot_2"
+      stroke-linejoin="round"
+      stroke="#000"
+      fill-rule="evenodd"
+    >
+    <path
+        id="imagebot_16"
+        stroke-linejoin="round"
+        opacity=".57613"
+        d="m157.28 527.59c-10.77-14.51-8.2-35.35 5.75-46.55s33.99-8.53 44.76 5.97 8.2 35.35-5.75 46.56c-13.85 11.12-33.73 8.57-44.56-5.72"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.23977 -.0049413 -.0057774 .22798 114.01 -87.88)"
+        filter="url(#imagebot_14)"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="4.2761"
+    />
+    <path
+        id="imagebot_15"
+        stroke-linejoin="round"
+        opacity=".57613"
+        d="m157.28 527.59c-10.77-14.51-8.2-35.35 5.75-46.55s33.99-8.53 44.76 5.97 8.2 35.35-5.75 46.56c-13.85 11.12-33.73 8.57-44.56-5.72"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(.23977 .0049413 -.0057774 .22798 -10.48 -92)"
+        filter="url(#imagebot_14)"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="4.2761"
+    />
+    <path
+        id="imagebot_13"
+        stroke-linejoin="round"
+        opacity=".57613"
+        d="m-49.783 512.41c-30.644 119.17-66.047 129.04-153.93 42.92-87.89-86.13-78.73-121.72 39.79-154.77 118.53-33.05 144.78-7.32 114.13 111.85h0.007z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.091874 .016439 .019893 .076366 24.91 13.76)"
+        filter="url(#imagebot_14)"
+        stroke="#000"
+        stroke-linecap="round"
+        stroke-width="11.67"
+        fill="#ffc600"
+    />
+    <path
+        id="imagebot_12"
+        stroke-linejoin="round"
+        d="m509.32 458.79c-112.67 4.96-160.3-69.76-108.26-169.81 52.05-100.06 140.57-103.95 201.2-8.85 60.62 95.1 19.73 173.71-92.94 178.66z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(.10985 -.041842 .051471 .15443 -58.41 28.24)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="7.2325"
+        fill="#3f7f00"
+    />
+    <path
+        id="imagebot_11"
+        stroke-linejoin="round"
+        d="m509.32 458.79c-112.67 4.96-160.3-69.76-108.26-169.81 52.05-100.06 140.57-103.95 201.2-8.85 60.62 95.1 19.73 173.71-92.94 178.66z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(.09994 .032638 -.070011 .18001 55.27 -14.15)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="7.023"
+        fill="#3f7f00"
+    />
+    <path
+        id="imagebot_10"
+        stroke-linejoin="round"
+        d="m556.55 466.45c-17.62-0.2-4.8-87.42-13.44-102.78-8.63-15.36-89.81-49.75-80.82-64.91 8.99-15.15 78.11 39.56 95.73 39.76s87.99-52.91 96.62-37.54c8.64 15.36-73.31 47.87-82.29 63.02-8.99 15.16 1.82 102.66-15.8 102.46v-0.01z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.16283 .02283 -.02518 -.14915 148.99 151.86)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="6.3422"
+        fill="#e5b302"
+    />
+    <path
+        id="imagebot_9"
+        stroke-linejoin="round"
+        d="m556.55 466.45c-17.62-0.2-4.8-87.42-13.44-102.78-8.63-15.36-89.81-49.75-80.82-64.91 8.99-15.15 78.11 39.56 95.73 39.76s87.99-52.91 96.62-37.54c8.64 15.36-73.31 47.87-82.29 63.02-8.99 15.16 1.82 102.66-15.8 102.46v-0.01z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.16776 -.0036826 .0033856 -.1526 129.78 166.16)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="6.2485"
+        fill="#e5b302"
+    />
+    <path
+        id="imagebot_8"
+        stroke-linejoin="round"
+        d="m412.31 599.21c-116.74 7.07-213.49-139.27-161.24-243.9 52.24-104.64 227.34-115.25 291.84-17.69s-13.87 254.51-130.6 261.59z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.24933 -.0051385 .0065906 -.26007 144.62 167.08)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="3.926"
+        fill="url(#imagebot_18)"
+    />
+    <path
+        id="imagebot_7"
+        stroke-linejoin="round"
+        d="m-272.67 524.66c-29.73-39.33-22.63-95.85 15.87-126.23 38.49-30.38 93.81-23.13 123.54 16.21 29.74 39.33 22.64 95.85-15.86 126.23-38.23 30.17-93.1 23.25-123.01-15.5"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.24499 -.005244 -.0054087 .22153 25.49 -80.75)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="4.2914"
+        fill="#fff"
+    />
+    <path
+        id="imagebot_6"
+        stroke-linejoin="round"
+        d="m157.28 527.59c-10.77-14.51-8.2-35.35 5.75-46.55s33.99-8.53 44.76 5.97 8.2 35.35-5.75 46.56c-13.85 11.12-33.73 8.57-44.56-5.72"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.23977 -.0049413 -.0057774 .22798 113.29 -88.99)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="4.2761"
+    />
+    <path
+        id="imagebot_5"
+        stroke-linejoin="round"
+        d="m-272.67 524.66c-29.73-39.33-22.63-95.85 15.87-126.23 38.49-30.38 93.81-23.13 123.54 16.21 29.74 39.33 22.64 95.85-15.86 126.23-38.23 30.17-93.1 23.25-123.01-15.5"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(.2526 .0053176 -.0058031 .23364 78.03 -87.11)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="4.1153"
+        fill="#fff"
+    />
+    <path
+        id="imagebot_4"
+        stroke-linejoin="round"
+        d="m157.28 527.59c-10.77-14.51-8.2-35.35 5.75-46.55s33.99-8.53 44.76 5.97 8.2 35.35-5.75 46.56c-13.85 11.12-33.73 8.57-44.56-5.72"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(.23977 .0049413 -.0057774 .22798 -11.2 -93.1)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="4.2761"
+    />
+    <path
+        id="imagebot_3"
+        stroke-linejoin="round"
+        d="m-49.783 512.41c-30.644 119.17-66.047 129.04-153.93 42.92-87.89-86.13-78.73-121.72 39.79-154.77 118.53-33.05 144.78-7.32 114.13 111.85h0.007z"
+        fill-rule="evenodd"
+        transform="translate(14.163 4.785) matrix(-.091874 .016439 .019893 .076366 24.19 12.66)"
+        stroke="#000"
+        stroke-linecap="square"
+        stroke-width="11.67"
+        fill="#ffc600"
+    />
+    <title
+      >imagebot_2</title
+    >
+  </g
+  >
+  <metadata
+    >
+    <rdf:RDF
+      >
+      <cc:Work
+        >
+        <dc:format
+          >image/svg+xml</dc:format
+        >
+        <dc:type
+            rdf:resource="http://purl.org/dc/dcmitype/StillImage"
+        />
+        <cc:license
+            rdf:resource="http://creativecommons.org/licenses/publicdomain/"
+        />
+        <dc:publisher
+          >
+          <cc:Agent
+              rdf:about="http://openclipart.org/"
+            >
+            <dc:title
+              >Openclipart</dc:title
+            >
+          </cc:Agent
+          >
+        </dc:publisher
+        >
+      </cc:Work
+      >
+      <cc:License
+          rdf:about="http://creativecommons.org/licenses/publicdomain/"
+        >
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Reproduction"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#Distribution"
+        />
+        <cc:permits
+            rdf:resource="http://creativecommons.org/ns#DerivativeWorks"
+        />
+      </cc:License
+      >
+    </rdf:RDF
+    >
+  </metadata
+  >
+</svg
+>

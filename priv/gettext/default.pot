@@ -1,0 +1,52 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+"Language: INSERT LANGUAGE HERE\n"
+
+#: web/templates/game/new.html.eex:4 web/templates/layout/app.html.eex:27
+msgid "New game"
+msgstr ""
+
+#: web/templates/game/new.html.eex:26
+msgid "Board size"
+msgstr ""
+
+#: web/templates/game/new.html.eex:54
+msgid "Number of players"
+msgstr ""
+
+#: web/templates/game/new.html.eex:11
+msgid "Theme"
+msgstr ""
+
+#: web/templates/game/new.html.eex:100
+msgid "Go!"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:39
+msgid "Best multiplayer online memory game"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:64
+msgid "Hire me"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:68
+msgid "Updates"
+msgstr ""
+
+#: web/templates/game/show.html.eex:6
+msgid "Share with your opponent(s):"
+msgstr ""
+
+#: web/templates/game/show.html.eex:17
+msgid "Your name or twitter handle"
+msgstr ""

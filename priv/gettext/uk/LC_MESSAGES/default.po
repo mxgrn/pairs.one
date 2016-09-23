@@ -1,0 +1,51 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: uk\n"
+
+#: web/templates/game/new.html.eex:4 web/templates/layout/app.html.eex:27
+msgid "New game"
+msgstr "Нова гра"
+
+#: web/templates/game/new.html.eex:26
+msgid "Board size"
+msgstr "Розмір поля"
+
+#: web/templates/game/new.html.eex:54
+msgid "Number of players"
+msgstr "Кількість гравців"
+
+#: web/templates/game/new.html.eex:11
+msgid "Theme"
+msgstr "Зображення"
+
+#: web/templates/game/new.html.eex:100
+msgid "Go!"
+msgstr "Поїхали!"
+
+#: web/templates/layout/app.html.eex:39
+msgid "Best multiplayer online memory game"
+msgstr "Краща мультиплеєрна Меморі онлайн"
+
+#: web/templates/layout/app.html.eex:64
+msgid "Hire me"
+msgstr "Найми мене"
+
+#: web/templates/layout/app.html.eex:68
+msgid "Updates"
+msgstr "Новини"
+
+#: web/templates/game/show.html.eex:6
+msgid "Share with your opponent:"
+msgstr "Поділись з опонентом:"
+
+#: web/templates/game/show.html.eex:17
+msgid "Your name or twitter handle"
+msgstr "Твоє ім’я або Твіттер"

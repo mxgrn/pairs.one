@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-sm-9">
+    <div id="elm-game" data-id='<%= @id %>' data-themes='<%= raw @themes %>'></div>
+  </div>
+  <div class="col-sm-3">
+    <label class="game-url" for="game-url"><%= gettext "Share with your opponent(s):" %></label>
+      <div class="input-group clipboard-input">
+        <input class="form-control autoselect" name="game-url" value="<%= "#{@conn.scheme}://#{@conn.host}#{@conn.request_path}"  %>">
+        <span class="input-group-btn">
+            <button class="btn btn-default clipboard" data-clipboard-target=".clipboard-input input">
+              <img src="/images/clippy.svg" alt="copy to clipboard" width=13/>
+            </button>
+        </span>
+      </div>
+
+    <form id="player-data">
+      <label for="player-name"><%= gettext "Your name or twitter handle" %></label>
+      <div class="input-group">
+        <input class="form-control autoselect" id="player-name" placeholder="E.g. Max Gorin, @mxgrn" name="player-name">
+        <span class="input-group-btn"><button type=submit class="btn btn-default">ok</button></span>
+      </div>
+    </form>
+
+    <%# <h4>Ongoing games</h4> %>
+    <%# <div class="well clearfix"> %>
+    <%#   <h4> %>
+    <%#     <%= link "@mxgrn", to: "" %1> %>
+    <%#     vs %>
+    <%#     <%= link "@hasclass", to: "" %1> %>
+    <%#     vs %>
+    <%#     <%= link "@0rca", to: "" %1> %>
+    <%#   </h4> %>
+
+    <%#   <div class="progress"> %>
+    <%#     <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"> %>
+    <%#       60% Complete %>
+    <%#     </div> %>
+    <%#   </div> %>
+
+    <%#   <div class="pull-right"> %>
+    <%#     <%= link "Watch", to: "" %1> %>
+    <%#   </div> %>
+    <%# </div> %>
+  </div>
+</div>

@@ -1,0 +1,314 @@
+header a:hover {
+  text-decoration: none;
+}
+
+h1.title, h1.subtitle {
+  margin-top: 0;
+  margin-right: 10px;
+}
+
+.game, .game--completed {
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-duration: 1.5s;
+}
+
+.memory {
+  position: relative;
+  width: 100%;
+  padding-bottom: 100%;
+  margin-bottom: 20px;
+}
+
+.footer {
+  margin-top: 40px;
+  font-size: 0.9em;
+  /* background: #e6f3f7; */
+}
+
+.footer a {
+  margin-right: 20px;
+  display: inline-block;
+}
+
+.footer .col-md-6 {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.footer__lang {
+  text-align: center;
+}
+
+.flag-icon-ru {
+  box-shadow: 0 0 4px 0 rgba(0,0,0,0.3);
+}
+
+li.left {
+  float: left;
+}
+
+li.right {
+  float: right;
+  padding-right: 0;
+  padding-left: 20px;
+}
+
+.card-row {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+
+.card-wrapper {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.card {
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform .2s;
+}
+
+.card .front {
+  background-color: #BDE5F0;
+  z-index: 2;
+  transform: rotateY(0);
+}
+
+.front img {
+  width: 60%;
+}
+
+.card--clickable {
+  cursor: pointer;
+}
+
+.back img {
+  width: 80%;
+  height: 80%;
+}
+
+.centerer {
+  display: inline-block;
+  vertical-align: middle;
+  height: 100%;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card.cleared {
+  /* opacity: 0; */
+  transform: rotateY(180deg);
+}
+
+.card.cleared .back {
+  opacity: 0;
+}
+
+.front, .back {
+  border: 1px #b9d9e4 solid;
+  transition: opacity 0.7s;
+  display: block;
+  position: absolute;
+  top: 3%;
+  left: 3%;
+  width: 94%;
+  height: 94%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  text-align: center;
+}
+
+.card .back {
+  transform: rotateY(-180deg);
+  background-color: #fff;
+}
+
+.players-bar {
+  margin-bottom: 20px;
+}
+
+.players-bar .not-joined {
+  color: #ccc;
+}
+
+.players-bar .active {
+  font-weight: bold;
+  color: #000;
+}
+
+.active .player__name {
+  /* padding-left: 40px; */
+}
+
+.player__name:before {
+  content: " ";
+  width: 20px;
+  color: orange;
+  display: inline-block;
+}
+
+.active .player__name:before {
+  content: "➔";
+  font-weight: bold;
+}
+
+.players-bar .active.player-turn {
+  /* background-color: #ccffd2; */
+}
+
+.players-bar .player__score {
+  text-align: right;
+  /* display: inline-block; */
+  /* float: right; */
+  /* padding-right: 10px; */
+  /* width: 100%; */
+}
+
+label.game-url {
+  display: inline-block;
+  width: 100%;
+  padding: 3px 8px;
+  background-color: #ffd3a0;
+}
+
+.turn-banner {
+  padding: 5px;
+  margin-top: 5px;
+  font-size: 1.2em;
+  line-height: 20px;
+  background-color: lightgreen;
+  text-align: center;
+  opacity: 0;
+}
+
+.btn-restart {
+  margin-bottom: -15px;
+}
+
+.turn-banner--your-turn {
+  opacity: 1;
+}
+
+.theme-title {
+  margin-top: 5px;
+}
+
+.header-logo--sm {
+  height: 30px;
+  width: 30px;
+}
+
+.header-logo--lg {
+  height: 50px;
+  width: 50px;
+}
+
+.theme-selector label {
+  padding-top: 15px;
+  padding-bottom: 10px;
+}
+
+.screenshot img {
+  -webkit-box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 5px 5px 14px 0px rgba(0,0,0,0.2);
+  box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.2)
+}
+
+.landing-text {
+  min-width: 200px;
+}
+
+.btn-start {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.btn-go {
+  width: 200px;
+}
+
+.players-bar header {
+  font-size: 1.5em;
+  margin-bottom: 10px;
+}
+
+.rules {
+  margin-top: 20px;
+  border-left: solid #ddd 5px;
+  padding-left: 20px;
+  display: block;
+}
+
+.subboard {
+  margin-bottom: 20px;
+}
+
+.subboard .player {
+  line-height: 1.5em;
+  font-size: 1.5em;
+}
+
+.player-list-header {
+  border-bottom: 2px solid #eba774;
+  margin-top: 0;
+  padding-bottom: 4px;
+}
+
+.score-title {
+  border-bottom: 2px solid #eba774;
+  margin-top: 0;
+  padding-bottom: 4px;
+}
+
+.trophy--gold {
+  color: gold;
+}
+
+.trophy--silver {
+  color: silver;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.play-again {
+  margin-bottom: 20px;
+}
+
+.btn-theme {
+  width: 90px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+}
+
+.btn-replay {
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-bottom: 20px;
+}
+
+.score__accuracy {
+  color: #eee;
+}
+
+.score__player-name {
+  max-height: 1.2em;
+  overflow: hidden;
+}
+
+.accuracy {
+  margin-bottom: 30px;
+}
