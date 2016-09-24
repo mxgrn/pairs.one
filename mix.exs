@@ -3,7 +3,7 @@ defmodule PairsOne.Mixfile do
 
   def project do
     [app: :pairs_one,
-     version: "0.0.4",
+     version: "0.0.1",
      elixir: "~> 1.2",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
