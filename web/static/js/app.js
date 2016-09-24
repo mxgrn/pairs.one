@@ -50,7 +50,7 @@ $(function(){
 
       // Elm ports
       elm.ports.playAudio.subscribe( function(audio){
-        var audio = new Audio("/images/" + audio + ".mp3");
+        var audio = new Audio("/sounds/" + audio + ".mp3");
         audio.play();
       });
 

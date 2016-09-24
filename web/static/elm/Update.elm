@@ -225,7 +225,7 @@ updateGame model game =
                     game' =
                         { game | turn = 0 }
                 in
-                    ( playAudio "all-in", game' )
+                    ( playAudio "ready", game' )
             else
                 ( Cmd.none, game )
 
