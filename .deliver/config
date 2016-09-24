@@ -1,10 +1,10 @@
 # .deliver/config
 
-APP="memory"
+APP="pairs_one"
 
 BUILD_HOST="simpanet.one"
 BUILD_USER="mxgrn"
-BUILD_AT="/home/mxgrn/builds/memory"
+BUILD_AT="/home/mxgrn/builds/pairs_one"
 
 PRODUCTION_HOSTS="simpanet.one" # deploy / production hosts separated by space
 PRODUCTION_USER="mxgrn" # local user at deploy hosts
@@ -16,7 +16,7 @@ TEST_AT="/home/stage/stage"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
-  local _prod_secret_path="/home/mxgrn/config/memory/prod.secret.exs"
+  local _prod_secret_path="/home/mxgrn/config/pairs_one/prod.secret.exs"
   if [ "$TARGET_MIX_ENV" = "prod" ]; then
     __sync_remote "
       ln -sfn '$_prod_secret_path' '$BUILD_AT/config/prod.secret.exs'
