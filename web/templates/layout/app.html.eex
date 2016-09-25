@@ -8,7 +8,7 @@
     <meta name="author" content="Max Gorin">
     <meta content='/images/landing.jpg' property='og:image'>
 
-    <title>Play PairsOne/Concentration game over the Internet</title>
+    <title>Registration-free multiplayer Memory game</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
