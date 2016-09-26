@@ -26,26 +26,30 @@ msgstr "Кількість гравців"
 msgid "Theme"
 msgstr "Зображення"
 
-#: web/templates/game/new.html.eex:100
+#: web/templates/game/new.html.eex:82
 msgid "Go!"
 msgstr "Поїхали!"
 
 #: web/templates/layout/app.html.eex:39
-msgid "Best multiplayer online memory game"
-msgstr "Краща мультиплеєрна Меморі онлайн"
+msgid "Registration-free multiplayer Memory game"
+msgstr "Мультиплеєрна Меморі гра без реєстрації"
 
-#: web/templates/layout/app.html.eex:64
+#: web/templates/layout/app.html.eex:61
 msgid "Hire me"
 msgstr "Найми мене"
 
-#: web/templates/layout/app.html.eex:68
-msgid "Updates"
-msgstr "Новини"
-
 #: web/templates/game/show.html.eex:6
-msgid "Share with your opponent:"
+msgid "Share with your opponent(s):"
 msgstr "Поділись з опонентом:"
 
 #: web/templates/game/show.html.eex:17
 msgid "Your name or twitter handle"
 msgstr "Твоє ім’я або Твіттер"
+
+#: web/templates/layout/app.html.eex:7
+msgid "Play memory/concentration game with friends over the Internet without registration"
+msgstr "Грай в Меморі з друзями через Інтернет без реєстрації"
+
+#: web/templates/layout/app.html.eex:65
+msgid "Source code"
+msgstr "Вихідний код"

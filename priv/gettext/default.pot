@@ -27,7 +27,7 @@ msgstr ""
 msgid "Theme"
 msgstr ""
 
-#: web/templates/game/new.html.eex:100
+#: web/templates/game/new.html.eex:82
 msgid "Go!"
 msgstr ""
 
@@ -35,12 +35,8 @@ msgstr ""
 msgid "Best multiplayer online memory game"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:64
+#: web/templates/layout/app.html.eex:61
 msgid "Hire me"
-msgstr ""
-
-#: web/templates/layout/app.html.eex:68
-msgid "Updates"
 msgstr ""
 
 #: web/templates/game/show.html.eex:6
@@ -49,4 +45,16 @@ msgstr ""
 
 #: web/templates/game/show.html.eex:17
 msgid "Your name or twitter handle"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:11
+msgid "Play PairsOne/Concentration game over the Internet"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:7
+msgid "Play memory/concentration game with friends over the Internet without registration"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:65
+msgid "Source code"
 msgstr ""

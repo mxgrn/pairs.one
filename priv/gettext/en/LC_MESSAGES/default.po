@@ -10,6 +10,46 @@ msgid ""
 msgstr ""
 "Language: en\n"
 
-#: web/templates/game/new.html.eex:4
+#: web/templates/game/new.html.eex:4 web/templates/layout/app.html.eex:27
 msgid "New game"
+msgstr ""
+
+#: web/templates/game/new.html.eex:26
+msgid "Board size"
+msgstr ""
+
+#: web/templates/game/new.html.eex:54
+msgid "Number of players"
+msgstr ""
+
+#: web/templates/game/new.html.eex:11
+msgid "Theme"
+msgstr ""
+
+#: web/templates/game/new.html.eex:82
+msgid "Go!"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:39
+msgid "Registration-free multiplayer Memory game"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:61
+msgid "Hire me"
+msgstr ""
+
+#: web/templates/game/show.html.eex:6
+msgid "Share with your opponent(s):"
+msgstr ""
+
+#: web/templates/game/show.html.eex:17
+msgid "Your name or twitter handle"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:11
+msgid "Play PairsOne/Concentration game over the Internet"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:65
+msgid "Source code"
 msgstr ""

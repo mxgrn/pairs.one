@@ -4,11 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Play memory/concentration game with friends over the Internet without registration">
+    <meta name="description" content="<%= gettext "Play memory/concentration game with friends over the Internet without registration" %>">
     <meta name="author" content="Max Gorin">
     <meta content='/images/landing.jpg' property='og:image'>
-
-    <title>Registration-free multiplayer Memory game</title>
+    <title><%= gettext "Registration-free multiplayer Memory game" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
   </head>
 
@@ -36,7 +35,7 @@
               Pairs One
             <% end %>
           </h1>
-          <h1 class="pull-left subtitle"><small> <%= gettext "Best multiplayer online memory game" %></small></h1>
+          <h1 class="pull-left subtitle"><small> <%= gettext "Registration-free multiplayer Memory game" %></small></h1>
         </header>
       <% end %>
 
