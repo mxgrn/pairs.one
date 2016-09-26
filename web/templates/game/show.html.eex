@@ -3,16 +3,6 @@
     <div id="elm-game" data-id='<%= @id %>' data-themes='<%= raw @themes %>'></div>
   </div>
   <div class="col-sm-3">
-    <label class="game-url" for="game-url"><%= gettext "Share with your opponent(s):" %></label>
-      <div class="input-group clipboard-input">
-        <input class="form-control autoselect" name="game-url" value="<%= "#{@conn.scheme}://#{@conn.host}#{@conn.request_path}"  %>">
-        <span class="input-group-btn">
-            <button class="btn btn-default clipboard" data-clipboard-target=".clipboard-input input">
-              <img src="/images/clippy.svg" alt="copy to clipboard" width=13/>
-            </button>
-        </span>
-      </div>
-
     <form id="player-data">
       <label for="player-name"><%= gettext "Your name or twitter handle" %></label>
       <div class="input-group">

@@ -36,6 +36,12 @@ update msg model =
         SendCompressedGame patch ->
             model ! [ sendCompressedGame model patch ]
 
+        SelectGameUrlInput ->
+            model ! [ focus ".game-url" ]
+
+        CopyUrl ->
+            model ! [ copyUrl ".game-url" ]
+
         UpdatePlayer name ->
             let
                 game =

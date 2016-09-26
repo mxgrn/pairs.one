@@ -34,3 +34,9 @@ translate t =
 
                 ThisSet ->
                     "This set:"
+
+        ShareThisUrl ->
+            "Share this URL with your opponent(s):"
+
+        StartGameWhenReady ->
+            "You may start playing as soon as everbody is in!"

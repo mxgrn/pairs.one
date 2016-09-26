@@ -39,10 +39,6 @@ msgstr ""
 msgid "Hire me"
 msgstr ""
 
-#: web/templates/game/show.html.eex:6
-msgid "Share with your opponent(s):"
-msgstr ""
-
 #: web/templates/game/show.html.eex:17
 msgid "Your name or twitter handle"
 msgstr ""

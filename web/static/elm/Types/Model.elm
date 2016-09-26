@@ -43,3 +43,13 @@ playerName model =
 
             Nothing ->
                 dummyName
+
+
+gameUrl : Model -> String
+gameUrl model =
+    "http://" ++ model.host ++ "/" ++ model.locale ++ "/games/" ++ model.game.id
+
+
+gameIsActive : Model -> Bool
+gameIsActive model =
+    model.game.turn /= -1

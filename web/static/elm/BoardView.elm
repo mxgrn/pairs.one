@@ -12,6 +12,8 @@ import List.Extra
 import Types.Model exposing (..)
 import Types.Card exposing (..)
 import Types.Msg exposing (..)
+import I18n exposing (..)
+import I18n.Translation exposing (..)
 
 
 -- submodules
@@ -29,7 +31,8 @@ boardView model =
             List.indexedMap (,) model.game.cards
     in
         div [ class "game row" ]
-            [ playersView (model)
+            [ prestartOverlay model
+            , playersView (model)
             , div [ class "col-md-9 col-lg-8" ]
                 [ div
                     [ classList
@@ -40,6 +43,40 @@ boardView model =
                     ((groupsOf cols cardsWithIds) |> (rows model))
                 ]
             ]
+
+
+prestartOverlay : Model -> Html Msg
+prestartOverlay model =
+    let
+        t =
+            I18n.translate model.locale
+    in
+        if not <| gameIsActive model then
+            div []
+                [ div [ class "pairs-overlay" ] []
+                , div [ class "pairs-modal" ]
+                    [ div [ class "form-group" ]
+                        [ label [ class "game-url" ] [ text <| t <| ShareThisUrl ]
+                        , div [ class "input-group clipboard-input" ]
+                            [ input
+                                [ class "form-control game-url"
+                                , value (gameUrl model)
+                                , onClick SelectGameUrlInput
+                                ]
+                                []
+                            , span [ class "input-group-btn" ]
+                                [ button
+                                    [ class "btn btn-default clipboard", onClick CopyUrl ]
+                                    [ img [ src "/images/clippy.svg", alt "copy to clipboard", width 13 ] []
+                                    ]
+                                ]
+                            ]
+                        , span [ class "text-muted" ] [ text <| t <| StartGameWhenReady ]
+                        ]
+                    ]
+                ]
+        else
+            div [] []
 
 
 rows : Model -> List (List ( Int, Card )) -> List (Html Msg)

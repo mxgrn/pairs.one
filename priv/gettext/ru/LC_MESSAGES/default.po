@@ -38,10 +38,6 @@ msgstr "Мультиплеерная Мемори игра без регистр
 msgid "Hire me"
 msgstr "Найми меня"
 
-#: web/templates/game/show.html.eex:6
-msgid "Share with your opponent(s):"
-msgstr "Поделись с оппонентами:"
-
 #: web/templates/game/show.html.eex:17
 msgid "Your name or twitter handle"
 msgstr "Твое имя или Твиттер"

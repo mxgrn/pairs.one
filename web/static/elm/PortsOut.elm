@@ -11,3 +11,9 @@ port compressAndSendGame : Game -> Cmd msg
 
 
 port decompressAndUpdateGame : JE.Value -> Cmd msg
+
+
+port focus : String -> Cmd msg
+
+
+port copyUrl : String -> Cmd msg

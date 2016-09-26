@@ -10,7 +10,6 @@ $(function(){
         .toString(16)
         .substring(1);
     },
-    isSafari = Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
     base64ToArrayBuffer = function(base64) {
         var binary_string =  window.atob(base64);
         var len = binary_string.length;
@@ -71,6 +70,17 @@ $(function(){
         );
         elm.ports.onGameUpdate.send(game);
       });
+
+      elm.ports.focus.subscribe( function(el){
+        $(el).select();
+      });
+
+      elm.ports.copyUrl.subscribe( function(el){
+        $(el).select();
+        try {
+          succeeded = document.execCommand("copy");
+        } catch (err) {};
+      });
     }
   )
 
@@ -84,25 +94,6 @@ $(function(){
     localStorage.setItem('pairs-one-player', value);
     input.select();
     elm.ports.onUpdatePlayer.send(value);
-  });
-
-  new Clipboard('button.clipboard');
-
-  if (isSafari) {
-    /* remove copy button in Safari, as Clipboard doesn't support it */
-    $(".clipboard-input span").hide();
-    $(".clipboard-input").addClass("form-group");
-    $(".clipboard-input").removeClass("input-group");
-
-    /* and fix select on focus */
-    $(".clipboard-input input").mouseup( function(e){
-      e.preventDefault();
-    });
-  }
-
-  $("input.autoselect").focus(function(e) {
-    e.preventDefault();
-    $(e.target).select();
   });
 
   $("select#language").change( function(e){

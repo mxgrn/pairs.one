@@ -8,6 +8,8 @@ h1.title, h1.subtitle {
 }
 
 .game, .game--completed {
+  padding-top: 20px;
+  padding-bottom: 0;
   animation-name: fadeIn;
   animation-iteration-count: 1;
   animation-duration: 1.5s;
@@ -174,8 +176,6 @@ li.right {
 label.game-url {
   display: inline-block;
   width: 100%;
-  padding: 3px 8px;
-  background-color: #ffd3a0;
 }
 
 .turn-banner {
@@ -311,4 +311,28 @@ label.game-url {
 
 .accuracy {
   margin-bottom: 30px;
+}
+
+.pairs-overlay{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.pairs-modal {
+    width: 80%;
+    height: 160px;
+    margin-left: -40%;
+    margin-top: -80px;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: white;
+    border-radius: 5px;
+    z-index: 11;
 }

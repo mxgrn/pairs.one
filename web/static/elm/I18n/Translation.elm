@@ -15,3 +15,5 @@ type Translation
     | Accuracy Int
     | TryDifferentTheme
     | Scoreboard Scoreboard
+    | ShareThisUrl
+    | StartGameWhenReady

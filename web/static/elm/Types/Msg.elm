@@ -15,5 +15,7 @@ type Msg
     | UpdatePlayer String
     | FlipCard Int
     | ChangeTheme String
+    | CopyUrl
+    | SelectGameUrlInput
     | Replay
     | PhoenixMsg (Phoenix.Socket.Msg Msg)
