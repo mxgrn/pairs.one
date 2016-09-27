@@ -1,0 +1,83 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt\n"
+
+msgid "can't be blank"
+msgstr "não pode ser em branco"
+
+msgid "has already been taken"
+msgstr "já existe"
+
+msgid "is invalid"
+msgstr "é inválido"
+
+msgid "has invalid format"
+msgstr "possui formato inválido"
+
+msgid "has an invalid entry"
+msgstr "possui um valor inválido"
+
+msgid "is reserved"
+msgstr "é reservado"
+
+msgid "does not match confirmation"
+msgstr "não coincide com a confirmação"
+
+msgid "is still associated to this entry"
+msgstr "ainda está associado a este jogo"
+
+msgid "are still associated to this entry"
+msgstr "ainda estão associados a este jogo"
+
+msgid "should be %{count} character(s)"
+msgid_plural "should be %{count} character(s)"
+msgstr[0] "deve ser %{count} caractere(s)"
+msgstr[1] "deve ser %{count} caractere(s)"
+
+msgid "should have %{count} item(s)"
+msgid_plural "should have %{count} item(s)"
+msgstr[0] "deve ter %{count} item"
+msgstr[1] "deve ter %{count} itens"
+
+msgid "should be at least %{count} character(s)"
+msgid_plural "should be at least %{count} character(s)"
+msgstr[0] "deve ter pelo menos %{count} caractere"
+msgstr[1] "deve ter pelo menos %{count} caracteres"
+
+msgid "should have at least %{count} item(s)"
+msgid_plural "should have at least %{count} item(s)"
+msgstr[0] "deve ter pelo menos %{count} item"
+msgstr[1] "deve ter pelo menos %{count} itens"
+
+msgid "should be at most %{count} character(s)"
+msgid_plural "should be at most %{count} character(s)"
+msgstr[0] "deve ser no máximo %{count} caractere"
+msgstr[1] "deve ser no máximo %{count} caracteres"
+
+msgid "should have at most %{count} item(s)"
+msgid_plural "should have at most %{count} item(s)"
+msgstr[0] "deve ter no máximo %{count} item"
+msgstr[1] "deve ter no máximo %{count} itens"
+
+msgid "must be less than %{number}"
+msgstr "deve ser inferior a %{number}"
+
+msgid "must be greater than %{number}"
+msgstr "deve ser superior a %{number}"
+
+msgid "must be less than or equal to %{number}"
+msgstr "deve ser inferior ou igual a %{number}"
+
+msgid "must be greater than or equal to %{number}"
+msgstr "deve ser superior ou igual a %{number}"
+
+msgid "must be equal to %{number}"
+msgstr "deve ser igual a %{number}"
