@@ -8,6 +8,7 @@ import String
 import Phoenix.Socket
 import Phoenix.Channel
 import Json.Encode as JE
+import Dict exposing (Dict)
 
 
 -- Submodules
@@ -64,6 +65,8 @@ init { id, playerId, host, playerName, themes, locale } =
         socketInit =
             Phoenix.Socket.init ("ws://" ++ host ++ "/socket/websocket")
                 |> Phoenix.Socket.on "update_game" ("game:" ++ id) ReceiveCompressedGame
+                |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
+                |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff
 
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.join channel socketInit
@@ -77,6 +80,7 @@ init { id, playerId, host, playerName, themes, locale } =
           , isCompleted = False
           , locale = locale
           , phxSocket = socketInit
+          , phxPresences = Dict.empty
           }
         , Cmd.map PhoenixMsg phxCmd
         )

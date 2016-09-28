@@ -140,6 +140,10 @@ li.right {
   color: #ccc;
 }
 
+.players-bar .offline {
+  color: #ccc;
+}
+
 .players-bar .active {
   font-weight: bold;
   color: #000;

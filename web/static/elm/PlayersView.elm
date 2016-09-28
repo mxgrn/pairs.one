@@ -83,9 +83,10 @@ player model index =
                             in
                                 div
                                     [ classList
-                                        [ ( "active", index == model.game.turn )
+                                        [ ( "active", index == model.game.turn && player.online )
                                         , ( "player-turn", index == model.playerTurn )
                                         , ( "row", True )
+                                        , ( "offline", not player.online )
                                         ]
                                     ]
                                     [ playerNameHtml

@@ -19,3 +19,5 @@ type Msg
     | SelectGameUrlInput
     | Replay
     | PhoenixMsg (Phoenix.Socket.Msg Msg)
+    | HandlePresenceState JE.Value
+    | HandlePresenceDiff JE.Value

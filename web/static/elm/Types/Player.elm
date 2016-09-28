@@ -4,6 +4,10 @@ import Json.Encode as JE
 import Json.Decode as JD exposing ((:=))
 
 
+type alias PlayerId =
+    String
+
+
 type alias Player =
     { id : PlayerId
     , name : String
@@ -16,8 +20,9 @@ type alias Player =
     }
 
 
-type alias PlayerId =
-    String
+type alias PlayerPresence =
+    { id : PlayerId
+    }
 
 
 playerAt : Int -> List Player -> Maybe Player
@@ -78,3 +83,9 @@ playerDecoder =
         ("totalScore" := JD.int)
         ("turns" := JD.int)
         ("inaccurateTurns" := JD.int)
+
+
+playerPresenceDecoder : JD.Decoder PlayerPresence
+playerPresenceDecoder =
+    JD.object1 PlayerPresence
+        ("id" := JD.string)

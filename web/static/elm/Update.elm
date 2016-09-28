@@ -1,10 +1,12 @@
 module Update exposing (update)
 
 import Phoenix.Socket
+import Phoenix.Channel
 import Phoenix.Push
 import Json.Decode as JD
 import Json.Encode as JE
 import List.Extra
+import Phoenix.Presence exposing (PresenceState, syncState, syncDiff, presenceStateDecoder, presenceDiffDecoder)
 
 
 --
@@ -73,6 +75,41 @@ update msg model =
                 ( { model | phxSocket = phxSocket }
                 , Cmd.map PhoenixMsg phxCmd
                 )
+
+        HandlePresenceState raw ->
+            case JD.decodeValue (presenceStateDecoder playerPresenceDecoder) raw of
+                Ok presenceState ->
+                    let
+                        newPresenceState =
+                            model.phxPresences |> syncState presenceState
+                    in
+                        { model | phxPresences = newPresenceState } ! []
+
+                Err error ->
+                    let
+                        _ =
+                            Debug.log "Error" error
+                    in
+                        model ! []
+
+        HandlePresenceDiff raw ->
+            case JD.decodeValue (presenceDiffDecoder playerPresenceDecoder) raw of
+                Ok presenceDiff ->
+                    let
+                        newPresenceState =
+                            model.phxPresences |> syncDiff presenceDiff
+
+                        game =
+                            updateFromPresenceState model.game newPresenceState
+                    in
+                        { model | game = game, phxPresences = newPresenceState } ! []
+
+                Err error ->
+                    let
+                        _ =
+                            Debug.log "Error" error
+                    in
+                        model ! []
 
 
 replay : Model -> ( Model, Cmd Msg )

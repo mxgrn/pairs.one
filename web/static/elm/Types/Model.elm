@@ -9,6 +9,7 @@ import Types.Theme exposing (..)
 import Types.Msg exposing (..)
 import Phoenix.Socket
 import Phoenix.Channel
+import Phoenix.Presence exposing (PresenceState)
 
 
 type alias Model =
@@ -21,6 +22,7 @@ type alias Model =
     , isCompleted : Bool
     , locale : String
     , phxSocket : Phoenix.Socket.Socket Msg
+    , phxPresences : PresenceState PlayerPresence
     }
 
 

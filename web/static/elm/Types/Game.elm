@@ -2,6 +2,8 @@ module Types.Game exposing (..)
 
 import Json.Encode as JE
 import Json.Decode as JD exposing ((:=))
+import Phoenix.Presence exposing (PresenceState, PresenceStateMetaValue, syncState, syncDiff, presenceStateDecoder, presenceDiffDecoder)
+import Dict exposing (Dict)
 
 
 --
@@ -60,3 +62,21 @@ updatePlayerName game playerId name =
                 game.players
     in
         { game | players = newPlayers }
+
+
+updateFromPresenceState : Game -> PresenceState PlayerPresence -> Game
+updateFromPresenceState game presenceState =
+    let
+        onlinePlayerIds =
+            Dict.values presenceState
+                |> List.map
+                    (.metas
+                        >> (\wrapper -> (List.head wrapper) |> Maybe.withDefault (PresenceStateMetaValue "" (PlayerPresence "")))
+                        >> .payload
+                        >> .id
+                    )
+
+        players =
+            game.players |> List.map (\p -> { p | online = (List.any (\id -> id == p.id) onlinePlayerIds) })
+    in
+        { game | players = players }
