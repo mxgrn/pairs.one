@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>1. Crie um novo jogo
+        <br />
+        <small>Escolha o tema, tamanho do quadro e o número de jogadores.</small>
+      </h3>
+      <h3>2. Envie o link para seu(s) oponente(s)
+        <br />
+        <small>Ou jogue sozinho - e experimente ser o mais preciso possível.</small>
+      </h3>
+      <h3>3. Prove que você tem uma grande memória :)
+        <br />
+        <small>Sem registro, sem e-mails para entrar - apenas divirta-se..</small>
+      </h3>
+
+      <div class="rules text-muted">
+        <em>Você conhece as regras, certo? Procure pares de cartas em cada jogada, 2 de cada vez. Se você combinar um par, você ganha um ponto - e você pode jogar mais uma vez. Quem encontrar mais pares, ganha a partida.</em>
+      </div>
+
+      <%= link "Iniciar novo jogo", to: "/pt" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
+    </div>
+    <div class="col-md-5">
+      <div class="screenshot">
+        <img src="/images/landing.jpg" alt="exemplo" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+</div>
