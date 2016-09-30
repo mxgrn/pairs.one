@@ -1,0 +1,55 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: pt\n"
+
+#: web/templates/game/new.html.eex:4 web/templates/layout/app.html.eex:27
+msgid "New game"
+msgstr "Novo jogo"
+
+#: web/templates/game/new.html.eex:26
+msgid "Board size"
+msgstr "Medida do quadro"
+
+#: web/templates/game/new.html.eex:54
+msgid "Number of players"
+msgstr "Número de jogadores"
+
+#: web/templates/game/new.html.eex:11
+msgid "Theme"
+msgstr "Tema"
+
+#: web/templates/game/new.html.eex:82
+msgid "Go!"
+msgstr "Jogar!"
+
+#: web/templates/layout/app.html.eex:39
+msgid "Best multiplayer online memory game"
+msgstr "Jogo da Memória multijogadores, não precisa registrar conta"
+
+#: web/templates/layout/app.html.eex:61
+msgid "Hire me"
+msgstr "Contrate me"
+
+#: web/templates/game/show.html.eex:17
+msgid "Your name or twitter handle"
+msgstr "Seu nome ou perfil no twitter"
+
+#: web/templates/layout/app.html.eex:11
+msgid "Play PairsOne/Concentration game over the Internet"
+msgstr "Divirta-se com o jogo PairsOne através da Internet"
+
+#: web/templates/layout/app.html.eex:7
+msgid "Play memory/concentration game with friends over the Internet without registration"
+msgstr "Divirta-se com o jogo da memória com seus amigos através da Internet sem registrar conta"
+
+#: web/templates/layout/app.html.eex:65
+msgid "Source code"
+msgstr "Código fonte"
