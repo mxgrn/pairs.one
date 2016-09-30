@@ -50,10 +50,12 @@ If you like playing this game and want to help translate it into your language, 
 
 * Add `web/static/elm/I18n/Fr.elm` (see `web/static/elm/I18n/En.elm` for reference)
 
+* Update `web/static/elm/I18n.elm` (import the new module and extend the case statement)
+
 * Copy `web/templates/page/index.en.html.eex` to `web/templates/page/index.fr.html.eex` and translate it (also, update
     the link to "Create game" button).
 
-* Add `fr` to the list of available locales in `config/config.exs` and create a new label with `French` in `web/views/layout_view.ex`
+* Add `fr` to the list of available locales in `config/config.exs` and create a new label with `Français` in `web/views/layout_view.ex`
 
 Fire up the app and make sure your translation works.
 
