@@ -52,7 +52,12 @@ update msg model =
                 ( { model | game = game }, sendGame game )
 
         FlipCard index ->
-            flipCard index model
+            -- This check is needed because Chrome seems to process click events asynchrously, which may lead to race
+            -- condition due to the fact that a tile gets clicked while it's no longer current player's turn.
+            if model.playerTurn == model.game.turn then
+                flipCard index model
+            else
+                model ! []
 
         ChangeTheme theme ->
             let
