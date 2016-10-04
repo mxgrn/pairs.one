@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>1. 创建新游戏
+        <br />
+        <small>选择主题, 游戏难度和玩家人数。</small>
+      </h3>
+      <h3>2. 将游戏链接发送给你的对手(们)
+        <br />
+        <small>或者开始单人游戏 - 向更高的准确率发起挑战。</small>
+      </h3>
+      <h3>3. 展示你强大的记忆吧 :)
+        <br />
+        <small>无需注册, 不必绑定邮箱 - 尽情畅玩。</small>
+      </h3>
+
+      <div class="rules text-muted">
+        <em>你肯定知道规则, 对吧? 连续翻转两张卡片, 如果图案相同, 得一分并可继续翻转两张卡片。找到相同组多者胜出。</em>
+      </div>
+
+      <%= link "开始游戏", to: "/zh-hans" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
+    </div>
+    <div class="col-md-5">
+      <div class="screenshot">
+        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+</div>
