@@ -1,0 +1,35 @@
+.game__visual {
+  margin-right: 10px;
+  float: left;
+}
+
+.game__visual div {
+  text-align: center;
+}
+
+.game__visual img {
+  width: 35px;
+}
+
+.game-list__game .player-icon {
+  margin-right: 5px;
+}
+
+.game-list__game .player-name {
+  margin-right: 5px;
+}
+
+.game-list__game {
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  padding: 10px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  width: 200px;
+  cursor: pointer;
+}
+
+.game-list__game:hover {
+  background-color: #eee;
+}

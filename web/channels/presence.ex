@@ -74,4 +74,35 @@ defmodule PairsOne.Presence do
   """
   use Phoenix.Presence, otp_app: :pairs_one,
                         pubsub_server: PairsOne.PubSub
+
+  alias PairsOne.Game
+
+  def fetch("game:" <> game_id = topic, entries) do
+    import Logger; Logger.info ~s(\n\n!!! FETCH\n)
+    game = Game.get(game_id)
+    game_data = Game.game_data_for_list(game)
+    # presences = Phoenix.Tracker.list(__MODULE__, topic)
+
+    # PairsOne.Endpoint.broadcast "game-list", "update", pending_games
+    # if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
+      # PairsOne.PendingGames.remove(game_id) && PairsOne.Endpoint.broadcast "game-list", "update", pending_games
+    # else
+    #   PairsOne.PendingGames.add(game_id) && PairsOne.Endpoint.broadcast "game-list", "update", pending_games
+    # end
+
+    # if length(presences) == length(game["players"]) do
+    #   PairsOne.ActiveGames.add(game_id) && PairsOne.Endpoint.broadcast "game-list", "add_active_game", game_data
+    # else
+    #   PairsOne.ActiveGames.remove(game_id) && PairsOne.Endpoint.broadcast "game-list", "remove_active_game", game_data
+    # end
+
+    entries
+  end
+
+  defp pending_games do
+    res = %{games: PairsOne.PendingGames.data_list}
+    import Logger; Logger.info ~s(\n\n!!! res: #{inspect res}\n)
+    res
+  end
 end
+

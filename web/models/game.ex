@@ -6,41 +6,36 @@ defmodule PairsOne.Game do
   It would require a minor refactoring to remove this limitation.
   """
 
-  alias Exredis.Api, as: Redis
   alias PairsOne.Theme
 
-  defstruct id: "", cards: [], players: [], theme: "eighties", flips: 2, turn: -1
+  defstruct id: "", cards: [], players: [], theme: "eighties", flips: 2, turn: -1, visibility: "public"
 
-  @doc """
-  Prefix to store the game in Redis with.
-  """
   @redis_prefix "game:"
 
   @doc """
   Fetch persisted game by its id
   """
   def get(id) do
-    case id |> get_json |> Poison.decode do
-      {:ok, game} ->
-        game
-      {:error, _} -> nil
-    end
+    id |> get_json |> Poison.decode!
   end
 
   @doc """
   Check whether game with given id is persisted
   """
   def exists?(id) do
-    {:ok, redis} = Exredis.start_link
-    res = redis |> Redis.exists("#{@redis_prefix}#{id}")
-    redis |> Exredis.stop
-    res == 1
+    {:ok, conn} = Redix.start_link
+    res = Redix.command(conn, ["EXISTS", "#{@redis_prefix}#{id}"])
+    conn |> Redix.stop
+    case res do
+      {:ok, res} -> res == 1
+      _ -> false
+    end
   end
 
   @doc """
   Create and returns new game given its params
   """
-  def create(%{"board_size" => board_size, "players_number" => players_number, "theme" => theme_name}) do
+  def create(%{"board_size" => board_size, "players_number" => players_number, "theme" => theme_name, "visibility" => visibility}) do
     players_number = String.to_integer players_number
     board_size = String.to_integer board_size
 
@@ -52,7 +47,8 @@ defmodule PairsOne.Game do
       id: id,
       cards: cards(board_size, Theme.cards_number(theme_name)),
       players: players,
-      theme: theme_name
+      theme: theme_name,
+      visibility: visibility
     }
 
     save!(id, game)
@@ -65,10 +61,10 @@ defmodule PairsOne.Game do
   """
   def save!(id, game) do
     {:ok, game_string} = Poison.encode(game)
-    {:ok, redis} = Exredis.start_link
-    redis |> Redis.set("#{@redis_prefix}#{id}", game_string)
-    redis |> Redis.expire("#{@redis_prefix}#{id}", 24 * 60 * 60)
-    redis |> Exredis.stop
+    {:ok, conn} = Redix.start_link
+    conn |> Redix.command(["SET", "#{@redis_prefix}#{id}", game_string])
+    conn |> Redix.command(["EXPIRE", "#{@redis_prefix}#{id}", 24 * 60 * 60])
+    conn |> Redix.stop
     game
   end
 
@@ -149,8 +145,22 @@ defmodule PairsOne.Game do
   end
 
   # Check whether all players in the game have "joined" status
-  defp all_players_joined?(players) do
+  def all_players_joined?(players) do
     Enum.all?(players, fn(p) -> p["joined"] end)
+  end
+
+  def any_player_online?(game) do
+    Enum.any?(game["players"], fn(p) -> p["online"] end)
+  end
+
+  def game_data_for_list(game) do
+    size = length(game["cards"]) |> :math.sqrt |> round
+    %{
+      id: game["id"],
+      theme: game["theme"],
+      size: "#{size}x#{size}",
+      players: Enum.map(game["players"], fn(player) -> %{name: player["name"]} end)
+    }
   end
 
   # Given player id, try to find at what index to join the player
@@ -164,10 +174,12 @@ defmodule PairsOne.Game do
 
   # Given game's id, fetches game's JSON from Redis
   defp get_json(id) do
-    {:ok, redis} = Exredis.start_link
-    game_string = Redis.get "#{@redis_prefix}#{id}"
-    game_string = if game_string == :undefined do "" else game_string end
-    redis |> Exredis.stop
-    game_string
+    {:ok, conn} = Redix.start_link
+    res = Redix.command(conn, ["GET", "#{@redis_prefix}#{id}"])
+    conn |> Redix.stop
+    case res do
+      {:ok, game_string} -> game_string
+      _ -> :undefined
+    end
   end
 end

@@ -22,7 +22,8 @@ defmodule PairsOne.GameChannel do
   update the game in Redis, and then broadcast the compressed state to other players.
   """
   def handle_in("update_game", compressed_game, socket) do
-    Game.save!(socket.assigns.data.game_id, decompress_game(compressed_game))
+    game = decompress_game(compressed_game)
+    Game.save!(socket.assigns.data.game_id, game)
     broadcast_from! socket, "update_game", %{game: compressed_game}
     {:reply, :ok, socket}
   end
@@ -39,11 +40,17 @@ defmodule PairsOne.GameChannel do
   end
 
   def handle_info(:after_join, socket) do
-    game = Game.get(socket.assigns.data.game_id)
+    game_id = socket.assigns.data.game_id
+    game = Game.get(game_id)
     broadcast! socket, "update_game", %{game: compress_game(game)}
-
-    push socket, "presence_state", Presence.list(socket)
     {:ok, _} = Presence.track(socket, socket.assigns.data.player_id, %{id: socket.assigns.data.player_id})
+    push socket, "presence_state", Presence.list(socket)
+
+    unless Game.all_players_joined?(game["players"]) do
+      PairsOne.PendingGames.add(game_id)
+      PairsOne.Endpoint.broadcast "game-list", "update", pending_games
+    end
+
     {:noreply, socket}
   end
 
@@ -59,5 +66,11 @@ defmodule PairsOne.GameChannel do
     |> Poison.encode!
     |> LZString.compress
     |> Base.encode64
+  end
+
+  defp pending_games do
+    res = %{games: PairsOne.PendingGames.data_list}
+    import Logger; Logger.info ~s(\n\n!!! res: #{inspect res}\n)
+    res
   end
 end

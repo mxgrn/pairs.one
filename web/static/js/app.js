@@ -2,7 +2,9 @@
 $(function(){
   var idKey = 'pairs-one-player-id',
     nameKey = 'pairs-one-player',
+    settingsKey = 'pairs-one-settings',
     playerId = localStorage.getItem(idKey),
+    locale = $("html").attr("lang"),
     elm,
     playerName = localStorage.getItem(nameKey),
     s4 = function() {
@@ -38,13 +40,14 @@ $(function(){
   $("#elm-game").each(
     function(i, el){
       var themes = $(el).data('themes');
+      console.log("$(el).data('id') ", $(el).data('id'));
       elm = Elm.Main.embed(el, {
-        id: $(el).data('id'),
+        id: "" + $(el).data('id'), // because sometimes it comes as an number
         playerId: playerId,
         playerName: playerName || "",
         host: location.host,
         themes: themes,
-        locale: $("html").attr("lang")
+        locale: locale
       });
 
       // Elm ports
@@ -100,4 +103,44 @@ $(function(){
     var lang = $(e.target).val();
     window.location = "/" + lang + location.pathname.substring(3);
   });
+
+  // GameList
+
+  $(".elm-game-list").each(
+    function(i, el){
+      var themes = $(el).data('themes');
+      elm = Elm.GameList.embed(el, {
+        host: location.host,
+        locale: $("html").attr("lang")
+      });
+    }
+  );
+
+  // GameSelector
+
+  $(".elm-game-selector").each(
+    function(i, el){
+      var defaultSettings = {
+        theme: "eighties",
+        size: 4,
+        players: 2,
+        visibility: "public"
+      },
+        settings = JSON.parse(localStorage.getItem(settingsKey) || defaultSettings);
+
+      elm = Elm.GameSettings.embed(el, {
+        csrf: $(el).data("csrf"),
+        locale: $("html").attr("lang"),
+        themes: $(el).data("themes"),
+        theme: settings.theme,
+        size: settings.size,
+        players: settings.players,
+        visibility: settings.visibility
+      });
+
+      elm.ports.saveSettingsToLocalStorage.subscribe(function(params){
+        localStorage.setItem(settingsKey, JSON.stringify(params));
+      })
+    }
+  );
 });

@@ -10,6 +10,7 @@ defmodule PairsOne.GameController do
 
   def create(conn, %{"game" => game}) do
     game = PairsOne.Game.create(game)
+    import Logger; Logger.info ~s(\n\n!!! game: #{inspect game}\n)
     redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
   end
 
@@ -22,5 +23,9 @@ defmodule PairsOne.GameController do
       |> put_flash(:info, "Game does not exist (any longer), create a new one")
       |> redirect(to: game_path(conn, :new))
     end
+  end
+
+  def index(conn, _params) do
+    render conn, "index.html"
   end
 end

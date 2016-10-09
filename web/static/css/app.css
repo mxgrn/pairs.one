@@ -1,3 +1,7 @@
+body {
+  font-family: PT Sans, verdana, arial, helvetica, sans-serif;
+}
+
 header a:hover {
   text-decoration: none;
 }
@@ -5,6 +9,10 @@ header a:hover {
 h1.title, h1.subtitle {
   margin-top: 0;
   margin-right: 10px;
+}
+
+.btn-stackable {
+  margin-bottom: 10px;
 }
 
 .game, .game--completed {
@@ -219,14 +227,22 @@ label.game-url {
   padding-bottom: 10px;
 }
 
+.theme-selector h2 {
+  margin-bottom: 30px;
+}
+
 .screenshot img {
-  -webkit-box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.2);
-  -moz-box-shadow: 5px 5px 14px 0px rgba(0,0,0,0.2);
-  box-shadow: 3px 3px 14px 0px rgba(0,0,0,0.2)
+  -webkit-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2)
+}
+
+.screenshot {
+  margin-bottom: 10px;
 }
 
 .landing-text {
-  min-width: 200px;
+  /* min-width: 200px; */
 }
 
 .btn-start {
@@ -244,10 +260,11 @@ label.game-url {
 }
 
 .rules {
-  margin-top: 20px;
-  border-left: solid #ddd 5px;
-  padding-left: 20px;
-  display: block;
+  margin-top: 40px;
+  /* border-left: solid #ddd 5px; */
+  /* padding-left: 20px; */
+  /* display: block; */
+  font-size: 1.5em;
 }
 
 .subboard {
@@ -293,9 +310,10 @@ label.game-url {
 }
 
 .btn-theme {
-  width: 90px;
-  margin-right: 5px;
-  margin-bottom: 5px;
+  height: 110px;
+  width: 110px;
+  margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .btn-replay {
@@ -339,4 +357,157 @@ label.game-url {
     background-color: white;
     border-radius: 5px;
     z-index: 11;
+}
+
+.game-options h3 {
+  font-weight: bold;
+  color: #499 !important;
+}
+
+.game-option__description{
+  height: 150px;
+  color: #444;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+.game-option {
+  padding-top: 1px;
+  padding-bottom: 20px;
+}
+
+.game-option h3 {
+  color: #444;
+}
+
+.option-one {
+  background-color: #ffd;
+}
+
+.option-two {
+  background-color: #eff;
+}
+
+.option-three {
+  background-color: #fef;
+}
+
+.game-option-icon {
+  float: left;
+  padding-right: 15px;
+}
+
+.game-option-icon img {
+  width: 70px;
+}
+
+.game-option__actions {
+  text-align: center;
+}
+
+.game-settings {
+  padding: 10px;
+  margin-bottom: 20px;
+  background-color: #ddf0f8;
+}
+
+.btn-go {
+  /* margin-top: 15px; */
+  /* width: 60%; */
+  /* line-height: 2em; */
+}
+
+.btn-game-setting {
+  width: 100%;
+  height: 3em;
+  line-height: 2.5em;
+  font-size: 1.5em;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.theme-icon {
+  width: 40px;
+  margin-right: 5px;
+}
+
+.boardsize-icon {
+  /* font-size: 1.5em; */
+  margin-right: 5px;
+}
+
+.btn-go-wrapper {
+  text-align: center;
+}
+
+.new-game-selector {
+  margin-bottom: 30px;
+}
+
+
+.pairs-modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background-color: rgba(0,0,0,0.2);
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-duration: 0.3s;
+}
+
+.pairs-modal-dialog {
+  width: auto;
+  margin: 10px;
+  background-color: white;
+  border-radius: 5px;
+  overflow-Y: scroll;
+  padding: 20px;
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-duration: 0.3s;
+}
+
+.theme-easy {
+  background-color: #efe;
+}
+
+.theme-medium {
+  background-color: #fdfbda;
+}
+
+.theme-hard {
+  background-color: #fdd;
+}
+
+.level-legend__block {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  top: 5px;
+  margin-left: 10px;
+  border: 1px #ccc solid;
+}
+
+.level-legend {
+  margin-bottom: 20px;
+}
+
+.modal__close {
+  cursor: pointer;
+  color: #aaa;
+}
+
+.modal__close :hover {
+  color: #666;
+}
+
+@media (min-width: 768px) {
+  .pairs-modal-dialog {
+    width: 640px;
+    margin: 30px auto;
+  }
 }

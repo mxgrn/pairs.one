@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-sm-9">
-    <div id="elm-game" data-id='<%= @id %>' data-themes='<%= raw @themes %>'></div>
+    <div id="elm-game" data-id="<%= @id %>" data-themes='<%= raw @themes %>'></div>
   </div>
   <div class="col-sm-3">
     <form id="player-data">

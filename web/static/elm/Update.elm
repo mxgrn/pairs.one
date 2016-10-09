@@ -7,6 +7,7 @@ import Json.Decode as JD
 import Json.Encode as JE
 import List.Extra
 import Phoenix.Presence exposing (PresenceState, syncState, syncDiff, presenceStateDecoder, presenceDiffDecoder)
+import Array
 
 
 --
@@ -146,11 +147,14 @@ flipCard index model =
             model.flippedIds
 
         flippedIds' =
-            if (List.length flippedIds) == game.flips then
-                [ index ]
+            if model.playerTurn == game.turn then
+                if (List.length flippedIds) == game.flips then
+                    [ index ]
+                else
+                    -- preventing dblclick glitch in Chrome with `unique`
+                    List.append flippedIds [ index ] |> List.Extra.unique
             else
-                -- preventing dblclick glitch in Chrome with `unique`
-                List.append flippedIds [ index ] |> List.Extra.unique
+                flippedIds
 
         ( turn, matched, turnFinished ) =
             if (List.length flippedIds') == game.flips then

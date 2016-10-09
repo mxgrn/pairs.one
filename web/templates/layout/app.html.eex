@@ -9,6 +9,7 @@
     <meta content='/images/landing.jpg' property='og:image'>
     <title><%= gettext "Registration-free multiplayer Memory game" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
   </head>
 
   <body>
@@ -34,8 +35,7 @@
               <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
               Pairs One
             <% end %>
-          </h1>
-          <h1 class="pull-left subtitle"><small> <%= gettext "Registration-free multiplayer Memory game" %></small></h1>
+          <small> <%= gettext "Registration-free multiplayer Memory game" %></small></h1>
         </header>
       <% end %>
 
