@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <div class="container">
+    <div id="main" class="container">
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
           <h4 class="pull-left">
@@ -39,10 +39,14 @@
         </header>
       <% end %>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <div class="container">
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <p class="alert alert-success" role="alert"><%= get_flash(@conn, :warning) %></p>
 
           <%= render @view_module, @view_template, assigns %>
+
+      </div>
 
       <div class="footer row">
         <div class="col-md-6 col-md-push-6 footer__lang">

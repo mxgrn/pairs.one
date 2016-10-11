@@ -56,7 +56,8 @@ type alias UpdateData =
 
 
 type alias Model =
-    { pendingGames : List Game
+    { locale : String
+    , pendingGames : List Game
     , activeGames : List Game
     , phxSocket : Phoenix.Socket.Socket Msg
     }
@@ -80,7 +81,7 @@ subscriptions model =
 
 
 init : Params -> ( Model, Cmd Msg )
-init { host } =
+init { locale, host } =
     let
         payload =
             JE.object []
@@ -102,63 +103,64 @@ init { host } =
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.join channel socketInit
     in
-        ( { pendingGames = [], activeGames = [], phxSocket = socketInit }, Cmd.map PhoenixMsg phxCmd )
+        ( { locale = locale, pendingGames = [], activeGames = [], phxSocket = socketInit }, Cmd.map PhoenixMsg phxCmd )
 
 
 view : Model -> Html Msg
 view model =
     div []
         [ h3 [] [ text "Игры, ожидающие твоего участия" ]
-        , div [ class "clearfix" ] (games model.pendingGames)
+        , div [ class "clearfix" ] (games model)
         ]
 
 
-games : List Game -> List (Html Msg)
-games games' =
-    games'
+games : Model -> List (Html Msg)
+games model =
+    model.pendingGames
         |> List.map
             (\game ->
-                div [ class "game-list__game" ]
+                a [ class "game-list__game", href <| "/" ++ model.locale ++ "/games/" ++ game.id ]
                     ([ div [ class "game__visual" ]
-                        [ img [ src "/images/animals/1.svg" ] []
+                        [ img [ src <| "/images/" ++ game.theme ++ "/1.svg" ] []
                         , div []
                             [ strong [] [ text game.size ]
                             ]
                         ]
                      ]
                         ++ players (game.players)
-                        ++ [ br [] []
-                           , text game.id
-                           ]
                     )
             )
 
 
+playerHtml : Int -> Player -> Html Msg
+playerHtml i player =
+    let
+        ( cls, txt ) =
+            if player.name == "" then
+                ( "game-list__player game-list__player--waiting", "-----" )
+            else
+                ( "game-list__player", player.name )
+    in
+        div [ class cls ]
+            [ span [ class "player-name" ] [ text <| (toString <| i + 1) ++ ". " ++ txt ]
+            ]
+
+
 players : List Player -> List (Html Msg)
 players players' =
-    List.concatMap
-        (\p ->
-            [ span [ class "fa fa-user player-icon" ] []
-            , span [ class "player-name" ] [ text p.name ]
-            ]
-        )
-        players'
+    List.indexedMap playerHtml players'
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
         Update raw ->
-            let
-                _ =
-                    Debug.log "raw" raw
-            in
-                case JD.decodeValue updateDecoder raw of
-                    Ok updateData ->
-                        { model | pendingGames = updateData.games } ! []
+            case JD.decodeValue updateDecoder raw of
+                Ok updateData ->
+                    { model | pendingGames = updateData.games } ! []
 
-                    Err error ->
-                        decoderError model error
+                Err error ->
+                    decoderError model error
 
         ListActiveGames raw ->
             case JD.decodeValue updateDecoder raw of

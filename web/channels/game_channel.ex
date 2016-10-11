@@ -69,8 +69,6 @@ defmodule PairsOne.GameChannel do
   end
 
   defp pending_games do
-    res = %{games: PairsOne.PendingGames.data_list}
-    import Logger; Logger.info ~s(\n\n!!! res: #{inspect res}\n)
-    res
+    %{games: PairsOne.PendingGames.data_list}
   end
 end

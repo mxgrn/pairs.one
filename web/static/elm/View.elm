@@ -29,7 +29,7 @@ view model =
 loading : Html Msg
 loading =
     div [ class "game" ]
-        [ h4 [ style [ ( "text-align", "center" ) ] ] [ text "" ] ]
+        [ h4 [ style [ ( "text-align", "center" ) ] ] [ img [ src "/images/loading.gif", width 40 ] [] ] ]
 
 
 game : Model -> Html Msg

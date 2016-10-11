@@ -40,8 +40,7 @@ $(function(){
   $("#elm-game").each(
     function(i, el){
       var themes = $(el).data('themes');
-      console.log("$(el).data('id') ", $(el).data('id'));
-      elm = Elm.Main.embed(el, {
+      elm = Elm.Game.embed(el, {
         id: "" + $(el).data('id'), // because sometimes it comes as an number
         playerId: playerId,
         playerName: playerName || "",
@@ -126,7 +125,7 @@ $(function(){
         players: 2,
         visibility: "public"
       },
-        settings = JSON.parse(localStorage.getItem(settingsKey) || defaultSettings);
+        settings = JSON.parse(localStorage.getItem(settingsKey) || JSON.stringify(defaultSettings));
 
       elm = Elm.GameSettings.embed(el, {
         csrf: $(el).data("csrf"),
@@ -140,7 +139,10 @@ $(function(){
 
       elm.ports.saveSettingsToLocalStorage.subscribe(function(params){
         localStorage.setItem(settingsKey, JSON.stringify(params));
-      })
+      });
     }
   );
+
+  // Let Elm render first, then show everything together
+  setTimeout(function(){ $("#main").addClass("visible") }, 0);
 });

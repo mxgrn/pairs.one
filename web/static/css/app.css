@@ -11,6 +11,17 @@ h1.title, h1.subtitle {
   margin-right: 10px;
 }
 
+#main {
+  display: none;
+}
+
+#main.visible {
+  display: block;
+  animation-name: fadeIn;
+  animation-iteration-count: 1;
+  animation-duration: 0.3s;
+}
+
 .btn-stackable {
   margin-bottom: 10px;
 }
@@ -251,7 +262,17 @@ label.game-url {
 }
 
 .btn-go {
-  width: 200px;
+  /* width: 200px; */
+  width: 100%;
+}
+
+.btn-go-wrapper {
+  text-align: center;
+}
+
+.inter-button {
+  text-align: center;
+  font-size: 2em;
 }
 
 .players-bar header {
@@ -359,21 +380,21 @@ label.game-url {
     z-index: 11;
 }
 
+.game-option {
+  height: 220px;
+  padding-top: 1px;
+  padding-bottom: 20px;
+}
+
 .game-options h3 {
-  font-weight: bold;
-  color: #499 !important;
+  color: #c57b7b !important;
 }
 
 .game-option__description{
-  height: 150px;
+  /* height: 150px; */
   color: #444;
   font-size: 1.1em;
   margin-bottom: 10px;
-}
-
-.game-option {
-  padding-top: 1px;
-  padding-bottom: 20px;
 }
 
 .game-option h3 {
@@ -413,7 +434,7 @@ label.game-url {
 
 .btn-go {
   /* margin-top: 15px; */
-  /* width: 60%; */
+  width: 100%;
   /* line-height: 2em; */
 }
 

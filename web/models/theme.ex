@@ -5,7 +5,6 @@ defmodule PairsOne.Theme do
 
   @themes [
     eighties: %{
-      folder: "eighties",
       title: "Eighties",
       cards: 40,
       difficulty: 0,
@@ -13,15 +12,13 @@ defmodule PairsOne.Theme do
     },
 
     animals: %{
-      folder: "animals",
       title: "Animals",
       cards: 50,
       difficulty: 0,
       new: false
     },
 
-    animals_2: %{
-      folder: "animals2",
+    animals2: %{
       title: "Animals 2",
       cards: 50,
       difficulty: 0,
@@ -29,7 +26,6 @@ defmodule PairsOne.Theme do
     },
 
     pokemon: %{
-      folder: "pokemon",
       title: "Pokémon",
       cards: 50,
       difficulty: 1,
@@ -37,23 +33,20 @@ defmodule PairsOne.Theme do
     },
 
     halloween: %{
-      folder: "halloween",
       title: "Halloween",
       cards: 48,
       difficulty: 1,
       new: false
     },
 
-    fairy_tails: %{
-      folder: "fairy-tails",
-      title: "Fairy Tails",
+    fairy_tales: %{
+      title: "Fairy Tales",
       cards: 50,
       difficulty: 0,
       new: false
     },
 
     music: %{
-      folder: "music",
       title: "Music",
       cards: 50,
       difficulty: 1,
@@ -61,7 +54,6 @@ defmodule PairsOne.Theme do
     },
 
     owls: %{
-      folder: "owls",
       title: "Owls b/w",
       cards: 50,
       difficulty: 2,
@@ -69,7 +61,6 @@ defmodule PairsOne.Theme do
     },
 
     cats: %{
-      folder: "cats",
       title: "Cats b/w",
       cards: 50,
       difficulty: 2,

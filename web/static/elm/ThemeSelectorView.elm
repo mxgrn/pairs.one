@@ -20,7 +20,7 @@ themeSelectorView model =
 
 
 themeButton : String -> Theme -> Html Msg
-themeButton activeTheme { name, folder, title } =
+themeButton activeTheme { name, title, difficulty, new } =
     let
         activeClass =
             if name == activeTheme then
@@ -29,6 +29,6 @@ themeButton activeTheme { name, folder, title } =
                 ""
     in
         label [ class ("btn btn-default btn-theme" ++ activeClass), onMouseDown (ChangeTheme name) ]
-            [ img [ src ("/images/" ++ folder ++ "/1.svg"), width 50, height 50 ] []
+            [ img [ src ("/images/" ++ name ++ "/1.svg"), width 50, height 50 ] []
             , div [ class "theme-title" ] [ text title ]
             ]

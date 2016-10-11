@@ -10,7 +10,6 @@ defmodule PairsOne.GameController do
 
   def create(conn, %{"game" => game}) do
     game = PairsOne.Game.create(game)
-    import Logger; Logger.info ~s(\n\n!!! game: #{inspect game}\n)
     redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
   end
 
@@ -27,5 +26,26 @@ defmodule PairsOne.GameController do
 
   def index(conn, _params) do
     render conn, "index.html"
+  end
+
+  def random(conn, _params) do
+    pending_games = PairsOne.PendingGames.data_list
+    game = pending_games |> Enum.sort_by(&missing_players_number/1) |> List.first
+    if game do
+      redirect(conn, to: game_path(conn, :show, game.id))
+    else
+      conn
+      |> put_flash(:warning, "There are no pending games at this moment - start one now!")
+      |>
+      redirect(to: "/#{locale}" )
+    end
+  end
+
+  defp last_missing_player?(%{players: players}) do
+    Enum.count(players, fn(p) -> p.name == "" end) == 1
+  end
+
+  defp missing_players_number(%{players: players}) do
+    Enum.count(players, fn(p) -> p.name == "" end)
   end
 end

@@ -3,7 +3,6 @@ module Types.Theme exposing (..)
 
 type alias Theme =
     { name : String
-    , folder : String
     , title : String
     , difficulty : Int
     , new : Bool
@@ -12,4 +11,4 @@ type alias Theme =
 
 defaultTheme : Theme
 defaultTheme =
-    Theme "eighties" "eighties" "80's" 0 False
+    Theme "eighties" "80's" 0 False

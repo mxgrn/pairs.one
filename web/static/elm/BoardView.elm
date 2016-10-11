@@ -130,8 +130,6 @@ card model dimension row col ( cardId, card ) =
         width =
             (100 / toFloat dimension)
 
-        themeFolder =
-            model.themes |> List.Extra.find (\th -> th.name == model.game.theme) |> Maybe.map .folder |> withDefault ""
     in
         div
             [ class "card-wrapper"
@@ -152,7 +150,7 @@ card model dimension row col ( cardId, card ) =
                     [ class "back" ]
                     [ div [ class "centerer" ] []
                     , img
-                        [ src ("/images/" ++ themeFolder ++ "/" ++ (toString card.value) ++ ".svg")
+                        [ src ("/images/" ++ model.game.theme ++ "/" ++ (toString card.value) ++ ".svg")
                         ]
                         []
                     ]
