@@ -98,6 +98,6 @@ $(function(){
 
   $("select#language").change( function(e){
     var lang = $(e.target).val();
-    window.location = "/" + lang + location.pathname.substring(3);
+    window.location = location.pathname.replace(/\/[a-z-]+\//, "/"+ lang +"/");
   });
 });
