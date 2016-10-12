@@ -25,6 +25,13 @@ defmodule PairsOne.Theme do
       new: false
     },
 
+    fairy_tales: %{
+      title: "Fairy Tales",
+      cards: 50,
+      difficulty: 0,
+      new: false
+    },
+
     pokemon: %{
       title: "Pokémon",
       cards: 50,
@@ -36,13 +43,6 @@ defmodule PairsOne.Theme do
       title: "Halloween",
       cards: 48,
       difficulty: 1,
-      new: false
-    },
-
-    fairy_tales: %{
-      title: "Fairy Tales",
-      cards: 50,
-      difficulty: 0,
       new: false
     },
 
@@ -62,6 +62,13 @@ defmodule PairsOne.Theme do
 
     cats: %{
       title: "Cats b/w",
+      cards: 50,
+      difficulty: 2,
+      new: false
+    },
+
+    robots: %{
+      title: "Robots b/w",
       cards: 50,
       difficulty: 2,
       new: true
