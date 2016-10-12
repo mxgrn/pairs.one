@@ -123,7 +123,7 @@ card model dimension row col ( cardId, card ) =
 
         cardAttrs =
             if isClickable then
-                classAttrs ++ [ onClick (FlipCard cardId) ]
+                classAttrs ++ [ onMouseDown (FlipCard cardId) ]
             else
                 classAttrs
 

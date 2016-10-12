@@ -262,7 +262,7 @@ flipCard index model =
         model' =
             { model | game = game', flippedIds = flippedIds', isCompleted = allCleared }
     in
-        ( model', sendGame game' )
+        ( model', Cmd.batch [ sendGame game', playAudio "flip" ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
