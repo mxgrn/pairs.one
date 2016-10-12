@@ -13,7 +13,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :pairs_one, PairsOne.Endpoint,
   http: [port: 8070],
-  url: [host: "pairs.one"],
+  url: [host: System.get_env("APP_HOST")],
   cache_static_manifest: "priv/static/manifest.json"
 
 # Do not print debug messages in production
