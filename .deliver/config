@@ -2,17 +2,17 @@
 
 APP="pairs_one"
 
-BUILD_HOST="simpanet.one"
+BUILD_HOST="stage.pairs.one"
 BUILD_USER="mxgrn"
 BUILD_AT="/home/mxgrn/builds/pairs_one"
 
-PRODUCTION_HOSTS="simpanet.one" # deploy / production hosts separated by space
+PRODUCTION_HOSTS="pairs.one" # deploy / production hosts separated by space
 PRODUCTION_USER="mxgrn" # local user at deploy hosts
 DELIVER_TO="/home/mxgrn/production" # deploy directory on production hosts
 
-STAGING_HOSTS="simpanet.one" # deploy / production hosts separated by space
-STAGING_USER="stage" # local user at deploy hosts
-TEST_AT="/home/stage/stage"
+STAGING_HOSTS="stage.pairs.one" # deploy / production hosts separated by space
+STAGING_USER="mxgrn" # local user at deploy hosts
+TEST_AT="/home/mxgrn/production"
 
 # For *Phoenix* projects, symlink prod.secret.exs to our tmp source
 pre_erlang_get_and_update_deps() {
