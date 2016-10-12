@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-7">
+      <h3>1. Créer une nouvelle partie
+        <br />
+        <small>Veuillez choisir le thème, la taille du tableau et le nombre de joueurs.</small>
+      </h3>
+      <h3>2. Envoyez le lien à votre/vos adversaire(s)
+        <br />
+        <small>Ou bien jouez seul - et essayez de battre votre score de précision.</small>
+      </h3>
+      <h3>3. Prouvez que vous avez une super mémoire :)
+        <br />
+        <small>Pas d'enregistrement, pas d'emails à entrer - juste du fun.</small>
+      </h3>
+
+      <div class="rules text-muted">
+        <em>Vous connaissez les règles, n'est-ce pas ? Chercher des paires de cartes en en retournant 2 à la fois. Si vous trouvez un correspondance, vous obtenez un point - et vous serez invité à tourner deux autres cartes. Celui qui trouve le plus de correspondances gagne la partie.</em>
+      </div>
+
+      <%= link "Commencer une partie", to: "/fr" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
+    </div>
+    <div class="col-md-5">
+      <div class="screenshot">
+        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+    </div>
+  </div>
+</div>

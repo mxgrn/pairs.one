@@ -6,6 +6,7 @@ import I18n.Ru
 import I18n.Uk
 import I18n.Pt
 import I18n.ZhHans
+import I18n.Fr
 
 
 translate : String -> Translation -> String
@@ -25,6 +26,9 @@ translate language translation =
 
         "zh-hans" ->
             I18n.ZhHans.translate translation
+
+        "fr" ->
+            I18n.Fr.translate translation
 
         _ ->
             I18n.En.translate translation
