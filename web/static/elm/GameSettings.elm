@@ -147,8 +147,8 @@ subscriptions model =
     Keyboard.downs (\code -> Presses code)
 
 
-themeSelectorView : Model -> Html Msg
-themeSelectorView model =
+modalSelector : Model -> Html Msg
+modalSelector model =
     case model.selector of
         ThemeSelector ->
             modal <| themes model
@@ -219,7 +219,8 @@ players =
 view : Model -> Html Msg
 view model =
     div [ class "new-game-selector" ]
-        [ themeSelectorView model
+        [ h3 [] [ text "Select your game:" ]
+        , modalSelector model
         , Html.form [ action <| "/" ++ model.locale ++ "/games", method "post" ]
             [ input [ type' "hidden", name "_csrf_token", value model.csrf ] []
             , div [ class "row game-settings" ]
@@ -267,7 +268,7 @@ visibilityButton model =
                 [ span []
                     [ text text'
                     ]
-                , span [ class "caret" ]
+                , i [ class "fa fa-caret-down" ]
                     []
                 ]
             , input [ type' "hidden", name "game[visibility]", value <| visibilityToString model.visibility ] []
@@ -282,7 +283,7 @@ playersButton model =
                 [ text "Players: " ]
             , span [ class "boardsize-icon" ]
                 [ text <| toString model.players ]
-            , span [ class "caret" ]
+            , i [ class "fa fa-caret-down" ]
                 []
             ]
         , input [ type' "hidden", name "game[players_number]", value <| toString model.players ] []
@@ -297,7 +298,7 @@ boardSizeButton model =
                 [ text "Size: " ]
             , span [ class "boardsize-icon" ]
                 [ text (toString model.boardSize ++ "x" ++ toString model.boardSize) ]
-            , span [ class "caret" ]
+            , i [ class "fa fa-caret-down" ]
                 []
             ]
         , input [ type' "hidden", name "game[board_size]", value <| toString model.boardSize ] []
@@ -312,7 +313,7 @@ themeButton model =
                 [ text "Theme: " ]
             , img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
                 []
-            , span [ class "caret" ]
+            , i [ class "fa fa-caret-down" ]
                 []
             ]
         , input [ type' "hidden", name "game[theme]", value model.theme.name ] []

@@ -491,6 +491,18 @@ label.game-url {
   animation-duration: 0.3s;
 }
 
+.btn-game-setting.theme-hard:hover {
+  background-color: #ffd5d5;
+}
+
+.btn-game-setting.theme-easy:hover {
+  background-color: #e5ffe5;
+}
+
+.btn-game-setting.theme-medium:hover {
+  background-color: #fbf8c3;
+}
+
 .theme-easy {
   background-color: #efe;
 }
