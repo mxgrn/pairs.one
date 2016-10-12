@@ -19,7 +19,7 @@ config :logger, :console,
   metadata: [:request_id]
 
 config :pairs_one, PairsOne.Gettext,
-  locales: ~w(en ru uk pt zh-hans)
+  locales: ~w(en ru uk pt zh-hans fr)
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
