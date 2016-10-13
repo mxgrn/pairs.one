@@ -219,11 +219,10 @@ players =
 view : Model -> Html Msg
 view model =
     div [ class "new-game-selector" ]
-        [ h3 [] [ text "Select your game:" ]
-        , modalSelector model
-        , Html.form [ action <| "/" ++ model.locale ++ "/games", method "post" ]
+        [ modalSelector model
+        , Html.form [ action <| "/" ++ model.locale ++ "/games", method "post", class "game-settings-form" ]
             [ input [ type' "hidden", name "_csrf_token", value model.csrf ] []
-            , div [ class "row game-settings" ]
+            , div [ class "row" ]
                 [ div [ class "col-sm-3" ]
                     [ themeButton model
                     ]
@@ -237,16 +236,19 @@ view model =
                     [ visibilityButton model
                     ]
                 ]
-            , div [ class "row" ]
-                [ div [ class "col-sm-8 col-sm-offset-2 col-md-8 col-md-offset-2" ]
-                    [ div [ class "col-sm-5 btn-go-wrapper" ]
-                        [ button [ href "", class "btn btn-lg btn-primary btn-go", type' "submit" ] [ text "Start new game" ]
-                        ]
-                    , div [ class "col-sm-2 inter-button" ] [ text "or" ]
-                    , div [ class "col-sm-5 btn-go-wrapper" ]
-                        [ a [ href <| "/" ++ model.locale ++ "/games/random", class "btn btn-lg btn-success btn-go", type' "submit" ] [ text "Join ", strong [] [ text "random" ], text " game" ]
-                        ]
+            , div [ class "row btn-go-wrapper" ]
+                [ div [ class "col-sm-4 col-sm-offset-4" ]
+                    [ button [ class "btn btn-lg btn-primary btn-go", type' "submit" ] [ text "Start ", strong [] [ text "new" ], text " game" ]
                     ]
+                ]
+            ]
+        , h3 [ class "random-game-label" ] [ text "Or play against somebody currently on site" ]
+        , div [ class "row" ]
+            [ div [ class "col-sm-3 col-sm-offset-3" ]
+                [ a [ href <| "/" ++ model.locale ++ "/games/random", class "btn btn-lg btn-success btn-go" ] [ text "Join ", strong [] [ text "random" ], text " game" ]
+                ]
+            , div [ class "col-sm-3" ]
+                [ a [ href <| "/" ++ model.locale ++ "/games", class "btn btn-lg btn-warning btn-go" ] [ text "See list of pending games" ]
                 ]
             ]
         ]
@@ -264,7 +266,7 @@ visibilityButton model =
                     ( "Private ", levelCls 1 )
     in
         div []
-            [ div [ class <| "btn btn-default btn-game-setting " ++ cls, onClick ShowVisibilitySelector ]
+            [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ cls, onClick ShowVisibilitySelector ]
                 [ span []
                     [ text text'
                     ]
@@ -278,7 +280,7 @@ visibilityButton model =
 playersButton : Model -> Html Msg
 playersButton model =
     div []
-        [ div [ class <| "btn btn-default btn-game-setting " ++ (levelCls <| model.players - 2), onClick ShowPlayersSelector ]
+        [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls <| model.players - 2), onClick ShowPlayersSelector ]
             [ span []
                 [ text "Players: " ]
             , span [ class "boardsize-icon" ]
@@ -293,7 +295,7 @@ playersButton model =
 boardSizeButton : Model -> Html Msg
 boardSizeButton model =
     div []
-        [ div [ class <| "btn btn-default btn-game-setting " ++ (levelCls <| (floor <| (toFloat model.boardSize) / 2 - 2)), onClick ShowBoardSizeSelector ]
+        [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls <| (floor <| (toFloat model.boardSize) / 2 - 2)), onClick ShowBoardSizeSelector ]
             [ span []
                 [ text "Size: " ]
             , span [ class "boardsize-icon" ]
@@ -308,7 +310,7 @@ boardSizeButton model =
 themeButton : Model -> Html Msg
 themeButton model =
     div []
-        [ div [ class <| "btn btn-default btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
+        [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
             [ span []
                 [ text "Theme: " ]
             , img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]

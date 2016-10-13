@@ -1,5 +1,5 @@
 body {
-  font-family: PT Sans, verdana, arial, helvetica, sans-serif;
+  font-family: Roboto, verdana, arial, helvetica, sans-serif;
 }
 
 header a:hover {
@@ -266,10 +266,6 @@ label.game-url {
   width: 100%;
 }
 
-.btn-go-wrapper {
-  text-align: center;
-}
-
 .inter-button {
   text-align: center;
   font-size: 2em;
@@ -441,7 +437,7 @@ label.game-url {
 .btn-game-setting {
   width: 100%;
   height: 3em;
-  line-height: 2.5em;
+  line-height: 2em;
   font-size: 1.5em;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -458,7 +454,8 @@ label.game-url {
 }
 
 .btn-go-wrapper {
-  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 .new-game-selector {
@@ -491,15 +488,15 @@ label.game-url {
   animation-duration: 0.3s;
 }
 
-.btn-game-setting.theme-hard:hover {
+.theme-hard:hover {
   background-color: #ffd5d5;
 }
 
-.btn-game-setting.theme-easy:hover {
+.theme-easy:hover {
   background-color: #e5ffe5;
 }
 
-.btn-game-setting.theme-medium:hover {
+.theme-medium:hover {
   background-color: #fbf8c3;
 }
 
@@ -531,11 +528,11 @@ label.game-url {
 
 .modal__close {
   cursor: pointer;
-  color: #aaa;
+  color: #ddd;
 }
 
 .modal__close :hover {
-  color: #666;
+  color: #ccc;
 }
 
 @media (min-width: 768px) {
@@ -543,4 +540,15 @@ label.game-url {
     width: 640px;
     margin: 30px auto;
   }
+}
+
+.game-settings-form {
+  background-color: #ddf0f8;
+  padding: 20px;
+}
+
+.random-game-label {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #777;
 }
