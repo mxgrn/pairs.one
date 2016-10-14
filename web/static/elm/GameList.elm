@@ -109,27 +109,30 @@ init { locale, host } =
 view : Model -> Html Msg
 view model =
     div []
-        [ h3 [] [ text "Игры, ожидающие твоего участия" ]
+        [ h3 [] [ text "Pending games, click to join!" ]
         , div [ class "clearfix" ] (games model)
         ]
 
 
 games : Model -> List (Html Msg)
 games model =
-    model.pendingGames
-        |> List.map
-            (\game ->
-                a [ class "game-list__game", href <| "/" ++ model.locale ++ "/games/" ++ game.id ]
-                    ([ div [ class "game__visual" ]
-                        [ img [ src <| "/images/" ++ game.theme ++ "/1.svg" ] []
-                        , div []
-                            [ strong [] [ text game.size ]
+    if List.isEmpty model.pendingGames then
+        [ h2 [] [ text "No games, start one now" ] ]
+    else
+        model.pendingGames
+            |> List.map
+                (\game ->
+                    a [ class "game-list__game", href <| "/" ++ model.locale ++ "/games/" ++ game.id ]
+                        ([ div [ class "game__visual" ]
+                            [ img [ src <| "/images/" ++ game.theme ++ "/1.svg" ] []
+                            , div []
+                                [ strong [] [ text game.size ]
+                                ]
                             ]
-                        ]
-                     ]
-                        ++ players (game.players)
-                    )
-            )
+                         ]
+                            ++ players (game.players)
+                        )
+                )
 
 
 playerHtml : Int -> Player -> Html Msg

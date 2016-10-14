@@ -8,7 +8,7 @@
 }
 
 .game__visual img {
-  height: 50px;
+  height: 40px;
 }
 
 .player-icon {
@@ -32,7 +32,7 @@
 .game-list__game {
   border: 1px solid lightgrey;
   border-radius: 3px;
-  padding: 8px 8px 3px 8px;
+  padding: 8px 8px 8px 8px;
   display: inline-block;
   float: left;
   margin-right: 10px;

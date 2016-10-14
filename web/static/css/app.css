@@ -11,6 +11,10 @@ h1.title, h1.subtitle {
   margin-right: 10px;
 }
 
+h1.title {
+  line-height: 0.9em;
+}
+
 #main {
   display: none;
 }
@@ -377,7 +381,7 @@ label.game-url {
 }
 
 .game-option {
-  height: 220px;
+  height: 230px;
   padding-top: 1px;
   padding-bottom: 20px;
 }
@@ -389,7 +393,7 @@ label.game-url {
 .game-option__description{
   /* height: 150px; */
   color: #444;
-  font-size: 1.1em;
+  font-size: 1.3em;
   margin-bottom: 10px;
 }
 
@@ -426,12 +430,6 @@ label.game-url {
   padding: 10px;
   margin-bottom: 20px;
   background-color: #ddf0f8;
-}
-
-.btn-go {
-  /* margin-top: 15px; */
-  width: 100%;
-  /* line-height: 2em; */
 }
 
 .btn-game-setting {
@@ -542,9 +540,15 @@ label.game-url {
   }
 }
 
+@media (min-width: 992px) {
+  .game-option {
+    height: 180px;
+  }
+}
+
 .game-settings-form {
   background-color: #ddf0f8;
-  padding: 20px;
+  padding: 0 20px;
 }
 
 .random-game-label {

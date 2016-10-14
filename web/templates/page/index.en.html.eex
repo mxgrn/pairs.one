@@ -1,49 +1,49 @@
-  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
+<div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
 
-  <div class="row">
-    <div class="col-md-12">
-      <div class="row game-options">
-        <div class="col-sm-4 game-option option-one">
-          <h3>Play with somebody</h3>
-          <div class="game-option-icon">
-            <img src="/images/eighties/18.svg" alt="sample screenshot" class="img-responsive"/>
-          </div>
-          <div class="game-option__description">
-            Start a random game with someone who's on the site right now, or
-            <%= link "choose manually", to: "/en/games" %>
-            from the list of all pending games.
-            Then play and communicate!
-          </div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="row game-options">
+      <div class="col-sm-4 game-option option-one">
+        <h3>Play with somebody</h3>
+        <div class="game-option-icon">
+          <img src="/images/eighties/18.svg" alt="sample screenshot" class="img-responsive"/>
         </div>
-        <div class="col-sm-4 game-option option-two">
-          <h3>Play with friends</h3>
-          <div class="game-option-icon">
-            <img src="/images/eighties/25.svg" alt="sample screenshot" class="img-responsive"/>
-          </div>
-          <div class="game-option__description">
-            Wanna play with a friend (or even a couple of friends) in real-time? It's very easy: start a new game, send its link to your opponent - and start playing as soon as they join in!
-          </div>
-        </div>
-        <div class="col-sm-4 game-option option-three">
-          <h3>Play alone</h3>
-          <div class="game-option-icon">
-            <img src="/images/eighties/4.svg" alt="sample screenshot" class="img-responsive"/>
-          </div>
-          <div class="game-option__description">
-            This game is best enjoyed when played with other people, but it's also fun to play alone - try to improve your accuracy on different levels!
-          </div>
+        <div class="game-option__description">
+          To play with someone on the site, see the
+          <%= link "list of pending games", to: "/#{locale}/games" %>
+          or
+          <%= link "join a random game", to: "/#{locale}/games/random" %>
         </div>
       </div>
-
-    </div>
-  </div>
-  <div class="row rules">
-    <div class="col-sm-5">
-      <div class="text-muted">
-        <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
+      <div class="col-sm-4 game-option option-two">
+        <h3>Play with a friend</h3>
+        <div class="game-option-icon">
+          <img src="/images/eighties/25.svg" alt="sample screenshot" class="img-responsive"/>
+        </div>
+        <div class="game-option__description">
+          To play with a friend, start a new 2-player game, then send the provided link to your friend
+        </div>
+      </div>
+      <div class="col-sm-4 game-option option-three">
+        <h3>Play alone</h3>
+        <div class="game-option-icon">
+          <img src="/images/eighties/4.svg" alt="sample screenshot" class="img-responsive"/>
+        </div>
+        <div class="game-option__description">
+          To play alone, create a 1-player game, and try to improve your accuracy score
+        </div>
       </div>
     </div>
-    <div class="col-sm-2">
-      <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+
+  </div>
+</div>
+<div class="row rules">
+  <div class="col-sm-5">
+    <div class="text-muted">
+      <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
     </div>
   </div>
+  <div class="col-sm-2">
+    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+  </div>
+</div>
