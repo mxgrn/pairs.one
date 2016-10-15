@@ -19,13 +19,7 @@ import Dict exposing (Dict)
 
 
 type Msg
-    = AddGame JE.Value
-    | RemoveGame JE.Value
-    | ListGames JE.Value
-    | AddActiveGame JE.Value
-    | RemoveActiveGame JE.Value
-    | ListActiveGames JE.Value
-    | Update JE.Value
+    = Update JE.Value
     | PhoenixMsg (Phoenix.Socket.Msg Msg)
 
 
@@ -92,12 +86,6 @@ init { locale, host } =
 
         socketInit =
             Phoenix.Socket.init ("ws://" ++ host ++ "/socket/websocket")
-                |> Phoenix.Socket.on "list_games" "game-list" ListGames
-                |> Phoenix.Socket.on "add_game" "game-list" AddGame
-                |> Phoenix.Socket.on "remove_game" "game-list" RemoveGame
-                |> Phoenix.Socket.on "list_active_games" "game-list" ListActiveGames
-                |> Phoenix.Socket.on "add_active_game" "game-list" AddActiveGame
-                |> Phoenix.Socket.on "remove_active_game" "game-list" RemoveActiveGame
                 |> Phoenix.Socket.on "update" "game-list" Update
 
         ( phxSocket, phxCmd ) =
@@ -123,15 +111,15 @@ games model =
             |> List.map
                 (\game ->
                     a [ class "game-list__game", href <| "/" ++ model.locale ++ "/games/" ++ game.id ]
-                        ([ div [ class "game__visual" ]
+                        [ div
+                            [ class "game__visual" ]
                             [ img [ src <| "/images/" ++ game.theme ++ "/1.svg" ] []
                             , div []
                                 [ strong [] [ text game.size ]
                                 ]
                             ]
-                         ]
-                            ++ players (game.players)
-                        )
+                        , div [ class "game__players" ] (players game.players)
+                        ]
                 )
 
 
@@ -161,74 +149,6 @@ update msg model =
             case JD.decodeValue updateDecoder raw of
                 Ok updateData ->
                     { model | pendingGames = updateData.games } ! []
-
-                Err error ->
-                    decoderError model error
-
-        ListActiveGames raw ->
-            case JD.decodeValue updateDecoder raw of
-                Ok update ->
-                    { model | activeGames = update.games } ! []
-
-                Err error ->
-                    decoderError model error
-
-        ListGames raw ->
-            case JD.decodeValue updateDecoder raw of
-                Ok update ->
-                    { model | pendingGames = update.games } ! []
-
-                Err error ->
-                    decoderError model error
-
-        AddGame raw ->
-            case JD.decodeValue gameDecoder raw of
-                Ok game ->
-                    let
-                        games =
-                            game :: model.pendingGames
-                    in
-                        { model | pendingGames = games } ! []
-
-                Err error ->
-                    decoderError model error
-
-        RemoveGame raw ->
-            case JD.decodeValue gameDecoder raw of
-                Ok game ->
-                    let
-                        games =
-                            List.filter
-                                (\g -> g.id /= game.id)
-                                model.pendingGames
-                    in
-                        { model | pendingGames = games } ! []
-
-                Err error ->
-                    decoderError model error
-
-        AddActiveGame raw ->
-            case JD.decodeValue gameDecoder raw of
-                Ok game ->
-                    let
-                        games =
-                            game :: model.activeGames
-                    in
-                        { model | activeGames = games } ! []
-
-                Err error ->
-                    decoderError model error
-
-        RemoveActiveGame raw ->
-            case JD.decodeValue gameDecoder raw of
-                Ok game ->
-                    let
-                        games =
-                            List.filter
-                                (\g -> g.id /= game.id)
-                                model.activeGames
-                    in
-                        { model | activeGames = games } ! []
 
                 Err error ->
                     decoderError model error

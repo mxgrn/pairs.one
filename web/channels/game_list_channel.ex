@@ -19,6 +19,7 @@ defmodule PairsOne.GameListChannel do
     # active_games  = PairsOne.ActiveGames.index
     #   |> Enum.map(&game_data/1)
 
+
     push socket, "update", %{"games" => PairsOne.PendingGames.data_list}
     # push socket, "list_active_games", %{"games" => active_games}
     {:noreply, socket}

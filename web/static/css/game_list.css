@@ -1,5 +1,5 @@
 .game__visual {
-  margin-right: 10px;
+  margin: 5px 15px 0 8px;
   float: left;
 }
 
@@ -9,6 +9,11 @@
 
 .game__visual img {
   height: 40px;
+}
+
+.game__players {
+  width: 100px;
+  float: left;
 }
 
 .player-icon {
@@ -25,8 +30,10 @@
 
 .player-name {
   display: inline-block;
-  width: 70px;
+  width: 95px;
   overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .game-list__game {

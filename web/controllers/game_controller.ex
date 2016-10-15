@@ -25,7 +25,8 @@ defmodule PairsOne.GameController do
   end
 
   def index(conn, _params) do
-    render conn, "index.html"
+    games = PairsOne.PendingGames.index
+    render conn, "index.html", mini_header: true
   end
 
   def random(conn, _params) do
