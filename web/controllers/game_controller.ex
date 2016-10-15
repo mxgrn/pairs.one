@@ -26,7 +26,8 @@ defmodule PairsOne.GameController do
 
   def index(conn, _params) do
     games = PairsOne.PendingGames.index
-    render conn, "index.html", mini_header: true
+    themes = PairsOne.Theme.list |> Poison.encode!
+    render conn, "index.html", mini_header: true, has_pending_games?: Enum.any?(games), themes: themes
   end
 
   def random(conn, _params) do

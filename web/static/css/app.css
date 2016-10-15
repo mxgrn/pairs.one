@@ -175,8 +175,10 @@ li.right {
   color: #000;
 }
 
-.active .player__name {
-  /* padding-left: 40px; */
+.player__name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .player__name:before {
@@ -352,7 +354,7 @@ label.game-url {
 }
 
 .score__accuracy {
-  color: #eee;
+  color: #ccc;
 }
 
 .score__player-name {
@@ -389,7 +391,7 @@ label.game-url {
 }
 
 .game-option {
-  height: 250px;
+  height: 230px;
   padding-top: 1px;
   padding-left: 20px;
   padding-right: 20px;
@@ -430,9 +432,10 @@ label.game-url {
 
 .game-option-icon {
   float: left;
-  padding-right: 15px;
+  margin-right: 20px;
   margin-top: 22px;
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+  /* height: 100%; */
 }
 
 .game-option-icon img {
@@ -558,7 +561,7 @@ label.game-url {
 
 @media (min-width: 992px) {
   .game-option {
-    height: 180px;
+    height: 200px;
   }
 }
 

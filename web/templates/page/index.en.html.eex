@@ -20,7 +20,7 @@
         <div class="game-option-icon">
           <img src="/images/eighties/18.svg" alt="sample screenshot" class="img-responsive"/>
         </div>
-        <h3>Play with somebody</h3>
+        <h3>Play with anybody</h3>
         <div class="game-option__description">
           To play with someone on the site, see the
           <%= link "list of pending games", to: "/#{locale}/games" %>

@@ -97,15 +97,14 @@ init { locale, host } =
 view : Model -> Html Msg
 view model =
     div []
-        [ h3 [] [ text "Pending games, click to join!" ]
-        , div [ class "clearfix" ] (games model)
+        [ div [ class "clearfix" ] (games model)
         ]
 
 
 games : Model -> List (Html Msg)
 games model =
     if List.isEmpty model.pendingGames then
-        [ h2 [] [ text "No games, start one now" ] ]
+        [ h4 [ style [ ( "text-align", "center" ) ] ] [ img [ src "/images/loading.gif", width 40 ] [] ] ]
     else
         model.pendingGames
             |> List.map

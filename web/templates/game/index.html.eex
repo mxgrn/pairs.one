@@ -1,1 +1,7 @@
-<div class="elm-game-list"></div>
+<%= if @has_pending_games? do %>
+  <h3>Click a game to join:</h3>
+  <div class="elm-game-list"></div>
+<% else %>
+  <h3>There are no pending games, go create one:</h3>
+  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
+<% end %>

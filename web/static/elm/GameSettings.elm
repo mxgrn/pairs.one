@@ -129,17 +129,32 @@ update msg model =
             let
                 theme =
                     List.Extra.find (\th -> th.name == name) model.themes |> Maybe.withDefault defaultTheme
+
+                model' =
+                    { model | theme = theme, selector = NullSelector }
             in
-                { model | theme = theme, selector = NullSelector } ! [ saveSettings model ]
+                model' ! [ saveSettings model' ]
 
         SelectBoardSize size ->
-            { model | boardSize = size, selector = NullSelector } ! [ saveSettings model ]
+            let
+                model' =
+                    { model | boardSize = size, selector = NullSelector }
+            in
+                model' ! [ saveSettings model' ]
 
         SelectPlayers n ->
-            { model | players = n, selector = NullSelector } ! [ saveSettings model ]
+            let
+                model' =
+                    { model | players = n, selector = NullSelector }
+            in
+                model' ! [ saveSettings model' ]
 
         SelectVisibility visibility ->
-            { model | visibility = visibility, selector = NullSelector } ! [ saveSettings model ]
+            let
+                model' =
+                    { model | visibility = visibility, selector = NullSelector }
+            in
+                model' ! [ saveSettings model' ]
 
 
 subscriptions : Model -> Sub Msg
