@@ -54,21 +54,21 @@ defmodule PairsOne.Theme do
     },
 
     owls: %{
-      title: "Owls b/w",
+      title: "Owls",
       cards: 50,
       difficulty: 2,
       new: false
     },
 
     cats: %{
-      title: "Cats b/w",
+      title: "Cats",
       cards: 50,
       difficulty: 2,
       new: false
     },
 
     robots: %{
-      title: "Robots b/w",
+      title: "Robots",
       cards: 50,
       difficulty: 2,
       new: true

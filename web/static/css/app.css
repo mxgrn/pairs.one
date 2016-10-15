@@ -15,6 +15,9 @@ h1.title {
   line-height: 0.9em;
 }
 
+h1.title small {
+}
+
 #main {
   display: none;
 }
@@ -237,13 +240,18 @@ label.game-url {
   width: 50px;
 }
 
-.theme-selector label {
+.pairs-modal-content label {
   padding-top: 15px;
   padding-bottom: 10px;
 }
 
-.theme-selector h2 {
+.pairs-modal-content h2 {
   margin-bottom: 30px;
+}
+
+.pairs-modal-content h4 {
+  margin: 30px 0;
+  line-height: 1.5em;
 }
 
 .screenshot img {
@@ -381,9 +389,16 @@ label.game-url {
 }
 
 .game-option {
-  height: 230px;
+  height: 250px;
   padding-top: 1px;
+  padding-left: 20px;
+  padding-right: 20px;
   padding-bottom: 20px;
+}
+
+.game-options {
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 
 .game-options h3 {
@@ -416,6 +431,8 @@ label.game-url {
 .game-option-icon {
   float: left;
   padding-right: 15px;
+  margin-top: 22px;
+  margin-bottom: 50px;
 }
 
 .game-option-icon img {
@@ -460,7 +477,6 @@ label.game-url {
   margin-bottom: 30px;
 }
 
-
 .pairs-modal-overlay {
   position: absolute;
   top: 0;
@@ -480,7 +496,7 @@ label.game-url {
   background-color: white;
   border-radius: 5px;
   overflow-Y: scroll;
-  padding: 20px;
+  padding: 20px 30px 50px;
   animation-name: fadeIn;
   animation-iteration-count: 1;
   animation-duration: 0.3s;
@@ -535,7 +551,7 @@ label.game-url {
 
 @media (min-width: 768px) {
   .pairs-modal-dialog {
-    width: 640px;
+    width: 660px;
     margin: 30px auto;
   }
 }
@@ -548,11 +564,24 @@ label.game-url {
 
 .game-settings-form {
   background-color: #ddf0f8;
-  padding: 0 20px;
+  padding: 10px 20px;
 }
 
 .random-game-label {
-  margin-top: 30px;
-  margin-bottom: 20px;
+  margin-top: 50px;
+  margin-bottom: 30px;
   color: #777;
+}
+
+.centered-content {
+  text-align: center;
+}
+
+.random-game-section {
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.elm-game-selector {
+  margin-top: 30px;
 }

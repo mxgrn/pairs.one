@@ -177,12 +177,12 @@ modal html =
 
 visibilities : Html Msg
 visibilities =
-    div [ class "theme-selector" ]
+    div [ class "pairs-modal-content" ]
         [ h2 []
             [ text "Would you like to play with random users?"
             , modalCloseButton
             ]
-        , h4 [] [ text "If you choose Yes, someone may join you when choosing a random player to play with. If you want to only play with someone that you'll send the link to the game to - choose No." ]
+        , h4 [] [ text "In a 'public' game, someone may join you when choosing a random player to play with. If you want to only play with someone that you'll send the link to the game to - choose 'private'." ]
         , div [ class "row" ]
             [ div [ class "col-sm-8 col-sm-offset-2" ]
                 [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-easy", onClick <| SelectVisibility Public ] [ text "Yes, I'd like someone to join me!" ]
@@ -198,7 +198,7 @@ visibilities =
 
 players : Html Msg
 players =
-    div [ class "theme-selector" ]
+    div [ class "pairs-modal-content" ]
         [ h2 []
             [ text "Pick number of players"
             , modalCloseButton
@@ -242,15 +242,6 @@ view model =
                         [ button [ class "btn btn-lg btn-primary btn-go", type' "submit" ] [ text "Start ", strong [] [ text "new" ], text " game" ]
                         ]
                     ]
-                ]
-            ]
-        , h3 [ class "random-game-label" ] [ text "Or play against somebody currently on site" ]
-        , div [ class "row" ]
-            [ div [ class "col-sm-4 col-sm-offset-2 col-md-3 col-md-offset-3" ]
-                [ a [ href <| "/" ++ model.locale ++ "/games/random", class "btn btn-lg btn-success btn-go btn-stackable" ] [ text "Join ", strong [] [ text "random" ], text " game" ]
-                ]
-            , div [ class "col-sm-5 col-md-4" ]
-                [ a [ href <| "/" ++ model.locale ++ "/games", class "btn btn-lg btn-warning btn-go" ] [ text "See list of ", strong [] [ text "pending" ], text " games" ]
                 ]
             ]
         ]
@@ -326,12 +317,12 @@ themeButton model =
 
 themes : Model -> Html Msg
 themes model =
-    div [ class "theme-selector" ]
+    div [ class "pairs-modal-content" ]
         ([ h2 []
             [ text "Pick a theme"
             , modalCloseButton
             ]
-         , h5 [ class "level-legend" ]
+         , h4 [ class "level-legend" ]
             [ text "Difficulty:"
             , span [ class "level-legend__block theme-easy" ] []
             , text " - easy"
@@ -350,12 +341,12 @@ themes model =
 
 boardSizes : Html Msg
 boardSizes =
-    div [ class "theme-selector" ]
+    div [ class "pairs-modal-content" ]
         [ h2 []
             [ text "Select the size"
             , modalCloseButton
             ]
-        , h4 [] [ text "The bigger the board - the more cards will there be to remember!" ]
+        , h4 [] [ text "The bigger the board - the more cards will there be to remember" ]
         , div [ class "row" ]
             [ div [ class "col-sm-4" ]
                 [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-easy", onClick <| SelectBoardSize 4 ] [ text "4x4" ]
