@@ -1,20 +1,34 @@
-<div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
-<div class="random-game-section">
-  <h2 class="random-game-label centered-content">
-    Or play against somebody currently on the site
-  </h2>
-  <div class="row">
-    <div class="col-sm-5 col-sm-offset-1 col-md-4 col-md-offset-2">
-      <a class="btn btn-lg btn-success btn-go btn-stackable" href="/<%= locale %>/games/random">Join <strong>random</strong> game</a>
+<div class="row landing-section">
+  <div class="col-sm-6">
+    <h3 class="right-aligned-content action-title">
+      Play with someone who is currently on the site
+    </h3>
+    <div class="row">
+      <div class="col-sm-7 col-sm-offset-5">
+        <a class="btn btn-lg btn-go btn-success btn-stackable" href="/<%= locale %>/games/random">Join <strong>random</strong> game</a>
+      </div>
     </div>
-    <div class="col-sm-5 col-md-4">
-      <a class="btn btn-lg btn-warning btn-go btn-stackable" href="/<%= locale %>/games">See list of <strong>pending</strong> games</a>
+    <h3 class="right-aligned-content action-title">
+      Or play with friends or alone by starting a new game
+    </h3>
+    <div class="row">
+      <div class="col-sm-7 col-sm-offset-5">
+        <a class="btn btn-lg btn-go btn-primary btn-stackable" href="/<%= locale %>/games/new">Start <strong>new</strong> game</a>
+      </div>
     </div>
+    <div class="text-muted rules right-aligned-content">
+      <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
+    </div>
+
+  </div>
+  <div class="col-lg-5 col-sm-6">
+    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
   </div>
 </div>
 
-<div class="row">
+<div class="row landing-section">
   <div class="col-md-12">
+    <h2 class="centered-content text-muted">New here? Here's what you can do</h2>
     <div class="row game-options">
       <div class="col-sm-4 game-option option-one">
         <div class="game-option-icon">
@@ -50,13 +64,6 @@
 
   </div>
 </div>
-<div class="row rules">
-  <div class="col-sm-6 col-sm-offset-2">
-    <div class="text-muted">
-      <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
-    </div>
-  </div>
-  <div class="col-sm-3">
-    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
-  </div>
-</div>
+
+<h2 class="centered-content text-muted">Select your options</h2>
+<div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>

@@ -4,7 +4,7 @@ defmodule PairsOne.GameController do
   alias PairsOne.Game
 
   def new(conn, _params) do
-    themes = PairsOne.Theme.list
+    themes = PairsOne.Theme.list |> Poison.encode!
     render conn, "new.html", mini_header: true, themes: themes
   end
 
@@ -39,7 +39,7 @@ defmodule PairsOne.GameController do
       conn
       |> put_flash(:warning, "There are no pending games at this moment - start one now!")
       |>
-      redirect(to: "/#{locale}" )
+      redirect(to: "/#{locale}/games/new" )
     end
   end
 

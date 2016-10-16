@@ -13,6 +13,7 @@ h1.title, h1.subtitle {
 
 h1.title {
   line-height: 0.9em;
+  margin-bottom: 20px;
 }
 
 h1.title small {
@@ -291,11 +292,12 @@ label.game-url {
 }
 
 .rules {
-  margin-top: 40px;
+  margin-top: 30px;
   /* border-left: solid #ddd 5px; */
   /* padding-left: 20px; */
   /* display: block; */
   font-size: 1.5em;
+  margin-bottom: 30px;
 }
 
 .subboard {
@@ -580,6 +582,10 @@ label.game-url {
   text-align: center;
 }
 
+.right-aligned-content {
+  text-align: right;
+}
+
 .random-game-section {
   margin-top: 60px;
   margin-bottom: 40px;
@@ -587,4 +593,12 @@ label.game-url {
 
 .elm-game-selector {
   margin-top: 30px;
+}
+
+.action-title {
+  margin-bottom: 20px;
+}
+
+.landing-section {
+  margin-bottom: 30px;
 }
