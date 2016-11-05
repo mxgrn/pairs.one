@@ -1,69 +1,58 @@
 <div class="row landing-section">
-  <div class="col-sm-6">
-    <h3 class="right-aligned-content action-title">
-      Play with someone who is currently on the site
-    </h3>
-    <div class="row">
-      <div class="col-sm-7 col-sm-offset-5">
-        <a class="btn btn-lg btn-go btn-success btn-stackable" href="/<%= locale %>/games/random">Join <strong>random</strong> game</a>
-      </div>
-    </div>
-    <h3 class="right-aligned-content action-title">
-      Or play with friends or alone by starting a new game
-    </h3>
-    <div class="row">
-      <div class="col-sm-7 col-sm-offset-5">
-        <a class="btn btn-lg btn-go btn-primary btn-stackable" href="/<%= locale %>/games/new">Start <strong>new</strong> game</a>
-      </div>
-    </div>
-    <div class="text-muted rules right-aligned-content">
-      <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
-    </div>
-
-  </div>
-  <div class="col-lg-5 col-sm-6">
+  <div class="col-sm-5 col-sm-push-7">
     <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+    <div class="rules">
+      <div class="rules-header">
+        <span class="header-icon fa fa-question"></span>
+        You know the rules, right?
+      </div>
+      <em class="text-muted">Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
+    </div>
   </div>
-</div>
 
-<div class="row landing-section">
-  <div class="col-md-12">
-    <h2 class="centered-content text-muted">New here? Here's what you can do</h2>
-    <div class="row game-options">
-      <div class="col-sm-4 game-option option-one">
-        <div class="game-option-icon">
-          <img src="/images/eighties/18.svg" alt="sample screenshot" class="img-responsive"/>
-        </div>
-        <h3>Play with anybody</h3>
-        <div class="game-option__description">
-          To play with someone on the site, see the
-          <%= link "list of pending games", to: "/#{locale}/games" %>
-          or
-          <%= link "join a random game", to: "/#{locale}/games/random" %>
-        </div>
+  <div class="col-sm-7 col-sm-pull-5">
+    <div class="game-option option-one">
+      <div class="game-option-icon">
+        <img src="/images/eighties/18.svg" alt="sample screenshot" class="img-responsive"/>
       </div>
-      <div class="col-sm-4 game-option option-two">
-        <div class="game-option-icon">
-          <img src="/images/eighties/25.svg" alt="sample screenshot" class="img-responsive"/>
-        </div>
-        <h3>Play with a friend</h3>
-        <div class="game-option__description">
-          To play with a friend, start a new 2-player game, then send the provided link to your friend
-        </div>
+      <h3>Play with anybody</h3>
+      <div class="game-option__description">
+        Somebody on the site may be
+        <%= link "waiting", to: "/#{locale}/games" %>
+        for you to join!
+        <br/>
+        <a class="btn btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
       </div>
-      <div class="col-sm-4 game-option option-three">
-        <div class="game-option-icon">
-          <img src="/images/eighties/4.svg" alt="sample screenshot" class="img-responsive"/>
-        </div>
-        <h3>Play alone</h3>
-        <div class="game-option__description">
-          To play alone, create a 1-player game, and try to improve your accuracy score
-        </div>
+
+    </div>
+
+
+    <div class="game-option option-two">
+      <div class="game-option-icon">
+        <img src="/images/eighties/25.svg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+      <h3>Play with a friend</h3>
+      <div class="game-option__description">
+        After starting a game, send the provided link to your online friend - and there you go!
+        <br/>
+        <a class="btn btn-option-go btn-primary" href="/<%= locale %>/games/random">Start <strong>2-player</strong> game</a>
       </div>
     </div>
 
+    <div class="game-option option-three">
+      <div class="game-option-icon">
+        <img src="/images/eighties/4.svg" alt="sample screenshot" class="img-responsive"/>
+      </div>
+      <h3>Play alone</h3>
+      <div class="game-option__description">
+        Play alone and try to improve your accuracy score!
+        <br/>
+        <a class="btn btn-option-go btn-danger" href="/<%= locale %>/games/solo">Start <strong>solo</strong> game</a>
+      </div>
+    </div>
   </div>
+
 </div>
 
-<h2 class="centered-content text-muted">Select your options</h2>
+<h2 class="centered-content text-muted">Or start your custom game</h2>
 <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>

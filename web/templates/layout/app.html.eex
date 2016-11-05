@@ -35,7 +35,8 @@
               <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
               Pairs One
             <% end %>
-          <small> <%= gettext "Registration-free multiplayer Memory game" %></small></h1>
+            <small> <%= gettext "Registration-free multiplayer Memory game" %></small>
+          </h1>
         </header>
       <% end %>
 

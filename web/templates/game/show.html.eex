@@ -6,7 +6,7 @@
     <form id="player-data">
       <label for="player-name"><%= gettext "Your name or twitter handle" %></label>
       <div class="input-group">
-        <input class="form-control autoselect" id="player-name" placeholder="E.g. Max Gorin, @mxgrn" name="player-name">
+        <input class="form-control autoselect" id="player-name" placeholder="E.g. Max, @mxgrn" name="player-name">
         <span class="input-group-btn"><button type=submit class="btn btn-default">ok</button></span>
       </div>
     </form>

@@ -125,6 +125,8 @@ games model =
 playerHtml : Int -> Player -> Html Msg
 playerHtml i player =
     let
+        _ =
+            Debug.log "player" player
         ( cls, txt ) =
             if player.name == "" then
                 ( "game-list__player game-list__player--waiting", "-----" )

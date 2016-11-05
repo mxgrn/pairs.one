@@ -154,12 +154,16 @@ defmodule PairsOne.Game do
   end
 
   def game_data_for_list(game) do
+    playerJson = fn(player) ->
+      %{name: player["online"]}
+    end
+
     size = length(game["cards"]) |> :math.sqrt |> round
     %{
       id: game["id"],
       theme: game["theme"],
       size: "#{size}x#{size}",
-      players: Enum.map(game["players"], fn(player) -> %{name: player["name"]} end)
+      players: Enum.map(game["players"], playerJson)
     }
   end
 
