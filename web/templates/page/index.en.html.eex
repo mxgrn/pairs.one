@@ -1,6 +1,7 @@
 <div class="row landing-section">
-  <div class="col-sm-5 col-sm-push-7">
-    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
+
+  <div class="col-sm-6 col-sm-push-6">
+    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive screenshot"/>
     <div class="rules">
       <div class="rules-header">
         <span class="header-icon fa fa-question"></span>
@@ -10,49 +11,52 @@
     </div>
   </div>
 
-  <div class="col-sm-7 col-sm-pull-5">
+  <div class="col-sm-6 col-sm-pull-6">
     <div class="game-option option-one">
-      <div class="game-option-icon">
-        <img src="/images/eighties/18.svg" alt="sample screenshot" class="img-responsive"/>
-      </div>
       <h3>Play with anybody</h3>
       <div class="game-option__description">
         Somebody on the site may be
         <%= link "waiting", to: "/#{locale}/games" %>
         for you to join!
         <br/>
-        <a class="btn btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
+        <a class="btn btn-lg btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
       </div>
 
     </div>
 
 
-    <div class="game-option option-two">
-      <div class="game-option-icon">
-        <img src="/images/eighties/25.svg" alt="sample screenshot" class="img-responsive"/>
-      </div>
+    <form class="game-option option-two" method=post action="/<%= locale %>/games">
       <h3>Play with a friend</h3>
       <div class="game-option__description">
         After starting a game, send the provided link to your online friend - and there you go!
         <br/>
-        <a class="btn btn-option-go btn-primary" href="/<%= locale %>/games/random">Start <strong>2-player</strong> game</a>
+        <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+        <input type="hidden" name="game[theme]" value="eighties">
+        <input type="hidden" name="game[board_size]" value="6">
+        <input type="hidden" name="game[players_number]" value="2">
+        <input type="hidden" name="game[visibility]" value="private">
+        <button type="submit" class="btn btn-lg btn-option-go btn-primary">Start <strong>2-player</strong> game</button>
       </div>
-    </div>
+    </form>
 
-    <div class="game-option option-three">
-      <div class="game-option-icon">
-        <img src="/images/eighties/4.svg" alt="sample screenshot" class="img-responsive"/>
-      </div>
+    <form class="game-option option-three" method=post action="/<%= locale %>/games">
       <h3>Play alone</h3>
       <div class="game-option__description">
         Play alone and try to improve your accuracy score!
         <br/>
-        <a class="btn btn-option-go btn-danger" href="/<%= locale %>/games/solo">Start <strong>solo</strong> game</a>
+        <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+        <input type="hidden" name="game[theme]" value="eighties">
+        <input type="hidden" name="game[board_size]" value="6">
+        <input type="hidden" name="game[players_number]" value="1">
+        <input type="hidden" name="game[visibility]" value="private">
+        <button type="submit" class="btn btn-lg btn-option-go btn-danger">Start <strong>solo</strong> game</button>
       </div>
-    </div>
+    </form>
   </div>
 
 </div>
 
 <h2 class="centered-content text-muted">Or start your custom game</h2>
-<div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
+<div class="col-sm-12">
+  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
+</div>

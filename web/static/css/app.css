@@ -36,7 +36,6 @@ h1.title small {
 }
 
 .game, .game--completed {
-  padding-top: 20px;
   padding-bottom: 0;
   animation-name: fadeIn;
   animation-iteration-count: 1;
@@ -48,6 +47,9 @@ h1.title small {
   width: 100%;
   padding-bottom: 100%;
   margin-bottom: 20px;
+  -webkit-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
+  -moz-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
+  box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2)
 }
 
 .footer {
@@ -259,14 +261,10 @@ label.game-url {
   line-height: 1.5em;
 }
 
-.screenshot img {
+img.screenshot {
   -webkit-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
   -moz-box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2);
   box-shadow: 2px 2px 10px 0px rgba(0,0,0,0.2)
-}
-
-.screenshot {
-  margin-bottom: 10px;
 }
 
 .landing-text {
@@ -284,7 +282,7 @@ label.game-url {
 }
 
 .btn-option-go {
-  width: 183px;
+  width: 200px;
 }
 
 .inter-button {
@@ -357,6 +355,7 @@ label.game-url {
 }
 
 .play-again {
+  margin-top: 70px;
   margin-bottom: 20px;
 }
 

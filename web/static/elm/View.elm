@@ -42,7 +42,7 @@ game model =
 
 completedGame : Model -> Html Msg
 completedGame model =
-    div [ class "game row" ]
+    div [ class "game" ]
         [ div [ class "game--completed" ]
             [ scoreboardView model
             , replayView model

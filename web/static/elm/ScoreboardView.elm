@@ -30,18 +30,21 @@ scoreboardView model =
             I18n.translate model.locale
     in
         if (model.game.players |> List.length) == 1 then
-            div [ class "col-lg-6 scoreboard" ]
+            div [ class "scoreboard" ]
                 [ h3 [ class "score-title" ] [ text <| t <| WellDone <| playerName <| model ]
                 , accuracy model
                 ]
         else
-            div [ class "col-lg-6 scoreboard" ]
+            div [ class "scoreboard" ]
                 [ h3 [ class "score-title" ] [ text "Score" ]
-                , h4 [] [ text <| t <| Scoreboard <| ThisGame ]
-                , subboard model playerScore .score
-                , hr [] []
-                , h4 [] [ text <| t <| Scoreboard <| ThisSet ]
-                , subboard model playerTotalScore .totalScore
+                , div [ class "col-md-6" ]
+                    [ h4 [] [ text <| t <| Scoreboard <| ThisGame ]
+                    , subboard model playerScore .score
+                    ]
+                , div [ class "col-md-6" ]
+                    [ h4 [] [ text <| t <| Scoreboard <| ThisSet ]
+                    , subboard model playerTotalScore .totalScore
+                    ]
                 ]
 
 

@@ -20,15 +20,40 @@ themeSelectorView model =
 
 
 themeButton : String -> Theme -> Html Msg
-themeButton activeTheme { name, title, difficulty, new } =
+themeButton activeTheme theme =
     let
         activeClass =
-            if name == activeTheme then
+            if theme.name == activeTheme then
                 " active"
             else
                 ""
+
+        newBadgeText =
+            if theme.new then
+                " New"
+            else
+                ""
     in
-        label [ class ("btn btn-default btn-theme" ++ activeClass), onMouseDown (ChangeTheme name) ]
-            [ img [ src ("/images/" ++ name ++ "/1.svg"), width 50, height 50 ] []
-            , div [ class "theme-title" ] [ text title ]
+        label [ class <| "btn btn-default btn-theme " ++ (levelCls theme.difficulty) ++ activeClass, onClick <| ChangeTheme theme.name ]
+            [ img [ src <| "/images/" ++ theme.name ++ "/1.svg", width 50, height 50 ] []
+            , div [ class "theme-title" ]
+                [ text theme.title
+                , sup [ class "text-danger" ] [ text newBadgeText ]
+                ]
             ]
+
+
+levelCls : Int -> String
+levelCls level =
+    case level of
+        0 ->
+            "theme-easy"
+
+        1 ->
+            "theme-medium"
+
+        2 ->
+            "theme-hard"
+
+        _ ->
+            ""

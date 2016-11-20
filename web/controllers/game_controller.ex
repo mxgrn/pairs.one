@@ -36,10 +36,13 @@ defmodule PairsOne.GameController do
     if game do
       redirect(conn, to: game_path(conn, :show, game.id))
     else
-      conn
-      |> put_flash(:warning, "There are no pending games at this moment - start one now!")
-      |>
-      redirect(to: "/#{locale}/games/new" )
+      game = PairsOne.Game.create(%{
+                                    "theme" => "eighties",
+                                    "board_size" => "6",
+                                    "players_number" => "2",
+                                    "visibility" => "public"
+                                  })
+      redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
     end
   end
 

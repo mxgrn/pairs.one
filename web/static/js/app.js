@@ -40,6 +40,7 @@ $(function(){
   $("#elm-game").each(
     function(i, el){
       var themes = $(el).data('themes');
+
       elm = Elm.Game.embed(el, {
         id: "" + $(el).data('id'), // because sometimes it comes as an number
         playerId: playerId,
@@ -51,8 +52,8 @@ $(function(){
 
       // Elm ports
       elm.ports.playAudio.subscribe( function(audio){
-        var audio = new Audio("/sounds/" + audio + ".mp3");
-        audio.play();
+        // var audio = new Audio("/sounds/" + audio + ".mp3");
+        // audio.play();
       });
 
       elm.ports.compressAndSendGame.subscribe(function(game){
