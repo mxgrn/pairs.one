@@ -9,6 +9,12 @@ defmodule PairsOne.GameController do
   end
 
   def create(conn, %{"game" => game}) do
+    game = if game[:random] == nil do
+      Map.merge(game, %{"random" => false})
+    else
+      game
+    end
+
     game = PairsOne.Game.create(game)
     redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
   end
@@ -40,7 +46,8 @@ defmodule PairsOne.GameController do
                                     "theme" => "eighties",
                                     "board_size" => "6",
                                     "players_number" => "2",
-                                    "visibility" => "public"
+                                    "visibility" => "public",
+                                    "random" => true
                                   })
       redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
     end

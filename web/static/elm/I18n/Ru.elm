@@ -38,5 +38,8 @@ translate t =
         ShareThisUrl ->
             "Поделись этой ссылкой с оппонентом:"
 
+        ShareThisUrlRandom ->
+            "As soon as there is another player available, we'll hook you up! If you don't want to wait, share this URL with anybody you want to play with:"
+
         StartGameWhenReady ->
             "Игру можно начать сразу после того, как все подключатся!"

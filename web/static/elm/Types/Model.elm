@@ -21,6 +21,7 @@ type alias Model =
     , host : String
     , isCompleted : Bool
     , locale : String
+    , random : Bool
     , phxSocket : Phoenix.Socket.Socket Msg
     , phxPresences : PresenceState PlayerPresence
     }

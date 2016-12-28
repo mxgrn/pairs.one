@@ -16,4 +16,5 @@ type Translation
     | TryDifferentTheme
     | Scoreboard Scoreboard
     | ShareThisUrl
+    | ShareThisUrlRandom
     | StartGameWhenReady

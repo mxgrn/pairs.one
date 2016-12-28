@@ -23,6 +23,7 @@ type alias Game =
     , flips : Int
     , turn : Int
     , theme : String
+    , random : Bool
     }
 
 
@@ -39,13 +40,14 @@ gameEncoder game =
 
 gameDecoder : JD.Decoder Game
 gameDecoder =
-    JD.map6 Game
+    JD.map7 Game
         (field "id" JD.string)
         (field "cards" (JD.list cardDecoder))
         (field "players" (JD.list playerDecoder))
         (field "flips" JD.int)
         (field "turn" JD.int)
         (field "theme" JD.string)
+        (field "random" JD.bool)
 
 
 updatePlayerName : Game -> PlayerId -> String -> Game

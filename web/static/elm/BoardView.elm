@@ -50,13 +50,22 @@ prestartOverlay model =
     let
         t =
             I18n.translate model.locale
+
+        _ =
+            Debug.log "model" model
+
+        hint =
+            if model.random then
+                ShareThisUrlRandom
+            else
+                ShareThisUrl
     in
         if not <| gameIsActive model then
             div []
                 [ div [ class "pairs-overlay" ] []
                 , div [ class "pairs-modal" ]
                     [ div [ class "form-group" ]
-                        [ label [ class "game-url" ] [ text <| t <| ShareThisUrl ]
+                        [ label [ class "game-url" ] [ text <| t <| hint ]
                         , div [ class "input-group clipboard-input" ]
                             [ input
                                 [ class "form-control game-url"

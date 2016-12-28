@@ -8,7 +8,7 @@ defmodule PairsOne.Game do
 
   alias PairsOne.Theme
 
-  defstruct id: "", cards: [], players: [], theme: "eighties", flips: 2, turn: -1, visibility: "public"
+  defstruct id: "", cards: [], players: [], theme: "eighties", flips: 2, turn: -1, visibility: "public", random: false
 
   @redis_prefix "game:"
 
@@ -35,7 +35,7 @@ defmodule PairsOne.Game do
   @doc """
   Create and returns new game given its params
   """
-  def create(%{"board_size" => board_size, "players_number" => players_number, "theme" => theme_name, "visibility" => visibility}) do
+  def create(%{"board_size" => board_size, "players_number" => players_number, "theme" => theme_name, "visibility" => visibility, "random" => random}) do
     players_number = String.to_integer players_number
     board_size = String.to_integer board_size
 
@@ -48,7 +48,8 @@ defmodule PairsOne.Game do
       cards: cards(board_size, Theme.cards_number(theme_name)),
       players: players,
       theme: theme_name,
-      visibility: visibility
+      visibility: visibility,
+      random: random
     }
 
     save!(id, game)

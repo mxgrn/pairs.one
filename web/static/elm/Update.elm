@@ -301,6 +301,7 @@ updateGame model game =
             , flippedIds = flippedIds_
             , playerTurn = playerTurn_
             , isCompleted = isCompleted
+            , random = game.random
         }
             ! [ cmd ]
 

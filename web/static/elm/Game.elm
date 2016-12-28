@@ -50,7 +50,7 @@ init : Params -> ( Model, Cmd Msg )
 init { id, playerId, host, playerName, themes, locale } =
     let
         game =
-            Game "" [] [] 0 0 "eighties"
+            Game "" [] [] 0 0 "eighties" False
 
         payload =
             JE.object
@@ -78,6 +78,7 @@ init { id, playerId, host, playerName, themes, locale } =
           , flippedIds = []
           , themes = themes
           , isCompleted = False
+          , random = False
           , locale = locale
           , phxSocket = socketInit
           , phxPresences = Dict.empty
