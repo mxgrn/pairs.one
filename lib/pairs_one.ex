@@ -14,6 +14,7 @@ defmodule PairsOne do
       # Start the endpoint when the application starts
       supervisor(PairsOne.Endpoint, []),
       supervisor(PairsOne.Presence, []),
+      worker(PairsOne.RedisRepo, [:redis, "redis://localhost:6379/0"])
       # Start your own worker by calling: PairsOne.Worker.start_link(arg1, arg2, arg3)
       # worker(PairsOne.Worker, [arg1, arg2, arg3]),
     ]
