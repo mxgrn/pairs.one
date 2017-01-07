@@ -6,6 +6,7 @@ To start the app:
 
   * Install dependencies with `mix deps.get`
   * Install Node.js dependencies with `npm install`
+  * Install Elm v0.17.1 with `npm install -g elm@0.17.1` or follow instructions [here](https://guide.elm-lang.org/install.html) (just remember to use v0.17.1)
   * With Redis installed, start it with `redis-server`
   * Start Phoenix endpoint with `mix phoenix.server`
 
