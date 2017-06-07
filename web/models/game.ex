@@ -156,7 +156,7 @@ defmodule PairsOne.Game do
 
   def game_data_for_list(game) do
     playerJson = fn(player) ->
-      %{name: player["online"]}
+      %{name: player["name"]}
     end
 
     size = length(game["cards"]) |> :math.sqrt |> round

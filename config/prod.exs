@@ -14,7 +14,8 @@ use Mix.Config
 config :pairs_one, PairsOne.Endpoint,
   http: [port: 8070],
   url: [host: System.get_env("APP_HOST")],
-  cache_static_manifest: "priv/static/manifest.json"
+  cache_static_manifest: "priv/static/manifest.json",
+  root: "."
 
 # Do not print debug messages in production
 config :logger, level: :info

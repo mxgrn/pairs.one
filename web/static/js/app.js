@@ -122,7 +122,7 @@ $(function(){
     function(i, el){
       var defaultSettings = {
         theme: "eighties",
-        size: 4,
+        size: 6,
         players: 2,
         visibility: "public"
       },

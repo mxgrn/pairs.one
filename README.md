@@ -60,4 +60,4 @@ If you like playing this game and want to help translate it into your language, 
 Fire up the app and make sure your translation works.
 
 ---
-Copyright (c) 2016 Good Bit Labs Limited, released under MIT
+Copyright (c) 2017 Good Bit Labs Limited, released under MIT
