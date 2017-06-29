@@ -1,7 +1,7 @@
 module Types.Game exposing (..)
 
 import Json.Encode as JE
-import Json.Decode as JD exposing ((:=))
+import Json.Decode as JD exposing (field)
 import Phoenix.Presence exposing (PresenceState, PresenceStateMetaValue, syncState, syncDiff, presenceStateDecoder, presenceDiffDecoder)
 import Dict exposing (Dict)
 
@@ -39,13 +39,13 @@ gameEncoder game =
 
 gameDecoder : JD.Decoder Game
 gameDecoder =
-    JD.object6 Game
-        ("id" := JD.string)
-        ("cards" := JD.list cardDecoder)
-        ("players" := JD.list playerDecoder)
-        ("flips" := JD.int)
-        ("turn" := JD.int)
-        ("theme" := JD.string)
+    JD.map6 Game
+        (field "id" JD.string)
+        (field "cards" (JD.list cardDecoder))
+        (field "players" (JD.list playerDecoder))
+        (field "flips" JD.int)
+        (field "turn" JD.int)
+        (field "theme" JD.string)
 
 
 updatePlayerName : Game -> PlayerId -> String -> Game

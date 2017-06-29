@@ -65,10 +65,10 @@ update msg model =
                 game =
                     model.game
 
-                game' =
+                game_ =
                     { game | theme = theme }
             in
-                { model | game = game' } ! []
+                { model | game = game_ } ! []
 
         Replay ->
             replay model
@@ -146,7 +146,7 @@ flipCard index model =
         flippedIds =
             model.flippedIds
 
-        flippedIds' =
+        flippedIds_ =
             if model.playerTurn == game.turn then
                 if (List.length flippedIds) == game.flips then
                     [ index ]
@@ -157,13 +157,13 @@ flipCard index model =
                 flippedIds
 
         ( turn, matched, turnFinished ) =
-            if (List.length flippedIds') == game.flips then
+            if (List.length flippedIds_) == game.flips then
                 let
                     firstValue =
-                        flippedIds' |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
+                        flippedIds_ |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
 
                     matched =
-                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds'
+                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds_
 
                     turn =
                         if matched then
@@ -175,7 +175,7 @@ flipCard index model =
             else
                 ( game.turn, False, False )
 
-        turn' =
+        turn_ =
             if allCleared then
                 List.Extra.findIndex (\p -> p.score == maxScore) players
                     |> Maybe.withDefault turn
@@ -186,10 +186,10 @@ flipCard index model =
         updateCard i card =
             let
                 flipped =
-                    (List.any (\id -> i == id) flippedIds')
+                    (List.any (\id -> i == id) flippedIds_)
 
                 cleared =
-                    (List.any (\id -> i == id && matched) flippedIds') || card.cleared
+                    (List.any (\id -> i == id && matched) flippedIds_) || card.cleared
             in
                 { card | flipped = flipped, cleared = cleared }
 
@@ -197,9 +197,9 @@ flipCard index model =
             List.indexedMap updateCard game.cards
 
         isInaccurateTurn =
-            not matched && (isAnySeen flippedIds' cards)
+            not matched && (isAnySeen flippedIds_ cards)
 
-        cards' =
+        cards_ =
             if turnFinished then
                 List.map (\card -> { card | seen = (card.flipped || card.seen) && not card.cleared }) cards
             else
@@ -212,7 +212,7 @@ flipCard index model =
         isAnySeen indices cards =
             let
                 seenIndices =
-                    List.indexedMap (,) cards |> List.filter (snd >> .seen) |> List.map fst
+                    List.indexedMap (,) cards |> List.filter (Tuple.second >> .seen) |> List.map Tuple.first
             in
                 List.any (\i -> List.member i seenIndices) indices
 
@@ -233,36 +233,36 @@ flipCard index model =
             else
                 player
 
-        players' =
+        players_ =
             if turnFinished then
                 List.map updatePlayer players
             else
                 players
 
-        players'' =
+        players__ =
             if allCleared then
                 let
                     maxScore =
-                        players' |> List.map .score |> List.maximum |> Maybe.withDefault 0
+                        players_ |> List.map .score |> List.maximum |> Maybe.withDefault 0
 
                     updatePlayerTotalScore : Int -> Player -> Player
                     updatePlayerTotalScore maxScore player =
                         { player | totalScore = (player.totalScore + Bool.toInt (player.score == maxScore)) }
                 in
-                    players' |> List.map (updatePlayerTotalScore maxScore)
+                    players_ |> List.map (updatePlayerTotalScore maxScore)
             else
-                players'
+                players_
 
         maxScore =
-            players' |> List.map .score |> List.maximum |> Maybe.withDefault -1
+            players_ |> List.map .score |> List.maximum |> Maybe.withDefault -1
 
-        game' =
-            { game | cards = cards', players = players'', turn = turn' }
+        game_ =
+            { game | cards = cards_, players = players__, turn = turn_ }
 
-        model' =
-            { model | game = game', flippedIds = flippedIds', isCompleted = allCleared }
+        model_ =
+            { model | game = game_, flippedIds = flippedIds_, isCompleted = allCleared }
     in
-        ( model', Cmd.batch [ sendGame game' ] )
+        ( model_, Cmd.batch [ sendGame game_ ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
@@ -271,35 +271,35 @@ updateGame model game =
         gameStarting =
             model.game.turn == -1 && game.turn /= -1
 
-        ( cmd, game' ) =
+        ( cmd, game_ ) =
             if gameStarting then
                 let
-                    game' =
+                    game_ =
                         { game | turn = 0 }
                 in
-                    ( playAudio "ready", game' )
+                    ( playAudio "ready", game_ )
             else
                 ( Cmd.none, game )
 
-        game'' =
-            if List.length (game'.players) == 1 then
-                { game' | turn = 0 }
+        game__ =
+            if List.length (game_.players) == 1 then
+                { game_ | turn = 0 }
             else
-                game'
+                game_
 
         isCompleted =
             List.all .cleared game.cards
 
-        flippedIds' =
+        flippedIds_ =
             flippedIds game.cards
 
-        playerTurn' =
+        playerTurn_ =
             playerTurn model.playerId game.players
     in
         { model
-            | game = game''
-            , flippedIds = flippedIds'
-            , playerTurn = playerTurn'
+            | game = game__
+            , flippedIds = flippedIds_
+            , playerTurn = playerTurn_
             , isCompleted = isCompleted
         }
             ! [ cmd ]

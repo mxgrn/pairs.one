@@ -1,6 +1,5 @@
 port module GameSettings exposing (..)
 
-import Html.App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -71,9 +70,9 @@ type alias Model =
     }
 
 
-main : Program (Params)
+main : Program Params Model Msg
 main =
-    Html.App.programWithFlags
+    programWithFlags
         { init = init
         , view = view
         , update = update
@@ -84,7 +83,7 @@ main =
 init : Params -> ( Model, Cmd Msg )
 init { csrf, locale, themes, theme, size, players, visibility } =
     let
-        theme' =
+        theme_ =
             -- List.head (themes) |> Maybe.withDefault defaultTheme
             List.Extra.find (\th -> th.name == theme) themes |> Maybe.withDefault defaultTheme
     in
@@ -93,7 +92,7 @@ init { csrf, locale, themes, theme, size, players, visibility } =
             locale
             themes
             NullSelector
-            theme'
+            theme_
             size
             players
             (visibilityFromString visibility)
@@ -130,31 +129,31 @@ update msg model =
                 theme =
                     List.Extra.find (\th -> th.name == name) model.themes |> Maybe.withDefault defaultTheme
 
-                model' =
+                model_ =
                     { model | theme = theme, selector = NullSelector }
             in
-                model' ! [ saveSettings model' ]
+                model_ ! [ saveSettings model_ ]
 
         SelectBoardSize size ->
             let
-                model' =
+                model_ =
                     { model | boardSize = size, selector = NullSelector }
             in
-                model' ! [ saveSettings model' ]
+                model_ ! [ saveSettings model_ ]
 
         SelectPlayers n ->
             let
-                model' =
+                model_ =
                     { model | players = n, selector = NullSelector }
             in
-                model' ! [ saveSettings model' ]
+                model_ ! [ saveSettings model_ ]
 
         SelectVisibility visibility ->
             let
-                model' =
+                model_ =
                     { model | visibility = visibility, selector = NullSelector }
             in
-                model' ! [ saveSettings model' ]
+                model_ ! [ saveSettings model_ ]
 
 
 subscriptions : Model -> Sub Msg
@@ -226,7 +225,7 @@ players =
                         [ div [ class <| "btn btn-default btn-block btn-lg btn-stackable " ++ (levelCls <| i - 2), onClick <| SelectPlayers i ] [ text <| toString <| i ]
                         ]
                 )
-                [1..4]
+                (List.range 1 4)
             )
         ]
 
@@ -237,7 +236,7 @@ view model =
         [ modalSelector model
         , div [ class "row game-settings-form" ]
             [ Html.form [ action <| "/" ++ model.locale ++ "/games", method "post" ]
-                [ input [ type' "hidden", name "_csrf_token", value model.csrf ] []
+                [ input [ type_ "hidden", name "_csrf_token", value model.csrf ] []
                 , div [ class "row" ]
                     [ div [ class "col-sm-3" ]
                         [ themeButton model
@@ -254,7 +253,7 @@ view model =
                     ]
                 , div [ class "row btn-go-wrapper" ]
                     [ div [ class "col-sm-4 col-sm-offset-4" ]
-                        [ button [ class "btn btn-lg btn-primary btn-go", type' "submit" ] [ text "Start game" ]
+                        [ button [ class "btn btn-lg btn-primary btn-go", type_ "submit" ] [ text "Start game" ]
                         ]
                     ]
                 ]
@@ -265,7 +264,7 @@ view model =
 visibilityButton : Model -> Html Msg
 visibilityButton model =
     let
-        ( text', cls ) =
+        ( text_, cls ) =
             case model.visibility of
                 Public ->
                     ( "Public ", levelCls 0 )
@@ -276,12 +275,12 @@ visibilityButton model =
         div []
             [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ cls, onClick ShowVisibilitySelector ]
                 [ span []
-                    [ text text'
+                    [ text text_
                     ]
                 , i [ class "fa fa-caret-down" ]
                     []
                 ]
-            , input [ type' "hidden", name "game[visibility]", value <| visibilityToString model.visibility ] []
+            , input [ type_ "hidden", name "game[visibility]", value <| visibilityToString model.visibility ] []
             ]
 
 
@@ -296,7 +295,7 @@ playersButton model =
             , i [ class "fa fa-caret-down" ]
                 []
             ]
-        , input [ type' "hidden", name "game[players_number]", value <| toString model.players ] []
+        , input [ type_ "hidden", name "game[players_number]", value <| toString model.players ] []
         ]
 
 
@@ -311,7 +310,7 @@ boardSizeButton model =
             , i [ class "fa fa-caret-down" ]
                 []
             ]
-        , input [ type' "hidden", name "game[board_size]", value <| toString model.boardSize ] []
+        , input [ type_ "hidden", name "game[board_size]", value <| toString model.boardSize ] []
         ]
 
 
@@ -326,7 +325,7 @@ themeButton model =
             , i [ class "fa fa-caret-down" ]
                 []
             ]
-        , input [ type' "hidden", name "game[theme]", value model.theme.name ] []
+        , input [ type_ "hidden", name "game[theme]", value model.theme.name ] []
         ]
 
 

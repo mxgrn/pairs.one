@@ -2,7 +2,7 @@ port module Game exposing (..)
 
 -- Dependencies
 
-import Html.App
+import Html
 import WebSocket
 import String
 import Phoenix.Socket
@@ -22,9 +22,9 @@ import Types.Game exposing (..)
 import Types.Msg exposing (..)
 
 
-main : Program (Params)
+main : Program Params Model Msg
 main =
-    Html.App.programWithFlags
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update

@@ -129,7 +129,6 @@ card model dimension row col ( cardId, card ) =
 
         width =
             (100 / toFloat dimension)
-
     in
         div
             [ class "card-wrapper"
@@ -164,13 +163,13 @@ groupsOf size xs =
         group =
             List.take size xs
 
-        xs' =
+        xs_ =
             List.drop size xs
 
         okayLength =
             size == List.length group
     in
         if size > 0 && okayLength then
-            group :: groupsOf size xs'
+            group :: groupsOf size xs_
         else
             []

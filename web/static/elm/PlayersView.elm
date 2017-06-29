@@ -38,7 +38,7 @@ playersView model =
     in
         div [ class "players-bar col-md-3 col-lg-4" ]
             ((h4 [ class "player-list-header" ] [ text <| t <| Players ])
-                :: (List.map (player model) [0..(List.length model.game.players - 1)])
+                :: (List.map (player model) (List.range 0 (List.length model.game.players - 1)))
                 ++ html
             )
 
@@ -61,7 +61,7 @@ player model index =
                         else
                             player.name
 
-                    name' =
+                    name_ =
                         if model.playerId == player.id then
                             t <| You <| name
                         else
@@ -72,14 +72,14 @@ player model index =
                 in
                     case player.joined of
                         False ->
-                            pendingPlayer name'
+                            pendingPlayer name_
 
                         True ->
                             let
                                 playerNameHtml =
                                     div
                                         [ class "col-xs-8 player__name" ]
-                                        [ text name' ]
+                                        [ text name_ ]
                             in
                                 div
                                     [ classList

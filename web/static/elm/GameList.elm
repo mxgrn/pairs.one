@@ -2,7 +2,6 @@ module GameList exposing (..)
 
 -- Dependencies
 
-import Html.App
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -11,7 +10,7 @@ import String
 import Phoenix.Socket
 import Phoenix.Channel
 import Json.Encode as JE
-import Json.Decode as JD exposing ((:=))
+import Json.Decode as JD exposing (field)
 import Dict exposing (Dict)
 
 
@@ -57,9 +56,9 @@ type alias Model =
     }
 
 
-main : Program (Params)
+main : Program Params Model Msg
 main =
-    Html.App.programWithFlags
+    Html.programWithFlags
         { init = init
         , view = view
         , update = update
@@ -127,6 +126,7 @@ playerHtml i player =
     let
         _ =
             Debug.log "player" player
+
         ( cls, txt ) =
             if player.name == "" then
                 ( "game-list__player game-list__player--waiting", "-----" )
@@ -139,8 +139,8 @@ playerHtml i player =
 
 
 players : List Player -> List (Html Msg)
-players players' =
-    List.indexedMap playerHtml players'
+players players_ =
+    List.indexedMap playerHtml players_
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -166,23 +166,23 @@ update msg model =
 
 updateDecoder : JD.Decoder UpdateData
 updateDecoder =
-    JD.object1 UpdateData
-        ("games" := JD.list gameDecoder)
+    JD.map UpdateData
+        (field "games" (JD.list gameDecoder))
 
 
 gameDecoder : JD.Decoder Game
 gameDecoder =
-    JD.object4 Game
-        ("id" := JD.string)
-        ("theme" := JD.string)
-        ("size" := JD.string)
-        ("players" := JD.list playerDecoder)
+    JD.map4 Game
+        (field "id" JD.string)
+        (field "theme" JD.string)
+        (field "size" JD.string)
+        (field "players" (JD.list playerDecoder))
 
 
 playerDecoder : JD.Decoder Player
 playerDecoder =
-    JD.object1 Player
-        ("name" := JD.string)
+    JD.map Player
+        (field "name" JD.string)
 
 
 decoderError : Model -> String -> ( Model, Cmd Msg )
