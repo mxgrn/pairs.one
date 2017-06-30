@@ -5,7 +5,7 @@
   "credo": {:hex, :credo, "0.4.11", "03a64e9d53309b7132556284dda0be57ba1013885725124cfea7748d740c6170", [:mix], [{:bunt, "~> 0.1.6", [hex: :bunt, optional: false]}]},
   "db_connection": {:hex, :db_connection, "1.0.0-rc.3", "d9ceb670fe300271140af46d357b669983cd16bc0d01206d7d3222dde56cf038", [:mix], [{:connection, "~> 1.0.2", [hex: :connection, optional: false]}, {:poolboy, "~> 1.5", [hex: :poolboy, optional: true]}, {:sbroker, "~> 1.0.0-beta.3", [hex: :sbroker, optional: true]}]},
   "decimal": {:hex, :decimal, "1.1.2", "79a769d4657b2d537b51ef3c02d29ab7141d2b486b516c109642d453ee08e00c", [:mix], []},
-  "distillery": {:hex, :distillery, "0.9.9", "332635774cbcb829c9bb108fd91d2acfed098f138b3053e2d6a8c743f92c9188", [:mix], []},
+  "distillery": {:hex, :distillery, "1.4.0", "d633cd322c8efa0428082b00b7f902daf8caa166d45f9022bbc19a896d2e1e56", [:mix], []},
   "ecto": {:hex, :ecto, "2.0.2", "b02331c1f20bbe944dbd33c8ecd8f1ccffecc02e344c4471a891baf3a25f5406", [:mix], [{:db_connection, "~> 1.0-rc.2", [hex: :db_connection, optional: true]}, {:decimal, "~> 1.0", [hex: :decimal, optional: false]}, {:mariaex, "~> 0.7.7", [hex: :mariaex, optional: true]}, {:poison, "~> 1.5 or ~> 2.0", [hex: :poison, optional: true]}, {:poolboy, "~> 1.5", [hex: :poolboy, optional: false]}, {:postgrex, "~> 0.11.2", [hex: :postgrex, optional: true]}, {:sbroker, "~> 1.0-beta", [hex: :sbroker, optional: true]}]},
   "edeliver": {:hex, :edeliver, "1.4.0", "c1713b3fabfa75d64770a28b715379be6631442b5d288fc92d45e037757dc9c8", [:mix], [{:distillery, ">= 0.8.0", [hex: :distillery, optional: true]}, {:exrm, ">= 0.16.0", [hex: :exrm, optional: true]}]},
   "eredis": {:hex, :eredis, "1.0.8", "ab4fda1c4ba7fbe6c19c26c249dc13da916d762502c4b4fa2df401a8d51c5364", [:rebar], []},

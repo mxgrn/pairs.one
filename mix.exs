@@ -36,7 +36,7 @@ defmodule PairsOne.Mixfile do
      {:cowboy, "~> 1.0"},
      {:uuid, "~> 1.1"},
      {:edeliver, "~> 1.4.0"},
-     {:distillery, "~> 0.9"},
+     {:distillery, "~> 1.4"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:lz_string, "~> 0.0.6"},
      {:redix, ">= 0.0.0"}]
