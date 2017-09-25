@@ -60,10 +60,6 @@
         <div class="text-muted col-md-6 col-md-pull-6">
           © <%= DateTime.utc_now.year %>
           <%= link "Max Gorin", to: "https://twitter.com/mxgrn" %>
-          <a href="mailto:gorinme@gmail.com?subject=We have a project for you">
-            <span class="fa fa-envelope"></span>
-            <%= gettext "Hire me" %>
-          </a>
           <%= link to: "https://github.com/mxgrn/pairs.one" do %>
             <span class="fa fa-github"></span>
             <%= gettext "Source code" %>
