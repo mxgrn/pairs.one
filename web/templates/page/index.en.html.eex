@@ -7,26 +7,26 @@
         <span class="header-icon fa fa-question"></span>
         You know the rules, right?
       </div>
-      <em class="text-muted">Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
+      <p class="text-muted">Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</p>
     </div>
   </div>
 
   <div class="col-sm-6 col-sm-pull-6">
     <div class="game-option option-one">
-      <h3>Play with anybody</h3>
+      <h4>Play with anybody</h4>
       <div class="game-option__description">
         Somebody on the site may be
         <%= link "waiting", to: "/#{locale}/games" %>
         for you to join!
         <br/>
-        <a class="btn btn-lg btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
+        <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
       </div>
 
     </div>
 
 
     <form class="game-option option-two" method=post action="/<%= locale %>/games">
-      <h3>Play with a friend</h3>
+      <h4>Play with a friend</h4>
       <div class="game-option__description">
         After starting a game, send the provided link to your online friend - and there you go!
         <br/>
@@ -35,12 +35,12 @@
         <input type="hidden" name="game[board_size]" value="6">
         <input type="hidden" name="game[players_number]" value="2">
         <input type="hidden" name="game[visibility]" value="private">
-        <button type="submit" class="btn btn-lg btn-option-go btn-primary">Start <strong>2-player</strong> game</button>
+        <button type="submit" class="btn btn-option-go btn-primary">Start <strong>2-player</strong> game</button>
       </div>
     </form>
 
     <form class="game-option option-three" method=post action="/<%= locale %>/games">
-      <h3>Play alone</h3>
+      <h4>Play alone</h4>
       <div class="game-option__description">
         Play alone and try to improve your accuracy score!
         <br/>
@@ -49,14 +49,14 @@
         <input type="hidden" name="game[board_size]" value="6">
         <input type="hidden" name="game[players_number]" value="1">
         <input type="hidden" name="game[visibility]" value="private">
-        <button type="submit" class="btn btn-lg btn-option-go btn-danger">Start <strong>solo</strong> game</button>
+        <button type="submit" class="btn btn-option-go btn-danger">Start <strong>solo</strong> game</button>
       </div>
     </form>
   </div>
 
 </div>
 
-<h2 class="centered-content text-muted">Or start your custom game</h2>
+<h3 class="centered-content">Or start your custom game</h3>
 <div class="col-sm-12">
   <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
 </div>

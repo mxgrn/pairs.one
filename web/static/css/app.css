@@ -6,6 +6,14 @@ header a:hover {
   text-decoration: none;
 }
 
+h1 {
+  font-size: 28px;
+}
+
+/* h3 { */
+/*   font-size: 20px; */
+/* } */
+
 h1.title, h1.subtitle {
   margin-top: 0;
   margin-right: 10px;
@@ -14,7 +22,7 @@ h1.title, h1.subtitle {
 h1.title {
   line-height: 0.9em;
   margin-top: 20px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 h1.title small {
@@ -243,8 +251,8 @@ label.game-url {
 }
 
 .header-logo--lg {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
 }
 
 .pairs-modal-content label {
@@ -282,7 +290,7 @@ img.screenshot {
 }
 
 .btn-option-go {
-  width: 200px;
+  width: 160px;
 }
 
 .inter-button {
@@ -300,20 +308,20 @@ img.screenshot {
   /* border-left: solid #ddd 5px; */
   /* padding-left: 20px; */
   /* display: block; */
-  font-size: 1.2em;
+  /* font-size: 1.2em; */
   margin-bottom: 30px;
 }
 
 .rules-header {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .header-icon {
-  font-size: 3em;
+  font-size: 2.5em;
   color: orange;
-  margin-right: 20px;
+  margin-right: 10px;
   position: relative;
-  top: 10px;
+  top: 7px;
 }
 
 .subboard {
@@ -411,11 +419,11 @@ img.screenshot {
 
 .game-option {
   /* height: 200px; */
-  padding-top: 1px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 40px;
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .game-options {
@@ -423,19 +431,19 @@ img.screenshot {
   margin-bottom: 30px;
 }
 
-.game-option h3 {
+.game-option h4 {
   color: #c57b7b !important;
 }
 
 .game-option__description{
   /* height: 150px; */
   /* color: #444; */
-  font-size: 1.3em;
+  /* font-size: 1.3em; */
   margin-bottom: 10px;
 }
 
 .game-option__description .btn {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 .game-option h3 {
@@ -480,15 +488,15 @@ img.screenshot {
 
 .btn-game-setting {
   width: 100%;
-  height: 3em;
-  line-height: 2em;
-  font-size: 1.5em;
+  height: 2.8em;
+  line-height: 1.5em;
+  font-size: 1.2em;
   margin-top: 5px;
   margin-bottom: 5px;
 }
 
 .theme-icon {
-  width: 40px;
+  width: 30px;
   margin-right: 5px;
 }
 
@@ -624,5 +632,11 @@ img.screenshot {
 }
 
 .landing-section {
-  margin-bottom: 30px;
+  margin-bottom: 10px;
+}
+
+@media (min-width: 1200px) {
+  .container {
+      width: 940px;
+  }
 }

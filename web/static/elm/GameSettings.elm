@@ -35,6 +35,7 @@ type alias Params =
 type Visibility
     = Public
     | Private
+    | Local
 
 
 type Selector
@@ -207,6 +208,11 @@ visibilities =
                 [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-medium", onClick <| SelectVisibility Private ] [ text "No, I'll invite my opponents myself" ]
                 ]
             ]
+        , div [ class "row" ]
+            [ div [ class "col-sm-8 col-sm-offset-2" ]
+                [ div [ class "btn btn-default btn-block btn-lg btn-stackable", onClick <| SelectVisibility Local ] [ text "I'll play with someone locally" ]
+                ]
+            ]
         ]
 
 
@@ -252,8 +258,8 @@ view model =
                         ]
                     ]
                 , div [ class "row btn-go-wrapper" ]
-                    [ div [ class "col-sm-4 col-sm-offset-4" ]
-                        [ button [ class "btn btn-lg btn-primary btn-go", type_ "submit" ] [ text "Start game" ]
+                    [ div [ class "col-sm-4 col-sm-offset-4 centered-content" ]
+                        [ button [ class "btn btn-lg btn-primary", type_ "submit" ] [ text "Start game" ]
                         ]
                     ]
                 ]
@@ -271,6 +277,9 @@ visibilityButton model =
 
                 Private ->
                     ( "Private ", levelCls 1 )
+
+                Local ->
+                    ( "Local ", levelCls 3 )
     in
         div []
             [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ cls, onClick ShowVisibilitySelector ]
@@ -318,7 +327,8 @@ themeButton : Model -> Html Msg
 themeButton model =
     div []
         [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
-            [ img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
+            [ text "Theme: "
+            , img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
                 []
             , i [ class "fa fa-caret-down" ]
                 []
@@ -426,6 +436,9 @@ visibilityFromString str =
         "private" ->
             Private
 
+        "local" ->
+            Local
+
         _ ->
             Public
 
@@ -438,6 +451,9 @@ visibilityToString value =
 
         Private ->
             "private"
+
+        Local ->
+            "local"
 
 
 saveSettings : Model -> Cmd msg
