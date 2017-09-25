@@ -51,9 +51,6 @@ prestartOverlay model =
         t =
             I18n.translate model.locale
 
-        _ =
-            Debug.log "model" model
-
         hint =
             if model.random then
                 ShareThisUrlRandom
