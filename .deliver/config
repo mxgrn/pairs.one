@@ -48,14 +48,14 @@ pre_erlang_clean_compile() {
     cd ../../..
 
     # installing npm dependencies, smart way
-    if [[ -d ../node_modules ]]; then
-      ln -s ../node_modules .
-      npm install
-    else
-      npm install
-      mv node_modules ..
-      ln -s ../node_modules .
-    fi
+    # if [[ -d ../node_modules ]]; then
+    #   ln -s ../node_modules .
+    #   npm install
+    # else
+    #   npm install
+    #   mv node_modules ..
+    #   ln -s ../node_modules .
+    # fi
 
     # building brunch
     brunch build --production
