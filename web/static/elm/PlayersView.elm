@@ -36,7 +36,7 @@ playersView model =
               )
             ]
     in
-        div [ class "players-bar col-md-3 col-lg-4" ]
+        div [ class "players-bar col-md-4 col-lg-4" ]
             ((h4 [ class "player-list-header" ] [ text <| t <| Players ])
                 :: (List.map (player model) (List.range 0 (List.length model.game.players - 1)))
                 ++ html

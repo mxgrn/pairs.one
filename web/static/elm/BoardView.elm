@@ -33,7 +33,7 @@ boardView model =
         div [ class "game row" ]
             [ prestartOverlay model
             , playersView (model)
-            , div [ class "col-md-9 col-lg-8" ]
+            , div [ class "col-md-8 col-lg-8" ]
                 [ div
                     [ classList
                         [ ( "active", model.game.turn == model.playerTurn )

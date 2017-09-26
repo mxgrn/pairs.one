@@ -13,7 +13,7 @@
   </head>
 
   <body>
-    <div id="main" class="container">
+    <div id="main" class="container <%= if assigns[:full_width], do: "container--full-width" %>">
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
           <h4 class="pull-left">
@@ -22,11 +22,6 @@
               Pairs One
             <% end %>
           </h4>
-          <%= if assigns[:show_new_link] do %>
-            <h4 class="pull-right">
-              <%= link gettext("New game"), to: game_path(@conn, :new), class: "btn btn-default" %>
-            </h4>
-          <% end %>
         </header>
       <% else %>
         <header class="header clearfix">
@@ -40,7 +35,7 @@
         </header>
       <% end %>
 
-      <div class="container">
+      <div class="<%= if assigns[:full_width], do: "container--full-width" %>">
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
         <p class="alert alert-success" role="alert"><%= get_flash(@conn, :warning) %></p>

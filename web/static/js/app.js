@@ -144,6 +144,16 @@ $(function(){
     }
   );
 
+  $(".elm-chat").each(
+    function(i, el){
+      Elm.Chat.embed(el, {
+        locale: $("html").attr("lang"),
+        host: location.host,
+        id: "" + $(el).data('id') // because sometimes it comes as an number
+      });
+    }
+  );
+
   // Let Elm render first, then show everything together
   setTimeout(function(){ $("#main").addClass("visible") }, 0);
 });
