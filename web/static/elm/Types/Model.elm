@@ -15,6 +15,7 @@ import Phoenix.Presence exposing (PresenceState)
 type alias Model =
     { game : Game
     , playerId : PlayerId
+    , playerName : String
     , playerTurn : Int
     , flippedIds : List CardId
     , themes : List Theme
@@ -22,8 +23,16 @@ type alias Model =
     , isCompleted : Bool
     , locale : String
     , random : Bool
+    , chatMessage : String
+    , chatMessages : List ChatMessage
     , phxSocket : Phoenix.Socket.Socket Msg
     , phxPresences : PresenceState PlayerPresence
+    }
+
+
+type alias ChatMessage =
+    { playerId : PlayerId
+    , body : String
     }
 
 

@@ -36,7 +36,6 @@ subscriptions : Model -> Sub Msg
 subscriptions model =
     Sub.batch
         [ Phoenix.Socket.listen model.phxSocket PhoenixMsg
-        , onUpdatePlayer UpdatePlayer
         , onSendCompressedGame SendCompressedGame
         , onGameUpdate UpdateGame
         ]
@@ -67,12 +66,14 @@ init { id, playerId, host, playerName, themes, locale } =
                 |> Phoenix.Socket.on "update_game" ("game:" ++ id) ReceiveCompressedGame
                 |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
                 |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff
+                |> Phoenix.Socket.on "new_chat_msg" ("game:" ++ id) ReceiveMessage
 
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.join channel socketInit
     in
         ( { game = game
           , playerId = playerId
+          , playerName = playerName
           , host = host
           , playerTurn = 0
           , flippedIds = []
@@ -80,6 +81,8 @@ init { id, playerId, host, playerName, themes, locale } =
           , isCompleted = False
           , random = False
           , locale = locale
+          , chatMessage = ""
+          , chatMessages = []
           , phxSocket = socketInit
           , phxPresences = Dict.empty
           }

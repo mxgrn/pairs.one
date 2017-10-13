@@ -99,6 +99,14 @@ defmodule PairsOne.Game do
     join_player_at(game, index, player)
   end
 
+
+  def rename_player(game, player_id, name) do
+    new_players = game["players"]
+                  |> Enum.map(fn p -> if p["id"] == player_id, do: %{p | "name" => name}, else: p end)
+
+    %{game | "players" => new_players}
+  end
+
   # Return list of shuffled cards on the board, given board size and number of cards in the theme
   defp cards(board_size, cards_number) do
     card_values = Enum.take_random(1..cards_number, trunc(board_size * board_size / 2))

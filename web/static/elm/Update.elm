@@ -24,6 +24,66 @@ import Types.Msg exposing (..)
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        OnInputPlayerName name ->
+            { model | playerName = name } ! []
+
+        SetUserName ->
+            let
+                push =
+                    Phoenix.Push.init "set_player_name" ("game:" ++ model.game.id)
+                        |> Phoenix.Push.withPayload
+                            (JE.object
+                                [ ( "name", JE.string model.playerName )
+                                , ( "player_id", JE.string model.playerId )
+                                ]
+                            )
+
+                ( _, phxCmd ) =
+                    Phoenix.Socket.push push model.phxSocket
+            in
+                model ! [ Cmd.map PhoenixMsg phxCmd ]
+
+        -- Chat
+        OnInputMessage msg ->
+            { model | chatMessage = msg } ! []
+
+        SendMessage ->
+            let
+                push =
+                    Phoenix.Push.init "new_chat_msg" ("game:" ++ model.game.id)
+                        |> Phoenix.Push.withPayload
+                            (JE.object
+                                [ ( "player_id", JE.string model.playerId )
+                                , ( "body", JE.string model.chatMessage )
+                                ]
+                            )
+
+                ( _, phxCmd ) =
+                    Phoenix.Socket.push push model.phxSocket
+            in
+                { model | chatMessage = "" } ! [ Cmd.map PhoenixMsg phxCmd ]
+
+        ReceiveMessage raw ->
+            let
+                chatMessageDecoder : JD.Decoder ChatMessage
+                chatMessageDecoder =
+                    JD.map2 ChatMessage
+                        (JD.field "player_id" JD.string)
+                        (JD.field "body" JD.string)
+
+                chatMessage =
+                    case JD.decodeValue chatMessageDecoder raw of
+                        Ok msg ->
+                            msg
+
+                        Err error ->
+                            ChatMessage "" error
+
+                messages =
+                    chatMessage :: model.chatMessages
+            in
+                { model | chatMessages = messages } ! []
+
         -- UpdateGame with complete state
         UpdateGame raw ->
             case JD.decodeValue gameDecoder raw of
@@ -45,13 +105,12 @@ update msg model =
         CopyUrl ->
             model ! [ copyUrl ".game-url" ]
 
-        UpdatePlayer name ->
-            let
-                game =
-                    updatePlayerName model.game model.playerId name
-            in
-                ( { model | game = game }, sendGame game )
-
+        -- UpdatePlayer name ->
+        --     let
+        --         game =
+        --             updatePlayerName model.game model.playerId name
+        --     in
+        --         ( { model | game = game }, sendGame game )
         FlipCard index ->
             -- This check is needed because Chrome seems to process click events asynchrously, which may lead to race
             -- condition due to the fact that a tile gets clicked while it's no longer current player's turn.

@@ -31,8 +31,7 @@ boardView model =
             List.indexedMap (,) model.game.cards
     in
         div [ class "game row" ]
-            [ prestartOverlay model
-            , playersView (model)
+            [ playersView (model)
             , div [ class "col-md-8 col-lg-8" ]
                 [ div
                     [ classList
@@ -43,46 +42,6 @@ boardView model =
                     ((groupsOf cols cardsWithIds) |> (rows model))
                 ]
             ]
-
-
-prestartOverlay : Model -> Html Msg
-prestartOverlay model =
-    let
-        t =
-            I18n.translate model.locale
-
-        hint =
-            if model.random then
-                ShareThisUrlRandom
-            else
-                ShareThisUrl
-    in
-        if not <| gameIsActive model then
-            div []
-                [ div [ class "pairs-overlay" ] []
-                , div [ class "pairs-modal" ]
-                    [ div [ class "form-group" ]
-                        [ label [ class "game-url" ] [ text <| t <| hint ]
-                        , div [ class "input-group clipboard-input" ]
-                            [ input
-                                [ class "form-control game-url"
-                                , value (gameUrl model)
-                                , onClick SelectGameUrlInput
-                                ]
-                                []
-                            , span [ class "input-group-btn" ]
-                                [ button
-                                    [ class "btn btn-default clipboard", onClick CopyUrl ]
-                                    [ img [ src "/images/clippy.svg", alt "copy to clipboard", width 13 ] []
-                                    ]
-                                ]
-                            ]
-                        , span [ class "text-muted" ] [ text <| t <| StartGameWhenReady ]
-                        ]
-                    ]
-                ]
-        else
-            div [] []
 
 
 rows : Model -> List (List ( Int, Card )) -> List (Html Msg)

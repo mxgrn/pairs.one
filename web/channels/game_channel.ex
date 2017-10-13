@@ -2,8 +2,10 @@ defmodule PairsOne.GameChannel do
   @moduledoc """
   Receives and broadcasts game state. Uses LZString to compress/decompress JSON data for snappier gameplay over slower Internet.
   """
+
   use PairsOne.Web, :channel
   alias PairsOne.{Game, Presence}
+
 
   @doc """
   This gets called each time the user loads an existing game (including page reloads). Here we fetch the game from
@@ -17,6 +19,7 @@ defmodule PairsOne.GameChannel do
     {:ok, assign(socket, :data, %{game_id: game_id, player_id: player_id})}
   end
 
+
   @doc """
   This gets called each time some browser sends in a new game (compressed) state. All we do is decompress, the state,
   update the game in Redis, and then broadcast the compressed state to other players.
@@ -28,6 +31,7 @@ defmodule PairsOne.GameChannel do
     {:reply, :ok, socket}
   end
 
+
   @doc """
   This gets callde when the user presses "Replay" after they finish a game. Via `Game.replay` we reset the game state
   (e.g. re-generate the board), then compress it and broadcast to other players.
@@ -38,6 +42,26 @@ defmodule PairsOne.GameChannel do
     broadcast! socket, "update_game", %{game: compress_game(game)}
     {:noreply, socket}
   end
+
+
+  @doc """
+  """
+  def handle_in("set_player_name", %{"player_id" => player_id, "name" => name}, socket) do
+    game = Game.get(socket.assigns.data.game_id)
+           |> Game.rename_player(player_id, name)
+    broadcast! socket, "update_game", %{game: compress_game(game)}
+    {:noreply, socket}
+  end
+
+
+  @doc """
+  """
+  def handle_in("new_chat_msg", %{"body" => body, "player_id" => player_id} = msg, socket) do
+    # TODO: append to chat messages in the game struct
+    broadcast! socket, "new_chat_msg", msg
+    {:noreply, socket}
+  end
+
 
   def handle_info(:after_join, socket) do
     game_id = socket.assigns.data.game_id
@@ -54,6 +78,7 @@ defmodule PairsOne.GameChannel do
     {:noreply, socket}
   end
 
+
   defp decompress_game(game) do
     game
     |> Base.decode64!
@@ -61,12 +86,14 @@ defmodule PairsOne.GameChannel do
     |> Poison.decode!
   end
 
+
   defp compress_game(game) do
     game
     |> Poison.encode!
     |> LZString.compress
     |> Base.encode64
   end
+
 
   defp pending_games do
     %{games: PairsOne.PendingGames.data_list}

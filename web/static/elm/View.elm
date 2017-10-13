@@ -12,8 +12,11 @@ import String
 import ScoreboardView exposing (..)
 import ReplayView exposing (..)
 import BoardView exposing (..)
+import ChatView exposing (..)
 import Types.Model exposing (..)
 import Types.Msg exposing (..)
+import I18n exposing (..)
+import I18n.Translation exposing (..)
 
 
 view : Model -> Html Msg
@@ -37,7 +40,15 @@ game model =
     if model.isCompleted then
         completedGame model
     else
-        boardView model
+        div [ class "row" ]
+            [ prestartOverlay model
+            , div [ class "col-sm-8" ]
+                [ boardView model
+                ]
+            , div [ class "col-sm-4" ]
+                [ chatView model
+                ]
+            ]
 
 
 completedGame : Model -> Html Msg
@@ -48,3 +59,43 @@ completedGame model =
             , replayView model
             ]
         ]
+
+
+prestartOverlay : Model -> Html Msg
+prestartOverlay model =
+    let
+        t =
+            I18n.translate model.locale
+
+        hint =
+            if model.random then
+                ShareThisUrlRandom
+            else
+                ShareThisUrl
+    in
+        if not <| gameIsActive model then
+            div []
+                [ div [ class "pairs-overlay" ] []
+                , div [ class "pairs-modal" ]
+                    [ div [ class "form-group" ]
+                        [ label [ class "game-url" ] [ text <| t <| hint ]
+                        , div [ class "input-group clipboard-input" ]
+                            [ input
+                                [ class "form-control game-url"
+                                , value (gameUrl model)
+                                , onClick SelectGameUrlInput
+                                ]
+                                []
+                            , span [ class "input-group-btn" ]
+                                [ button
+                                    [ class "btn btn-default clipboard", onClick CopyUrl ]
+                                    [ img [ src "/images/clippy.svg", alt "copy to clipboard", width 13 ] []
+                                    ]
+                                ]
+                            ]
+                        , span [ class "text-muted" ] [ text <| t <| StartGameWhenReady ]
+                        ]
+                    ]
+                ]
+        else
+            div [] []
