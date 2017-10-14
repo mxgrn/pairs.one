@@ -16,7 +16,7 @@
     <div id="main" class="container <%= if assigns[:full_width], do: "container--full-width" %>">
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
-          <h4 class="pull-left">
+          <h4>
             <%= link to: "/" do %>
               <img class="header-logo--sm" src="/images/owl.svg" alt="pairs one logo"/>
               Pairs One

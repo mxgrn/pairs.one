@@ -13,6 +13,7 @@ type Translation
     | You String
     | PlayAgain
     | Accuracy Int
+    | Score Int
     | TryDifferentTheme
     | Scoreboard Scoreboard
     | ShareThisUrl

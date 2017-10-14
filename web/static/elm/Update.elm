@@ -354,6 +354,9 @@ updateGame model game =
 
         playerTurn_ =
             playerTurn model.playerId game.players
+
+        _ =
+            Debug.log "playerTurn_" playerTurn_
     in
         { model
             | game = game__

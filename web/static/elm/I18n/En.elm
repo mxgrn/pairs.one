@@ -27,6 +27,9 @@ translate t =
         Accuracy value ->
             "Accuracy: " ++ (toString value) ++ "%"
 
+        Score value ->
+            "Score: " ++ (toString value)
+
         Scoreboard t ->
             case t of
                 ThisGame ->

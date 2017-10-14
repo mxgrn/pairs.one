@@ -18,26 +18,20 @@ import I18n.Translation exposing (..)
 
 chatView : Model -> Html Msg
 chatView model =
-    div [ class "chat" ]
-        [ label [] [ text "Your name" ]
-        , div [ class "input-group input-group--name" ]
-            [ input
-                [ class "form-control", onInput OnInputPlayerName, value model.playerName ]
-                []
-            , span [ class "input-group-btn" ]
-                [ button [ class "btn btn-default", onClick SetUserName ] [ text "ok" ]
+    if model.playerTurn == -1 then
+        text ""
+    else
+        div [ class "chat-area" ]
+            [ div [] [ strong [] [ text "Chat" ], a [ class "pull-right" ] [ text "ON" ] ]
+            , div [ class "chat-history input-group" ]
+                (messagesView model)
+            , div [ class "input-group" ]
+                [ input [ class "form-control", onInput OnInputMessage, onEnter SendMessage, value model.chatMessage ] []
+                , span [ class "input-group-btn" ]
+                    [ button [ class "btn btn-default", onClick SendMessage ] [ text "send" ]
+                    ]
                 ]
             ]
-        , div [] [ strong [] [ text "Chat" ], a [ class "pull-right" ] [ text "ON" ] ]
-        , div [ class "chat-history input-group" ]
-            (messagesView model)
-        , div [ class "input-group" ]
-            [ input [ class "form-control", onInput OnInputMessage, onEnter SendMessage, value model.chatMessage ] []
-            , span [ class "input-group-btn" ]
-                [ button [ class "btn btn-default", onClick SendMessage ] [ text "send" ]
-                ]
-            ]
-        ]
 
 
 messagesView : Model -> List (Html Msg)

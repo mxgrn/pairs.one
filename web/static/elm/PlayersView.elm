@@ -20,27 +20,9 @@ playersView model =
     let
         t =
             I18n.translate model.locale
-
-        html =
-            [ (div [ class "row" ]
-                [ div [ class "col-sm-12" ]
-                    [ div
-                        [ classList
-                            [ ( "turn-banner", True )
-                            , ( "turn-banner--your-turn", model.game.turn == model.playerTurn )
-                            ]
-                        ]
-                        [ text <| t <| YourTurn <| playerName model ]
-                    ]
-                ]
-              )
-            ]
     in
-        div [ class "players-bar col-md-4 col-lg-4" ]
-            ((h4 [ class "player-list-header" ] [ text <| t <| Players ])
-                :: (List.map (player model) (List.range 0 (List.length model.game.players - 1)))
-                ++ html
-            )
+        div [ class "players-bar" ]
+            (List.map (player model) (List.range 0 (List.length model.game.players - 1)))
 
 
 player : Model -> Int -> Html Msg
@@ -69,6 +51,9 @@ player model index =
 
                     accuracy =
                         (toFloat player.turns - toFloat player.inaccurateTurns) / toFloat player.turns * 100 |> truncate
+
+                    isMultiplayer =
+                        (List.length model.game.players) > 1
                 in
                     case player.joined of
                         False ->
@@ -77,23 +62,28 @@ player model index =
                         True ->
                             let
                                 playerNameHtml =
-                                    div
-                                        [ class "col-xs-8 player__name" ]
-                                        [ text name_ ]
+                                    if isMultiplayer then
+                                        div
+                                            [ class "player__name" ]
+                                            [ text name_ ]
+                                    else
+                                        text ""
                             in
                                 div
                                     [ classList
-                                        [ ( "active", index == model.game.turn && player.online )
-                                        , ( "player-turn", index == model.playerTurn )
-                                        , ( "row", True )
+                                        [ ( "active", index == model.game.turn && player.online && isMultiplayer )
+                                        , ( "player", True )
+                                        , ( "player-turn", index == model.playerTurn && isMultiplayer )
                                         , ( "offline", not player.online )
+                                        , ( "multiplayer", isMultiplayer )
                                         ]
                                     ]
                                     [ playerNameHtml
-                                    , div [ class "col-xs-2 score__accuracy" ]
-                                        [ text (toString accuracy ++ "%") ]
-                                    , div [ class "col-xs-2 player__score" ]
-                                        [ text (player.score |> toString)
+                                    , div [ class "row player-score" ]
+                                        [ div [ class "col-xs-6 player__score" ]
+                                            [ text <| t <| Score player.score ]
+                                        , div [ class "col-xs-6 score__accuracy" ]
+                                            [ text <| t <| Accuracy accuracy ]
                                         ]
                                     ]
 
@@ -103,12 +93,11 @@ player model index =
 
 pendingPlayer : String -> Html Msg
 pendingPlayer name =
-    div
-        [ class "not-joined row"
-        ]
-        [ div [ class "col-xs-6 player__name" ]
+    div [ class "player not-joined" ]
+        [ div [ class "player__name" ]
             [ text name
             ]
-        , div [ class "col-xs-6 player__score" ]
-            [ text "(waiting)" ]
+        , div [ class "row player-score" ]
+            [ div [ class "col-xs-6 player__score" ] [ text "(waiting)" ]
+            ]
         ]

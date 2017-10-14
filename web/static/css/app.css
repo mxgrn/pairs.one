@@ -1,4 +1,5 @@
 body {
+  margin-top: 0;
   font-family: Roboto, verdana, arial, helvetica, sans-serif;
 }
 
@@ -172,7 +173,12 @@ li.right {
 }
 
 .players-bar {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
+}
+
+.players-bar .player {
+  color: #555;
+  padding: 5px 7px;
 }
 
 .players-bar .not-joined {
@@ -184,8 +190,8 @@ li.right {
 }
 
 .players-bar .active {
-  font-weight: bold;
   color: #000;
+  background-color: #BDE5F0;
 }
 
 .player__name {
@@ -194,24 +200,32 @@ li.right {
   text-overflow: ellipsis;
 }
 
-.player__name:before {
-  content: " ";
-  width: 20px;
-  color: orange;
-  display: inline-block;
+.player-score.multiplayer {
+  font-size: 0.8em;
 }
 
-.active .player__name:before {
-  content: "➔";
-  font-weight: bold;
+.active .player__name {
+  /* font-weight: bold; */
 }
+
+/* .player__name:before { */
+/*   content: " "; */
+/*   width: 20px; */
+/*   color: orange; */
+/*   display: inline-block; */
+/* } */
+
+/* .active .player__name:before { */
+/*   content: "➔"; */
+/*   font-weight: bold; */
+/* } */
 
 .players-bar .active.player-turn {
-  /* background-color: #ccffd2; */
+  background-color: #93ffa0;
 }
 
 .players-bar .player__score {
-  text-align: right;
+  /* text-align: right; */
   /* display: inline-block; */
   /* float: right; */
   /* padding-right: 10px; */
@@ -246,8 +260,17 @@ label.game-url {
 }
 
 .header-logo--sm {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
+}
+
+.header {
+  text-align: center;
+}
+
+.header h4 {
+  margin: 5px 0;
+  font-size: 14px;
 }
 
 .header-logo--lg {
@@ -385,7 +408,9 @@ img.screenshot {
 }
 
 .score__accuracy {
-  color: #ccc;
+  padding-right: 0px;
+  margin-right: 0px;
+  /* color: #ccc; */
 }
 
 .score__player-name {

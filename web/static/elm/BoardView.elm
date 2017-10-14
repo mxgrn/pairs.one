@@ -16,11 +16,6 @@ import I18n exposing (..)
 import I18n.Translation exposing (..)
 
 
--- submodules
-
-import PlayersView exposing (..)
-
-
 boardView : Model -> Html Msg
 boardView model =
     let
@@ -31,8 +26,7 @@ boardView model =
             List.indexedMap (,) model.game.cards
     in
         div [ class "game row" ]
-            [ playersView (model)
-            , div [ class "col-md-8 col-lg-8" ]
+            [ div [ class "col-md-12 col-lg-12" ]
                 [ div
                     [ classList
                         [ ( "active", model.game.turn == model.playerTurn )

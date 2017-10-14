@@ -17,6 +17,7 @@ import Types.Model exposing (..)
 import Types.Msg exposing (..)
 import I18n exposing (..)
 import I18n.Translation exposing (..)
+import PlayersView exposing (..)
 
 
 view : Model -> Html Msg
@@ -42,11 +43,15 @@ game model =
     else
         div [ class "row" ]
             [ prestartOverlay model
-            , div [ class "col-sm-8" ]
+            , div [ class "col-sm-3" ]
+                [ playersView model
+                ]
+            , div [ class "col-sm-6" ]
                 [ boardView model
                 ]
-            , div [ class "col-sm-4" ]
-                [ chatView model
+            , div [ class "col-sm-3" ]
+                [ userName model
+                , chatView model
                 ]
             ]
 
@@ -57,6 +62,21 @@ completedGame model =
         [ div [ class "game--completed" ]
             [ scoreboardView model
             , replayView model
+            ]
+        ]
+
+
+userName : Model -> Html Msg
+userName model =
+    div [ class "user-name-area" ]
+        [ label [] [ text "Your name" ]
+        , div [ class "input-group input-group--name" ]
+            [ input
+                [ class "form-control", onInput OnInputPlayerName, value model.playerName ]
+                []
+            , span [ class "input-group-btn" ]
+                [ button [ class "btn btn-default", onClick SetUserName ] [ text "ok" ]
+                ]
             ]
         ]
 
