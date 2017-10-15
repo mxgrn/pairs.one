@@ -200,8 +200,8 @@ li.right {
   text-overflow: ellipsis;
 }
 
-.player-score.multiplayer {
-  font-size: 0.8em;
+.multiplayer .player-score {
+  font-size: 0.75em;
 }
 
 .active .player__name {

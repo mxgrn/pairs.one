@@ -38,22 +38,28 @@ loading =
 
 game : Model -> Html Msg
 game model =
-    if model.isCompleted then
-        completedGame model
-    else
-        div [ class "row" ]
-            [ prestartOverlay model
-            , div [ class "col-sm-3" ]
-                [ playersView model
-                ]
-            , div [ class "col-sm-6" ]
-                [ boardView model
-                ]
-            , div [ class "col-sm-3" ]
+    let
+        chatArea =
+            if model.game.visibility == "local" then
+                []
+            else
                 [ userName model
                 , chatView model
                 ]
-            ]
+    in
+        if model.isCompleted then
+            completedGame model
+        else
+            div [ class "row" ]
+                [ prestartOverlay model
+                , div [ class "col-sm-3" ]
+                    [ playersView model
+                    ]
+                , div [ class "col-sm-6" ]
+                    [ boardView model
+                    ]
+                , div [ class "col-sm-3" ] chatArea
+                ]
 
 
 completedGame : Model -> Html Msg

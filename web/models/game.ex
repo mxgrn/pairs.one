@@ -41,7 +41,15 @@ defmodule PairsOne.Game do
 
     id = UUID.uuid4 |> String.split("-") |> List.last
 
-    players = (0..players_number - 1) |> Enum.map(fn _ -> %PairsOne.Player{id: "", name: ""} end)
+    local? = visibility == "local"
+
+    players = (0..players_number - 1) |> Enum.map(fn _ -> %PairsOne.Player{id: "", name: "", joined: local?, online: local?} end)
+
+    turn = if local? do
+      0
+    else
+      -1
+    end
 
     game = %PairsOne.Game{
       id: id,
@@ -49,7 +57,8 @@ defmodule PairsOne.Game do
       players: players,
       theme: theme_name,
       visibility: visibility,
-      random: random
+      random: random,
+      turn: turn
     }
 
     save!(id, game)

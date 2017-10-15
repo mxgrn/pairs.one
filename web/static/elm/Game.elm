@@ -49,7 +49,7 @@ init : Params -> ( Model, Cmd Msg )
 init { id, playerId, host, playerName, themes, locale } =
     let
         game =
-            Game "" [] [] 0 0 "eighties" False
+            Game "" [] [] 0 0 "eighties" False "public"
 
         payload =
             JE.object
@@ -64,9 +64,10 @@ init { id, playerId, host, playerName, themes, locale } =
         socketInit =
             Phoenix.Socket.init ("ws://" ++ host ++ "/socket/websocket")
                 |> Phoenix.Socket.on "update_game" ("game:" ++ id) ReceiveCompressedGame
-                |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
-                |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff
-                |> Phoenix.Socket.on "new_chat_msg" ("game:" ++ id) ReceiveMessage
+                -- |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
+                -- |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff
+                |>
+                    Phoenix.Socket.on "new_chat_msg" ("game:" ++ id) ReceiveMessage
 
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.join channel socketInit
