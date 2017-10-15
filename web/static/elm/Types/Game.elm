@@ -84,3 +84,8 @@ updateFromPresenceState game presenceState =
             game.players |> List.map (\p -> { p | online = (List.any (\id -> id == p.id) onlinePlayerIds) })
     in
         { game | players = players }
+
+
+isLocal : Game -> Bool
+isLocal game =
+    game.visibility == "local"

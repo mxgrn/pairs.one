@@ -50,7 +50,10 @@ player model index =
                             name
 
                     accuracy =
-                        (toFloat player.turns - toFloat player.inaccurateTurns) / toFloat player.turns * 100 |> truncate
+                        if player.turns == 0 then
+                            100
+                        else
+                            (toFloat player.turns - toFloat player.inaccurateTurns) / toFloat player.turns * 100 |> truncate
 
                     isMultiplayer =
                         (List.length model.game.players) > 1

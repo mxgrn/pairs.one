@@ -37,7 +37,7 @@ cardDecoder =
 
 flippedIds : List Card -> List Int
 flippedIds cards =
-    List.indexedMap (,) cards |> List.filter (\( _, card ) -> card.flipped) |> List.map (\( id, _ ) -> id)
+    List.indexedMap (,) cards |> List.filter (Tuple.second >> .flipped) |> List.map Tuple.first
 
 
 cardAt : Int -> List Card -> Maybe Card

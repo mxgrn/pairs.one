@@ -19,6 +19,7 @@ import Types.Game exposing (..)
 import Types.Player exposing (..)
 import Types.Card exposing (..)
 import Types.Msg exposing (..)
+import PlayerStats exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -114,7 +115,7 @@ update msg model =
         FlipCard index ->
             -- This check is needed because Chrome seems to process click events asynchrously, which may lead to race
             -- condition due to the fact that a tile gets clicked while it's no longer current player's turn.
-            if model.playerTurn == model.game.turn || model.game.visibility == "local" then
+            if model.playerTurn == model.game.turn || isLocal model.game then
                 flipCard index model
             else
                 model ! []
@@ -202,24 +203,22 @@ flipCard index model =
         players =
             game.players
 
+        -- Indices of all flipped cards so far (normally it's max 2)
         flippedIds =
-            model.flippedIds
-
-        flippedIds_ =
-            if (List.length flippedIds) == game.flips then
+            if (List.length model.flippedIds) == game.flips then
                 [ index ]
             else
                 -- preventing dblclick glitch in Chrome with `unique`
-                List.append flippedIds [ index ] |> List.Extra.unique
+                List.append model.flippedIds [ index ] |> List.Extra.unique
 
         ( turn, matched, turnFinished ) =
-            if (List.length flippedIds_) == game.flips then
+            if (List.length flippedIds) == game.flips then
                 let
                     firstValue =
-                        flippedIds_ |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
+                        flippedIds |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
 
                     matched =
-                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds_
+                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds
 
                     turn =
                         if matched then
@@ -236,30 +235,24 @@ flipCard index model =
 
         turn_ =
             if allCleared then
-                List.Extra.findIndex (\p -> p.score == maxScore) players
+                List.Extra.findIndex (\p -> p.score == (maxScore players)) players
                     |> Maybe.withDefault turn
             else
                 turn
-
-        _ =
-            Debug.log "turn_" turn_
 
         updateCard : Int -> Card -> Card
         updateCard i card =
             let
                 flipped =
-                    (List.any (\id -> i == id) flippedIds_)
+                    (List.any (\id -> i == id) flippedIds)
 
                 cleared =
-                    (List.any (\id -> i == id && matched) flippedIds_) || card.cleared
+                    (List.any (\id -> i == id && matched) flippedIds) || card.cleared
             in
                 { card | flipped = flipped, cleared = cleared }
 
         cards =
             List.indexedMap updateCard game.cards
-
-        isInaccurateTurn =
-            not matched && (isAnySeen flippedIds_ cards)
 
         cards_ =
             if turnFinished then
@@ -267,46 +260,24 @@ flipCard index model =
             else
                 cards
 
-        isAnySeen : List Int -> List Card -> Bool
-        isAnySeen indices cards =
-            let
-                seenIndices =
-                    List.indexedMap (,) cards |> List.filter (Tuple.second >> .seen) |> List.map Tuple.first
-            in
-                List.any (\i -> List.member i seenIndices) indices
-
-        updatePlayerStats : Player -> Player
-        updatePlayerStats player =
-            let
-                turns =
-                    player.turns + 1
-
-                inaccurateTurns =
-                    player.inaccurateTurns + Bool.toInt isInaccurateTurn
-
-                score =
-                    player.score + Bool.toInt matched
-            in
-                { player | score = score, turns = turns, inaccurateTurns = inaccurateTurns }
-
         updatePlayerById : Player -> Player
         updatePlayerById player =
             if player.id == model.playerId then
-                player |> updatePlayerStats
+                player |> PlayerStats.updatePlayer cards flippedIds matched
             else
                 player
 
-        updatePlayerByIndex : ( Int, Player ) -> Player
-        updatePlayerByIndex ( i, player ) =
+        updatePlayerByIndex : Int -> Player -> Player
+        updatePlayerByIndex i player =
             if model.playerTurn == i then
-                player |> updatePlayerStats
+                player |> PlayerStats.updatePlayer cards flippedIds matched
             else
                 player
 
         players_ =
             if turnFinished then
-                if model.game.visibility == "local" then
-                    List.indexedMap (,) players |> List.map updatePlayerByIndex
+                if isLocal model.game then
+                    List.indexedMap updatePlayerByIndex players
                 else
                     List.map updatePlayerById players
             else
@@ -314,37 +285,23 @@ flipCard index model =
 
         players__ =
             if allCleared then
-                let
-                    maxScore =
-                        players_ |> List.map .score |> List.maximum |> Maybe.withDefault 0
-
-                    updatePlayerTotalScore : Int -> Player -> Player
-                    updatePlayerTotalScore maxScore player =
-                        { player | totalScore = (player.totalScore + Bool.toInt (player.score == maxScore)) }
-                in
-                    players_ |> List.map (updatePlayerTotalScore maxScore)
+                PlayerStats.updatePlayers players_
             else
                 players_
-
-        maxScore =
-            players_ |> List.map .score |> List.maximum |> Maybe.withDefault -1
 
         game_ =
             { game | cards = cards_, players = players__, turn = turn_ }
 
         playerTurn =
-            if game.visibility == "local" && turnFinished && not matched then
-                (model.playerTurn + 1) % (List.length model.game.players)
+            if isLocal game && turnFinished && not matched then
+                (model.playerTurn + 1) % List.length model.game.players
             else if allCleared then
                 turn_
             else
                 model.playerTurn
 
-        _ =
-            Debug.log "playerTurn" playerTurn
-
         model_ =
-            { model | game = game_, flippedIds = flippedIds_, isCompleted = allCleared, playerTurn = playerTurn }
+            { model | game = game_, flippedIds = flippedIds, isCompleted = allCleared, playerTurn = playerTurn }
     in
         ( model_, Cmd.batch [ sendGame game_ ] )
 
@@ -371,27 +328,18 @@ updateGame model game =
             else
                 game_
 
-        _ =
-            Debug.log "game__.players" game__.players
-
         isCompleted =
             List.all .cleared game.cards
 
-        flippedIds_ =
-            flippedIds game.cards
-
         playerTurn_ =
-            if game.visibility == "local" then
+            if isLocal game then
                 0
             else
                 playerTurn model.playerId game.players
-
-        _ =
-            Debug.log "playerTurn_" playerTurn_
     in
         { model
             | game = game__
-            , flippedIds = flippedIds_
+            , flippedIds = flippedIds game.cards
             , playerTurn = playerTurn_
             , isCompleted = isCompleted
             , random = game.random
