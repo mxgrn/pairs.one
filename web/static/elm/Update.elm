@@ -178,28 +178,6 @@ update msg model =
                         model ! []
 
 
-
-{- Delete -}
-
-
-replayLocal : Model -> ( Model, Cmd Msg )
-replayLocal model =
-    let
-        newPlayers =
-            resetPlayersForRound model.game.players
-
-        newCards =
-            resetCardsForRound model.game.cards
-
-        game =
-            model.game
-
-        newGame =
-            { game | players = newPlayers, cards = newCards }
-    in
-        { model | isCompleted = False, flippedIds = [], game = newGame } ! []
-
-
 replay : Model -> ( Model, Cmd Msg )
 replay model =
     let
