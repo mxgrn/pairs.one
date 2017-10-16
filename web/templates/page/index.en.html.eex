@@ -16,7 +16,7 @@
         <div class="col-md-6 game-option__title">
           <h4>Play with anybody</h4>
           <div class="game-option__description">
-            Somebody on the site may be
+            Somebody may be
             <%= link "waiting", to: "/#{locale}/games" %>
             for you to join!
           </div>
@@ -52,9 +52,9 @@
     <form class="game-option option-three" method=post action="/<%= locale %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Play alone</h4>
+          <h4>Play solo</h4>
           <div class="game-option__description">
-            Play alone and try to improve your accuracy!
+            Play solo to improve your accuracy!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
             <input type="hidden" name="game[theme]" value="eighties">

@@ -22,11 +22,18 @@ h1.title, h1.subtitle {
 
 h1.title {
   line-height: 0.9em;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 0;
+  color: #e89c6a;
 }
 
 h1.title small {
+}
+
+.header h3 {
+  margin-top: 0px;
+  font-size: 1.2em;
+  color: #2eb5d8;
 }
 
 #main {

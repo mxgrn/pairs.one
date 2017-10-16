@@ -26,12 +26,11 @@
       <% else %>
         <header class="header clearfix">
           <h1 class="title centered-content">
-            <%= link to: "/" do %>
-              <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
-              Pairs One
-            <% end %>
+            <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
+            Pairs One
             <small> <%= gettext "Registration-free multiplayer Memory game" %></small>
           </h1>
+          <h3>Unload your mind while improving your memory</h3>
         </header>
       <% end %>
 
