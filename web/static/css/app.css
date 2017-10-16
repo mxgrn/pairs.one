@@ -235,6 +235,7 @@ li.right {
 label.game-url {
   display: inline-block;
   width: 100%;
+  margin-bottom: 20px;
 }
 
 .turn-banner {

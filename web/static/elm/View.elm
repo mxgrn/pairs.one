@@ -123,7 +123,6 @@ prestartOverlay model =
                                     ]
                                 ]
                             ]
-                        , span [ class "text-muted" ] [ text <| t <| StartGameWhenReady ]
                         ]
                     ]
                 ]

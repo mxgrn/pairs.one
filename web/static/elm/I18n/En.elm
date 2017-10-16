@@ -42,7 +42,7 @@ translate t =
             "Share this URL with your opponent(s):"
 
         ShareThisUrlRandom ->
-            "There's nobody available :( Wait for a bit, or share this URL with anybody you want to play with:"
+            "We are looking for a player for you! Give us a second, or share this URL with anyone who might want to play with you:"
 
         StartGameWhenReady ->
             "You may start playing as soon as your opponent visits this URL"
