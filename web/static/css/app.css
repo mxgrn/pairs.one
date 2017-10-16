@@ -414,8 +414,8 @@ img.screenshot {
 }
 
 .score__player-name {
-  max-height: 1.2em;
-  overflow: hidden;
+  /* max-height: 1.2em; */
+  overflow-y: hidden;
 }
 
 .accuracy {

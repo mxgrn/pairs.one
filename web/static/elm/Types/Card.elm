@@ -48,3 +48,8 @@ cardAt index cards =
 cardValueAt : List Card -> Int -> Int
 cardValueAt cards index =
     cardAt index cards |> Maybe.map .value |> Maybe.withDefault -1
+
+
+resetCardsForRound : List Card -> List Card
+resetCardsForRound cards =
+    List.map (\c -> { c | cleared = False, seen = False, flipped = False }) cards

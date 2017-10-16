@@ -85,6 +85,11 @@ playerDecoder =
         (field "inaccurateTurns" JD.int)
 
 
+resetPlayersForRound : List Player -> List Player
+resetPlayersForRound players =
+    List.map (\p -> { p | score = 0, turns = 0, inaccurateTurns = 0 }) players
+
+
 playerPresenceDecoder : JD.Decoder PlayerPresence
 playerPresenceDecoder =
     JD.map PlayerPresence

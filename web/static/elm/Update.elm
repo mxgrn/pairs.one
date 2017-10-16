@@ -178,6 +178,28 @@ update msg model =
                         model ! []
 
 
+
+{- Delete -}
+
+
+replayLocal : Model -> ( Model, Cmd Msg )
+replayLocal model =
+    let
+        newPlayers =
+            resetPlayersForRound model.game.players
+
+        newCards =
+            resetCardsForRound model.game.cards
+
+        game =
+            model.game
+
+        newGame =
+            { game | players = newPlayers, cards = newCards }
+    in
+        { model | isCompleted = False, flippedIds = [], game = newGame } ! []
+
+
 replay : Model -> ( Model, Cmd Msg )
 replay model =
     let
@@ -203,7 +225,7 @@ flipCard index model =
         players =
             game.players
 
-        -- Indices of all flipped cards so far (normally it's max 2)
+        -- Updated indices of all flipped cards so far (normally it's max 2, but in the future can be more)
         flippedIds =
             if (List.length model.flippedIds) == game.flips then
                 [ index ]
@@ -211,7 +233,7 @@ flipCard index model =
                 -- preventing dblclick glitch in Chrome with `unique`
                 List.append model.flippedIds [ index ] |> List.Extra.unique
 
-        ( turn, matched, turnFinished ) =
+        ( newTurn, matched, turnFinished ) =
             if (List.length flippedIds) == game.flips then
                 let
                     firstValue =
@@ -220,25 +242,26 @@ flipCard index model =
                     matched =
                         List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds
 
-                    turn =
+                    newTurn =
                         if matched then
                             game.turn
                         else
                             (game.turn + 1) % List.length players
                 in
-                    ( turn, matched, True )
+                    ( newTurn, matched, True )
             else
                 ( game.turn, False, False )
 
-        allCleared =
+        roundFinished =
             List.all .cleared cards
 
-        turn_ =
-            if allCleared then
+        -- If round is finished, the winner gets the turn
+        newTurn_ =
+            if roundFinished then
                 List.Extra.findIndex (\p -> p.score == (maxScore players)) players
-                    |> Maybe.withDefault turn
+                    |> Maybe.withDefault newTurn
             else
-                turn
+                newTurn
 
         updateCard : Int -> Card -> Card
         updateCard i card =
@@ -284,24 +307,26 @@ flipCard index model =
                 players
 
         players__ =
-            if allCleared then
+            if roundFinished then
                 PlayerStats.updatePlayers players_
             else
                 players_
 
         game_ =
-            { game | cards = cards_, players = players__, turn = turn_ }
+            { game | cards = cards_, players = players__, turn = newTurn_ }
 
         playerTurn =
             if isLocal game && turnFinished && not matched then
-                (model.playerTurn + 1) % List.length model.game.players
-            else if allCleared then
-                turn_
+                -- Only in case of local game are we overriding playerTurn
+                if roundFinished then
+                    newTurn_
+                else
+                    (model.playerTurn + 1) % List.length model.game.players
             else
                 model.playerTurn
 
         model_ =
-            { model | game = game_, flippedIds = flippedIds, isCompleted = allCleared, playerTurn = playerTurn }
+            { model | game = game_, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
     in
         ( model_, Cmd.batch [ sendGame game_ ] )
 
@@ -333,7 +358,7 @@ updateGame model game =
 
         playerTurn_ =
             if isLocal game then
-                0
+                model.playerTurn
             else
                 playerTurn model.playerId game.players
     in
