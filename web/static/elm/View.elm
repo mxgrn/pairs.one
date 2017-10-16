@@ -14,6 +14,7 @@ import ReplayView exposing (..)
 import BoardView exposing (..)
 import ChatView exposing (..)
 import Types.Model exposing (..)
+import Types.Game exposing (isLocal)
 import Types.Msg exposing (..)
 import I18n exposing (..)
 import I18n.Translation exposing (..)
@@ -39,8 +40,11 @@ loading =
 game : Model -> Html Msg
 game model =
     let
+        isSinglePlayer =
+            (List.length model.game.players) == 1
+
         chatArea =
-            if model.game.visibility == "local" then
+            if isLocal model.game || isSinglePlayer then
                 []
             else
                 [ userName model
