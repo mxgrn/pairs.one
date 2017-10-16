@@ -69,7 +69,7 @@ card model dimension row col ( cardId, card ) =
             toFloat dimension * toFloat dimension / 2 |> truncate
 
         isClickable =
-            model.game.turn == model.playerTurn && (not card.flipped) && (not card.cleared) || model.game.visibility == "local"
+            model.game.turn == model.playerTurn && not card.flipped && not card.cleared
 
         classAttrs =
             [ classList
