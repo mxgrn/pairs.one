@@ -11,6 +11,27 @@
   </div>
 
   <div class="col-sm-6 col-sm-pull-6">
+
+    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Play solo</h4>
+          <div class="game-option__description">
+            Play solo to improve your accuracy!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="1">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-warning">Start <strong>solo</strong> game</button>
+        </div>
+      </div>
+    </form>
+
     <div class="game-option option-one">
       <div class="row">
         <div class="col-md-6 game-option__title">
@@ -25,16 +46,14 @@
           <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
         </div>
       </div>
-
     </div>
-
 
     <form class="game-option option-two" method=post action="/<%= locale %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Play with a friend</h4>
           <div class="game-option__description">
-            Send a link to your online friend - and there you go!
+            Simply send a link to your online friend to begin!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -52,26 +71,6 @@
     <form class="game-option option-three" method=post action="/<%= locale %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Play solo</h4>
-          <div class="game-option__description">
-            Play solo to improve your accuracy!
-            <br/>
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-            <input type="hidden" name="game[theme]" value="eighties">
-            <input type="hidden" name="game[board_size]" value="6">
-            <input type="hidden" name="game[players_number]" value="1">
-            <input type="hidden" name="game[visibility]" value="private">
-          </div>
-        </div>
-        <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-danger">Start <strong>solo</strong> game</button>
-        </div>
-      </div>
-    </form>
-
-    <form class="game-option option-four" method=post action="/<%= locale %>/games">
-      <div class="row">
-        <div class="col-md-6 game-option__title">
           <h4>Play locally</h4>
           <div class="game-option__description">
             Play with your friend on the same device!
@@ -84,7 +83,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-default">Start <strong>local</strong> game</button>
+          <button type="submit" class="btn btn-option-go btn-info">Start <strong>local</strong> game</button>
         </div>
       </div>
     </form>
@@ -92,6 +91,7 @@
     <div class="centered-content more-game-options">
       <a href="#custom-game"><span class="fa fa-angle-down"></span> More options</a>
     </div>
+
   </div>
 
 </div>

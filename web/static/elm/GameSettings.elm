@@ -259,7 +259,7 @@ view model =
                     ]
                 , div [ class "row btn-go-wrapper" ]
                     [ div [ class "col-sm-4 col-sm-offset-4 centered-content" ]
-                        [ button [ class "btn btn-lg btn-primary", type_ "submit" ] [ text "Start game" ]
+                        [ button [ class "btn btn-primary", type_ "submit" ] [ text "Start game" ]
                         ]
                     ]
                 ]
