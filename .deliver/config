@@ -45,7 +45,6 @@ pre_erlang_clean_compile() {
     elm-make --yes --output ../vendor/elm/game.js Game.elm
     elm-make --yes --output ../vendor/elm/gamelist.js GameList.elm
     elm-make --yes --output ../vendor/elm/gamesettings.js GameSettings.elm
-    elm-make --yes --output ../vendor/elm/chat.js Chat.elm
     cd ../../..
 
     # installing npm dependencies, smart way
