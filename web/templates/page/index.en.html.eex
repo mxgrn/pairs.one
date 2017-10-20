@@ -17,9 +17,7 @@
         <div class="col-md-6 game-option__title">
           <h4>Play with anybody</h4>
           <div class="game-option__description">
-            Somebody may be
-            <%= link "waiting", to: "/#{locale}/games" %>
-            for you to join!
+            Somebody may be waiting for you to join right now!
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
