@@ -12,26 +12,6 @@
 
   <div class="col-sm-6 col-sm-pull-6">
 
-    <form class="game-option option-four" method=post action="/<%= locale %>/games">
-      <div class="row">
-        <div class="col-md-6 game-option__title">
-          <h4>Play solo</h4>
-          <div class="game-option__description">
-            Play solo to improve your accuracy!
-            <br/>
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-            <input type="hidden" name="game[theme]" value="eighties">
-            <input type="hidden" name="game[board_size]" value="6">
-            <input type="hidden" name="game[players_number]" value="1">
-            <input type="hidden" name="game[visibility]" value="private">
-          </div>
-        </div>
-        <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-warning">Start <strong>solo</strong> game</button>
-        </div>
-      </div>
-    </form>
-
     <div class="game-option option-one">
       <div class="row">
         <div class="col-md-6 game-option__title">
@@ -88,7 +68,27 @@
       </div>
     </form>
 
-    <div class="centered-content more-game-options">
+    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Play solo</h4>
+          <div class="game-option__description">
+            Play solo to improve your accuracy!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="1">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-warning">Start <strong>solo</strong> game</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="centered-content more-game-options hidden-xs">
       <a href="#custom-game"><span class="fa fa-angle-down"></span> More options</a>
     </div>
 

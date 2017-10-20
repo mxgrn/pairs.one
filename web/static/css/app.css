@@ -31,10 +31,41 @@ h1.title small {
 }
 
 .header h3 {
-  margin-top: 0px;
+  margin-top: 0;
   font-size: 1.2em;
   color: #2eb5d8;
 }
+
+.header h1 {
+  text-align: left;
+  font-size: 2em;
+}
+
+.header h2 {
+  color: darkgrey;
+  text-align: right;
+  font-size: 1em;
+}
+
+@media (max-width: 768px) {
+  .header h1 {
+    text-align: left;
+    font-size: 2em;
+  }
+
+  .header h2 {
+    text-align: left;
+    margin-top: 10px;
+  }
+
+  .header h3 {
+    text-align: left;
+    margin-top: 0;
+    font-size: 1.1em;
+    color: #2eb5d8;
+  }
+}
+
 
 #main {
   display: none;
@@ -648,12 +679,6 @@ img.screenshot {
   .pairs-modal-dialog {
     width: 660px;
     margin: 30px auto;
-  }
-}
-
-@media (min-width: 992px) {
-  .game-option {
-    /* height: 200px; */
   }
 }
 

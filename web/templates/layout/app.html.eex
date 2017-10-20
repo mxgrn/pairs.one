@@ -25,11 +25,15 @@
         </header>
       <% else %>
         <header class="header clearfix">
-          <h1 class="title centered-content">
-            <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
-            Pairs One
-            <small> <%= gettext "Registration-free multiplayer Memory game" %></small>
-          </h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <h1 class="title centered-content">
+                <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
+                Pairs One
+              </h1>
+            </div>
+            <div class="col-sm-6"><h2><%= gettext "Registration-free multiplayer Memory game" %></h2></div>
+          </div>
           <h3>Unload your mind while improving your memory</h3>
         </header>
       <% end %>
