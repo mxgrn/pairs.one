@@ -1,0 +1,28 @@
+## This file is a PO Template file.
+##
+## `msgid`s here are often extracted from source code.
+## Add new translations manually only if they're dynamic
+## translations that can't be statically extracted.
+##
+## Run `mix gettext.extract` to bring this file up to
+## date. Leave `msgstr`s empty as changing them here as no
+## effect: edit them in PO (`.po`) files instead.
+msgid ""
+msgstr ""
+"Language: INSERT LANGUAGE HERE\n"
+
+#: web/templates/layout/app.html.eex:7
+msgid "Play memory/concentration game with friends over the Internet without registration"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:63
+msgid "Source code"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:10 web/templates/layout/app.html.eex:35
+msgid "Registration-free multiplayer Memory game"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:37
+msgid "Unload your mind while improving your memory"
+msgstr ""

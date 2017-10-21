@@ -34,7 +34,7 @@
             </div>
             <div class="col-sm-6"><h2><%= gettext "Registration-free multiplayer Memory game" %></h2></div>
           </div>
-          <h3>Unload your mind while improving your memory</h3>
+          <h3><%= gettext "Unload your mind while improving your memory" %></h3>
         </header>
       <% end %>
 
