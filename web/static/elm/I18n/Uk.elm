@@ -42,7 +42,4 @@ translate t =
             "Поділись лінком з опонентом:"
 
         ShareThisUrlRandom ->
-            "As soon as there is another player available, we'll hook you up! If you don't want to wait, share this URL with anybody you want to play with:"
-
-        StartGameWhenReady ->
-            "Гру можна почати відразу після того, як всі підключаться!"
+            "We are looking for an opponent for you! Give us a second, or share this URL with anyone who might want to play with you right now:"

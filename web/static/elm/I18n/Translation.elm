@@ -18,4 +18,3 @@ type Translation
     | Scoreboard Scoreboard
     | ShareThisUrl
     | ShareThisUrlRandom
-    | StartGameWhenReady
