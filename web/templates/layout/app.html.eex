@@ -42,9 +42,7 @@
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
         <p class="alert alert-success" role="alert"><%= get_flash(@conn, :warning) %></p>
-
-          <%= render @view_module, @view_template, assigns %>
-
+        <%= render @view_module, @view_template, assigns %>
       </div>
 
       <div class="footer">
@@ -61,6 +59,10 @@
           <%= link to: "https://github.com/mxgrn/pairs.one" do %>
             <span class="fa fa-github"></span>
             <%= gettext "Source code" %>
+          <% end %>
+          <%= link to: "https://github.com/mxgrn/pairs.one#translating-game-into-other-languages" do %>
+            <span class="fa fa-globe"></span>
+            <%= gettext "Help with translation" %>
           <% end %>
         </div>
       </div>

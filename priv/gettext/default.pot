@@ -26,3 +26,7 @@ msgstr ""
 #: web/templates/layout/app.html.eex:37
 msgid "Unload your mind while improving your memory"
 msgstr ""
+
+#: web/templates/layout/app.html.eex:67
+msgid "Help with translation"
+msgstr ""

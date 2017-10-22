@@ -44,7 +44,7 @@ There are no tests yet.
 
 ## Translating game into other languages
 
-If you like playing this game and want to help translate it into your language, please, submit a PR with the following
+If you enjoy this game and want to help translate it into your language, please, submit a PR with the following
 modifications (based on an example of French):
 
 * Create a new gettext locale with `mix gettext.merge priv/gettext --locale=fr`

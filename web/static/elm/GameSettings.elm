@@ -356,8 +356,7 @@ themeButton model =
     in
         div []
             [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
-                [ text <| t I18n.Translation.Theme
-                , img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
+                [ img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
                     []
                 , i [ class "fa fa-caret-down" ]
                     []

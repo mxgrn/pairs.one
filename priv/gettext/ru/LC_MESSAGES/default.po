@@ -25,3 +25,7 @@ msgstr "Мультиплеерная игра Мемори без регистр
 #: web/templates/layout/app.html.eex:37
 msgid "Unload your mind while improving your memory"
 msgstr "Разгрузи мозг, улучшая память"
+
+#: web/templates/layout/app.html.eex:67
+msgid "Help with translation"
+msgstr "Помочь с переводом"
