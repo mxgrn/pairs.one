@@ -109,3 +109,6 @@ translate t =
 
         StartGame ->
             "Начать игру"
+
+        Waiting ->
+            "Ждем"

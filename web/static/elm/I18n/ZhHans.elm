@@ -109,3 +109,6 @@ translate t =
 
         StartGame ->
             "Start game"
+
+        Waiting ->
+            "Waiting"

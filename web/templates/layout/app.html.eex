@@ -17,7 +17,7 @@
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
           <h4>
-            <%= link to: "/" do %>
+            <%= link to: "/#{locale}" do %>
               <img class="header-logo--sm" src="/images/owl.svg" alt="pairs one logo"/>
               Pairs One
             <% end %>

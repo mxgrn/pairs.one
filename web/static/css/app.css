@@ -64,7 +64,7 @@ h1.title small {
 
 #main {
   display: none;
-  padding: 0 20px;
+  padding: 0 40px;
 }
 
 #main.visible {

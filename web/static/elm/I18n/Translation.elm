@@ -40,3 +40,4 @@ type Translation
     | SelectBoardSize
     | SelectBoardSizeDescription
     | StartGame
+    | Waiting

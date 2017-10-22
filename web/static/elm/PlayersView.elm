@@ -60,7 +60,7 @@ player model index =
                 in
                     case player.joined of
                         False ->
-                            pendingPlayer name_
+                            pendingPlayer model name_
 
                         True ->
                             let
@@ -94,13 +94,17 @@ player model index =
                 text "Should never happen"
 
 
-pendingPlayer : String -> Html Msg
-pendingPlayer name =
-    div [ class "player not-joined" ]
-        [ div [ class "player__name" ]
-            [ text name
+pendingPlayer : Model -> String -> Html Msg
+pendingPlayer model name =
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "player multiplayer not-joined" ]
+            [ div [ class "player__name" ]
+                [ text name
+                ]
+            , div [ class "row player-score" ]
+                [ div [ class "col-xs-6 player__score" ] [ text <| t <| Waiting, text "..." ]
+                ]
             ]
-        , div [ class "row player-score" ]
-            [ div [ class "col-xs-6 player__score" ] [ text "(waiting)" ]
-            ]
-        ]
