@@ -22,7 +22,7 @@ chatView model =
         text ""
     else
         div [ class "chat-area" ]
-            [ div [] [ strong [] [ text "Chat" ], a [ class "pull-right" ] [ text "ON" ] ]
+            [ div [] [ strong [] [ text "Chat" ] ]
             , div [ class "chat-history input-group" ]
                 (messagesView model)
             , div [ class "input-group" ]
@@ -43,11 +43,23 @@ messagesView model =
                 player =
                     playerBy message.playerId model.game.players
 
+                playerName =
+                    (Maybe.map
+                        (\p ->
+                            if p.name == "" then
+                                "Player " ++ (toString <| 1 + playerTurn message.playerId model.game.players)
+                            else
+                                p.name
+                        )
+                        player
+                    )
+                        |> Maybe.withDefault ""
+
                 html =
                     if message.playerId == model.playerId then
                         div [ class "chat-message--own" ] [ text message.body ]
                     else
-                        div [ class "chat-message--foreign" ] [ strong [] [ Maybe.map .name player |> Maybe.withDefault "" |> text ], text (": " ++ message.body) ]
+                        div [ class "chat-message--foreign" ] [ strong [] [ text playerName ], text (": " ++ message.body) ]
             in
                 html
     in
