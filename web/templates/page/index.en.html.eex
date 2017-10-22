@@ -1,29 +1,100 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-7">
-      <h3>1. Create new game
-        <br />
-        <small>Choose theme, field size and number of players.</small>
-      </h3>
-      <h3>2. Send link to your opponent(s)
-        <br />
-        <small>Or play alone - and try to beat yourself in being accurate.</small>
-      </h3>
-      <h3>3. Prove you have a great memory :)
-        <br />
-        <small>No registration, no emails to enter - just fun.</small>
-      </h3>
-
-      <div class="rules text-muted">
-        <em>You know the rules, right? Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</em>
+<div class="row landing-section">
+  <div class="col-sm-6 col-sm-push-6">
+    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive screenshot"/>
+    <div class="rules">
+      <div class="rules-header">
+        <span class="header-icon fa fa-question"></span>
+        You know the rules, right?
       </div>
-
-      <%= link "Start new game", to: "/en" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
-    </div>
-    <div class="col-md-5">
-      <div class="screenshot">
-        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
-      </div>
+      <p class="text-muted">Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</p>
     </div>
   </div>
+
+  <div class="col-sm-6 col-sm-pull-6">
+
+    <div class="game-option option-one">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Play with anybody</h4>
+          <div class="game-option__description">
+            Somebody may be waiting for you to join right now!
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
+        </div>
+      </div>
+    </div>
+
+    <form class="game-option option-two" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Play with a friend</h4>
+          <div class="game-option__description">
+            Simply send a link to your online friend to begin!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="2">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+            <button type="submit" class="btn btn-option-go btn-primary">Start <strong>2-player</strong> game</button>
+        </div>
+      </div>
+    </form>
+
+    <form class="game-option option-three" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Play locally</h4>
+          <div class="game-option__description">
+            Play with your friend on the same device!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="2">
+            <input type="hidden" name="game[visibility]" value="local">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-info">Start <strong>local</strong> game</button>
+        </div>
+      </div>
+    </form>
+
+    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Play solo</h4>
+          <div class="game-option__description">
+            Play solo to improve your accuracy!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="1">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-warning">Start <strong>solo</strong> game</button>
+        </div>
+      </div>
+    </form>
+
+    <div class="centered-content more-game-options hidden-xs">
+      <a href="#custom-game"><span class="fa fa-angle-down"></span> More options</a>
+    </div>
+
+  </div>
+
+</div>
+
+<h3 id="custom-game" class="centered-content custom-game__title">Start a custom game</h3>
+<div class="col-sm-12">
+  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
 </div>

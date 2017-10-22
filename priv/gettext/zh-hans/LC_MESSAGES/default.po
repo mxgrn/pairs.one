@@ -10,46 +10,22 @@ msgid ""
 msgstr ""
 "Language: zh-hans\n"
 
-#: web/templates/game/new.html.eex:4 web/templates/layout/app.html.eex:27
-msgid "New game"
-msgstr "新游戏"
-
-#: web/templates/game/new.html.eex:26
-msgid "Board size"
-msgstr "游戏难度"
-
-#: web/templates/game/new.html.eex:54
-msgid "Number of players"
-msgstr "玩家人数"
-
-#: web/templates/game/new.html.eex:11
-msgid "Theme"
-msgstr "主题"
-
-#: web/templates/game/new.html.eex:82
-msgid "Go!"
-msgstr "开始游戏 !"
-
-#: web/templates/layout/app.html.eex:39
-msgid "Best multiplayer online memory game"
-msgstr "最好的线上多人记忆游戏"
-
-#: web/templates/layout/app.html.eex:61
-msgid "Hire me"
-msgstr "聘请我"
-
-#: web/templates/game/show.html.eex:17
-msgid "Your name or twitter handle"
-msgstr "你的名字或者社交账号"
-
-#: web/templates/layout/app.html.eex:11
-msgid "Play PairsOne/Concentration game over the Internet"
-msgstr "在线畅玩 PairsOne 记忆游戏"
-
 #: web/templates/layout/app.html.eex:7
 msgid "Play memory/concentration game with friends over the Internet without registration"
 msgstr "无需注册邀请朋友开启线上记忆游戏对战"
 
-#: web/templates/layout/app.html.eex:65
+#: web/templates/layout/app.html.eex:63
 msgid "Source code"
 msgstr "源代码"
+
+#: web/templates/layout/app.html.eex:10 web/templates/layout/app.html.eex:35
+msgid "Registration-free multiplayer Memory game"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:37
+msgid "Unload your mind while improving your memory"
+msgstr ""
+
+#: web/templates/layout/app.html.eex:67
+msgid "Help with translation"
+msgstr ""

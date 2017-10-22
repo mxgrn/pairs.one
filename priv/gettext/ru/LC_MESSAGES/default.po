@@ -10,42 +10,22 @@ msgid ""
 msgstr ""
 "Language: ru\n"
 
-#: web/templates/game/new.html.eex:4 web/templates/layout/app.html.eex:27
-msgid "New game"
-msgstr "Новая игра"
-
-#: web/templates/game/new.html.eex:26
-msgid "Board size"
-msgstr "Размер поля"
-
-#: web/templates/game/new.html.eex:54
-msgid "Number of players"
-msgstr "Количество игроков"
-
-#: web/templates/game/new.html.eex:11
-msgid "Theme"
-msgstr "Картинки"
-
-#: web/templates/game/new.html.eex:82
-msgid "Go!"
-msgstr "Поехали!"
-
-#: web/templates/layout/app.html.eex:39
-msgid "Registration-free multiplayer Memory game"
-msgstr "Мультиплеерная Мемори игра без регистрации"
-
-#: web/templates/layout/app.html.eex:61
-msgid "Hire me"
-msgstr "Найми меня"
-
-#: web/templates/game/show.html.eex:17
-msgid "Your name or twitter handle"
-msgstr "Твое имя или Твиттер"
-
 #: web/templates/layout/app.html.eex:7
 msgid "Play memory/concentration game with friends over the Internet without registration"
 msgstr "Играй в Мемори с друзьями через Интернет без регистрации"
 
-#: web/templates/layout/app.html.eex:65
+#: web/templates/layout/app.html.eex:63
 msgid "Source code"
 msgstr "Исходный код"
+
+#: web/templates/layout/app.html.eex:10 web/templates/layout/app.html.eex:35
+msgid "Registration-free multiplayer Memory game"
+msgstr "Мультиплеерная игра Мемори без регистрации"
+
+#: web/templates/layout/app.html.eex:37
+msgid "Unload your mind while improving your memory"
+msgstr "Разгрузи мозг, улучшая память"
+
+#: web/templates/layout/app.html.eex:67
+msgid "Help with translation"
+msgstr "Помочь с переводом"

@@ -7,6 +7,7 @@ import Json.Decode as JD
 import Json.Encode as JE
 import List.Extra
 import Phoenix.Presence exposing (PresenceState, syncState, syncDiff, presenceStateDecoder, presenceDiffDecoder)
+import Array
 
 
 --
@@ -18,11 +19,72 @@ import Types.Game exposing (..)
 import Types.Player exposing (..)
 import Types.Card exposing (..)
 import Types.Msg exposing (..)
+import PlayerStats exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
+        OnInputPlayerName name ->
+            { model | playerName = name } ! []
+
+        SetUserName ->
+            let
+                push =
+                    Phoenix.Push.init "set_player_name" ("game:" ++ model.game.id)
+                        |> Phoenix.Push.withPayload
+                            (JE.object
+                                [ ( "name", JE.string model.playerName )
+                                , ( "player_id", JE.string model.playerId )
+                                ]
+                            )
+
+                ( _, phxCmd ) =
+                    Phoenix.Socket.push push model.phxSocket
+            in
+                model ! [ Cmd.map PhoenixMsg phxCmd ]
+
+        -- Chat
+        OnInputMessage msg ->
+            { model | chatMessage = msg } ! []
+
+        SendMessage ->
+            let
+                push =
+                    Phoenix.Push.init "new_chat_msg" ("game:" ++ model.game.id)
+                        |> Phoenix.Push.withPayload
+                            (JE.object
+                                [ ( "player_id", JE.string model.playerId )
+                                , ( "body", JE.string model.chatMessage )
+                                ]
+                            )
+
+                ( _, phxCmd ) =
+                    Phoenix.Socket.push push model.phxSocket
+            in
+                { model | chatMessage = "" } ! [ Cmd.map PhoenixMsg phxCmd ]
+
+        ReceiveMessage raw ->
+            let
+                chatMessageDecoder : JD.Decoder ChatMessage
+                chatMessageDecoder =
+                    JD.map2 ChatMessage
+                        (JD.field "player_id" JD.string)
+                        (JD.field "body" JD.string)
+
+                chatMessage =
+                    case JD.decodeValue chatMessageDecoder raw of
+                        Ok msg ->
+                            msg
+
+                        Err error ->
+                            ChatMessage "" error
+
+                messages =
+                    chatMessage :: model.chatMessages
+            in
+                { model | chatMessages = messages } ! []
+
         -- UpdateGame with complete state
         UpdateGame raw ->
             case JD.decodeValue gameDecoder raw of
@@ -44,17 +106,16 @@ update msg model =
         CopyUrl ->
             model ! [ copyUrl ".game-url" ]
 
-        UpdatePlayer name ->
-            let
-                game =
-                    updatePlayerName model.game model.playerId name
-            in
-                ( { model | game = game }, sendGame game )
-
+        -- UpdatePlayer name ->
+        --     let
+        --         game =
+        --             updatePlayerName model.game model.playerId name
+        --     in
+        --         ( { model | game = game }, sendGame game )
         FlipCard index ->
             -- This check is needed because Chrome seems to process click events asynchrously, which may lead to race
             -- condition due to the fact that a tile gets clicked while it's no longer current player's turn.
-            if model.playerTurn == model.game.turn then
+            if model.playerTurn == model.game.turn || isLocal model.game then
                 flipCard index model
             else
                 model ! []
@@ -64,10 +125,10 @@ update msg model =
                 game =
                     model.game
 
-                game' =
+                game_ =
                     { game | theme = theme }
             in
-                { model | game = game' } ! []
+                { model | game = game_ } ! []
 
         Replay ->
             replay model
@@ -142,123 +203,110 @@ flipCard index model =
         players =
             game.players
 
+        -- Updated indices of all flipped cards so far (normally it's max 2, but in the future can be more)
         flippedIds =
-            model.flippedIds
-
-        flippedIds' =
-            if (List.length flippedIds) == game.flips then
+            if (List.length model.flippedIds) == game.flips then
                 [ index ]
             else
                 -- preventing dblclick glitch in Chrome with `unique`
-                List.append flippedIds [ index ] |> List.Extra.unique
+                List.append model.flippedIds [ index ] |> List.Extra.unique
 
-        ( turn, matched, turnFinished ) =
-            if (List.length flippedIds') == game.flips then
+        ( newTurn, matched, turnFinished ) =
+            if (List.length flippedIds) == game.flips then
                 let
                     firstValue =
-                        flippedIds' |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
+                        flippedIds |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
 
                     matched =
-                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds'
+                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds
 
-                    turn =
+                    newTurn =
                         if matched then
                             game.turn
                         else
                             (game.turn + 1) % List.length players
                 in
-                    ( turn, matched, True )
+                    ( newTurn, matched, True )
             else
                 ( game.turn, False, False )
 
-        turn' =
-            if allCleared then
-                List.Extra.findIndex (\p -> p.score == maxScore) players
-                    |> Maybe.withDefault turn
+        roundFinished =
+            List.all .cleared cards
+
+        -- If round is finished, the winner gets the turn
+        newTurn_ =
+            if roundFinished then
+                List.Extra.findIndex (\p -> p.score == (maxScore players)) players
+                    |> Maybe.withDefault newTurn
             else
-                turn
+                newTurn
 
         updateCard : Int -> Card -> Card
         updateCard i card =
             let
                 flipped =
-                    (List.any (\id -> i == id) flippedIds')
+                    (List.any (\id -> i == id) flippedIds)
 
                 cleared =
-                    (List.any (\id -> i == id && matched) flippedIds') || card.cleared
+                    (List.any (\id -> i == id && matched) flippedIds) || card.cleared
             in
                 { card | flipped = flipped, cleared = cleared }
 
         cards =
             List.indexedMap updateCard game.cards
 
-        isInaccurateTurn =
-            not matched && (isAnySeen flippedIds' cards)
-
-        cards' =
+        cards_ =
             if turnFinished then
                 List.map (\card -> { card | seen = (card.flipped || card.seen) && not card.cleared }) cards
             else
                 cards
 
-        allCleared =
-            List.all .cleared cards
-
-        isAnySeen : List Int -> List Card -> Bool
-        isAnySeen indices cards =
-            let
-                seenIndices =
-                    List.indexedMap (,) cards |> List.filter (snd >> .seen) |> List.map fst
-            in
-                List.any (\i -> List.member i seenIndices) indices
-
-        updatePlayer : Player -> Player
-        updatePlayer player =
+        updatePlayerById : Player -> Player
+        updatePlayerById player =
             if player.id == model.playerId then
-                let
-                    turns =
-                        player.turns + 1
-
-                    inaccurateTurns =
-                        player.inaccurateTurns + Bool.toInt isInaccurateTurn
-
-                    score =
-                        player.score + Bool.toInt matched
-                in
-                    { player | score = score, turns = turns, inaccurateTurns = inaccurateTurns }
+                player |> PlayerStats.updatePlayer cards flippedIds matched
             else
                 player
 
-        players' =
+        updatePlayerByIndex : Int -> Player -> Player
+        updatePlayerByIndex i player =
+            if model.playerTurn == i then
+                player |> PlayerStats.updatePlayer cards flippedIds matched
+            else
+                player
+
+        players_ =
             if turnFinished then
-                List.map updatePlayer players
+                if isLocal model.game then
+                    List.indexedMap updatePlayerByIndex players
+                else
+                    List.map updatePlayerById players
             else
                 players
 
-        players'' =
-            if allCleared then
-                let
-                    maxScore =
-                        players' |> List.map .score |> List.maximum |> Maybe.withDefault 0
-
-                    updatePlayerTotalScore : Int -> Player -> Player
-                    updatePlayerTotalScore maxScore player =
-                        { player | totalScore = (player.totalScore + Bool.toInt (player.score == maxScore)) }
-                in
-                    players' |> List.map (updatePlayerTotalScore maxScore)
+        players__ =
+            if roundFinished then
+                PlayerStats.updatePlayers players_
             else
-                players'
+                players_
 
-        maxScore =
-            players' |> List.map .score |> List.maximum |> Maybe.withDefault -1
+        game_ =
+            { game | cards = cards_, players = players__, turn = newTurn_ }
 
-        game' =
-            { game | cards = cards', players = players'', turn = turn' }
+        playerTurn =
+            if isLocal game && turnFinished && not matched then
+                -- Only in case of local game are we overriding playerTurn
+                if roundFinished then
+                    newTurn_
+                else
+                    (model.playerTurn + 1) % List.length model.game.players
+            else
+                model.playerTurn
 
-        model' =
-            { model | game = game', flippedIds = flippedIds', isCompleted = allCleared }
+        model_ =
+            { model | game = game_, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
     in
-        ( model', sendGame game' )
+        ( model_, Cmd.batch [ sendGame game_ ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
@@ -267,36 +315,37 @@ updateGame model game =
         gameStarting =
             model.game.turn == -1 && game.turn /= -1
 
-        ( cmd, game' ) =
+        ( cmd, game_ ) =
             if gameStarting then
                 let
-                    game' =
+                    game_ =
                         { game | turn = 0 }
                 in
-                    ( playAudio "ready", game' )
+                    ( playAudio "ready", game_ )
             else
                 ( Cmd.none, game )
 
-        game'' =
-            if List.length (game'.players) == 1 then
-                { game' | turn = 0 }
+        game__ =
+            if List.length (game_.players) == 1 then
+                { game_ | turn = 0 }
             else
-                game'
+                game_
 
         isCompleted =
             List.all .cleared game.cards
 
-        flippedIds' =
-            flippedIds game.cards
-
-        playerTurn' =
-            playerTurn model.playerId game.players
+        playerTurn_ =
+            if isLocal game then
+                model.playerTurn
+            else
+                playerTurn model.playerId game.players
     in
         { model
-            | game = game''
-            , flippedIds = flippedIds'
-            , playerTurn = playerTurn'
+            | game = game__
+            , flippedIds = flippedIds game.cards
+            , playerTurn = playerTurn_
             , isCompleted = isCompleted
+            , random = game.random
         }
             ! [ cmd ]
 

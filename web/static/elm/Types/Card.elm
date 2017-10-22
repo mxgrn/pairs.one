@@ -1,7 +1,7 @@
 module Types.Card exposing (..)
 
 import Json.Encode as JE
-import Json.Decode as JD exposing ((:=))
+import Json.Decode as JD exposing (field)
 
 
 type alias Card =
@@ -28,16 +28,16 @@ cardEncoder card =
 
 cardDecoder : JD.Decoder Card
 cardDecoder =
-    JD.object4 Card
-        ("value" := JD.int)
-        ("flipped" := JD.bool)
-        ("cleared" := JD.bool)
-        ("seen" := JD.bool)
+    JD.map4 Card
+        (field "value" JD.int)
+        (field "flipped" JD.bool)
+        (field "cleared" JD.bool)
+        (field "seen" JD.bool)
 
 
 flippedIds : List Card -> List Int
 flippedIds cards =
-    List.indexedMap (,) cards |> List.filter (\( _, card ) -> card.flipped) |> List.map (\( id, _ ) -> id)
+    List.indexedMap (,) cards |> List.filter (Tuple.second >> .flipped) |> List.map Tuple.first
 
 
 cardAt : Int -> List Card -> Maybe Card

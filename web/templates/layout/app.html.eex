@@ -9,42 +9,43 @@
     <meta content='/images/landing.jpg' property='og:image'>
     <title><%= gettext "Registration-free multiplayer Memory game" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
   </head>
 
   <body>
-    <div class="container">
+    <div id="main" class="container <%= if assigns[:full_width], do: "container--full-width" %>">
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
-          <h4 class="pull-left">
-            <%= link to: "/" do %>
+          <h4>
+            <%= link to: "/#{locale}" do %>
               <img class="header-logo--sm" src="/images/owl.svg" alt="pairs one logo"/>
               Pairs One
             <% end %>
           </h4>
-          <%= if assigns[:show_new_link] do %>
-            <h4 class="pull-right">
-              <%= link gettext("New game"), to: game_path(@conn, :new), class: "btn btn-default" %>
-            </h4>
-          <% end %>
         </header>
       <% else %>
         <header class="header clearfix">
-          <h1 class="pull-left title">
-            <%= link to: "/" do %>
-              <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
-              Pairs One
-            <% end %>
-          </h1>
-          <h1 class="pull-left subtitle"><small> <%= gettext "Registration-free multiplayer Memory game" %></small></h1>
+          <div class="row">
+            <div class="col-sm-6">
+              <h1 class="title centered-content">
+                <img class="header-logo--lg" src="/images/owl.svg" alt="pairs one logo"/>
+                Pairs One
+              </h1>
+            </div>
+            <div class="col-sm-6"><h2><%= gettext "Registration-free multiplayer Memory game" %></h2></div>
+          </div>
+          <h3><%= gettext "Unload your mind while improving your memory" %></h3>
         </header>
       <% end %>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+      <div class="<%= if assigns[:full_width], do: "container--full-width" %>">
+        <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <p class="alert alert-success" role="alert"><%= get_flash(@conn, :warning) %></p>
+        <%= render @view_module, @view_template, assigns %>
+      </div>
 
-          <%= render @view_module, @view_template, assigns %>
-
-      <div class="footer row">
+      <div class="footer">
         <div class="col-md-6 col-md-push-6 footer__lang">
           <select name="language" id="language" onchange="">
             <%= for {code, name} <- lang_select_options do %>
@@ -55,13 +56,13 @@
         <div class="text-muted col-md-6 col-md-pull-6">
           © <%= DateTime.utc_now.year %>
           <%= link "Max Gorin", to: "https://twitter.com/mxgrn" %>
-          <a href="mailto:gorinme@gmail.com?subject=We have a project for you">
-            <span class="fa fa-envelope"></span>
-            <%= gettext "Hire me" %>
-          </a>
           <%= link to: "https://github.com/mxgrn/pairs.one" do %>
             <span class="fa fa-github"></span>
             <%= gettext "Source code" %>
+          <% end %>
+          <%= link to: "https://github.com/mxgrn/pairs.one#translating-game-into-other-languages" do %>
+            <span class="fa fa-globe"></span>
+            <%= gettext "Help with translation" %>
           <% end %>
         </div>
       </div>

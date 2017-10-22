@@ -1,0 +1,64 @@
+.game__visual {
+  margin: 5px 15px 0 8px;
+  float: left;
+}
+
+.game__visual div {
+  text-align: center;
+}
+
+.game__visual img {
+  height: 40px;
+}
+
+.game__players {
+  width: 100px;
+  float: left;
+}
+
+.player-icon {
+  position: relative;
+  top: -3px;
+}
+
+.game-list__game .player-icon {
+  margin-right: 5px;
+}
+
+.game-list__game .player-name {
+}
+
+.player-name {
+  display: inline-block;
+  width: 95px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.game-list__game {
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+  padding: 8px 8px 8px 8px;
+  display: inline-block;
+  float: left;
+  margin-right: 10px;
+  min-width: 150px;
+  color: black;
+}
+
+.game-list__game:visited {
+  color: black;
+}
+
+.game-list__game:hover {
+  background-color: #eee;
+}
+
+.game-list__player {
+  height: 1.1em;
+}
+
+.game-list__player--waiting {
+  color: #aaa;
+}

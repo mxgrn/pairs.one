@@ -1,0 +1,203 @@
+[
+  {
+    "name": "Phoenix.Socket",
+    "comment": "\n\n# Socket\n@docs Socket, Msg, init, withDebug, withoutHeartbeat, withHeartbeatInterval, update, listen\n\n# Channels\n@docs join, leave\n\n# Events\n@docs on, off\n\n# Sending messages\n@docs push\n\n",
+    "aliases": [
+      {
+        "name": "Socket",
+        "comment": " Stores channels, event handlers, and configuration options\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ path : String , debug : Bool , channels : Dict.Dict String (Phoenix.Channel.Channel msg) , events : Dict.Dict ( String, String ) (Json.Encode.Value -> msg) , pushes : Dict.Dict Int (Phoenix.Push.Push msg) , ref : Int , heartbeatIntervalSeconds : Float , withoutHeartbeat : Bool }"
+      }
+    ],
+    "types": [
+      {
+        "name": "Msg",
+        "comment": " ",
+        "args": [
+          "msg"
+        ],
+        "cases": []
+      }
+    ],
+    "values": [
+      {
+        "name": "init",
+        "comment": " Initializes a `Socket` with the given path\n",
+        "type": "String -> Phoenix.Socket.Socket msg"
+      },
+      {
+        "name": "join",
+        "comment": " Joins a channel\n\n    payload = Json.Encode.object [ (\"user_id\", Json.Encode.string \"123\") ]\n    channel = Channel.init \"rooms:lobby\" |> Channel.withPayload payload\n    (socket', cmd) = join channel socket\n\n",
+        "type": "Phoenix.Channel.Channel msg -> Phoenix.Socket.Socket msg -> ( Phoenix.Socket.Socket msg , Platform.Cmd.Cmd (Phoenix.Socket.Msg msg) )"
+      },
+      {
+        "name": "leave",
+        "comment": " Leaves a channel\n\n    (socket', cmd) = leave \"rooms:lobby\" socket\n\n",
+        "type": "String -> Phoenix.Socket.Socket msg -> ( Phoenix.Socket.Socket msg , Platform.Cmd.Cmd (Phoenix.Socket.Msg msg) )"
+      },
+      {
+        "name": "listen",
+        "comment": " Listens for phoenix messages and converts them into type `msg`\n",
+        "type": "Phoenix.Socket.Socket msg -> (Phoenix.Socket.Msg msg -> msg) -> Platform.Sub.Sub msg"
+      },
+      {
+        "name": "off",
+        "comment": " Removes an event handler\n\n    socket\n      |> off \"new:msg\" \"rooms:lobby\"\n      |> off \"alert:msg\" \"rooms:lobby\"\n\n",
+        "type": "String -> String -> Phoenix.Socket.Socket msg -> Phoenix.Socket.Socket msg"
+      },
+      {
+        "name": "on",
+        "comment": " Registers an event handler\n\n    socket\n      |> on \"new:msg\" \"rooms:lobby\" ReceiveChatMessage\n      |> on \"alert:msg\" \"rooms:lobby\" ReceiveAlertMessage\n\n",
+        "type": "String -> String -> (Json.Encode.Value -> msg) -> Phoenix.Socket.Socket msg -> Phoenix.Socket.Socket msg"
+      },
+      {
+        "name": "push",
+        "comment": " Pushes a message\n\n    push' = Phoenix.Push.init \"new:msg\" \"rooms:lobby\"\n    (socket', cmd) = push push' socket\n\n",
+        "type": "Phoenix.Push.Push msg -> Phoenix.Socket.Socket msg -> ( Phoenix.Socket.Socket msg , Platform.Cmd.Cmd (Phoenix.Socket.Msg msg) )"
+      },
+      {
+        "name": "update",
+        "comment": " ",
+        "type": "Phoenix.Socket.Msg msg -> Phoenix.Socket.Socket msg -> ( Phoenix.Socket.Socket msg , Platform.Cmd.Cmd (Phoenix.Socket.Msg msg) )"
+      },
+      {
+        "name": "withDebug",
+        "comment": " When enabled, prints all incoming Phoenix messages to the console\n",
+        "type": "Phoenix.Socket.Socket msg -> Phoenix.Socket.Socket msg"
+      },
+      {
+        "name": "withHeartbeatInterval",
+        "comment": " Sends the heartbeat every interval in seconds\n\n    Default is 30 seconds\n",
+        "type": "Float -> Phoenix.Socket.Socket msg -> Phoenix.Socket.Socket msg"
+      },
+      {
+        "name": "withoutHeartbeat",
+        "comment": " Turns off the heartbeat\n",
+        "type": "Phoenix.Socket.Socket msg -> Phoenix.Socket.Socket msg"
+      }
+    ],
+    "generated-with-elm-version": "0.17.0"
+  },
+  {
+    "name": "Phoenix.Push",
+    "comment": "\n\n@docs Push, init, withPayload, onError, onOk\n\n",
+    "aliases": [
+      {
+        "name": "Push",
+        "comment": " Represents a message being pushed to the server\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ event : String , channel : String , payload : Json.Encode.Value , onOk : Maybe.Maybe (Json.Encode.Value -> msg) , onError : Maybe.Maybe (Json.Encode.Value -> msg) }"
+      }
+    ],
+    "types": [],
+    "values": [
+      {
+        "name": "init",
+        "comment": " Initializes a push with the given event and channel\n\n    init \"new:msg\" \"rooms:lobby\"\n\n",
+        "type": "String -> String -> Phoenix.Push.Push msg"
+      },
+      {
+        "name": "onError",
+        "comment": " Attaches an error handler\n\n    init \"new:msg\" \"rooms:lobby\"\n      |> onError HandlePushError\n\n",
+        "type": "(Json.Encode.Value -> msg) -> Phoenix.Push.Push msg -> Phoenix.Push.Push msg"
+      },
+      {
+        "name": "onOk",
+        "comment": " Attaches a success handler\n\n    init \"new:msg\" \"rooms:lobby\"\n      |> onOk HandlePushOk\n\n",
+        "type": "(Json.Encode.Value -> msg) -> Phoenix.Push.Push msg -> Phoenix.Push.Push msg"
+      },
+      {
+        "name": "withPayload",
+        "comment": " Attaches a payload\n\n    payload = JE.object [ (\"body\", JE.string \"Hello World!\") ]\n    init \"new:msg\" \"rooms:lobby\"\n      |> withPayload payload\n\n",
+        "type": "Json.Encode.Value -> Phoenix.Push.Push msg -> Phoenix.Push.Push msg"
+      }
+    ],
+    "generated-with-elm-version": "0.17.0"
+  },
+  {
+    "name": "Phoenix.Channel",
+    "comment": "\n\n@docs Channel, State, init, withPayload, onError, onClose, onJoin, onJoinError, setState\n\n",
+    "aliases": [
+      {
+        "name": "Channel",
+        "comment": " Represents a phoenix channel\n",
+        "args": [
+          "msg"
+        ],
+        "type": "{ name : String , payload : Json.Encode.Value , state : Phoenix.Channel.State , onClose : Maybe.Maybe (Json.Encode.Value -> msg) , onError : Maybe.Maybe (Json.Encode.Value -> msg) , onJoin : Maybe.Maybe (Json.Encode.Value -> msg) , onJoinError : Maybe.Maybe (Json.Encode.Value -> msg) , joinRef : Int , leaveRef : Int }"
+      }
+    ],
+    "types": [
+      {
+        "name": "State",
+        "comment": " All possible states a channel can be in\n",
+        "args": [],
+        "cases": [
+          [
+            "Closed",
+            []
+          ],
+          [
+            "Errored",
+            []
+          ],
+          [
+            "Joined",
+            []
+          ],
+          [
+            "Joining",
+            []
+          ],
+          [
+            "Leaving",
+            []
+          ]
+        ]
+      }
+    ],
+    "values": [
+      {
+        "name": "init",
+        "comment": " Initializes a channel\n\n    init \"rooms:lobby\"\n\n",
+        "type": "String -> Phoenix.Channel.Channel msg"
+      },
+      {
+        "name": "onClose",
+        "comment": " ",
+        "type": "(Json.Encode.Value -> msg) -> Phoenix.Channel.Channel msg -> Phoenix.Channel.Channel msg"
+      },
+      {
+        "name": "onError",
+        "comment": " ",
+        "type": "(Json.Encode.Value -> msg) -> Phoenix.Channel.Channel msg -> Phoenix.Channel.Channel msg"
+      },
+      {
+        "name": "onJoin",
+        "comment": " ",
+        "type": "(Json.Encode.Value -> msg) -> Phoenix.Channel.Channel msg -> Phoenix.Channel.Channel msg"
+      },
+      {
+        "name": "onJoinError",
+        "comment": " ",
+        "type": "(Json.Encode.Value -> msg) -> Phoenix.Channel.Channel msg -> Phoenix.Channel.Channel msg"
+      },
+      {
+        "name": "setState",
+        "comment": " Sets the state of a channel. Internal use only.\n",
+        "type": "Phoenix.Channel.State -> Phoenix.Channel.Channel msg -> Phoenix.Channel.Channel msg"
+      },
+      {
+        "name": "withPayload",
+        "comment": " Attaches a payload that's used for authentication\n\n    payload = JE.object [ (\"user_id\", JE.string \"123\") ]\n    init \"rooms:lobby\"\n      |> withPayload payload\n\n",
+        "type": "Json.Encode.Value -> Phoenix.Channel.Channel msg -> Phoenix.Channel.Channel msg"
+      }
+    ],
+    "generated-with-elm-version": "0.17.0"
+  }
+]

@@ -10,10 +10,34 @@ type Translation
     = WellDone String
     | Players
     | YourTurn String
+    | YourName
+    | Chat
     | You String
     | PlayAgain
     | Accuracy Int
+    | Score Int
     | TryDifferentTheme
     | Scoreboard Scoreboard
     | ShareThisUrl
-    | StartGameWhenReady
+    | ShareThisUrlRandom
+    | Theme
+    | Size
+    | Public
+    | Private
+    | Local
+    | PickTheme
+    | Difficulty
+    | DifficultyEasy
+    | DifficultyMedium
+    | DifficultyHard
+    | SelectGameMode
+    | GameModeDescription
+    | WillPlayWithStranger
+    | WillSelectOpponents
+    | WillPlayLocally
+    | SelectNumberOfPlayers
+    | NumberOfPlayersDescription
+    | SelectBoardSize
+    | SelectBoardSizeDescription
+    | StartGame
+    | Waiting

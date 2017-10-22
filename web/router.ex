@@ -25,6 +25,7 @@ defmodule PairsOne.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/games", GameController, only: [:new, :create, :show]
+    get "/games/random", GameController, :random
+    resources "/games", GameController, only: [:new, :create, :show, :index]
   end
 end

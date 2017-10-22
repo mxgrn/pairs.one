@@ -1,7 +1,7 @@
 module Types.Player exposing (..)
 
 import Json.Encode as JE
-import Json.Decode as JD exposing ((:=))
+import Json.Decode as JD exposing (field)
 
 
 type alias PlayerId =
@@ -74,18 +74,18 @@ playerEncoder player =
 
 playerDecoder : JD.Decoder Player
 playerDecoder =
-    JD.object8 Player
-        ("id" := JD.string)
-        ("name" := JD.string)
-        ("joined" := JD.bool)
-        ("online" := JD.bool)
-        ("score" := JD.int)
-        ("totalScore" := JD.int)
-        ("turns" := JD.int)
-        ("inaccurateTurns" := JD.int)
+    JD.map8 Player
+        (field "id" JD.string)
+        (field "name" JD.string)
+        (field "joined" JD.bool)
+        (field "online" JD.bool)
+        (field "score" JD.int)
+        (field "totalScore" JD.int)
+        (field "turns" JD.int)
+        (field "inaccurateTurns" JD.int)
 
 
 playerPresenceDecoder : JD.Decoder PlayerPresence
 playerPresenceDecoder =
-    JD.object1 PlayerPresence
-        ("id" := JD.string)
+    JD.map PlayerPresence
+        (field "id" JD.string)

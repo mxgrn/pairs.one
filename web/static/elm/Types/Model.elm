@@ -14,15 +14,25 @@ import Phoenix.Presence exposing (PresenceState)
 
 type alias Model =
     { game : Game
-    , playerId : PlayerId
-    , playerTurn : Int
-    , flippedIds : List CardId
+    , playerId : PlayerId {- current player's id (blank for local game) -}
+    , playerName : String {- current player's (blank for local game) -}
+    , playerTurn : Int {- current player's turn (changing for local game) -}
+    , flippedIds : List CardId {- indices of cards flipped over during the turn -}
     , themes : List Theme
     , host : String
-    , isCompleted : Bool
+    , isCompleted : Bool {- round completed -}
     , locale : String
+    , random : Bool
+    , chatMessage : String
+    , chatMessages : List ChatMessage
     , phxSocket : Phoenix.Socket.Socket Msg
     , phxPresences : PresenceState PlayerPresence
+    }
+
+
+type alias ChatMessage =
+    { playerId : PlayerId
+    , body : String
     }
 
 

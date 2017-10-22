@@ -3,6 +3,8 @@ defmodule PairsOne.UserSocket do
 
   ## Channels
   channel "game:*", PairsOne.GameChannel
+  channel "game-list", PairsOne.GameListChannel
+  channel "chat:*", PairsOne.ChatChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket

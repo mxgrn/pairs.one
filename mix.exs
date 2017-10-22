@@ -34,10 +34,10 @@ defmodule PairsOne.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.11"},
      {:cowboy, "~> 1.0"},
-     {:exredis, ">= 0.2.4"},
      {:uuid, "~> 1.1"},
      {:edeliver, "~> 1.4.0"},
-     {:distillery, "~> 0.9"},
+     {:distillery, "~> 1.4"},
+     {:exredis, ">= 0.2.4"},
      {:credo, "~> 0.4", only: [:dev, :test]},
      {:lz_string, "~> 0.0.6"}]
   end

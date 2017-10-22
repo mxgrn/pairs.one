@@ -5,59 +5,74 @@ defmodule PairsOne.Theme do
 
   @themes [
     eighties: %{
-      folder: "eighties",
       title: "Eighties",
-      cards: 40
+      cards: 40,
+      difficulty: 0,
+      new: false
     },
 
     animals: %{
-      folder: "animals",
       title: "Animals",
-      cards: 50
+      cards: 50,
+      difficulty: 0,
+      new: false
     },
 
-    animals_2: %{
-      folder: "animals2",
+    animals2: %{
       title: "Animals 2",
-      cards: 50
+      cards: 50,
+      difficulty: 0,
+      new: false
+    },
+
+    fairy_tales: %{
+      title: "Fairy Tales",
+      cards: 50,
+      difficulty: 0,
+      new: false
     },
 
     pokemon: %{
-      folder: "pokemon",
       title: "Pokémon",
-      cards: 50
+      cards: 50,
+      difficulty: 1,
+      new: false
     },
 
     halloween: %{
-      folder: "halloween",
       title: "Halloween",
-      cards: 48
-    },
-
-    fairy_tails: %{
-      folder: "fairy-tails",
-      title: "Fairy Tails",
-      cards: 50
+      cards: 48,
+      difficulty: 1,
+      new: false
     },
 
     music: %{
-      folder: "music",
       title: "Music",
-      cards: 50
+      cards: 50,
+      difficulty: 1,
+      new: false
     },
 
     owls: %{
-      folder: "owls",
-      title: "Owls b/w",
-      cards: 50
+      title: "Owls",
+      cards: 50,
+      difficulty: 2,
+      new: false
     },
 
     cats: %{
-      folder: "cats",
-      title: "Cats b/w",
-      cards: 50
-    }
+      title: "Cats",
+      cards: 50,
+      difficulty: 2,
+      new: false
+    },
 
+    robots: %{
+      title: "Robots",
+      cards: 50,
+      difficulty: 2,
+      new: true
+    }
   ]
 
   @doc """

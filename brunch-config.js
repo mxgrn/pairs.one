@@ -51,9 +51,11 @@ exports.config = {
 
   // Configure your plugins
   plugins: {
+    // See .deliver/config, where we do elmBrunch's work manually
+    //
     elmBrunch: {
       elmFolder: "web/static/elm",
-      mainModules: ["Main.elm"],
+      mainModules: ["Game.elm", "GameList.elm", "GameSettings.elm"],
       outputFolder: "../vendor/elm"
     },
     babel: {

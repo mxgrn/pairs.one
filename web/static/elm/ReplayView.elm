@@ -25,9 +25,8 @@ replayView model =
         t =
             I18n.translate model.locale
     in
-        div [ class "col-lg-6 play-again" ]
-            [ button [ class "btn btn-lg btn-primary btn-replay visible-xs", onClick Replay ] [ text <| t <| PlayAgain ]
-            , h3 [ class "score-title" ] [ text <| t <| TryDifferentTheme ]
+        div [ class "play-again" ]
+            [ h3 [ class "score-title" ] [ text <| t <| TryDifferentTheme ]
             , themeSelectorView model
             , button [ class "btn btn-lg btn-primary btn-replay", onClick Replay ] [ text <| t <| PlayAgain ]
             ]

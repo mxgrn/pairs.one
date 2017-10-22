@@ -16,11 +16,6 @@ import I18n exposing (..)
 import I18n.Translation exposing (..)
 
 
--- submodules
-
-import PlayersView exposing (..)
-
-
 boardView : Model -> Html Msg
 boardView model =
     let
@@ -31,9 +26,7 @@ boardView model =
             List.indexedMap (,) model.game.cards
     in
         div [ class "game row" ]
-            [ prestartOverlay model
-            , playersView (model)
-            , div [ class "col-md-9 col-lg-8" ]
+            [ div [ class "col-md-12 col-lg-12" ]
                 [ div
                     [ classList
                         [ ( "active", model.game.turn == model.playerTurn )
@@ -43,40 +36,6 @@ boardView model =
                     ((groupsOf cols cardsWithIds) |> (rows model))
                 ]
             ]
-
-
-prestartOverlay : Model -> Html Msg
-prestartOverlay model =
-    let
-        t =
-            I18n.translate model.locale
-    in
-        if not <| gameIsActive model then
-            div []
-                [ div [ class "pairs-overlay" ] []
-                , div [ class "pairs-modal" ]
-                    [ div [ class "form-group" ]
-                        [ label [ class "game-url" ] [ text <| t <| ShareThisUrl ]
-                        , div [ class "input-group clipboard-input" ]
-                            [ input
-                                [ class "form-control game-url"
-                                , value (gameUrl model)
-                                , onClick SelectGameUrlInput
-                                ]
-                                []
-                            , span [ class "input-group-btn" ]
-                                [ button
-                                    [ class "btn btn-default clipboard", onClick CopyUrl ]
-                                    [ img [ src "/images/clippy.svg", alt "copy to clipboard", width 13 ] []
-                                    ]
-                                ]
-                            ]
-                        , span [ class "text-muted" ] [ text <| t <| StartGameWhenReady ]
-                        ]
-                    ]
-                ]
-        else
-            div [] []
 
 
 rows : Model -> List (List ( Int, Card )) -> List (Html Msg)
@@ -110,7 +69,7 @@ card model dimension row col ( cardId, card ) =
             toFloat dimension * toFloat dimension / 2 |> truncate
 
         isClickable =
-            model.game.turn == model.playerTurn && (not card.flipped) && (not card.cleared)
+            model.game.turn == model.playerTurn && not card.flipped && not card.cleared
 
         classAttrs =
             [ classList
@@ -123,15 +82,12 @@ card model dimension row col ( cardId, card ) =
 
         cardAttrs =
             if isClickable then
-                classAttrs ++ [ onClick (FlipCard cardId) ]
+                classAttrs ++ [ onMouseDown (FlipCard cardId) ]
             else
                 classAttrs
 
         width =
             (100 / toFloat dimension)
-
-        themeFolder =
-            model.themes |> List.Extra.find (\th -> th.name == model.game.theme) |> Maybe.map .folder |> withDefault ""
     in
         div
             [ class "card-wrapper"
@@ -152,7 +108,7 @@ card model dimension row col ( cardId, card ) =
                     [ class "back" ]
                     [ div [ class "centerer" ] []
                     , img
-                        [ src ("/images/" ++ themeFolder ++ "/" ++ (toString card.value) ++ ".svg")
+                        [ src ("/images/" ++ model.game.theme ++ "/" ++ (toString card.value) ++ ".svg")
                         ]
                         []
                     ]
@@ -166,13 +122,13 @@ groupsOf size xs =
         group =
             List.take size xs
 
-        xs' =
+        xs_ =
             List.drop size xs
 
         okayLength =
             size == List.length group
     in
         if size > 0 && okayLength then
-            group :: groupsOf size xs'
+            group :: groupsOf size xs_
         else
             []

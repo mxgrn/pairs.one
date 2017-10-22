@@ -20,27 +20,9 @@ playersView model =
     let
         t =
             I18n.translate model.locale
-
-        html =
-            [ (div [ class "row" ]
-                [ div [ class "col-sm-12" ]
-                    [ div
-                        [ classList
-                            [ ( "turn-banner", True )
-                            , ( "turn-banner--your-turn", model.game.turn == model.playerTurn )
-                            ]
-                        ]
-                        [ text <| t <| YourTurn <| playerName model ]
-                    ]
-                ]
-              )
-            ]
     in
-        div [ class "players-bar col-md-3 col-lg-4" ]
-            ((h4 [ class "player-list-header" ] [ text <| t <| Players ])
-                :: (List.map (player model) [0..(List.length model.game.players - 1)])
-                ++ html
-            )
+        div [ class "players-bar" ]
+            (List.map (player model) (List.range 0 (List.length model.game.players - 1)))
 
 
 player : Model -> Int -> Html Msg
@@ -61,39 +43,50 @@ player model index =
                         else
                             player.name
 
-                    name' =
+                    name_ =
                         if model.playerId == player.id then
                             t <| You <| name
                         else
                             name
 
                     accuracy =
-                        (toFloat player.turns - toFloat player.inaccurateTurns) / toFloat player.turns * 100 |> truncate
+                        if player.turns == 0 then
+                            100
+                        else
+                            (toFloat player.turns - toFloat player.inaccurateTurns) / toFloat player.turns * 100 |> truncate
+
+                    isMultiplayer =
+                        (List.length model.game.players) > 1
                 in
                     case player.joined of
                         False ->
-                            pendingPlayer name'
+                            pendingPlayer model name_
 
                         True ->
                             let
                                 playerNameHtml =
-                                    div
-                                        [ class "col-xs-8 player__name" ]
-                                        [ text name' ]
+                                    if isMultiplayer then
+                                        div
+                                            [ class "player__name" ]
+                                            [ text name_ ]
+                                    else
+                                        text ""
                             in
                                 div
                                     [ classList
-                                        [ ( "active", index == model.game.turn && player.online )
-                                        , ( "player-turn", index == model.playerTurn )
-                                        , ( "row", True )
+                                        [ ( "active", index == model.game.turn && player.online && isMultiplayer )
+                                        , ( "player", True )
+                                        , ( "player-turn", index == model.playerTurn && isMultiplayer )
                                         , ( "offline", not player.online )
+                                        , ( "multiplayer", isMultiplayer )
                                         ]
                                     ]
                                     [ playerNameHtml
-                                    , div [ class "col-xs-2 score__accuracy" ]
-                                        [ text (toString accuracy ++ "%") ]
-                                    , div [ class "col-xs-2 player__score" ]
-                                        [ text (player.score |> toString)
+                                    , div [ class "row player-score" ]
+                                        [ div [ class "col-xs-6 player__score" ]
+                                            [ text <| t <| Score player.score ]
+                                        , div [ class "col-xs-6 score__accuracy" ]
+                                            [ text <| t <| Accuracy accuracy ]
                                         ]
                                     ]
 
@@ -101,14 +94,17 @@ player model index =
                 text "Should never happen"
 
 
-pendingPlayer : String -> Html Msg
-pendingPlayer name =
-    div
-        [ class "not-joined row"
-        ]
-        [ div [ class "col-xs-6 player__name" ]
-            [ text name
+pendingPlayer : Model -> String -> Html Msg
+pendingPlayer model name =
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "player multiplayer not-joined" ]
+            [ div [ class "player__name" ]
+                [ text name
+                ]
+            , div [ class "row player-score" ]
+                [ div [ class "col-xs-6 player__score" ] [ text <| t <| Waiting, text "..." ]
+                ]
             ]
-        , div [ class "col-xs-6 player__score" ]
-            [ text "(waiting)" ]
-        ]
