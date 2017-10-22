@@ -78,17 +78,21 @@ completedGame model =
 
 userName : Model -> Html Msg
 userName model =
-    div [ class "user-name-area" ]
-        [ label [] [ text "Your name" ]
-        , div [ class "input-group input-group--name" ]
-            [ input
-                [ class "form-control", onInput OnInputPlayerName, value model.playerName ]
-                []
-            , span [ class "input-group-btn" ]
-                [ button [ class "btn btn-default", onClick SetUserName ] [ text "ok" ]
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "user-name-area" ]
+            [ label [] [ text <| t <| YourName ]
+            , div [ class "input-group input-group--name" ]
+                [ input
+                    [ class "form-control", onInput OnInputPlayerName, value model.playerName ]
+                    []
+                , span [ class "input-group-btn" ]
+                    [ button [ class "btn btn-default", onClick SetUserName ] [ text "ok" ]
+                    ]
                 ]
             ]
-        ]
 
 
 prestartOverlay : Model -> Html Msg

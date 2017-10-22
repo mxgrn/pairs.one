@@ -18,6 +18,12 @@ translate t =
         YourTurn name ->
             "Your turn, " ++ name ++ "!"
 
+        YourName ->
+            "Your name"
+
+        Chat ->
+            "Chat"
+
         You name ->
             "You, " ++ name
 

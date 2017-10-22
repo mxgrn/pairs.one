@@ -10,6 +10,8 @@ type Translation
     = WellDone String
     | Players
     | YourTurn String
+    | YourName
+    | Chat
     | You String
     | PlayAgain
     | Accuracy Int

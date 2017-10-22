@@ -18,6 +18,12 @@ translate t =
         YourTurn name ->
             "轮到你了, " ++ name ++ "!"
 
+        YourName ->
+            "Your name"
+
+        Chat ->
+            "Chat"
+
         You name ->
             "你的数据, " ++ name
 

@@ -18,6 +18,12 @@ translate t =
         YourTurn name ->
             "Твій хід, " ++ name ++ "!"
 
+        YourName ->
+            "Your name"
+
+        Chat ->
+            "Chat"
+
         You name ->
             "Ти, " ++ name
 

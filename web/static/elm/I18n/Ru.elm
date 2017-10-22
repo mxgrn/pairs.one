@@ -18,6 +18,12 @@ translate t =
         YourTurn name ->
             "Твой ход, " ++ name ++ "!"
 
+        YourName ->
+            "Твое имя"
+
+        Chat ->
+            "Чат"
+
         You name ->
             "Ты, " ++ name
 
@@ -28,7 +34,7 @@ translate t =
             "Точность: " ++ (toString value) ++ "%"
 
         Score value ->
-            "Score: " ++ (toString value)
+            "Счет: " ++ (toString value)
 
         Scoreboard t ->
             case t of
