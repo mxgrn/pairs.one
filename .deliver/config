@@ -2,7 +2,10 @@
 
 APP="pairs_one"
 
-BUILD_HOST="stage.pairs.one"
+SKIP_MIX_CLEAN="true"
+SKIP_GIT_CLEAN="true"
+
+BUILD_HOST="pairs.one"
 BUILD_USER="mxgrn"
 BUILD_AT="/home/mxgrn/builds/pairs_one"
 
