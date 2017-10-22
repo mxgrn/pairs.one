@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Начать с <strong>незнакомцем</strong></a>
+          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Играть с <strong>незнакомцем</strong></a>
         </div>
       </div>
     </div>

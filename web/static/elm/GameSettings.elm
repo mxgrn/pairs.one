@@ -7,6 +7,8 @@ import List.Extra
 import Char exposing (..)
 import Keyboard exposing (..)
 import Json.Encode as JE
+import I18n exposing (..)
+import I18n.Translation exposing (..)
 
 
 --
@@ -169,13 +171,13 @@ modalSelector model =
             modal <| themes model
 
         BoardSizeSelector ->
-            modal boardSizes
+            modal <| boardSizes model
 
         PlayersSelector ->
-            modal players
+            modal <| players model
 
         VisibilitySelector ->
-            modal visibilities
+            modal <| visibilities model
 
         NullSelector ->
             text ""
@@ -190,96 +192,111 @@ modal html =
         ]
 
 
-visibilities : Html Msg
-visibilities =
-    div [ class "pairs-modal-content" ]
-        [ h2 []
-            [ text "Would you like to play with random users?"
-            , modalCloseButton
-            ]
-        , h4 [] [ text "In a 'public' game, someone may join you when choosing a random player to play with. If you want to only play with someone that you'll send the link to the game to - choose 'private'." ]
-        , div [ class "row" ]
-            [ div [ class "col-sm-8 col-sm-offset-2" ]
-                [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-easy", onClick <| SelectVisibility Public ] [ text "Yes, I'd like someone to join me!" ]
+visibilities : Model -> Html Msg
+visibilities model =
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "pairs-modal-content" ]
+            [ h2 []
+                [ text <| t <| SelectGameMode
+                , modalCloseButton
+                ]
+            , h4 [] [ text <| t <| GameModeDescription ]
+            , div [ class "row" ]
+                [ div [ class "col-sm-8 col-sm-offset-2" ]
+                    [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-easy", onClick <| SelectVisibility Public ] [ text <| t <| WillPlayWithStranger ]
+                    ]
+                ]
+            , div [ class "row" ]
+                [ div [ class "col-sm-8 col-sm-offset-2" ]
+                    [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-medium", onClick <| SelectVisibility Private ] [ text <| t <| WillSelectOpponents ]
+                    ]
+                ]
+            , div [ class "row" ]
+                [ div [ class "col-sm-8 col-sm-offset-2" ]
+                    [ div [ class "btn btn-default btn-block btn-lg btn-stackable", onClick <| SelectVisibility Local ] [ text <| t <| WillPlayLocally ]
+                    ]
                 ]
             ]
-        , div [ class "row" ]
-            [ div [ class "col-sm-8 col-sm-offset-2" ]
-                [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-medium", onClick <| SelectVisibility Private ] [ text "No, I'll invite my opponents myself" ]
-                ]
-            ]
-        , div [ class "row" ]
-            [ div [ class "col-sm-8 col-sm-offset-2" ]
-                [ div [ class "btn btn-default btn-block btn-lg btn-stackable", onClick <| SelectVisibility Local ] [ text "I'll play with someone locally" ]
-                ]
-            ]
-        ]
 
 
-players : Html Msg
-players =
-    div [ class "pairs-modal-content" ]
-        [ h2 []
-            [ text "Pick number of players"
-            , modalCloseButton
-            ]
-        , h4 [] [ text "If you select 1, you'll be able to play alone. However, it's much more fun to play with someone over the Internet!" ]
-        , div [ class "row" ]
-            (List.map
-                (\i ->
-                    div [ class "col-xs-3" ]
-                        [ div [ class <| "btn btn-default btn-block btn-lg btn-stackable " ++ (levelCls <| i - 2), onClick <| SelectPlayers i ] [ text <| toString <| i ]
-                        ]
+players : Model -> Html Msg
+players model =
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "pairs-modal-content" ]
+            [ h2 []
+                [ text <| t <| SelectNumberOfPlayers
+                , modalCloseButton
+                ]
+            , h4 [] [ text <| t <| NumberOfPlayersDescription ]
+            , div [ class "row" ]
+                (List.map
+                    (\i ->
+                        div [ class "col-xs-3" ]
+                            [ div [ class <| "btn btn-default btn-block btn-lg btn-stackable " ++ (levelCls <| i - 2), onClick <| SelectPlayers i ] [ text <| toString <| i ]
+                            ]
+                    )
+                    (List.range 1 4)
                 )
-                (List.range 1 4)
-            )
-        ]
+            ]
 
 
 view : Model -> Html Msg
 view model =
-    div [ class "new-game-selector" ]
-        [ modalSelector model
-        , div [ class "row game-settings-form" ]
-            [ Html.form [ action <| "/" ++ model.locale ++ "/games", method "post" ]
-                [ input [ type_ "hidden", name "_csrf_token", value model.csrf ] []
-                , div [ class "row" ]
-                    [ div [ class "col-sm-3" ]
-                        [ themeButton model
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "new-game-selector" ]
+            [ modalSelector model
+            , div [ class "row game-settings-form" ]
+                [ Html.form [ action <| "/" ++ model.locale ++ "/games", method "post" ]
+                    [ input [ type_ "hidden", name "_csrf_token", value model.csrf ] []
+                    , div [ class "row" ]
+                        [ div [ class "col-sm-3" ]
+                            [ themeButton model
+                            ]
+                        , div [ class "col-sm-3" ]
+                            [ boardSizeButton model
+                            ]
+                        , div [ class "col-sm-3" ]
+                            [ playersButton model
+                            ]
+                        , div [ class "col-sm-3" ]
+                            [ visibilityButton model
+                            ]
                         ]
-                    , div [ class "col-sm-3" ]
-                        [ boardSizeButton model
-                        ]
-                    , div [ class "col-sm-3" ]
-                        [ playersButton model
-                        ]
-                    , div [ class "col-sm-3" ]
-                        [ visibilityButton model
-                        ]
-                    ]
-                , div [ class "row btn-go-wrapper" ]
-                    [ div [ class "col-sm-4 col-sm-offset-4 centered-content" ]
-                        [ button [ class "btn btn-primary", type_ "submit" ] [ text "Start game" ]
+                    , div [ class "row btn-go-wrapper" ]
+                        [ div [ class "col-sm-4 col-sm-offset-4 centered-content" ]
+                            [ button [ class "btn btn-primary", type_ "submit" ] [ text <| t StartGame ]
+                            ]
                         ]
                     ]
                 ]
             ]
-        ]
 
 
 visibilityButton : Model -> Html Msg
 visibilityButton model =
     let
+        t =
+            I18n.translate model.locale
+
         ( text_, cls ) =
             case model.visibility of
                 Public ->
-                    ( "Public ", levelCls 0 )
+                    ( (t <| I18n.Translation.Public) ++ " ", levelCls 0 )
 
                 Private ->
-                    ( "Private ", levelCls 1 )
+                    ( (t <| I18n.Translation.Private) ++ " ", levelCls 1 )
 
                 Local ->
-                    ( "Local ", levelCls 3 )
+                    ( (t <| I18n.Translation.Local) ++ " ", levelCls 3 )
     in
         div []
             [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ cls, onClick ShowVisibilitySelector ]
@@ -295,92 +312,112 @@ visibilityButton model =
 
 playersButton : Model -> Html Msg
 playersButton model =
-    div []
-        [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls <| model.players - 2), onClick ShowPlayersSelector ]
-            [ span []
-                [ text "Players: " ]
-            , span [ class "boardsize-icon" ]
-                [ text <| toString model.players ]
-            , i [ class "fa fa-caret-down" ]
-                []
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div []
+            [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls <| model.players - 2), onClick ShowPlayersSelector ]
+                [ span []
+                    [ text <| (t Players) ++ ": " ]
+                , span [ class "boardsize-icon" ]
+                    [ text <| toString model.players ]
+                , i [ class "fa fa-caret-down" ]
+                    []
+                ]
+            , input [ type_ "hidden", name "game[players_number]", value <| toString model.players ] []
             ]
-        , input [ type_ "hidden", name "game[players_number]", value <| toString model.players ] []
-        ]
 
 
 boardSizeButton : Model -> Html Msg
 boardSizeButton model =
-    div []
-        [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls <| (floor <| (toFloat model.boardSize) / 2 - 2)), onClick ShowBoardSizeSelector ]
-            [ span []
-                [ text "Size: " ]
-            , span [ class "boardsize-icon" ]
-                [ text (toString model.boardSize ++ "x" ++ toString model.boardSize) ]
-            , i [ class "fa fa-caret-down" ]
-                []
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div []
+            [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls <| (floor <| (toFloat model.boardSize) / 2 - 2)), onClick ShowBoardSizeSelector ]
+                [ span []
+                    [ text <| (t Size) ++ ": " ]
+                , span [ class "boardsize-icon" ]
+                    [ text (toString model.boardSize ++ "x" ++ toString model.boardSize) ]
+                , i [ class "fa fa-caret-down" ]
+                    []
+                ]
+            , input [ type_ "hidden", name "game[board_size]", value <| toString model.boardSize ] []
             ]
-        , input [ type_ "hidden", name "game[board_size]", value <| toString model.boardSize ] []
-        ]
 
 
 themeButton : Model -> Html Msg
 themeButton model =
-    div []
-        [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
-            [ text "Theme: "
-            , img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
-                []
-            , i [ class "fa fa-caret-down" ]
-                []
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div []
+            [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
+                [ text <| t I18n.Translation.Theme
+                , img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
+                    []
+                , i [ class "fa fa-caret-down" ]
+                    []
+                ]
+            , input [ type_ "hidden", name "game[theme]", value model.theme.name ] []
             ]
-        , input [ type_ "hidden", name "game[theme]", value model.theme.name ] []
-        ]
 
 
 themes : Model -> Html Msg
 themes model =
-    div [ class "pairs-modal-content" ]
-        ([ h2 []
-            [ text "Pick a theme"
-            , modalCloseButton
-            ]
-         , h4 [ class "level-legend" ]
-            [ text "Difficulty:"
-            , span [ class "level-legend__block theme-easy" ] []
-            , text " - easy"
-            , span [ class "level-legend__block theme-medium" ] []
-            , text " - medium"
-            , span [ class "level-legend__block theme-hard" ] []
-            , text " - hard"
-            ]
-         ]
-            ++ (List.map
-                    themeView
-                    model.themes
-               )
-        )
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "pairs-modal-content" ]
+            ([ h2 []
+                [ text <| t PickTheme
+                , modalCloseButton
+                ]
+             , h4 [ class "level-legend" ]
+                [ text <| (t Difficulty) ++ ": "
+                , span [ class "level-legend__block theme-easy" ] []
+                , text <| " - " ++ t DifficultyEasy
+                , span [ class "level-legend__block theme-medium" ] []
+                , text <| " - " ++ t DifficultyMedium
+                , span [ class "level-legend__block theme-hard" ] []
+                , text <| " - " ++ t DifficultyHard
+                ]
+             ]
+                ++ (List.map
+                        themeView
+                        model.themes
+                   )
+            )
 
 
-boardSizes : Html Msg
-boardSizes =
-    div [ class "pairs-modal-content" ]
-        [ h2 []
-            [ text "Select the size"
-            , modalCloseButton
+boardSizes : Model -> Html Msg
+boardSizes model =
+    let
+        t =
+            I18n.translate model.locale
+    in
+        div [ class "pairs-modal-content" ]
+            [ h2 []
+                [ text <| t I18n.Translation.SelectBoardSize
+                , modalCloseButton
+                ]
+            , h4 [] [ text <| t SelectBoardSizeDescription ]
+            , div [ class "row" ]
+                [ div [ class "col-sm-4" ]
+                    [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-easy", onClick <| SelectBoardSize 4 ] [ text "4x4" ]
+                    ]
+                , div [ class "col-sm-4" ]
+                    [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-medium", onClick <| SelectBoardSize 6 ] [ text "6x6" ]
+                    ]
+                , div [ class "col-sm-4" ]
+                    [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-hard", onClick <| SelectBoardSize 8 ] [ text "8x8" ]
+                    ]
+                ]
             ]
-        , h4 [] [ text "The bigger the board - the more cards will there be to remember" ]
-        , div [ class "row" ]
-            [ div [ class "col-sm-4" ]
-                [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-easy", onClick <| SelectBoardSize 4 ] [ text "4x4" ]
-                ]
-            , div [ class "col-sm-4" ]
-                [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-medium", onClick <| SelectBoardSize 6 ] [ text "6x6" ]
-                ]
-            , div [ class "col-sm-4" ]
-                [ div [ class "btn btn-default btn-block btn-lg btn-stackable theme-hard", onClick <| SelectBoardSize 8 ] [ text "8x8" ]
-                ]
-            ]
-        ]
 
 
 modalCloseButton : Html Msg
