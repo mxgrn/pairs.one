@@ -30,3 +30,4 @@ erl_crash.dump
 dump.rdb
 .deliver/releases/
 .agignore
+.tool-versions
