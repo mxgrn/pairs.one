@@ -24,8 +24,8 @@ msgstr "Jeu de Memory multijoueur sans enregistrement"
 
 #: web/templates/layout/app.html.eex:37
 msgid "Unload your mind while improving your memory"
-msgstr ""
+msgstr "Libérez votre esprit en améliorant votre mémoire"
 
 #: web/templates/layout/app.html.eex:67
 msgid "Help with translation"
-msgstr ""
+msgstr "Aider à traduire le jeu"

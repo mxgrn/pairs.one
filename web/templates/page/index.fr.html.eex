@@ -1,29 +1,100 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-7">
-      <h3>1. Créer une nouvelle partie
-        <br />
-        <small>Veuillez choisir le thème, la taille du tableau et le nombre de joueurs.</small>
-      </h3>
-      <h3>2. Envoyez le lien à votre/vos adversaire(s)
-        <br />
-        <small>Ou bien jouez seul - et essayez de battre votre score de précision.</small>
-      </h3>
-      <h3>3. Prouvez que vous avez une super mémoire :)
-        <br />
-        <small>Pas d'enregistrement, pas d'emails à entrer - juste du fun.</small>
-      </h3>
-
-      <div class="rules text-muted">
-        <em>Vous connaissez les règles, n'est-ce pas ? Chercher des paires de cartes en en retournant 2 à la fois. Si vous trouvez un correspondance, vous obtenez un point - et vous serez invité à tourner deux autres cartes. Celui qui trouve le plus de correspondances gagne la partie.</em>
+<div class="row landing-section">
+  <div class="col-sm-6 col-sm-push-6">
+    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive screenshot"/>
+    <div class="rules">
+      <div class="rules-header">
+        <span class="header-icon fa fa-question"></span>
+        Vous connaissez les règles, n'est-ce pas ?
       </div>
-
-      <%= link "Commencer une partie", to: "/fr" <> game_path(@conn, :new), class: "btn btn-lg btn-primary btn-start" %>
-    </div>
-    <div class="col-md-5">
-      <div class="screenshot">
-        <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive"/>
-      </div>
+      <p class="text-muted">Chercher des paires de cartes en en retournant 2 à la fois. Si vous trouvez un correspondance, vous obtenez un point - et vous serez invité à tourner deux autres cartes. Celui qui trouve le plus de correspondances gagne la partie.</p>
     </div>
   </div>
+
+  <div class="col-sm-6 col-sm-pull-6">
+
+    <div class="game-option option-one">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Jouer avec n'importe qui</h4>
+          <div class="game-option__description">
+            Quelqu'un vous attend sûrement pour jouer maintenant !
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Un joueur <strong>au hasard</strong></a>
+        </div>
+      </div>
+    </div>
+
+    <form class="game-option option-two" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Jouer avec un ami</h4>
+          <div class="game-option__description">
+            Envoyer simplement un lien à votre ami en ligne pour commencer !
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="2">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+            <button type="submit" class="btn btn-option-go btn-primary">Jouer <strong>à deux</strong></button>
+        </div>
+      </div>
+    </form>
+
+    <form class="game-option option-three" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Jouer en local</h4>
+          <div class="game-option__description">
+            Jouez avec votre ami sur le même ordinateur !
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="2">
+            <input type="hidden" name="game[visibility]" value="local">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-info">Jouer <strong>côte-à-côte</strong></button>
+        </div>
+      </div>
+    </form>
+
+    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Jouer en solo</h4>
+          <div class="game-option__description">
+            Jouez en solo pour augmenter votre précision !
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="1">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-warning">Démarrer une partie <strong>solo</strong></button>
+        </div>
+      </div>
+    </form>
+
+    <div class="centered-content more-game-options hidden-xs">
+      <a href="#custom-game"><span class="fa fa-angle-down"></span> Plus d'options</a>
+    </div>
+
+  </div>
+
+</div>
+
+<h3 id="custom-game" class="centered-content custom-game__title">démarrez une partie personnalisée</h3>
+<div class="col-sm-12">
+  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
 </div>
