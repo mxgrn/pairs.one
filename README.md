@@ -48,7 +48,7 @@ There are no tests yet.
 If you enjoy this game and want to help translate it into your language, please, submit a PR with the following
 modifications (based on an example of French):
 
-### The first time
+### The very first time
 
 * Create a new gettext locale with `mix gettext.merge priv/gettext --locale=fr`
 
@@ -69,7 +69,7 @@ modifications (based on an example of French):
 
 * Update `web/static/elm/I18n/Fr.elm`
 
-* Copy `web/templates/page/index.en.html.eex` to `web/templates/page/index.fr.html.eex` and translate it
+* As the `web/templates/page/index.en.html.eex` reference page may have changed significantly, you may have to copy it to `web/templates/page/index.fr.html.eex` again and translate it. It is recommended to keep your previous translated file aside in order to reuse some previous locales in the new translated HTML file
 
 ### In any cases
 
