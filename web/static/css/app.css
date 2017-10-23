@@ -43,6 +43,12 @@ h1.title small {
   font-size: 1em;
 }
 
+#main {
+  display: none;
+  padding: 0 40px;
+}
+
+/* Small screens */
 @media (max-width: 768px) {
   .header h1 {
     text-align: left;
@@ -60,11 +66,11 @@ h1.title small {
     font-size: 1.1em;
     color: #2eb5d8;
   }
-}
 
-#main {
-  display: none;
-  padding: 0 40px;
+  #main {
+    display: none;
+    padding: 0 10px;
+  }
 }
 
 #main.visible {
