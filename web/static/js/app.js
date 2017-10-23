@@ -52,8 +52,8 @@ $(function(){
 
       // Elm ports
       elm.ports.playAudio.subscribe( function(audio){
-        // var audio = new Audio("/sounds/" + audio + ".mp3");
-        // audio.play();
+        var audio = new Audio("/sounds/" + audio + ".mp3");
+        audio.play();
       });
 
       elm.ports.compressAndSendGame.subscribe(function(game){
