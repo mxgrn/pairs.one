@@ -19,7 +19,7 @@ msgid "Source code"
 msgstr "Code source"
 
 #: web/templates/layout/app.html.eex:10 web/templates/layout/app.html.eex:35
-msgid "Registration-free multiplayer Memory game"
+msgid "Concentration game: multiplayer and registration-free"
 msgstr "Jeu de Memory multijoueur sans enregistrement"
 
 #: web/templates/layout/app.html.eex:37
