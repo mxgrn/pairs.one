@@ -42,14 +42,24 @@ defmodule PairsOne.GameController do
     if game do
       redirect(conn, to: game_path(conn, :show, game.id))
     else
-      game = PairsOne.Game.create(%{
-                                    "theme" => "eighties",
-                                    "board_size" => "6",
-                                    "players_number" => "2",
-                                    "visibility" => "public",
-                                    "random" => true
-                                  })
-      redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
+      game = %{
+        "theme" => "eighties",
+        "board_size" => "6",
+        "players_number" => "2",
+        "visibility" => "public",
+        "random" => true
+      } |> PairsOne.Game.create
+
+      new_game_path = "/#{locale}" <> game_path(conn, :show, game.id)
+      new_game_uri = "#{conn.scheme}://#{conn.host}#{new_game_path}"
+
+      # Notify @pairsone about new random game
+      bot_key = Application.get_env(:pairs_one, :bot_key)
+      if bot_key do
+        HTTPotion.post( "https://api.telegram.org/bot433641023:#{bot_key}/sendMessage?chat_id=@pairsone&text=#{new_game_uri}")
+      end
+
+      redirect(conn, to: new_game_path)
     end
   end
 

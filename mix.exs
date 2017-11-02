@@ -17,7 +17,7 @@ defmodule PairsOne.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {PairsOne, []},
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :uuid, :exredis, :lz_string, :edeliver]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :uuid, :exredis, :lz_string, :edeliver, :httpotion]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,6 +39,7 @@ defmodule PairsOne.Mixfile do
      {:distillery, "~> 1.4"},
      {:exredis, ">= 0.2.4"},
      {:credo, "~> 0.4", only: [:dev, :test]},
-     {:lz_string, "~> 0.0.6"}]
+     {:lz_string, "~> 0.0.6"},
+     {:httpotion, "~> 3.0.2"}]
   end
 end
