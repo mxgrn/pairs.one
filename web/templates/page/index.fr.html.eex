@@ -12,12 +12,32 @@
 
   <div class="col-sm-6 col-sm-pull-6">
 
+    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Jouer en solo</h4>
+          <div class="game-option__description">
+            Jouez en solo pour augmenter votre précision!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="1">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-info">Démarrer une partie <strong>solo</strong></button>
+        </div>
+      </div>
+    </form>
+
     <div class="game-option option-one">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Jouer avec n'importe qui</h4>
           <div class="game-option__description">
-            Quelqu'un vous attend sûrement pour jouer maintenant !
+            Quelqu'un vous attend sûrement pour jouer maintenant!
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
@@ -31,7 +51,7 @@
         <div class="col-md-6 game-option__title">
           <h4>Jouer avec un ami</h4>
           <div class="game-option__description">
-            Envoyer simplement un lien à votre ami en ligne pour commencer !
+            Envoyer simplement un lien à votre ami en ligne pour commencer!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -51,7 +71,7 @@
         <div class="col-md-6 game-option__title">
           <h4>Jouer en local</h4>
           <div class="game-option__description">
-            Jouez avec votre ami sur le même ordinateur !
+            Jouez avec votre ami sur le même ordinateur!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -61,7 +81,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-info">Jouer <strong>côte à côte</strong></button>
+          <button type="submit" class="btn btn-option-go btn-info">Jouer <strong>côte-à-côte</strong></button>
         </div>
       </div>
     </form>
@@ -94,7 +114,7 @@
 
 </div>
 
-<h3 id="custom-game" class="centered-content custom-game__title">démarrez une partie personnalisée</h3>
+<h3 id="custom-game" class="centered-content custom-game__title">Démarrez une partie personnalisée</h3>
 <div class="col-sm-12">
   <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
 </div>

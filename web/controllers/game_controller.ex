@@ -16,7 +16,8 @@ defmodule PairsOne.GameController do
     end
 
     game = PairsOne.Game.create(game)
-    redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id))
+    ga_params = if length(game.players) == 1, do: [mode: "solo"], else: []
+    redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id, ga_params))
   end
 
   def show(conn, %{"id" => id}) do
@@ -50,7 +51,7 @@ defmodule PairsOne.GameController do
         "random" => true
       } |> PairsOne.Game.create
 
-      new_game_path = "/#{locale}" <> game_path(conn, :show, game.id)
+      new_game_path = "/#{locale}" <> game_path(conn, :show, game.id, mode: "random")
       new_game_uri = "#{conn.scheme}://#{conn.host}#{new_game_path}"
 
       # Notify @pairsone about new random game
