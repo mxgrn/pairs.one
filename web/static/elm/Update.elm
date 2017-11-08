@@ -42,7 +42,7 @@ update msg model =
                 ( _, phxCmd ) =
                     Phoenix.Socket.push push model.phxSocket
             in
-                model ! [ Cmd.map PhoenixMsg phxCmd ]
+                model ! [ Cmd.map PhoenixMsg phxCmd, (storeNameLocally model.playerName) ]
 
         -- Chat
         OnInputMessage msg ->

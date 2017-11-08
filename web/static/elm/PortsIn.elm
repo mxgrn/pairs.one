@@ -4,9 +4,6 @@ import Types.Game exposing (..)
 import Json.Encode as JE
 
 
--- port onUpdatePlayer : (String -> msg) -> Sub msg
-
-
 port onSendCompressedGame : (JE.Value -> msg) -> Sub msg
 
 

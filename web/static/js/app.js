@@ -89,14 +89,8 @@ $(function(){
 
   $("#player-data input").attr("value", playerName);
 
-  $("#player-data").submit(function(e){
-    e.preventDefault();
-    var input = $(e.target).find("#player-name"),
-      value = input.val();
-    input.blur();
-    localStorage.setItem('pairs-one-player', value);
-    input.select();
-    elm.ports.onUpdatePlayer.send(value);
+  elm.ports.storeNameLocally.subscribe(function(name){
+    localStorage.setItem('pairs-one-player', name);
   });
 
   $("select#language").change( function(e){
@@ -140,16 +134,6 @@ $(function(){
 
       elm.ports.saveSettingsToLocalStorage.subscribe(function(params){
         localStorage.setItem(settingsKey, JSON.stringify(params));
-      });
-    }
-  );
-
-  $(".elm-chat").each(
-    function(i, el){
-      Elm.Chat.embed(el, {
-        locale: $("html").attr("lang"),
-        host: location.host,
-        id: "" + $(el).data('id') // because sometimes it comes as an number
       });
     }
   );

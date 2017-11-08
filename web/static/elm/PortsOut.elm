@@ -17,3 +17,6 @@ port focus : String -> Cmd msg
 
 
 port copyUrl : String -> Cmd msg
+
+
+port storeNameLocally : String -> Cmd msg
