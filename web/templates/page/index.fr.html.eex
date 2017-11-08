@@ -32,7 +32,8 @@
       </div>
     </form>
 
-    <div class="game-option option-one">
+    <form class="game-option option-one" method=post action="/<%= locale %>/games/random">
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Jouer avec n'importe qui</h4>
@@ -41,10 +42,10 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Un joueur <strong>au hasard</strong></a>
+          <button type="submit" class="btn btn-option-go btn-primary">Un joueur <strong>au hasard</strong></button>
         </div>
       </div>
-    </div>
+    </form>
 
     <form class="game-option option-two" method=post action="/<%= locale %>/games">
       <div class="row">

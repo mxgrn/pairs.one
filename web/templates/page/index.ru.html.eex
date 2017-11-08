@@ -12,7 +12,28 @@
 
   <div class="col-sm-6 col-sm-pull-6">
 
-    <div class="game-option option-one">
+    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+      <div class="row">
+        <div class="col-md-6 game-option__title">
+          <h4>Играть одному</h4>
+          <div class="game-option__description">
+            Играй один - на улучшение точности!
+            <br/>
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[board_size]" value="6">
+            <input type="hidden" name="game[players_number]" value="1">
+            <input type="hidden" name="game[visibility]" value="private">
+          </div>
+        </div>
+        <div class="col-md-6 btn-option-go__block">
+          <button type="submit" class="btn btn-option-go btn-info">Начать <strong>сольную</strong> игру</button>
+        </div>
+      </div>
+    </form>
+
+    <form class="game-option option-one" method=post action="/<%= locale %>/games/random">
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Играть со случайным игроком</h4>
@@ -21,10 +42,10 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Играть с <strong>незнакомцем</strong></a>
+          <button type="submit" class="btn btn-option-go btn-primary">Играть с <strong>незнакомцем</strong></button>
         </div>
       </div>
-    </div>
+    </form>
 
     <form class="game-option option-two" method=post action="/<%= locale %>/games">
       <div class="row">
@@ -61,27 +82,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-info">Начать <strong>локальную</strong> игру</button>
-        </div>
-      </div>
-    </form>
-
-    <form class="game-option option-four" method=post action="/<%= locale %>/games">
-      <div class="row">
-        <div class="col-md-6 game-option__title">
-          <h4>Играть одному</h4>
-          <div class="game-option__description">
-            Играй один - на улучшение точности!
-            <br/>
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
-            <input type="hidden" name="game[theme]" value="eighties">
-            <input type="hidden" name="game[board_size]" value="6">
-            <input type="hidden" name="game[players_number]" value="1">
-            <input type="hidden" name="game[visibility]" value="private">
-          </div>
-        </div>
-        <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-warning">Начать <strong>сольную</strong> игру</button>
+          <button type="submit" class="btn btn-option-go btn-warning">Начать <strong>локальную</strong> игру</button>
         </div>
       </div>
     </form>

@@ -33,12 +33,12 @@
     </form>
 
     <form class="game-option option-one" method=post action="/<%= locale %>/games/random">
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Play with anybody</h4>
           <div class="game-option__description">
             Somebody may be waiting for you to join right now!
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
