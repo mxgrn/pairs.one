@@ -32,19 +32,20 @@
       </div>
     </form>
 
-    <div class="game-option option-one">
+    <form class="game-option option-one" method=post action="/<%= locale %>/games/random">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Play with anybody</h4>
           <div class="game-option__description">
             Somebody may be waiting for you to join right now!
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <a class="btn btn btn-option-go btn-success" href="/<%= locale %>/games/random">Join <strong>random</strong> player</a>
+          <button type="submit" class="btn btn-option-go btn-primary">Join <strong>random</strong> player</button>
         </div>
       </div>
-    </div>
+    </form>
 
     <form class="game-option option-two" method=post action="/<%= locale %>/games">
       <div class="row">
