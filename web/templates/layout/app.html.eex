@@ -68,7 +68,7 @@
       </div>
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
-    <%= if Mix.env == :prod do %>
+    <%= if Application.get_env(:pairs_one, :ga) do %>
       <%= render "ga.html" %>
     <% end %>
   </body>
