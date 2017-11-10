@@ -84,14 +84,14 @@ $(function(){
           succeeded = document.execCommand("copy");
         } catch (err) {};
       });
+
+      elm.ports.storeNameLocally.subscribe(function(name){
+        localStorage.setItem('pairs-one-player', name);
+      });
     }
   )
 
   $("#player-data input").attr("value", playerName);
-
-  elm.ports.storeNameLocally.subscribe(function(name){
-    localStorage.setItem('pairs-one-player', name);
-  });
 
   $("select#language").change( function(e){
     var lang = $(e.target).val();
