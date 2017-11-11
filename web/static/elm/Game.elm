@@ -62,7 +62,7 @@ init { id, playerId, host, playerName, themes, locale } =
                 |> Phoenix.Channel.withPayload payload
 
         socketInit =
-            Phoenix.Socket.init ("ws://" ++ host ++ "/socket/websocket")
+            Phoenix.Socket.init ("wss://" ++ host ++ "/socket/websocket")
                 |> Phoenix.Socket.on "update_game" ("game:" ++ id) ReceiveCompressedGame
                 |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
                 |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff

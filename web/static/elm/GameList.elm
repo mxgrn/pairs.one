@@ -84,7 +84,7 @@ init { locale, host } =
                 |> Phoenix.Channel.withPayload payload
 
         socketInit =
-            Phoenix.Socket.init ("ws://" ++ host ++ "/socket/websocket")
+            Phoenix.Socket.init ("wss://" ++ host ++ "/socket/websocket")
                 |> Phoenix.Socket.on "update" "game-list" Update
 
         ( phxSocket, phxCmd ) =
