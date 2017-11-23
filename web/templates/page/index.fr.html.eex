@@ -61,7 +61,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-info">Jouer <strong>côte-à-côte</strong></button>
+          <button type="submit" class="btn btn-option-go btn-info">Jouer <strong>côte à côte</strong></button>
         </div>
       </div>
     </form>
