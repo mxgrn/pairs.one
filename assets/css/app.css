@@ -401,8 +401,8 @@ img.screenshot {
 }
 
 .btn-theme {
-  height: 110px;
-  width: 110px;
+  height: 100px;
+  width: 90px;
   margin-right: 10px;
   margin-bottom: 10px;
 }
@@ -574,7 +574,7 @@ img.screenshot {
   background-color: white;
   border-radius: 5px;
   overflow-Y: scroll;
-  padding: 20px 30px 50px;
+  padding: 0 20px 50px;
   animation-name: fadeIn;
   animation-iteration-count: 1;
   animation-duration: 0.3s;

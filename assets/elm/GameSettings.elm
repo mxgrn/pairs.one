@@ -379,17 +379,14 @@ themes model =
              , h4 [ class "level-legend" ]
                 [ text <| (t Difficulty) ++ ": "
                 , span [ class "level-legend__block theme-easy" ] []
-                , text <| " - " ++ t DifficultyEasy
+                , text <| " " ++ t DifficultyEasy
                 , span [ class "level-legend__block theme-medium" ] []
-                , text <| " - " ++ t DifficultyMedium
+                , text <| " " ++ t DifficultyMedium
                 , span [ class "level-legend__block theme-hard" ] []
-                , text <| " - " ++ t DifficultyHard
+                , text <| " " ++ t DifficultyHard
                 ]
+             , div [ class "theme-list" ] (List.map themeView model.themes)
              ]
-                ++ (List.map
-                        themeView
-                        model.themes
-                   )
             )
 
 
