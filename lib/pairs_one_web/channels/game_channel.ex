@@ -67,7 +67,6 @@ defmodule PairsOneWeb.GameChannel do
   def handle_info(:after_join, socket) do
     game_id = socket.assigns.data.game_id
     game = Game.get(game_id)
-    import Logger; Logger.info ~s(\n\n!!! game: #{inspect game}\n)
     broadcast! socket, "update_game", %{game: compress_game(game)}
     {:ok, _} = Presence.track(socket, socket.assigns.data.player_id, %{id: socket.assigns.data.player_id})
     push socket, "presence_state", Presence.list(socket)
