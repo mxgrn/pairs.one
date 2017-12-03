@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-            <button type="submit" class="btn btn-option-go btn-primary">Start <strong>2-player</strong> game</button>
+          <button type="submit" class="btn btn-option-go btn-success">Start <strong>2-player</strong> game</button>
         </div>
       </div>
     </form>
