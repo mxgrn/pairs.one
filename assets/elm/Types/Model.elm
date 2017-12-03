@@ -20,6 +20,7 @@ type alias Model =
     , flippedIds : List CardId {- indices of cards flipped over during the turn -}
     , themes : List Theme
     , host : String
+    , isSsl: Bool
     , isCompleted : Bool {- round completed -}
     , locale : String
     , random : Bool

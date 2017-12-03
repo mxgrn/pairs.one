@@ -46,6 +46,7 @@ $(function(){
         playerId: playerId,
         playerName: playerName || "",
         host: location.host,
+        isSsl: location.protocol == "https:",
         themes: themes,
         locale: locale
       });

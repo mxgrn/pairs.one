@@ -46,7 +46,7 @@ subscriptions model =
 
 
 init : Params -> ( Model, Cmd Msg )
-init { id, playerId, host, playerName, themes, locale } =
+init { id, playerId, host, isSsl, playerName, themes, locale } =
     let
         game =
             Game "" [] [] 0 0 "eighties" False "public"
@@ -61,8 +61,14 @@ init { id, playerId, host, playerName, themes, locale } =
             Phoenix.Channel.init ("game:" ++ id)
                 |> Phoenix.Channel.withPayload payload
 
+        socketProtocol =
+            if isSsl then
+                "wss:"
+            else
+                "ws:"
+
         socketInit =
-            Phoenix.Socket.init ("wss://" ++ host ++ "/socket/websocket")
+            Phoenix.Socket.init (socketProtocol ++ "//" ++ host ++ "/socket/websocket")
                 |> Phoenix.Socket.on "update_game" ("game:" ++ id) ReceiveCompressedGame
                 |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
                 |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff
@@ -75,6 +81,7 @@ init { id, playerId, host, playerName, themes, locale } =
           , playerId = playerId
           , playerName = playerName
           , host = host
+          , isSsl = isSsl
           , playerTurn = 0
           , flippedIds = []
           , themes = themes

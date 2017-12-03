@@ -10,6 +10,7 @@ type alias Params =
     , playerId : PlayerId
     , playerName : String
     , host : String
+    , isSsl : Bool
     , themes : List Theme
     , locale : String
     }
