@@ -46,14 +46,14 @@
       </div>
 
       <div class="footer">
-        <div class="col-md-6 col-md-push-6 footer__lang">
-          <select name="language" id="language" onchange="">
+        <div class="col-md-3 col-md-push-9 footer__lang">
+          <select name="language" id="language">
             <%= for {code, name} <- lang_select_options do %>
               <option value="<%= code %>" <%= if locale == code do "selected" end %>><%= name %></option>
             <% end %>
           </select>
         </div>
-        <div class="text-muted col-md-6 col-md-pull-6">
+        <div class="text-muted col-md-9 col-md-pull-3">
           © <%= DateTime.utc_now.year %>
           <%= link "Max Gorin", to: "https://twitter.com/mxgrn" %>
           <%= link to: "https://github.com/mxgrn/pairs.one" do %>
