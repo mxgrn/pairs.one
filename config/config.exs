@@ -6,10 +6,10 @@
 use Mix.Config
 
 # Configures the endpoint
-config :pairs_one, PairsOne.Endpoint,
+config :pairs_one, PairsOneWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "y8VnQ8XolfdTMIrVKP+Z2iNuZL6WJfbgAqMxna1qjLYVgOnVlrIQcBr44YyaU3ZB",
-  render_errors: [view: PairsOne.ErrorView, accepts: ~w(html json)],
+  render_errors: [view: PairsOneWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: PairsOne.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
@@ -18,7 +18,7 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
-config :pairs_one, PairsOne.Gettext,
+config :pairs_one, PairsOneWeb.Gettext,
   locales: ~w(en ru fr uk pt zh-hans)
 
 # Import environment specific config. This must remain at the bottom

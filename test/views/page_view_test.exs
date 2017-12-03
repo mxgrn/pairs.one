@@ -1,3 +1,3 @@
 defmodule PairsOne.PageViewTest do
-  use PairsOne.ConnCase, async: true
+  use PairsOneWeb.ConnCase, async: true
 end

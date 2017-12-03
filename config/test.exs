@@ -2,7 +2,7 @@ use Mix.Config
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :pairs_one, PairsOne.Endpoint,
+config :pairs_one, PairsOneWeb.Endpoint,
   http: [port: 4001],
   server: false
 
@@ -10,7 +10,7 @@ config :pairs_one, PairsOne.Endpoint,
 config :logger, level: :warn
 
 # Configure your database
-config :pairs_one, PairsOne.Repo,
+config :pairs_one, PairsOneWeb.Repo,
   adapter: Ecto.Adapters.Postgres,
   username: "postgres",
   password: "postgres",

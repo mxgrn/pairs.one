@@ -1,4 +1,4 @@
-defmodule PairsOne.ChannelCase do
+defmodule PairsOneWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule PairsOne.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint PairsOne.Endpoint
+      @endpoint PairsOneWeb.Endpoint
     end
   end
 

@@ -12,8 +12,8 @@ defmodule PairsOne do
     # Define workers and child supervisors to be supervised
     children = [
       # Start the endpoint when the application starts
-      supervisor(PairsOne.Endpoint, []),
-      supervisor(PairsOne.Presence, []),
+      supervisor(PairsOneWeb.Endpoint, []),
+      supervisor(PairsOneWeb.Presence, []),
       worker(PairsOne.RedisRepo, [:redis, "redis://localhost:6379/0"]),
       supervisor(PairsOne.PendingGames, []),
       # Start your own worker by calling: PairsOne.Worker.start_link(arg1, arg2, arg3)
@@ -29,7 +29,7 @@ defmodule PairsOne do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    PairsOne.Endpoint.config_change(changed, removed)
+    PairsOneWeb.Endpoint.config_change(changed, removed)
     :ok
   end
 end
