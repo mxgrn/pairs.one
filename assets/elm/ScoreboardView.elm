@@ -141,7 +141,7 @@ playerTotalScore : String -> Player -> Html Msg
 playerTotalScore trophyClasses player =
     div [ class "player row" ]
         [ div [ class "col-xs-1" ] [ i [ class ("fa " ++ trophyClasses) ] [] ]
-        , div [ class "col-xs-9 score__player-name" ] [ div [] [ text player.name ] ]
+        , div [ class "col-xs-6 score__player-name" ] [ div [] [ text player.name ] ]
         , div [ class "col-xs-2" ] [ div [] [ player.totalScore |> toString |> text ] ]
         ]
 
@@ -155,6 +155,6 @@ playerScore trophyClasses player =
         div [ class "player row" ]
             [ div [ class "col-xs-1" ] [ i [ class ("fa " ++ trophyClasses) ] [] ]
             , div [ class "col-xs-6 score__player-name" ] [ div [] [ text player.name ] ]
-            , div [ class "col-xs-3 score__accuracy", title "Accuracy" ] [ div [] [ (toString accuracy ++ "%") |> text ] ]
             , div [ class "col-xs-1" ] [ div [] [ player.score |> toString |> text ] ]
+            , div [ class "col-xs-3 score__accuracy text-muted", title "Accuracy" ] [ div [] [ (toString accuracy ++ "%") |> text ] ]
             ]

@@ -106,12 +106,6 @@ update msg model =
         CopyUrl ->
             model ! [ copyUrl ".game-url" ]
 
-        -- UpdatePlayer name ->
-        --     let
-        --         game =
-        --             updatePlayerName model.game model.playerId name
-        --     in
-        --         ( { model | game = game }, sendGame game )
         FlipCard index ->
             -- This check is needed because Chrome seems to process click events asynchrously, which may lead to race
             -- condition due to the fact that a tile gets clicked while it's no longer current player's turn.

@@ -25,7 +25,7 @@ chatView model =
         if model.playerTurn == -1 then
             text ""
         else
-            div [ class "chat-area" ]
+            div [ class "chat-area hidden-xs" ]
                 [ div [] [ strong [] [ text <| t <| Chat ] ]
                 , div [ class "chat-history input-group" ]
                     (messagesView model)

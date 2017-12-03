@@ -414,8 +414,7 @@ img.screenshot {
 }
 
 .score__accuracy {
-  padding-right: 0px;
-  margin-right: 0px;
+  text-align: right;
 }
 
 .score__player-name {

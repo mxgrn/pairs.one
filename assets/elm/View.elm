@@ -39,40 +39,43 @@ loading =
 
 game : Model -> Html Msg
 game model =
+    if model.isCompleted then
+        completedGame model
+    else
+        div [ class "row" ]
+            [ prestartOverlay model
+            , div [ class "col-sm-3" ]
+                [ playersView model
+                ]
+            , div [ class "col-sm-6" ]
+                [ boardView model
+                ]
+            , div [ class "col-sm-3" ] (chatArea model)
+            ]
+
+
+chatArea : Model -> List (Html Msg)
+chatArea model =
     let
         isSinglePlayer =
             (List.length model.game.players) == 1
-
-        chatArea =
-            if isLocal model.game || isSinglePlayer then
-                []
-            else
-                [ userName model
-                , chatView model
-                ]
     in
-        if model.isCompleted then
-            completedGame model
+        if isLocal model.game || isSinglePlayer then
+            []
         else
-            div [ class "row" ]
-                [ prestartOverlay model
-                , div [ class "col-sm-3" ]
-                    [ playersView model
-                    ]
-                , div [ class "col-sm-6" ]
-                    [ boardView model
-                    ]
-                , div [ class "col-sm-3" ] chatArea
-                ]
+            [ userName model
+            , chatView model
+            ]
 
 
 completedGame : Model -> Html Msg
 completedGame model =
-    div [ class "game" ]
-        [ div [ class "game--completed" ]
+    div [ class "row" ]
+        [ div [ class "col-sm-9 game--completed" ]
             [ scoreboardView model
             , replayView model
             ]
+        , div [ class "col-sm-3" ] (chatArea model)
         ]
 
 
