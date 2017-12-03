@@ -55,3 +55,8 @@ h4.chat-title {
   text-align: right;
   color: #666;
 }
+
+.chat-message--foreign {
+  background-color: #f3f3f3;
+  padding: 5px;
+}
