@@ -683,3 +683,12 @@ img.screenshot {
 .custom-game__title {
   margin-bottom: -10px;
 }
+
+.news-bar {
+  padding: 10px;
+  margin: 0;
+  margin-bottom: 10px;
+  background-color: #def0f8;
+  text-align: left;
+  display: none;
+}
