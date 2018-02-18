@@ -38,4 +38,4 @@ msgstr "каналу Telegram"
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:33
 msgid "Telegram channel newsbar"
-msgstr "Приєднуйся до нашого #{link}, щоб отримувати сповіщення, коли хтось бажає грати!"
+msgstr "Приєднуйся до нашого %{link}, щоб отримувати сповіщення, коли хтось бажає грати!"
