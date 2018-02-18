@@ -10,22 +10,32 @@ msgid ""
 msgstr ""
 "Language: zh-hans\n"
 
-#: web/templates/layout/app.html.eex:7
+#: lib/pairs_one_web/templates/layout/app.html.eex:7
 msgid "Play memory/concentration game with friends over the Internet without registration"
 msgstr "无需注册邀请朋友开启线上记忆游戏对战"
 
-#: web/templates/layout/app.html.eex:63
+#: lib/pairs_one_web/templates/layout/app.html.eex:69
 msgid "Source code"
 msgstr "源代码"
 
-#: web/templates/layout/app.html.eex:10 web/templates/layout/app.html.eex:35
+#: lib/pairs_one_web/templates/layout/app.html.eex:10
+#: lib/pairs_one_web/templates/layout/app.html.eex:43
 msgid "Concentration game: multiplayer and registration-free"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:37
+#: lib/pairs_one_web/templates/layout/app.html.eex:45
 msgid "Unload your mind while improving your memory"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:67
+#: lib/pairs_one_web/templates/layout/app.html.eex:73
 msgid "Help with translation"
 msgstr ""
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:30
+#: lib/pairs_one_web/templates/layout/app.html.eex:31
+msgid "Telegram channel"
+msgstr "Telegram channel"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:33
+msgid "Telegram channel newsbar"
+msgstr "Join our %{link} to get notified when someone is willing to play!"

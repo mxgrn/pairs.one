@@ -17,7 +17,7 @@
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
           <h4>
-            <%= link to: "/#{locale}" do %>
+            <%= link to: "/#{locale()}" do %>
               <img class="header-logo--sm" src="/images/owl.svg" alt="pairs one logo"/>
               Pairs One
             <% end %>
@@ -25,7 +25,11 @@
         </header>
       <% else %>
         <header class="header clearfix">
-          <div class="news-bar" data-news-id=1>Join our <a href="https://t.me/pairsone"><img src="https://telegram.org/img/t_logo.png" alt="Telegram" width=15 height=15> Telegram channel</a> to get notified when someone is willing to play!
+          <div class="news-bar" data-news-id=1>
+            <% url = link to: "https://t.me/pairsone" do %>
+              <%= img_tag "https://telegram.org/img/t_logo.png", width: 15, alt: gettext("Telegram channel"), class: "telegram-logo" %>
+              <%= gettext("Telegram channel") %><% end %>
+            <%= raw gettext "Telegram channel newsbar", link: url |> safe_to_string %>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           <div class="row">
@@ -52,7 +56,7 @@
         <div class="col-md-3 col-md-push-9 footer__lang">
           <select name="language" id="language">
             <%= for {code, name} <- lang_select_options do %>
-              <option value="<%= code %>" <%= if locale == code do "selected" end %>><%= name %></option>
+              <option value="<%= code %>" <%= if locale() == code do "selected" end %>><%= name %></option>
             <% end %>
           </select>
         </div>

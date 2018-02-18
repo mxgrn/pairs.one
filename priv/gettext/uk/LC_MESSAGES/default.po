@@ -10,22 +10,32 @@ msgid ""
 msgstr ""
 "Language: uk\n"
 
-#: web/templates/layout/app.html.eex:7
+#: lib/pairs_one_web/templates/layout/app.html.eex:7
 msgid "Play memory/concentration game with friends over the Internet without registration"
 msgstr "Грай в Меморі з друзями через Інтернет без реєстрації"
 
-#: web/templates/layout/app.html.eex:63
+#: lib/pairs_one_web/templates/layout/app.html.eex:69
 msgid "Source code"
 msgstr "Вихідний код"
 
-#: web/templates/layout/app.html.eex:10 web/templates/layout/app.html.eex:35
+#: lib/pairs_one_web/templates/layout/app.html.eex:10
+#: lib/pairs_one_web/templates/layout/app.html.eex:43
 msgid "Concentration game: multiplayer and registration-free"
 msgstr "Мультиплеєрна Меморі гра без реєстрації"
 
-#: web/templates/layout/app.html.eex:37
+#: lib/pairs_one_web/templates/layout/app.html.eex:45
 msgid "Unload your mind while improving your memory"
 msgstr ""
 
-#: web/templates/layout/app.html.eex:67
+#: lib/pairs_one_web/templates/layout/app.html.eex:73
 msgid "Help with translation"
 msgstr ""
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:30
+#: lib/pairs_one_web/templates/layout/app.html.eex:31
+msgid "Telegram channel"
+msgstr "каналу Telegram"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:33
+msgid "Telegram channel newsbar"
+msgstr "Приєднуйся до нашого #{link}, щоб отримувати сповіщення, коли хтось бажає грати!"

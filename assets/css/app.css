@@ -684,6 +684,7 @@ img.screenshot {
   margin-bottom: -10px;
 }
 
+/* hidden news-bar */
 .news-bar {
   padding: 10px;
   margin: 0;
@@ -691,4 +692,8 @@ img.screenshot {
   background-color: #def0f8;
   text-align: left;
   display: none;
+}
+
+.news-bar .telegram-logo {
+  margin-top: -2px;
 }
