@@ -3,7 +3,7 @@ $(function(){
   var idKey = 'pairs-one-player-id',
     nameKey = 'pairs-one-player',
     settingsKey = 'pairs-one-settings',
-    seenNewsIdsKey = "pairs-one-seen-news-ids",
+    seenNewsIdKey = "pairs-one-last-seen-news-id",
     playerId = localStorage.getItem(idKey),
     locale = $("html").attr("lang"),
     elm,
@@ -32,7 +32,7 @@ $(function(){
         return window.btoa( binary );
     },
     newsBar = $(".news-bar"),
-    seenNewsIds = JSON.parse(localStorage.getItem(seenNewsIdsKey) || "[]"),
+    seenNewsId = JSON.parse(localStorage.getItem(seenNewsIdKey) || 0),
     currentNewsId = newsBar.data("news-id");
 
   if (!playerId) {
@@ -43,14 +43,12 @@ $(function(){
 
   newsBar.children(".close").on("click", function() {
     newsBar.hide();
-    localStorage.setItem(seenNewsIdsKey, JSON.stringify(seenNewsIds));
+    localStorage.setItem(seenNewsIdKey, currentNewsId);
   });
 
-  if ($.inArray(currentNewsId, seenNewsIds) < 0) {
+  if (seenNewsId < currentNewsId) {
     newsBar.show();
-    seenNewsIds.push(currentNewsId);
   }
-
 
   $("#elm-game").each(
     function(i, el){
