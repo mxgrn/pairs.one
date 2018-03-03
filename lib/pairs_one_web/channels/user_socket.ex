@@ -2,12 +2,12 @@ defmodule PairsOneWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "game:*", PairsOneWeb.GameChannel
-  channel "game-list", PairsOneWeb.GameListChannel
-  channel "chat:*", PairsOneWeb.ChatChannel
+  channel("game:*", PairsOneWeb.GameChannel)
+  channel("game-list", PairsOneWeb.GameListChannel)
+  channel("chat:*", PairsOneWeb.ChatChannel)
 
   ## Transports
-  transport :websocket, Phoenix.Transports.WebSocket
+  transport(:websocket, Phoenix.Transports.WebSocket)
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can

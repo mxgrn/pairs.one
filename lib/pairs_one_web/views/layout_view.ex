@@ -11,7 +11,7 @@ defmodule PairsOneWeb.LayoutView do
       "fr" => "Français"
     }
 
-    Enum.map(PairsOneWeb.Gettext.supported_locales, fn(locale) ->
+    Enum.map(PairsOneWeb.Gettext.supported_locales(), fn locale ->
       {locale, Map.get(locales, locale, String.upcase(locale))}
     end)
   end

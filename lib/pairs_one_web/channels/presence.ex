@@ -72,8 +72,9 @@ defmodule PairsOneWeb.Presence do
   information, while maintaining the required `:metas` field from the
   original presence data.
   """
-  use Phoenix.Presence, otp_app: :pairs_one,
-                        pubsub_server: PairsOne.PubSub
+  use Phoenix.Presence,
+    otp_app: :pairs_one,
+    pubsub_server: PairsOne.PubSub
 
   alias PairsOne.Game
 
@@ -84,7 +85,8 @@ defmodule PairsOneWeb.Presence do
 
     # PairsOneWeb.Endpoint.broadcast "game-list", "update", pending_games
     if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
-      PairsOne.PendingGames.remove(game_id) && PairsOneWeb.Endpoint.broadcast "game-list", "update", pending_games
+      PairsOne.PendingGames.remove(game_id) &&
+        PairsOneWeb.Endpoint.broadcast("game-list", "update", pending_games)
     end
 
     # if length(presences) == length(game["players"]) do
@@ -97,7 +99,6 @@ defmodule PairsOneWeb.Presence do
   end
 
   defp pending_games do
-    %{games: PairsOne.PendingGames.data_list}
+    %{games: PairsOne.PendingGames.data_list()}
   end
 end
-

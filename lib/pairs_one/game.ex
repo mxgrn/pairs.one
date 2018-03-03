@@ -9,7 +9,14 @@ defmodule PairsOne.Game do
   alias PairsOne.Theme
   alias Exredis.Api, as: Redis
 
-  defstruct id: "", cards: [], players: [], theme: "eighties", flips: 2, turn: -1, visibility: "public", random: false
+  defstruct id: "",
+            cards: [],
+            players: [],
+            theme: "eighties",
+            flips: 2,
+            turn: -1,
+            visibility: "public",
+            random: false
 
   @redis_prefix "game:"
 
@@ -17,7 +24,7 @@ defmodule PairsOne.Game do
   Fetch persisted game by its id
   """
   def get(id) do
-    id |> get_json |> Poison.decode!
+    id |> get_json |> Poison.decode!()
   end
 
   @doc """
@@ -30,21 +37,30 @@ defmodule PairsOne.Game do
   @doc """
   Create and returns new game given its params
   """
-  def create(%{"board_size" => board_size, "players_number" => players_number, "theme" => theme_name, "visibility" => visibility, "random" => random}) do
-    players_number = String.to_integer players_number
-    board_size = String.to_integer board_size
+  def create(%{
+        "board_size" => board_size,
+        "players_number" => players_number,
+        "theme" => theme_name,
+        "visibility" => visibility,
+        "random" => random
+      }) do
+    players_number = String.to_integer(players_number)
+    board_size = String.to_integer(board_size)
 
-    id = UUID.uuid4 |> String.split("-") |> List.last
+    id = UUID.uuid4() |> String.split("-") |> List.last()
 
     local? = visibility == "local"
 
-    players = (0..players_number - 1) |> Enum.map(fn _ -> %PairsOne.Player{id: "", name: "", joined: local?, online: local?} end)
+    players =
+      0..(players_number - 1)
+      |> Enum.map(fn _ -> %PairsOne.Player{id: "", name: "", joined: local?, online: local?} end)
 
-    turn = if local? do
-      0
-    else
-      -1
-    end
+    turn =
+      if local? do
+        0
+      else
+        -1
+      end
 
     game = %PairsOne.Game{
       id: id,
@@ -74,15 +90,19 @@ defmodule PairsOne.Game do
   Given new params, reset completed game
   """
   def replay(game, %{"theme" => theme_name}) do
-    players = Enum.map game["players"], fn (player) -> %{player | "score" => 0, "turns" => 0, "inaccurateTurns" => 0} end
+    players =
+      Enum.map(game["players"], fn player ->
+        %{player | "score" => 0, "turns" => 0, "inaccurateTurns" => 0}
+      end)
 
     theme = Theme.get(theme_name)
 
-    cards = game["cards"]
-            |> length
-            |> :math.sqrt
-            |> round
-            |> cards(theme.cards)
+    cards =
+      game["cards"]
+      |> length
+      |> :math.sqrt()
+      |> round
+      |> cards(theme.cards)
 
     game = %{game | "cards" => cards, "players" => players, "theme" => theme_name}
 
@@ -100,10 +120,10 @@ defmodule PairsOne.Game do
     join_player_at(game, index, player)
   end
 
-
   def rename_player(game, player_id, name) do
-    new_players = game["players"]
-                  |> Enum.map(fn p -> if p["id"] == player_id, do: %{p | "name" => name}, else: p end)
+    new_players =
+      game["players"]
+      |> Enum.map(fn p -> if p["id"] == player_id, do: %{p | "name" => name}, else: p end)
 
     %{game | "players" => new_players}
   end
@@ -112,7 +132,7 @@ defmodule PairsOne.Game do
   defp cards(board_size, cards_number) do
     card_values = Enum.take_random(1..cards_number, trunc(board_size * board_size / 2))
     double_values = card_values ++ card_values
-    double_values |> Enum.shuffle |> Enum.map(fn value -> %PairsOne.Card{value: value} end)
+    double_values |> Enum.shuffle() |> Enum.map(fn value -> %PairsOne.Card{value: value} end)
   end
 
   # Do not join player at a given index if the index is nil
@@ -145,7 +165,13 @@ defmodule PairsOne.Game do
 
   # Set initial game turn if all players have joined
   defp set_turn(%{"turn" => -1, "players" => players} = game) do
-    turn = if all_players_joined?(players) do 0 else -1 end
+    turn =
+      if all_players_joined?(players) do
+        0
+      else
+        -1
+      end
+
     %{game | "turn" => turn}
   end
 
@@ -156,19 +182,20 @@ defmodule PairsOne.Game do
 
   # Check whether all players in the game have "joined" status
   def all_players_joined?(players) do
-    Enum.all?(players, fn(p) -> p["joined"] end)
+    Enum.all?(players, fn p -> p["joined"] end)
   end
 
   def any_player_online?(game) do
-    Enum.any?(game["players"], fn(p) -> p["online"] end)
+    Enum.any?(game["players"], fn p -> p["online"] end)
   end
 
   def game_data_for_list(game) do
-    playerJson = fn(player) ->
+    playerJson = fn player ->
       %{name: player["name"]}
     end
 
-    size = length(game["cards"]) |> :math.sqrt |> round
+    size = length(game["cards"]) |> :math.sqrt() |> round
+
     %{
       id: game["id"],
       theme: game["theme"],
@@ -179,7 +206,7 @@ defmodule PairsOne.Game do
 
   # Given player id, try to find at what index to join the player
   defp player_index(players, player_id) do
-    ok? = fn(player) ->
+    ok? = fn player ->
       player["id"] == player_id || not player["joined"]
     end
 
@@ -189,6 +216,11 @@ defmodule PairsOne.Game do
   # Given game's id, fetches game's JSON from Redis
   defp get_json(id) do
     game_string = Redis.get(:redis, "#{@redis_prefix}#{id}")
-    if game_string == :undefined do "" else game_string end
+
+    if game_string == :undefined do
+      ""
+    else
+      game_string
+    end
   end
 end

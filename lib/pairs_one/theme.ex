@@ -10,63 +10,54 @@ defmodule PairsOne.Theme do
       difficulty: 0,
       new: false
     },
-
     animals: %{
       title: "Animals",
       cards: 50,
       difficulty: 0,
       new: false
     },
-
     animals2: %{
       title: "Animals 2",
       cards: 50,
       difficulty: 0,
       new: false
     },
-
     fairy_tales: %{
       title: "Fairy Tales",
       cards: 50,
       difficulty: 0,
       new: false
     },
-
     pokemon: %{
       title: "Pokémon",
       cards: 50,
       difficulty: 1,
       new: false
     },
-
     halloween: %{
       title: "Halloween",
       cards: 48,
       difficulty: 1,
       new: false
     },
-
     music: %{
       title: "Music",
       cards: 50,
       difficulty: 1,
       new: false
     },
-
     owls: %{
       title: "Owls",
       cards: 50,
       difficulty: 2,
       new: false
     },
-
     cats: %{
       title: "Cats",
       cards: 50,
       difficulty: 2,
       new: false
     },
-
     robots: %{
       title: "Robots",
       cards: 50,

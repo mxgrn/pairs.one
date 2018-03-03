@@ -6,7 +6,7 @@ defmodule BCP47 do
   [bcp 47](https://tools.ietf.org/html/bcp47) spec'd language tags.
   """
 
-  @type tag :: String.t
+  @type tag :: String.t()
 
   @doc """
   Gets the locale for the current process and the given backend.
@@ -38,33 +38,39 @@ defmodule BCP47 do
   def parse(tag) do
     cond do
       # Return :error for nil values and non-matches
-      tag == nil -> {:error, "Param 'tag' cannot be nil."}
-      !valid?(tag) -> {:error, "Param 'tag' with value is invaild."}
+      tag == nil ->
+        {:error, "Param 'tag' cannot be nil."}
+
+      !valid?(tag) ->
+        {:error, "Param 'tag' with value is invaild."}
+
       # Parse otherwise
       true ->
         captures = Regex.named_captures(expression, tag)
-        {:ok, %{
-          langtag: %{
-            language: extract_language(captures["language"]),
-            script: captures["script"],
-            region: captures["region"],
-            variant: extract_variants(captures["variant"]),
-            extension: extract_extensions(captures["extension"]),
-            privateuse: extract_private(captures["lang_private"])
-          },
-          privateuse: extract_private(captures["private"]),
-          grandfathered: %{
-            irregular: captures["gf_irregular"],
-            regular: captures["gf_regular"]
-          }
-        }}
+
+        {:ok,
+         %{
+           langtag: %{
+             language: extract_language(captures["language"]),
+             script: captures["script"],
+             region: captures["region"],
+             variant: extract_variants(captures["variant"]),
+             extension: extract_extensions(captures["extension"]),
+             privateuse: extract_private(captures["lang_private"])
+           },
+           privateuse: extract_private(captures["private"]),
+           grandfathered: %{
+             irregular: captures["gf_irregular"],
+             regular: captures["gf_regular"]
+           }
+         }}
     end
   end
 
-  @spec valid?(tag, Keywort.t) :: boolean
+  @spec valid?(tag, Keywort.t()) :: boolean
   def valid?(tag, opts \\ []) do
     if opts[:ietf_only] do
-      valid_ietf? tag
+      valid_ietf?(tag)
     else
       Blank.present?(tag) && Regex.match?(expression, tag)
     end
@@ -79,21 +85,21 @@ defmodule BCP47 do
   end
 
   defp extract_language(string) do
-    [language|extlang] = string |> String.split("-")
+    [language | extlang] = string |> String.split("-")
     %{language: language, extlang: extlang}
   end
 
   defp extract_variants(string) do
-    [_|variants] = string |> String.split("-")
+    [_ | variants] = string |> String.split("-")
     variants
   end
 
   defp extract_extensions(string) do
     ~r/-([\da-wy-z](?:-[\da-z]{2,8})+)/i
     |> Regex.scan(string, capture: :all_but_first)
-    |> List.flatten
+    |> List.flatten()
     |> Enum.map(fn match ->
-      [singleton|values] = String.split(match, "-")
+      [singleton | values] = String.split(match, "-")
       %{singleton: singleton, values: values}
     end)
   end
@@ -101,9 +107,9 @@ defmodule BCP47 do
   defp extract_private(string) do
     ~r/(x(?:-[\da-z]{1,8})+)/i
     |> Regex.scan(string, capture: :all_but_first)
-    |> List.flatten
+    |> List.flatten()
     |> Enum.flat_map(fn match ->
-      [_|values] = String.split(match, "-")
+      [_ | values] = String.split(match, "-")
       values
     end)
   end

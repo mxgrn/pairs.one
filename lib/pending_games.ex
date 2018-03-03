@@ -30,8 +30,8 @@ defmodule PairsOne.PendingGames do
   end
 
   def data_list do
-    Enum.map(index, fn(id) ->
-      id |> Game.get |> Game.game_data_for_list
+    Enum.map(index, fn id ->
+      id |> Game.get() |> Game.game_data_for_list()
     end)
   end
 end

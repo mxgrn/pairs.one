@@ -15,7 +15,7 @@ defmodule PairsOne do
       supervisor(PairsOneWeb.Endpoint, []),
       supervisor(PairsOneWeb.Presence, []),
       worker(PairsOne.RedisRepo, [:redis, "redis://localhost:6379/0"]),
-      supervisor(PairsOne.PendingGames, []),
+      supervisor(PairsOne.PendingGames, [])
       # Start your own worker by calling: PairsOne.Worker.start_link(arg1, arg2, arg3)
       # worker(PairsOne.Worker, [arg1, arg2, arg3]),
     ]
