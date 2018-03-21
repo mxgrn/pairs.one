@@ -160,7 +160,10 @@ update msg model =
                             model.phxPresences |> syncDiff presenceDiff
 
                         game =
-                            updateFromPresenceState model.game newPresenceState
+                            if isLocal model.game then
+                                model.game
+                            else
+                                updateFromPresenceState model.game newPresenceState
                     in
                         { model | game = game, phxPresences = newPresenceState } ! []
 
@@ -197,13 +200,11 @@ flipCard index model =
         players =
             game.players
 
-        -- Updated indices of all flipped cards so far (normally it's max 2, but in the future can be more)
         flippedIds =
-            if (List.length model.flippedIds) == game.flips then
+            if (List.length game.cards.flipped) == game.flips then
                 [ index ]
             else
-                -- preventing dblclick glitch in Chrome with `unique`
-                List.append model.flippedIds [ index ] |> List.Extra.unique
+                index :: game.cards.flipped
 
         ( newTurn, matched, turnFinished ) =
             if (List.length flippedIds) == game.flips then
@@ -224,46 +225,38 @@ flipCard index model =
             else
                 ( game.turn, False, False )
 
-        roundFinished =
-            List.all .cleared cards
-
-        -- If round is finished, the winner gets the turn
-        newTurn_ =
-            if roundFinished then
-                List.Extra.findIndex (\p -> p.score == (maxScore players)) players
-                    |> Maybe.withDefault newTurn
-            else
-                newTurn
-
-        updateCard : Int -> Card -> Card
-        updateCard i card =
-            let
-                flipped =
-                    (List.any (\id -> i == id) flippedIds)
-
-                cleared =
-                    (List.any (\id -> i == id && matched) flippedIds) || card.cleared
-            in
-                { card | flipped = flipped, cleared = cleared }
-
         cards =
-            List.indexedMap updateCard game.cards
+            game.cards
 
-        cards_ =
-            if turnFinished then
-                List.map (\card -> { card | seen = (card.flipped || card.seen) && not card.cleared }) cards
+        newCleared =
+            if matched then
+                cards.cleared ++ flippedIds
             else
-                cards
+                cards.cleared
 
-        updatePlayerById : Player -> Player
-        updatePlayerById player =
+        newSeen =
+            if matched then
+                cards.seen
+            else
+                cards.seen
+                    ++ flippedIds
+                    |> List.Extra.unique
+
+        newCards =
+            { cards | cleared = newCleared, seen = newSeen, flipped = flippedIds }
+
+        roundFinished =
+            List.length newCleared == List.length cards.values
+
+        updatePlayerStatsById : Player -> Player
+        updatePlayerStatsById player =
             if player.id == model.playerId then
                 player |> PlayerStats.updatePlayer cards flippedIds matched
             else
                 player
 
-        updatePlayerByIndex : Int -> Player -> Player
-        updatePlayerByIndex i player =
+        updatePlayerStatsByIndex : Int -> Player -> Player
+        updatePlayerStatsByIndex i player =
             if model.playerTurn == i then
                 player |> PlayerStats.updatePlayer cards flippedIds matched
             else
@@ -272,35 +265,35 @@ flipCard index model =
         players_ =
             if turnFinished then
                 if isLocal model.game then
-                    List.indexedMap updatePlayerByIndex players
+                    List.indexedMap updatePlayerStatsByIndex players
                 else
-                    List.map updatePlayerById players
+                    List.map updatePlayerStatsById players
             else
                 players
 
-        players__ =
+        newPlayers =
             if roundFinished then
                 PlayerStats.updatePlayers players_
             else
                 players_
 
-        game_ =
-            { game | cards = cards_, players = players__, turn = newTurn_ }
+        newGame =
+            { game | cards = newCards, players = newPlayers, turn = newTurn }
 
         playerTurn =
             if isLocal game && turnFinished && not matched then
                 -- Only in case of local game are we overriding playerTurn
                 if roundFinished then
-                    newTurn_
+                    newTurn
                 else
                     (model.playerTurn + 1) % List.length model.game.players
             else
                 model.playerTurn
 
-        model_ =
-            { model | game = game_, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
+        newModel =
+            { model | game = newGame, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
     in
-        ( model_, Cmd.batch [ sendGame game_ ] )
+        ( newModel, Cmd.batch [ sendGame newGame ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
@@ -310,7 +303,7 @@ updateGame model game =
             model.game.turn == -1 && game.turn /= -1
 
         ( cmd, game_ ) =
-            if gameStarting then
+            if gameStarting && not (isLocal game) then
                 let
                     game_ =
                         { game | turn = 0 }
@@ -320,23 +313,23 @@ updateGame model game =
                 ( Cmd.none, game )
 
         game__ =
-            if List.length (game_.players) == 1 then
+            if isSolo game_ then
                 { game_ | turn = 0 }
             else
                 game_
 
         isCompleted =
-            List.all .cleared game.cards
+            List.length game.cards.values == List.length game.cards.cleared
 
         playerTurn_ =
             if isLocal game then
-                model.playerTurn
+                game__.turn
             else
                 playerTurn model.playerId game.players
     in
         { model
             | game = game__
-            , flippedIds = flippedIds game.cards
+            , flippedIds = game.cards.flipped
             , playerTurn = playerTurn_
             , isCompleted = isCompleted
             , random = game.random
@@ -369,3 +362,8 @@ decoderError model error =
             Debug.log "Decoder error" error
     in
         ( model, Cmd.none )
+
+
+cardValueAt : CardData -> Int -> Int
+cardValueAt cardData index =
+    cardData.values |> List.drop index |> List.head |> Maybe.withDefault -1

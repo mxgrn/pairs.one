@@ -10,7 +10,8 @@ defmodule PairsOne.Game do
   alias Exredis.Api, as: Redis
 
   defstruct id: "",
-            cards: [],
+            # cards: [],
+            cards: %{cleared: [], flipped: [], seen: [], values: []},
             players: [],
             theme: "eighties",
             flips: 2,
@@ -98,7 +99,7 @@ defmodule PairsOne.Game do
     theme = Theme.get(theme_name)
 
     cards =
-      game["cards"]
+      game["cards"]["values"]
       |> length
       |> :math.sqrt()
       |> round
@@ -132,7 +133,15 @@ defmodule PairsOne.Game do
   defp cards(board_size, cards_number) do
     card_values = Enum.take_random(1..cards_number, trunc(board_size * board_size / 2))
     double_values = card_values ++ card_values
-    double_values |> Enum.shuffle() |> Enum.map(fn value -> %PairsOne.Card{value: value} end)
+    values =
+      double_values |> Enum.shuffle()
+
+    %{
+      values: values,
+      flipped: [],
+      cleared: [],
+      seen: []
+    }
   end
 
   # Do not join player at a given index if the index is nil
@@ -194,7 +203,7 @@ defmodule PairsOne.Game do
       %{name: player["name"]}
     end
 
-    size = length(game["cards"]) |> :math.sqrt() |> round
+    size = length(game["cards"]["values"]) |> :math.sqrt() |> round
 
     %{
       id: game["id"],

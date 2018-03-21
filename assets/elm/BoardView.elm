@@ -20,10 +20,21 @@ boardView : Model -> Html Msg
 boardView model =
     let
         cols =
-            model.game.cards |> List.length |> toFloat |> sqrt |> truncate
+            model.game.cards.values |> List.length |> toFloat |> sqrt |> truncate
+
+        cardAt : CardData -> Int -> Int -> Card
+        cardAt cards index value =
+            { value = value
+            , flipped = List.any (\id -> index == id) cards.flipped
+            , cleared = List.any (\id -> index == id) cards.cleared
+            , seen = List.any (\id -> index == id) cards.seen
+            }
+
+        cards =
+            List.indexedMap (cardAt model.game.cards) model.game.cards.values
 
         cardsWithIds =
-            List.indexedMap (,) model.game.cards
+            List.indexedMap (,) cards
     in
         div [ class "game row" ]
             [ div [ class "col-md-12 col-lg-12" ]

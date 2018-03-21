@@ -5,11 +5,11 @@ import Types.Player exposing (..)
 import Types.Card exposing (..)
 
 
-updatePlayer : List Card -> List Int -> Bool -> Player -> Player
+updatePlayer : CardData -> List Int -> Bool -> Player -> Player
 updatePlayer cards flippedIndices matched player =
     let
         isInaccurateTurn =
-            not matched && (isAnySeen flippedIndices cards)
+            not matched && (areAllSeen flippedIndices cards)
 
         turns =
             player.turns + 1
@@ -23,13 +23,9 @@ updatePlayer cards flippedIndices matched player =
         { player | score = score, turns = turns, inaccurateTurns = inaccurateTurns }
 
 
-isAnySeen : List Int -> List Card -> Bool
-isAnySeen indices cards =
-    let
-        seenIndices =
-            List.indexedMap (,) cards |> List.filter (Tuple.second >> .seen) |> List.map Tuple.first
-    in
-        List.any (\i -> List.member i seenIndices) indices
+areAllSeen : List Int -> CardData -> Bool
+areAllSeen indices cards =
+    List.all (\i -> List.member i cards.seen) indices
 
 
 maxScore : List Player -> Int

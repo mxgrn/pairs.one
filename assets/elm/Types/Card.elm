@@ -16,6 +16,14 @@ type alias CardId =
     Int
 
 
+type alias CardData =
+    { cleared : List Int
+    , flipped : List Int
+    , seen : List Int
+    , values : List Int
+    }
+
+
 cardEncoder : Card -> JE.Value
 cardEncoder card =
     JE.object
@@ -35,16 +43,10 @@ cardDecoder =
         (field "seen" JD.bool)
 
 
-flippedIds : List Card -> List Int
-flippedIds cards =
-    List.indexedMap (,) cards |> List.filter (Tuple.second >> .flipped) |> List.map Tuple.first
 
-
-cardAt : Int -> List Card -> Maybe Card
-cardAt index cards =
-    cards |> List.drop index |> List.head
-
-
-cardValueAt : List Card -> Int -> Int
-cardValueAt cards index =
-    cardAt index cards |> Maybe.map .value |> Maybe.withDefault -1
+-- flippedIds : List Card -> List Int
+-- flippedIds cards =
+--     List.indexedMap (,) cards |> List.filter (Tuple.second >> .flipped) |> List.map Tuple.first
+-- cardAt : Int -> List Card -> Maybe Card
+-- cardAt index cards =
+--     cards |> List.drop index |> List.head

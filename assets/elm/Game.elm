@@ -19,6 +19,7 @@ import View exposing (..)
 import Types.Params exposing (..)
 import Types.Model exposing (..)
 import Types.Game exposing (..)
+import Types.Card exposing (..)
 import Types.Msg exposing (..)
 
 
@@ -49,7 +50,7 @@ init : Params -> ( Model, Cmd Msg )
 init { id, playerId, host, isSsl, playerName, themes, locale } =
     let
         game =
-            Game "" [] [] 0 0 "eighties" False "public"
+            Game "" (CardData [] [] [] []) [] 0 0 "eighties" False "public"
 
         payload =
             JE.object
@@ -70,9 +71,9 @@ init { id, playerId, host, isSsl, playerName, themes, locale } =
         socketInit =
             Phoenix.Socket.init (socketProtocol ++ "//" ++ host ++ "/socket/websocket")
                 |> Phoenix.Socket.on "update_game" ("game:" ++ id) ReceiveCompressedGame
+                |> Phoenix.Socket.on "new_chat_msg" ("game:" ++ id) ReceiveMessage
                 |> Phoenix.Socket.on "presence_state" ("game:" ++ id) HandlePresenceState
                 |> Phoenix.Socket.on "presence_diff" ("game:" ++ id) HandlePresenceDiff
-                |> Phoenix.Socket.on "new_chat_msg" ("game:" ++ id) ReceiveMessage
 
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.join channel socketInit

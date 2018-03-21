@@ -23,7 +23,7 @@ import PlayersView exposing (..)
 
 view : Model -> Html Msg
 view model =
-    case List.length (model.game.cards) of
+    case List.length (model.game.cards.values) of
         0 ->
             loading
 

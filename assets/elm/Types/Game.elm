@@ -16,9 +16,19 @@ type alias GameId =
     String
 
 
+cardDataEncoder : CardData -> JE.Value
+cardDataEncoder cardData =
+    JE.object
+        [ ( "cleared", (List.map JE.int cardData.cleared) |> JE.list )
+        , ( "flipped", (List.map JE.int cardData.flipped) |> JE.list )
+        , ( "seen", (List.map JE.int cardData.seen) |> JE.list )
+        , ( "values", (List.map JE.int cardData.values) |> JE.list )
+        ]
+
+
 type alias Game =
     { id : GameId
-    , cards : List Card
+    , cards : CardData
     , players : List Player
     , flips : Int
     , turn : Int
@@ -31,7 +41,7 @@ type alias Game =
 gameEncoder : Game -> JE.Value
 gameEncoder game =
     JE.object
-        [ ( "cards", (List.map cardEncoder game.cards) |> JE.list )
+        [ ( "cards", game.cards |> cardDataEncoder )
         , ( "players", (List.map playerEncoder game.players) |> JE.list )
         , ( "flips", game.flips |> JE.int )
         , ( "turn", game.turn |> JE.int )
@@ -43,7 +53,14 @@ gameDecoder : JD.Decoder Game
 gameDecoder =
     JD.map8 Game
         (field "id" JD.string)
-        (field "cards" (JD.list cardDecoder))
+        (field "cards"
+            (JD.map4 CardData
+                (field "cleared" (JD.list JD.int))
+                (field "flipped" (JD.list JD.int))
+                (field "seen" (JD.list JD.int))
+                (field "values" (JD.list JD.int))
+            )
+        )
         (field "players" (JD.list playerDecoder))
         (field "flips" JD.int)
         (field "turn" JD.int)
@@ -89,3 +106,8 @@ updateFromPresenceState game presenceState =
 isLocal : Game -> Bool
 isLocal game =
     game.visibility == "local"
+
+
+isSolo : Game -> Bool
+isSolo game =
+    List.length (game.players) == 1
