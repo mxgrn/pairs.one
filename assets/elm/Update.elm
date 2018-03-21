@@ -301,7 +301,7 @@ flipCard index model =
         newModel =
             { model | game = newGame, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
     in
-        ( newModel, Cmd.batch [ sendGame newGame ] )
+        ( newModel, Cmd.batch [ sendGame newGame, playAudio "flip" ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
@@ -310,7 +310,7 @@ updateGame model game =
         gameStarting =
             model.game.turn == -1 && game.turn /= -1
 
-        ( cmd, game_ ) =
+        ( playReadyCmd, game_ ) =
             if gameStarting && not (isLocal game) then
                 let
                     game_ =
@@ -319,6 +319,12 @@ updateGame model game =
                     ( playAudio "ready", game_ )
             else
                 ( Cmd.none, game )
+
+        playFlipCmd =
+            if game.cards.flipped == model.game.cards.flipped then
+                Cmd.none
+            else
+                playAudio "flip"
 
         game__ =
             if isSolo game_ then
@@ -342,7 +348,7 @@ updateGame model game =
             , isCompleted = isCompleted
             , random = game.random
         }
-            ! [ cmd ]
+            ! [ playReadyCmd, playFlipCmd ]
 
 
 sendGame : Game -> Cmd Msg
