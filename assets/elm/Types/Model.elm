@@ -28,6 +28,7 @@ type alias Model =
     , chatMessages : List ChatMessage
     , phxSocket : Phoenix.Socket.Socket Msg
     , phxPresences : PresenceState PlayerPresence
+    , inFocus : Bool
     }
 
 

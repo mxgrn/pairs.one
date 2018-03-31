@@ -94,6 +94,14 @@ update msg model =
                 Err error ->
                     decoderError model error
 
+        UpdateFocus raw ->
+            case JD.decodeValue JD.bool raw of
+                Ok value ->
+                    { model | inFocus = value } ! []
+
+                Err error ->
+                    decoderError model error
+
         ReceiveCompressedGame raw ->
             model ! [ decompressAndUpdateGame raw ]
 

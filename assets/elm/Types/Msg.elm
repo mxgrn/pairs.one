@@ -8,7 +8,7 @@ import Json.Encode as JE
 import Phoenix.Socket
 
 
--- Needs to be in its own module (and not, for example, in Update) in order to avoid circular dependencies
+-- NOTE: Needs to be in its own module (and not, for example, in Update) in order to avoid circular dependencies
 
 
 type Msg
@@ -29,3 +29,4 @@ type Msg
     | OnInputMessage String
     | OnInputPlayerName String
     | SetUserName
+    | UpdateFocus JE.Value

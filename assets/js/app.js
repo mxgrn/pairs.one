@@ -102,6 +102,14 @@ $(function(){
       elm.ports.storeNameLocally.subscribe(function(name){
         localStorage.setItem('pairs-one-player', name);
       });
+
+      window.addEventListener("focus", function(event){
+        elm.ports.onFocusChange.send(true);
+      }, true);
+
+      window.addEventListener("blur", function(event){
+        elm.ports.onFocusChange.send(false);
+      }, true);
     }
   )
 

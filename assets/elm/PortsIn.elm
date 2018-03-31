@@ -8,3 +8,6 @@ port onSendCompressedGame : (JE.Value -> msg) -> Sub msg
 
 
 port onGameUpdate : (JE.Value -> msg) -> Sub msg
+
+
+port onFocusChange : (JE.Value -> msg) -> Sub msg

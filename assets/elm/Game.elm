@@ -39,6 +39,7 @@ subscriptions model =
         [ Phoenix.Socket.listen model.phxSocket PhoenixMsg
         , onSendCompressedGame SendCompressedGame
         , onGameUpdate UpdateGame
+        , onFocusChange UpdateFocus
         ]
 
 
@@ -93,6 +94,7 @@ init { id, playerId, host, isSsl, playerName, themes, locale } =
           , chatMessages = []
           , phxSocket = socketInit
           , phxPresences = Dict.empty
+          , inFocus = True
           }
         , Cmd.map PhoenixMsg phxCmd
         )
