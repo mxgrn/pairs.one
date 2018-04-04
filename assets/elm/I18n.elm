@@ -5,7 +5,6 @@ import I18n.En
 import I18n.Ru
 import I18n.Uk
 import I18n.Pt
-import I18n.ZhHans
 import I18n.Fr
 
 
@@ -23,9 +22,6 @@ translate language translation =
 
         "pt" ->
             I18n.Pt.translate translation
-
-        "zh-hans" ->
-            I18n.ZhHans.translate translation
 
         "fr" ->
             I18n.Fr.translate translation
