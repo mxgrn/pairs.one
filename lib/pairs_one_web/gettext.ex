@@ -23,7 +23,7 @@ defmodule PairsOneWeb.Gettext do
   use Gettext, otp_app: :pairs_one
 
   def supported_locales do
-    config[:locales]
+    config()[:locales]
   end
 
   defp config, do: Application.get_env(:pairs_one, __MODULE__)

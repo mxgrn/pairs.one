@@ -15,20 +15,20 @@ msgstr ""
 msgid "Play memory/concentration game with friends over the Internet without registration"
 msgstr ""
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:69
+#: lib/pairs_one_web/templates/layout/app.html.eex:68
 msgid "Source code"
 msgstr ""
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:10
-#: lib/pairs_one_web/templates/layout/app.html.eex:43
+#: lib/pairs_one_web/templates/layout/app.html.eex:42
 msgid "Concentration game: multiplayer and registration-free"
 msgstr ""
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:45
+#: lib/pairs_one_web/templates/layout/app.html.eex:44
 msgid "Unload your mind while improving your memory"
 msgstr ""
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:73
+#: lib/pairs_one_web/templates/layout/app.html.eex:72
 msgid "Help with translation"
 msgstr ""
 
@@ -37,6 +37,6 @@ msgstr ""
 msgid "Telegram channel"
 msgstr ""
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:33
+#: lib/pairs_one_web/templates/layout/app.html.eex:32
 msgid "Telegram channel newsbar"
 msgstr ""

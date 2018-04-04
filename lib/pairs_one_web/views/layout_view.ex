@@ -7,7 +7,6 @@ defmodule PairsOneWeb.LayoutView do
       "ru" => "Русский",
       "uk" => "Українська",
       "pt" => "Português",
-      "zh-hans" => "简体中文",
       "fr" => "Français"
     }
 
