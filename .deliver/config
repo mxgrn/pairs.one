@@ -33,7 +33,7 @@ pre_erlang_clean_compile() {
     # runs the commands on the build host
     [ -f ~/.profile ] && source ~/.profile # load profile (optional)
 
-    # fail if any command fails (recommended)
+    # fail if any command fails
     set -e
 
     # enter the build directory on the build host (required)
@@ -41,30 +41,15 @@ pre_erlang_clean_compile() {
 
     mkdir -p priv/static # required by the phoenix.digest task
 
+    cd assets
     npm install
-
-    # work-around for Brunch running babel plugin before elmBrunch
-    cd assets/elm
-    # elm-make --yes --output ../vendor/elm/game.js Game.elm
-    # elm-make --yes --output ../vendor/elm/gamelist.js GameList.elm
-    # elm-make --yes --output ../vendor/elm/gamesettings.js GameSettings.elm
-    cd ..
-
-    # installing npm dependencies, smart way
-    # if [[ -d ../node_modules ]]; then
-    #   ln -s ../node_modules .
-    #   npm install
-    # else
-    #   npm install
-    #   mv node_modules ..
-    #   ln -s ../node_modules .
-    # fi
 
     # building brunch
     brunch build --production
 
-    # MIX_ENV=prod mix phoenix.digest
     cd ..
+
+    # MIX_ENV=prod mix phoenix.digest
     APP='$APP' MIX_ENV='$TARGET_MIX_ENV' $MIX_CMD phoenix.digest $SILENCE
   "
 }
