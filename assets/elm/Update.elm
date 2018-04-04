@@ -307,7 +307,7 @@ flipCard index model =
         newModel =
             { model | game = newGame, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
     in
-        ( newModel, Cmd.batch [ sendGame newGame, playAudio "flip" ] )
+        ( newModel, Cmd.batch [ sendGame newGame ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
@@ -327,7 +327,7 @@ updateGame model game =
                 ( Cmd.none, game )
 
         playFlipCmd =
-            if game.cards.flipped == model.game.cards.flipped then
+            if game.cards.flipped == model.game.cards.flipped && not model.inFocus then
                 Cmd.none
             else
                 playAudio "flip"
