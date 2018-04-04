@@ -82,8 +82,14 @@ update msg model =
 
                 messages =
                     chatMessage :: model.chatMessages
+
+                cmd =
+                    if chatMessage.playerId /= model.playerId then
+                        playAudio "chat-msg"
+                    else
+                        Cmd.none
             in
-                { model | chatMessages = messages } ! [ playAudio "chat-msg" ]
+                { model | chatMessages = messages } ! [ cmd ]
 
         -- UpdateGame with complete state
         UpdateGame raw ->
