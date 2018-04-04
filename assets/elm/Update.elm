@@ -83,7 +83,7 @@ update msg model =
                 messages =
                     chatMessage :: model.chatMessages
             in
-                { model | chatMessages = messages } ! []
+                { model | chatMessages = messages } ! [ playAudio "chat-msg" ]
 
         -- UpdateGame with complete state
         UpdateGame raw ->
