@@ -29,4 +29,3 @@ assets/node_modules
 dump.rdb
 .deliver/releases/
 .agignore
-.tool-versions
