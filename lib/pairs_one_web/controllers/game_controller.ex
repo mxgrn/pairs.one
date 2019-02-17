@@ -62,8 +62,8 @@ defmodule PairsOneWeb.GameController do
         }
         |> Game.create()
 
-      new_game_path = "/#{locale}" <> game_path(conn, :show, game.id, mode: "random")
-      new_game_uri = "#{conn.scheme}://#{conn.host}#{new_game_path}"
+      new_game_path = "/#{locale}" <> game_path(conn, :show, game.id)
+      new_game_uri = "https://#{conn.host}#{new_game_path}"
 
       # Notify @pairsone about new random game
       bot_key = Application.get_env(:pairs_one, :bot_key)
