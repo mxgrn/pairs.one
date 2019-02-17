@@ -61,7 +61,7 @@ playerName model =
 
 gameUrl : Model -> String
 gameUrl model =
-    "http://" ++ model.host ++ "/" ++ model.locale ++ "/games/" ++ model.game.id
+    "https://" ++ model.host ++ "/" ++ model.locale ++ "/games/" ++ model.game.id
 
 
 gameIsActive : Model -> Bool
