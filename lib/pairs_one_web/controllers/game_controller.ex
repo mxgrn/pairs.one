@@ -16,7 +16,7 @@ defmodule PairsOneWeb.GameController do
         game
       end
 
-    game = PairsOne.Game.create(game)
+    game = Game.create(game)
     ga_params = if length(game.players) == 1, do: [mode: "solo"], else: []
     redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id, ga_params))
   end
@@ -60,7 +60,7 @@ defmodule PairsOneWeb.GameController do
           "visibility" => "public",
           "random" => true
         }
-        |> PairsOne.Game.create()
+        |> Game.create()
 
       new_game_path = "/#{locale}" <> game_path(conn, :show, game.id, mode: "random")
       new_game_uri = "#{conn.scheme}://#{conn.host}#{new_game_path}"
@@ -74,6 +74,18 @@ defmodule PairsOneWeb.GameController do
             new_game_uri
           }"
         )
+        |> Map.fetch(:body)
+        |> elem(1)
+        |> Poison.decode!()
+        |> case do
+          %{"ok" => true, "result" => %{"message_id" => msg_id}} ->
+            Game.save!(game.id, %{game | channel_msg_id: msg_id})
+
+          res ->
+            Logger.error("Failed to post to Telegram: #{inspect(res)}")
+        end
+      else
+        Logger.warn("No bot_key set, could not post to Telegram")
       end
 
       redirect(conn, to: new_game_path)

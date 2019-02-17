@@ -29,3 +29,5 @@ assets/node_modules
 dump.rdb
 .deliver/releases/
 .agignore
+
+*.local.exs

@@ -28,6 +28,7 @@ defmodule PairsOneWeb.Web do
       import PairsOneWeb.Router.Helpers
       import PairsOneWeb.Gettext
       import PairsOneWeb.ControllerHelpers
+      require Logger
     end
   end
 

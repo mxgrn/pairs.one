@@ -10,14 +10,14 @@ defmodule PairsOne.Game do
   alias Exredis.Api, as: Redis
 
   defstruct id: "",
-            # cards: [],
             cards: %{cleared: [], flipped: [], seen: [], values: []},
             players: [],
             theme: "eighties",
             flips: 2,
             turn: -1,
             visibility: "public",
-            random: false
+            random: false,
+            channel_msg_id: nil
 
   @redis_prefix "game:"
 
@@ -133,8 +133,7 @@ defmodule PairsOne.Game do
   defp cards(board_size, cards_number) do
     card_values = Enum.take_random(1..cards_number, trunc(board_size * board_size / 2))
     double_values = card_values ++ card_values
-    values =
-      double_values |> Enum.shuffle()
+    values = double_values |> Enum.shuffle()
 
     %{
       values: values,
@@ -169,7 +168,25 @@ defmodule PairsOne.Game do
 
     save!(game["id"], game)
 
+    if all_players_joined?(players) do
+      delete_channel_msg(game)
+    end
+
     player
+  end
+
+  defp delete_channel_msg(game) do
+    bot_key = Application.get_env(:pairs_one, :bot_key)
+
+    msg_id = game["channel_msg_id"]
+
+    if bot_key && msg_id do
+      HTTPotion.post(
+        "https://api.telegram.org/bot433641023:#{bot_key}/deleteMessage?chat_id=@pairsone&message_id=#{
+          msg_id
+        }"
+      )
+    end
   end
 
   # Set initial game turn if all players have joined
