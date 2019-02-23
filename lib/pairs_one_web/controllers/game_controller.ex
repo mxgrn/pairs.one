@@ -2,6 +2,7 @@ defmodule PairsOneWeb.GameController do
   use PairsOneWeb.Web, :controller
 
   alias PairsOne.Game
+  alias PairsOne.Telegram
 
   def new(conn, _params) do
     themes = PairsOne.Theme.list() |> Poison.encode!()
@@ -65,28 +66,10 @@ defmodule PairsOneWeb.GameController do
       new_game_path = "/#{locale}" <> game_path(conn, :show, game.id)
       new_game_uri = "https://#{conn.host}#{new_game_path}"
 
-      # Notify @pairsone about new random game
-      bot_key = Application.get_env(:pairs_one, :bot_key)
+      new_game_url = "https://#{conn.host}#{new_game_path}"
 
-      if bot_key do
-        HTTPotion.post(
-          "https://api.telegram.org/bot433641023:#{bot_key}/sendMessage?chat_id=@pairsone&text=#{
-            new_game_uri
-          }"
-        )
-        |> Map.fetch(:body)
-        |> elem(1)
-        |> Poison.decode!()
-        |> case do
-          %{"ok" => true, "result" => %{"message_id" => msg_id}} ->
-            Game.save!(game.id, %{game | channel_msg_id: msg_id})
-
-          res ->
-            Logger.error("Failed to post to Telegram: #{inspect(res)}")
-        end
-      else
-        Logger.warn("No bot_key set, could not post to Telegram")
-      end
+      # Notify Telegram chat about new random game
+      Telegram.notify_on_new_game(game, new_game_url)
 
       redirect(conn, to: new_game_path)
     end

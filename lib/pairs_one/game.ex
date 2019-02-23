@@ -7,6 +7,7 @@ defmodule PairsOne.Game do
   """
 
   alias PairsOne.Theme
+  alias PairsOne.Telegram
   alias Exredis.Api, as: Redis
 
   defstruct id: "",
@@ -17,7 +18,7 @@ defmodule PairsOne.Game do
             turn: -1,
             visibility: "public",
             random: false,
-            channel_msg_id: nil
+            telegram_msg_id: nil
 
   @redis_prefix "game:"
 
@@ -169,24 +170,10 @@ defmodule PairsOne.Game do
     save!(game["id"], game)
 
     if all_players_joined?(players) do
-      delete_channel_msg(game)
+      Telegram.delete_chat_msg(game)
     end
 
     player
-  end
-
-  defp delete_channel_msg(game) do
-    bot_key = Application.get_env(:pairs_one, :bot_key)
-
-    msg_id = game["channel_msg_id"]
-
-    if bot_key && msg_id do
-      HTTPotion.post(
-        "https://api.telegram.org/bot433641023:#{bot_key}/deleteMessage?chat_id=@pairsone&message_id=#{
-          msg_id
-        }"
-      )
-    end
   end
 
   # Set initial game turn if all players have joined
