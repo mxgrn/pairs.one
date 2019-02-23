@@ -10,6 +10,7 @@ defmodule PairsOne.Mixfile do
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
+      aliases: aliases(),
       deps: deps()
     ]
   end
@@ -58,6 +59,12 @@ defmodule PairsOne.Mixfile do
       {:credo, "~> 0.4", only: [:dev, :test]},
       {:lz_string, "~> 0.0.6"},
       {:httpotion, "~> 3.0.2"}
+    ]
+  end
+
+  defp aliases do
+    [
+      compile: ["compile --warnings-as-errors"]
     ]
   end
 end
