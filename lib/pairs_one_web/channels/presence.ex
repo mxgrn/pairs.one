@@ -82,15 +82,11 @@ defmodule PairsOneWeb.Presence do
     game = Game.get(game_id)
     presences = Phoenix.Tracker.list(__MODULE__, topic)
 
+    Game.update_players_online_state(game, presences)
+
     if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
       PairsOne.PendingGames.remove(game_id)
     end
-
-    # if length(presences) == length(game["players"]) do
-    #   PairsOneWeb.ActiveGames.add(game_id) && PairsOneWeb.Endpoint.broadcast "game-list", "add_active_game", game_data
-    # else
-    #   PairsOneWeb.ActiveGames.remove(game_id) && PairsOneWeb.Endpoint.broadcast "game-list", "remove_active_game", game_data
-    # end
 
     entries
   end

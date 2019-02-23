@@ -169,8 +169,9 @@ defmodule PairsOne.Game do
 
     save!(game["id"], game)
 
-    if all_players_joined?(players) do
+    if game["telegram_msg_id"] && all_players_joined?(players) do
       Telegram.delete_chat_msg(game)
+      save!(game["id"], %{game | "telegram_msg_id" => nil})
     end
 
     player
@@ -215,6 +216,17 @@ defmodule PairsOne.Game do
       size: "#{size}x#{size}",
       players: Enum.map(game["players"], playerJson)
     }
+  end
+
+  def update_players_online_state(game, presences) do
+    new_players =
+      Enum.map(game["players"], fn player ->
+        online? = Enum.any?(presences, fn {player_id, _} -> player["id"] == player_id end)
+
+        %{player | "online" => online?}
+      end)
+
+    save!(game["id"], %{game | "players" => new_players})
   end
 
   # Given player id, try to find at what index to join the player

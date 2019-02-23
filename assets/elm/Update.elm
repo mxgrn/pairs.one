@@ -327,10 +327,10 @@ updateGame model game =
                 ( Cmd.none, game )
 
         playFlipCmd =
-            if game.cards.flipped == model.game.cards.flipped && not model.inFocus then
-                Cmd.none
-            else
+            if game.cards.flipped /= model.game.cards.flipped && model.inFocus && model.game.cards.flipped /= [] then
                 playAudio "flip"
+            else
+                Cmd.none
 
         game__ =
             if isSolo game_ then
