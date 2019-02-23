@@ -15,13 +15,13 @@ defmodule PairsOneWeb.GameChannel do
   def join("game:" <> game_id, %{"playerId" => player_id, "playerName" => player_name}, socket) do
     game = Game.get(game_id)
     Game.join_player(game, %{"id" => player_id, "name" => player_name})
-    send(self, :after_join)
+    send(self(), :after_join)
     {:ok, assign(socket, :data, %{game_id: game_id, player_id: player_id})}
   end
 
   @doc """
-  This gets called each time some browser sends in a new game (compressed) state. All we do is decompress, the state,
-  update the game in Redis, and then broadcast the compressed state to other players.
+  This gets called each time some browser sends in a new game (compressed) state. All we do is decompress, save the
+  state, update the game in Redis, and then broadcast the compressed state to other players.
   """
   def handle_in("update_game", compressed_game, socket) do
     game = decompress_game(compressed_game)
@@ -54,7 +54,7 @@ defmodule PairsOneWeb.GameChannel do
 
   @doc """
   """
-  def handle_in("new_chat_msg", %{"body" => body, "player_id" => player_id} = msg, socket) do
+  def handle_in("new_chat_msg", %{"body" => _body, "player_id" => _player_id} = msg, socket) do
     # TODO: append to chat messages in the game struct
     broadcast!(socket, "new_chat_msg", msg)
     {:noreply, socket}
@@ -72,7 +72,7 @@ defmodule PairsOneWeb.GameChannel do
 
     unless Game.all_players_joined?(game["players"]) do
       PairsOne.PendingGames.add(game_id)
-      PairsOneWeb.Endpoint.broadcast("game-list", "update", pending_games)
+      # PairsOneWeb.Endpoint.broadcast("game-list", "update", pending_games)
     end
 
     {:noreply, socket}
@@ -92,7 +92,7 @@ defmodule PairsOneWeb.GameChannel do
     |> Base.encode64()
   end
 
-  defp pending_games do
-    %{games: PairsOne.PendingGames.data_list()}
-  end
+  # defp pending_games do
+  #   %{games: PairsOne.PendingGames.data_list()}
+  # end
 end

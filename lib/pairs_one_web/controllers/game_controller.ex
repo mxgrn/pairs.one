@@ -19,7 +19,7 @@ defmodule PairsOneWeb.GameController do
 
     game = Game.create(game)
     ga_params = if length(game.players) == 1, do: [mode: "solo"], else: []
-    redirect(conn, to: "/#{locale}" <> game_path(conn, :show, game.id, ga_params))
+    redirect(conn, to: "/#{locale()}" <> game_path(conn, :show, game.id, ga_params))
   end
 
   def show(conn, %{"id" => id}) do
@@ -63,8 +63,7 @@ defmodule PairsOneWeb.GameController do
         }
         |> Game.create()
 
-      new_game_path = "/#{locale}" <> game_path(conn, :show, game.id)
-      new_game_uri = "https://#{conn.host}#{new_game_path}"
+      new_game_path = "/#{locale()}" <> game_path(conn, :show, game.id)
 
       new_game_url = "https://#{conn.host}#{new_game_path}"
 
@@ -73,10 +72,6 @@ defmodule PairsOneWeb.GameController do
 
       redirect(conn, to: new_game_path)
     end
-  end
-
-  defp last_missing_player?(%{players: players}) do
-    Enum.count(players, fn p -> p.name == "" end) == 1
   end
 
   defp missing_players_number(%{players: players}) do

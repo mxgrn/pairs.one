@@ -46,7 +46,7 @@ defmodule BCP47 do
 
       # Parse otherwise
       true ->
-        captures = Regex.named_captures(expression, tag)
+        captures = Regex.named_captures(expression(), tag)
 
         {:ok,
          %{
@@ -72,12 +72,12 @@ defmodule BCP47 do
     if opts[:ietf_only] do
       valid_ietf?(tag)
     else
-      Blank.present?(tag) && Regex.match?(expression, tag)
+      Blank.present?(tag) && Regex.match?(expression(), tag)
     end
   end
 
   defp valid_ietf?(tag) do
-    Blank.present?(tag) && String.downcase(tag) in ietf_codes
+    Blank.present?(tag) && String.downcase(tag) in ietf_codes()
   end
 
   defp expression() do

@@ -80,13 +80,10 @@ defmodule PairsOneWeb.Presence do
 
   def fetch("game:" <> game_id = topic, entries) do
     game = Game.get(game_id)
-    game_data = Game.game_data_for_list(game)
     presences = Phoenix.Tracker.list(__MODULE__, topic)
 
-    # PairsOneWeb.Endpoint.broadcast "game-list", "update", pending_games
     if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
-      PairsOne.PendingGames.remove(game_id) &&
-        PairsOneWeb.Endpoint.broadcast("game-list", "update", pending_games)
+      PairsOne.PendingGames.remove(game_id)
     end
 
     # if length(presences) == length(game["players"]) do
@@ -96,9 +93,5 @@ defmodule PairsOneWeb.Presence do
     # end
 
     entries
-  end
-
-  defp pending_games do
-    %{games: PairsOne.PendingGames.data_list()}
   end
 end

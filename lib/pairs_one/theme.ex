@@ -77,7 +77,7 @@ defmodule PairsOne.Theme do
   Return theme data by name
   """
   def get(name) when is_binary(name) do
-    themes[String.to_atom(name)]
+    themes()[String.to_atom(name)]
   end
 
   @doc """

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<%= locale %>">
+<html lang="<%= locale() %>">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -55,7 +55,7 @@
       <div class="footer">
         <div class="col-md-3 col-md-push-9 footer__lang">
           <select name="language" id="language">
-            <%= for {code, name} <- lang_select_options do %>
+            <%= for {code, name} <- lang_select_options() do %>
               <option value="<%= code %>" <%= if locale() == code do "selected" end %>><%= name %></option>
             <% end %>
           </select>

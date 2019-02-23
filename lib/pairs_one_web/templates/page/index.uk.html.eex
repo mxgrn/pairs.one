@@ -12,14 +12,14 @@
 
   <div class="col-sm-6 col-sm-pull-6">
 
-    <form class="game-option option-four" method=post action="/<%= locale %>/games">
+    <form class="game-option option-four" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Играть одному</h4>
           <div class="game-option__description">
             Играй один - на улучшение точности!
             <br/>
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
             <input type="hidden" name="game[board_size]" value="6">
             <input type="hidden" name="game[players_number]" value="1">
@@ -32,8 +32,8 @@
       </div>
     </form>
 
-    <form class="game-option option-one" method=post action="/<%= locale %>/games/random">
-      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+    <form class="game-option option-one" method=post action="/<%= locale() %>/games/random">
+      <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Играть со случайным игроком</h4>
@@ -47,14 +47,14 @@
       </div>
     </form>
 
-    <form class="game-option option-two" method=post action="/<%= locale %>/games">
+    <form class="game-option option-two" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Играть с другом</h4>
           <div class="game-option__description">
             Кинь линк на начавшуся игру другу - и вперед!
             <br/>
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
             <input type="hidden" name="game[board_size]" value="6">
             <input type="hidden" name="game[players_number]" value="2">
@@ -67,14 +67,14 @@
       </div>
     </form>
 
-    <form class="game-option option-three" method=post action="/<%= locale %>/games">
+    <form class="game-option option-three" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
           <h4>Локальная игра</h4>
           <div class="game-option__description">
             Играй с другом на одном устройстве!
             <br/>
-            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token %>">
+            <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
             <input type="hidden" name="game[board_size]" value="6">
             <input type="hidden" name="game[players_number]" value="2">
@@ -95,5 +95,5 @@
 
 <h3 id="custom-game" class="centered-content custom-game__title">Создай игру под себя</h3>
 <div class="col-sm-12">
-  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token %>'></div>
+  <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token() %>'></div>
 </div>

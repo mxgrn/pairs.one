@@ -1,4 +1,7 @@
 defmodule PairsOne.PendingGames do
+  @moduledoc """
+  Games started by users who would like to play with a random player
+  """
   alias PairsOne.Game
 
   def start_link() do
@@ -30,7 +33,7 @@ defmodule PairsOne.PendingGames do
   end
 
   def data_list do
-    Enum.map(index, fn id ->
+    Enum.map(index(), fn id ->
       id |> Game.get() |> Game.game_data_for_list()
     end)
   end

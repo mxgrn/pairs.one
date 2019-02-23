@@ -3,7 +3,7 @@ defmodule PairsOneWeb.UserSocket do
 
   ## Channels
   channel("game:*", PairsOneWeb.GameChannel)
-  channel("game-list", PairsOneWeb.GameListChannel)
+  # channel("game-list", PairsOneWeb.GameListChannel)
   channel("chat:*", PairsOneWeb.ChatChannel)
 
   ## Transports
