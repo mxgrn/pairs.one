@@ -30,10 +30,6 @@ defmodule PairsOneWeb.GameChannel do
     {:reply, :ok, socket}
   end
 
-  @doc """
-  This gets callde when the user presses "Replay" after they finish a game. Via `Game.replay` we reset the game state
-  (e.g. re-generate the board), then compress it and broadcast to other players.
-  """
   def handle_in("replay_game", game_data, socket) do
     game = Game.get(socket.assigns.data.game_id) || game_data
     game = Game.replay(game, game_data)
@@ -41,8 +37,6 @@ defmodule PairsOneWeb.GameChannel do
     {:noreply, socket}
   end
 
-  @doc """
-  """
   def handle_in("set_player_name", %{"player_id" => player_id, "name" => name}, socket) do
     game =
       Game.get(socket.assigns.data.game_id)
@@ -52,8 +46,6 @@ defmodule PairsOneWeb.GameChannel do
     {:noreply, socket}
   end
 
-  @doc """
-  """
   def handle_in("new_chat_msg", %{"body" => _body, "player_id" => _player_id} = msg, socket) do
     # TODO: append to chat messages in the game struct
     broadcast!(socket, "new_chat_msg", msg)
