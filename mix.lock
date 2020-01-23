@@ -1,10 +1,11 @@
 %{
+  "artificery": {:hex, :artificery, "0.4.2", "3ded6e29e13113af52811c72f414d1e88f711410cac1b619ab3a2666bbd7efd4", [:mix], [], "hexpm"},
   "bunt": {:hex, :bunt, "0.2.0", "951c6e801e8b1d2cbe58ebbd3e616a869061ddadcc4863d0a2182541acae9a38", [:mix], [], "hexpm"},
   "cowboy": {:hex, :cowboy, "1.1.2", "61ac29ea970389a88eca5a65601460162d370a70018afe6f949a29dca91f3bb0", [:rebar3], [{:cowlib, "~> 1.0.2", [hex: :cowlib, repo: "hexpm", optional: false]}, {:ranch, "~> 1.3.2", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "cowlib": {:hex, :cowlib, "1.0.2", "9d769a1d062c9c3ac753096f868ca121e2730b9a377de23dec0f7e08b1df84ee", [], [], "hexpm"},
   "credo": {:hex, :credo, "0.9.0", "5d1b494e4f2dc672b8318e027bd833dda69be71eaac6eedd994678be74ef7cb4", [:mix], [{:bunt, "~> 0.2.0", [hex: :bunt, repo: "hexpm", optional: false]}, {:poison, ">= 0.0.0", [hex: :poison, repo: "hexpm", optional: false]}], "hexpm"},
-  "distillery": {:hex, :distillery, "1.5.2", "eec18b2d37b55b0bcb670cf2bcf64228ed38ce8b046bb30a9b636a6f5a4c0080", [:mix], [], "hexpm"},
-  "edeliver": {:hex, :edeliver, "1.4.6", "5927f3acffe0859e7812187fd604f70b5a74e599dd300f19774c0d7a16da09c9", [:mix], [{:distillery, ">= 1.0.0", [hex: :distillery, repo: "hexpm", optional: true]}], "hexpm"},
+  "distillery": {:hex, :distillery, "2.0.14", "25fc1cdad06282334dbf4a11b6e869cc002855c4e11825157498491df2eed594", [:mix], [{:artificery, "~> 0.2", [hex: :artificery, repo: "hexpm", optional: false]}], "hexpm"},
+  "edeliver": {:hex, :edeliver, "1.6.0", "8bfdde1b7ff57deb12fa604c4087b4e15a7aa72d7b3d3d310602ca92c038f3ff", [:mix], [{:distillery, "~> 2.0", [hex: :distillery, repo: "hexpm", optional: true]}], "hexpm"},
   "eredis": {:hex, :eredis, "1.1.0", "8d8d74496f35216679b97726b75fb1c8715e99dd7f3ef9f9824a2264c3e0aac0", [:rebar3], [], "hexpm"},
   "exredis": {:hex, :exredis, "0.2.6", "814dcd90d6e9706e99cd873817996cfd7e95be7726b46a52d14f3c9c3394150e", [:mix], [{:eredis, ">= 1.0.8", [hex: :eredis, repo: "hexpm", optional: false]}], "hexpm"},
   "file_system": {:hex, :file_system, "0.2.4", "f0bdda195c0e46e987333e986452ec523aed21d784189144f647c43eaf307064", [:mix], [], "hexpm"},
