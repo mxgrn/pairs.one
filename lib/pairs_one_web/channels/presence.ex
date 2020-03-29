@@ -87,7 +87,6 @@ defmodule PairsOneWeb.Presence do
     if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
       PairsOne.PendingGames.remove(game_id)
     end
-
     entries
   end
 end

@@ -27,5 +27,10 @@ defmodule PairsOneWeb.Router do
     get("/", PageController, :index)
     post("/games/random", GameController, :random)
     resources("/games", GameController, only: [:new, :create, :show, :index])
+
+    # Diagnostics
+    get("/healthcheck", HealthcheckController, :index)
+    get("/healthcheck/crash", HealthcheckController, :crash)
+    get("/healthcheck/process_crash", HealthcheckController, :process_crash)
   end
 end

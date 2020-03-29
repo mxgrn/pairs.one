@@ -1,0 +1,102 @@
+name: Staging
+
+on: 
+  push:
+    branches:
+      - staging
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    name: Deploy
+    strategy:
+      matrix:
+        app: [pairs_one]
+        env: [staging]
+        os: [ubuntu-18.04]
+        otp: [22.3.4]
+        elixir: [1.11.1]
+        node: [12.x]
+
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-elixir@v1
+      with:
+        otp-version: ${{ matrix.otp }}
+        elixir-version: ${{ matrix.elixir }}
+    - uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Install Dependencies
+      run: |
+        mix local.rebar --force
+        mix local.hex --force
+        mix deps.get --only prod
+        yarn --cwd assets install
+        npm install --global elm@0.18.0
+
+    - name: Prepare release
+      run: |
+        mix compile --warnings-as-errors
+        yarn --cwd assets deploy
+        mix phx.digest
+        mix release
+        tar -cjf release.tar.bz2 _build/staging
+      env:
+        MIX_ENV: staging
+        SECRET_KEY_BASE: ${{secrets.SECRET_KEY_BASE}}
+        SENTRY_DSN: ${{secrets.SENTRY_DSN}}
+
+    - name: Upload release to all hosts
+      uses: appleboy/scp-action@master
+      with:
+        key: ${{ secrets.DEPLOYMENT_KEY }}
+        username: deploy
+        host: "159.89.26.201,159.89.18.195"
+        source: release.tar.bz2
+        target: ${{ matrix.app }}_${{matrix.env}}
+
+    - name: Unpack and restart release on 159.89.26.201
+      uses: appleboy/ssh-action@master
+      with:
+        host: "159.89.26.201"
+        # host: "159.89.18.195"
+        username: deploy
+        key: ${{ secrets.DEPLOYMENT_KEY }}
+        script_stop: true
+        script: |
+          # For this to work, add to /etc/sudoers:
+          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_staging
+          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_staging
+          sudo systemctl stop pairs_one_staging
+          cd ${{matrix.app}}_${{matrix.env}}
+          folder=`date '+%Y-%m-%d-%H-%M'`
+          mkdir $folder
+          ln -sfn `readlink -f current` old
+          ln -sfn `readlink -f $folder` current
+          tar -xjf release.tar.bz2 -C current
+          sudo systemctl start pairs_one_staging
+
+    - name: Give it 30 seconds to start...
+      run: sleep 30
+
+    - name: Unpack and restart release on 159.89.18.195
+      uses: appleboy/ssh-action@master
+      with:
+        host: "159.89.18.195"
+        username: deploy
+        key: ${{ secrets.DEPLOYMENT_KEY }}
+        script_stop: true
+        script: |
+          # For this to work, add to /etc/sudoers:
+          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_staging
+          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_staging
+          sudo systemctl stop pairs_one_staging
+          cd ${{matrix.app}}_${{matrix.env}}
+          folder=`date '+%Y-%m-%d-%H-%M'`
+          mkdir $folder
+          ln -sfn `readlink -f current` old
+          ln -sfn `readlink -f $folder` current
+          tar -xjf release.tar.bz2 -C current
+          sudo systemctl start pairs_one_staging
+

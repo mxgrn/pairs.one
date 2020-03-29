@@ -2,7 +2,6 @@ defmodule PairsOneWeb.GameController do
   use PairsOneWeb.Web, :controller
 
   alias PairsOne.Game
-  alias PairsOne.Telegram
 
   def new(conn, _params) do
     themes = PairsOne.Theme.list() |> Poison.encode!()
@@ -64,11 +63,6 @@ defmodule PairsOneWeb.GameController do
         |> Game.create()
 
       new_game_path = "/#{locale()}" <> game_path(conn, :show, game.id)
-
-      new_game_url = "https://#{conn.host}#{new_game_path}"
-
-      # Notify Telegram chat about new random game
-      Telegram.notify_on_new_game(game, new_game_url)
 
       redirect(conn, to: new_game_path)
     end

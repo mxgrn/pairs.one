@@ -30,12 +30,3 @@ msgstr "Libérez votre esprit en améliorant votre mémoire"
 #: lib/pairs_one_web/templates/layout/app.html.eex:73
 msgid "Help with translation"
 msgstr "Aider à traduire le jeu"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:30
-#: lib/pairs_one_web/templates/layout/app.html.eex:31
-msgid "Telegram channel"
-msgstr "chaîne Telegram"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:33
-msgid "Telegram channel newsbar"
-msgstr "Rejoignez notre %{link} pour être averti quand quelqu'un est prêt à jouer!"

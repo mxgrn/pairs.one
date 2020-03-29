@@ -30,11 +30,3 @@ msgstr "Разгрузи мозг, улучшая память"
 #: lib/pairs_one_web/templates/layout/app.html.eex:73
 msgid "Help with translation"
 msgstr "Помочь с переводом"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:31
-msgid "Telegram channel"
-msgstr "канал Telegram"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:33
-msgid "Telegram channel newsbar"
-msgstr "Подпишись на наш %{link}, чтобы получать уведомления, когда кто-то хочет сыграть!"

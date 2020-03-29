@@ -1,7 +1,22 @@
 defmodule PairsOneWeb.Endpoint do
+  use Sentry.PlugCapture
   use Phoenix.Endpoint, otp_app: :pairs_one
 
-  socket("/socket", PairsOneWeb.UserSocket)
+  # The session will be stored in the cookie and signed,
+  # this means its contents can be read but not tampered with.
+  # Set :encryption_salt if you would also like to encrypt it.
+  @session_options [
+    store: :cookie,
+    key: "_foo_key",
+    signing_salt: "3+22JymG"
+  ]
+
+  socket("/socket", PairsOneWeb.UserSocket,
+    websocket: true,
+    longpoll: false
+  )
+
+  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -30,7 +45,7 @@ defmodule PairsOneWeb.Endpoint do
     Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    json_decoder: Poison
+    json_decoder: Phoenix.json_library()
   )
 
   plug(Plug.MethodOverride)

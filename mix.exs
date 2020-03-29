@@ -5,7 +5,7 @@ defmodule PairsOne.Mixfile do
     [
       app: :pairs_one,
       version: "0.0.1",
-      elixir: "~> 1.2",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -20,20 +20,8 @@ defmodule PairsOne.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {PairsOne, []},
-      applications: [
-        :phoenix,
-        :phoenix_pubsub,
-        :phoenix_html,
-        :cowboy,
-        :logger,
-        :gettext,
-        :uuid,
-        :exredis,
-        :lz_string,
-        :edeliver,
-        :httpotion
-      ]
+      mod: {PairsOne.Application, []},
+      extra_applications: [:logger, :runtime_tools]
     ]
   end
 
@@ -46,15 +34,27 @@ defmodule PairsOne.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.2"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_html, "~> 2.10"},
-      {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.13"},
-      {:cowboy, "~> 1.0"},
+      {:phoenix, "~> 1.5.6"},
+      {:phoenix_html, "~> 2.11"},
+      {:phoenix_live_reload, "~> 1.2", only: :dev},
+      {:phoenix_live_dashboard, "~> 0.3 or ~> 0.2.9"},
+      {:telemetry_metrics, "~> 0.4"},
+      {:telemetry_poller, "~> 0.4"},
+      {:gettext, "~> 0.11"},
+      {:plug_cowboy, "~> 2.0"},
+
+      # Sentry
+      {:sentry, "~> 8.0"},
+      {:hackney, "~> 1.8"},
+
+      # DEBT: used in the code
+      {:poison, "~> 3.1"},
+
+      # Used by Phoenix
+      {:jason, "~> 1.0"},
       {:uuid, "~> 1.1"},
-      {:edeliver, "~> 1.4.0"},
-      {:distillery, "~> 1.5"},
+      # {:edeliver, "~> 1.4.0"},
+      # {:distillery, "~> 1.5"},
       {:exredis, ">= 0.2.4"},
       {:credo, "~> 0.4", only: [:dev, :test]},
       {:lz_string, "~> 0.0.6"},

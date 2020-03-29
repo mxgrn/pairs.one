@@ -8,16 +8,24 @@ use Mix.Config
 # Configures the endpoint
 config :pairs_one, PairsOneWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "y8VnQ8XolfdTMIrVKP+Z2iNuZL6WJfbgAqMxna1qjLYVgOnVlrIQcBr44YyaU3ZB",
+  secret_key_base: System.get_env("SECRET_KEY_BASE"),
   render_errors: [view: PairsOneWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: PairsOne.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: PairsOne.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:request_id]
 
+config :logger,
+  backends: [:console, Sentry.LoggerBackend]
+
 config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en ru fr uk pt)
+
+config :pairs_one, :release_sha, System.get_env("GITHUB_SHA") || "?"
+
+# Use Jason for JSON parsing in Phoenix
+config :phoenix, :json_library, Jason
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

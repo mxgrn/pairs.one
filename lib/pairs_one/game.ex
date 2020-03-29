@@ -7,7 +7,6 @@ defmodule PairsOne.Game do
   """
 
   alias PairsOne.Theme
-  alias PairsOne.Telegram
   alias Exredis.Api, as: Redis
 
   defstruct id: "",
@@ -17,8 +16,7 @@ defmodule PairsOne.Game do
             flips: 2,
             turn: -1,
             visibility: "public",
-            random: false,
-            telegram_msg_id: nil
+            random: false
 
   @redis_prefix "game:"
 
@@ -168,11 +166,6 @@ defmodule PairsOne.Game do
     game = set_turn(game)
 
     save!(game["id"], game)
-
-    if game["telegram_msg_id"] && all_players_joined?(players) do
-      Telegram.delete_chat_msg(game)
-      save!(game["id"], %{game | "telegram_msg_id" => nil})
-    end
 
     player
   end

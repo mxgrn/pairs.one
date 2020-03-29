@@ -30,11 +30,3 @@ msgstr ""
 #: lib/pairs_one_web/templates/layout/app.html.eex:73
 msgid "Help with translation"
 msgstr ""
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:31
-msgid "Telegram channel"
-msgstr "Telegram channel"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:33
-msgid "Telegram channel newsbar"
-msgstr "Join our %{link} to get notified when someone is willing to play!"

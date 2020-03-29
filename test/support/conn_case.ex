@@ -17,17 +17,13 @@ defmodule PairsOneWeb.ConnCase do
 
   using do
     quote do
-      # Import conveniences for testing with connections
-      use Phoenix.ConnTest
+      import Plug.Conn
+      import Phoenix.ConnTest
 
       import PairsOneWeb.Router.Helpers
 
       # The default endpoint for testing
       @endpoint PairsOneWeb.Endpoint
     end
-  end
-
-  setup tags do
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

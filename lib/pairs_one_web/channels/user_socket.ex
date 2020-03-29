@@ -7,7 +7,7 @@ defmodule PairsOneWeb.UserSocket do
   channel("chat:*", PairsOneWeb.ChatChannel)
 
   ## Transports
-  transport(:websocket, Phoenix.Transports.WebSocket)
+  # transport(:websocket, Phoenix.Transports.WebSocket)
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can
@@ -21,7 +21,7 @@ defmodule PairsOneWeb.UserSocket do
   #
   # See `Phoenix.Token` documentation for examples in
   # performing token verification on connect.
-  def connect(_params, socket) do
+  def connect(_params, socket, _conect_info) do
     {:ok, socket}
   end
 

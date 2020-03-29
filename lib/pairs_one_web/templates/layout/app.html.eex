@@ -25,13 +25,6 @@
         </header>
       <% else %>
         <header class="header clearfix">
-          <div class="news-bar" data-news-id=1>
-            <% url = link to: "https://t.me/pairsone" do %>
-              <%= img_tag "https://telegram.org/img/t_logo.png", width: 15, alt: gettext("Telegram channel"), class: "telegram-logo" %>
-              <%= gettext("Telegram channel") %><% end %>
-            <%= raw gettext "Telegram channel newsbar", link: url |> safe_to_string %>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
           <div class="row">
             <div class="col-sm-6">
               <h1 class="title centered-content">
@@ -49,7 +42,7 @@
         <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
         <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
         <p class="alert alert-success" role="alert"><%= get_flash(@conn, :warning) %></p>
-        <%= render @view_module, @view_template, assigns %>
+        <%= @inner_content %>
       </div>
 
       <div class="footer">

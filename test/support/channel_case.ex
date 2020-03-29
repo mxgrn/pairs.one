@@ -24,8 +24,4 @@ defmodule PairsOneWeb.ChannelCase do
       @endpoint PairsOneWeb.Endpoint
     end
   end
-
-  setup tags do
-    :ok
-  end
 end
