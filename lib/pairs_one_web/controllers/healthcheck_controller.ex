@@ -2,6 +2,8 @@ defmodule PairsOneWeb.HealthcheckController do
   use PairsOneWeb.Web, :controller
 
   def index(conn, _params) do
+    :ok = Exredis.Api.set(:redis, "foo", "bar")
+
     json(conn, %{
       port: System.get_env("PORT"),
       release_sha: Application.get_env(:pairs_one, :release_sha)
