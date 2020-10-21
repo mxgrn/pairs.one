@@ -5,6 +5,8 @@
 # is restricted to this project.
 use Mix.Config
 
+config :pairs_one, :env, Mix.env()
+
 # Configures the endpoint
 config :pairs_one, PairsOneWeb.Endpoint,
   url: [host: "localhost"],

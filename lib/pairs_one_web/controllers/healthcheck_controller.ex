@@ -5,6 +5,8 @@ defmodule PairsOneWeb.HealthcheckController do
     :ok = Exredis.Api.set(:redis, "foo", "bar")
 
     json(conn, %{
+      name: "pairs_one",
+      env: Application.get_env(:pairs_one, :env),
       port: System.get_env("PORT"),
       release_sha: Application.get_env(:pairs_one, :release_sha)
     })

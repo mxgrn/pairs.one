@@ -60,7 +60,6 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         host: "159.89.26.201"
-        # host: "159.89.18.195"
         username: deploy
         key: ${{ secrets.DEPLOYMENT_KEY }}
         script_stop: true
