@@ -8,6 +8,7 @@ defmodule PairsOneWeb.HealthcheckController do
       name: "pairs_one",
       env: Application.get_env(:pairs_one, :env),
       port: System.get_env("PORT"),
+      node: System.get_env("RELEASE_NODE"),
       release_sha: Application.get_env(:pairs_one, :release_sha)
     })
   end

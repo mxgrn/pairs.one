@@ -44,6 +44,8 @@ jobs:
         tar -cjf release.tar.bz2 _build/staging
       env:
         MIX_ENV: staging
+        REDIS_URI: ${{ secrets.REDIS_URI }}
+        RELEASE_COOKIE: ${{ secrets.RELEASE_COOKIE }}
         SECRET_KEY_BASE: ${{secrets.SECRET_KEY_BASE}}
         SENTRY_DSN: ${{secrets.SENTRY_DSN}}
 
@@ -56,17 +58,18 @@ jobs:
         source: release.tar.bz2
         target: ${{ matrix.app }}_${{matrix.env}}
 
-    - name: Unpack and restart release on 159.89.26.201
+    # For these to work, add to /etc/sudoers:
+    # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_staging
+    # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_staging
+
+    - name: Unpack and restart release on 159.89.18.195
       uses: appleboy/ssh-action@master
       with:
-        host: "159.89.26.201"
+        host: "159.89.18.195"
         username: deploy
         key: ${{ secrets.DEPLOYMENT_KEY }}
         script_stop: true
         script: |
-          # For this to work, add to /etc/sudoers:
-          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_staging
-          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_staging
           sudo systemctl stop pairs_one_staging
           cd ${{matrix.app}}_${{matrix.env}}
           folder=`date '+%Y-%m-%d-%H-%M'`
@@ -79,17 +82,14 @@ jobs:
     - name: Give it 30 seconds to start...
       run: sleep 30
 
-    - name: Unpack and restart release on 159.89.18.195
+    - name: Unpack and restart release on 159.89.26.201
       uses: appleboy/ssh-action@master
       with:
-        host: "159.89.18.195"
+        host: "159.89.26.201"
         username: deploy
         key: ${{ secrets.DEPLOYMENT_KEY }}
         script_stop: true
         script: |
-          # For this to work, add to /etc/sudoers:
-          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_staging
-          # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_staging
           sudo systemctl stop pairs_one_staging
           cd ${{matrix.app}}_${{matrix.env}}
           folder=`date '+%Y-%m-%d-%H-%M'`

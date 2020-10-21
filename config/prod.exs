@@ -72,3 +72,11 @@ config :sentry,
     env: "prod"
   },
   included_environments: [:prod]
+
+config :libcluster, :topologies,
+  pairs_one: [
+    strategy: Cluster.Strategy.Epmd,
+    config: [
+      hosts: [:"pairs_one_prod@elixir-1.local", :"pairs_one_prod@elixir-2.local"]
+    ]
+  ]

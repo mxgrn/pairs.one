@@ -9,6 +9,8 @@ defmodule PairsOne.Application do
   def start(_type, _args) do
     # Define workers and child supervisors to be supervised
     children = [
+      {Cluster.Supervisor,
+       [Application.get_env(:libcluster, :topologies, []), [name: PairsOne.ClusterSupervisor]]},
       {Phoenix.PubSub, name: PairsOne.PubSub},
       PairsOneWeb.Presence,
       # {PairsOne.RedisRepo, "redis://localhost:6379/0"},

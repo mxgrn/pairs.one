@@ -58,7 +58,8 @@ defmodule PairsOne.Mixfile do
       {:exredis, ">= 0.2.4"},
       {:credo, "~> 0.4", only: [:dev, :test]},
       {:lz_string, "~> 0.0.6"},
-      {:httpotion, "~> 3.0.2"}
+      {:httpotion, "~> 3.0.2"},
+      {:libcluster, "~> 3.2.1"}
     ]
   end
 
