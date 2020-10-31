@@ -1,25 +1,20 @@
 module Update exposing (update)
 
-import Phoenix.Socket
-import Phoenix.Channel
-import Phoenix.Push
+--
+
 import Json.Decode as JD
 import Json.Encode as JE
 import List.Extra
-import Phoenix.Presence exposing (PresenceState, syncState, syncDiff, presenceStateDecoder, presenceDiffDecoder)
-import Array
-
-
---
-
-import Bool
-import PortsOut exposing (..)
-import Types.Model exposing (..)
-import Types.Game exposing (..)
-import Types.Player exposing (..)
-import Types.Card exposing (..)
-import Types.Msg exposing (..)
+import Phoenix.Presence exposing (PresenceState, presenceDiffDecoder, presenceStateDecoder, syncDiff, syncState)
+import Phoenix.Push
+import Phoenix.Socket
 import PlayerStats exposing (..)
+import PortsOut exposing (..)
+import Types.Card exposing (..)
+import Types.Game exposing (..)
+import Types.Model exposing (..)
+import Types.Msg exposing (..)
+import Types.Player exposing (..)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -42,7 +37,7 @@ update msg model =
                 ( _, phxCmd ) =
                     Phoenix.Socket.push push model.phxSocket
             in
-                model ! [ Cmd.map PhoenixMsg phxCmd, (storeNameLocally model.playerName) ]
+            model ! [ Cmd.map PhoenixMsg phxCmd, storeNameLocally model.playerName ]
 
         -- Chat
         OnInputMessage msg ->
@@ -62,7 +57,7 @@ update msg model =
                 ( _, phxCmd ) =
                     Phoenix.Socket.push push model.phxSocket
             in
-                { model | chatMessage = "" } ! [ Cmd.map PhoenixMsg phxCmd ]
+            { model | chatMessage = "" } ! [ Cmd.map PhoenixMsg phxCmd ]
 
         ReceiveMessage raw ->
             let
@@ -86,10 +81,11 @@ update msg model =
                 cmd =
                     if chatMessage.playerId /= model.playerId then
                         playAudio "chat-msg"
+
                     else
                         Cmd.none
             in
-                { model | chatMessages = messages } ! [ cmd ]
+            { model | chatMessages = messages } ! [ cmd ]
 
         -- UpdateGame with complete state
         UpdateGame raw ->
@@ -125,6 +121,7 @@ update msg model =
             -- condition due to the fact that a tile gets clicked while it's no longer current player's turn.
             if model.playerTurn == model.game.turn || isLocal model.game then
                 flipCard index model
+
             else
                 model ! []
 
@@ -136,7 +133,7 @@ update msg model =
                 game_ =
                     { game | theme = theme }
             in
-                { model | game = game_ } ! []
+            { model | game = game_ } ! []
 
         Replay ->
             replay model
@@ -146,9 +143,9 @@ update msg model =
                 ( phxSocket, phxCmd ) =
                     Phoenix.Socket.update msg model.phxSocket
             in
-                ( { model | phxSocket = phxSocket }
-                , Cmd.map PhoenixMsg phxCmd
-                )
+            ( { model | phxSocket = phxSocket }
+            , Cmd.map PhoenixMsg phxCmd
+            )
 
         HandlePresenceState raw ->
             case JD.decodeValue (presenceStateDecoder playerPresenceDecoder) raw of
@@ -157,14 +154,14 @@ update msg model =
                         newPresenceState =
                             model.phxPresences |> syncState presenceState
                     in
-                        { model | phxPresences = newPresenceState } ! []
+                    { model | phxPresences = newPresenceState } ! []
 
                 Err error ->
                     let
                         _ =
                             Debug.log "Error" error
                     in
-                        model ! []
+                    model ! []
 
         HandlePresenceDiff raw ->
             case JD.decodeValue (presenceDiffDecoder playerPresenceDecoder) raw of
@@ -176,17 +173,18 @@ update msg model =
                         game =
                             if isLocal model.game then
                                 model.game
+
                             else
                                 updateFromPresenceState model.game newPresenceState
                     in
-                        { model | game = game, phxPresences = newPresenceState } ! []
+                    { model | game = game, phxPresences = newPresenceState } ! []
 
                 Err error ->
                     let
                         _ =
                             Debug.log "Error" error
                     in
-                        model ! []
+                    model ! []
 
 
 replay : Model -> ( Model, Cmd Msg )
@@ -202,7 +200,7 @@ replay model =
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.push push model.phxSocket
     in
-        { model | isCompleted = False } ! [ Cmd.map PhoenixMsg phxCmd ]
+    { model | isCompleted = False } ! [ Cmd.map PhoenixMsg phxCmd ]
 
 
 flipCard : Int -> Model -> ( Model, Cmd Msg )
@@ -215,27 +213,33 @@ flipCard index model =
             game.players
 
         flippedIds =
-            if (List.length game.cards.flipped) == game.flips then
+            if List.length game.cards.flipped == game.flips then
                 [ index ]
+
             else
                 index :: game.cards.flipped
 
+        _ =
+            Debug.log "flippedIds" flippedIds
+
         ( newTurn, matched, turnFinished ) =
-            if (List.length flippedIds) == game.flips then
+            if List.length flippedIds == game.flips then
                 let
                     firstValue =
                         flippedIds |> List.head |> Maybe.withDefault -1 |> cardValueAt game.cards
 
                     matched =
-                        List.all (\id -> (cardValueAt game.cards id) == firstValue) flippedIds
+                        List.all (\id -> cardValueAt game.cards id == firstValue) flippedIds
 
                     newTurn =
                         if matched then
                             game.turn
+
                         else
                             (game.turn + 1) % List.length players
                 in
-                    ( newTurn, matched, True )
+                ( newTurn, matched, True )
+
             else
                 ( game.turn, False, False )
 
@@ -245,12 +249,14 @@ flipCard index model =
         newCleared =
             if matched then
                 cards.cleared ++ flippedIds
+
             else
                 cards.cleared
 
         newSeen =
             if matched then
                 cards.seen
+
             else
                 cards.seen
                     ++ flippedIds
@@ -266,6 +272,7 @@ flipCard index model =
         updatePlayerStatsById player =
             if player.id == model.playerId then
                 player |> PlayerStats.updatePlayer cards flippedIds matched
+
             else
                 player
 
@@ -273,6 +280,7 @@ flipCard index model =
         updatePlayerStatsByIndex i player =
             if model.playerTurn == i then
                 player |> PlayerStats.updatePlayer cards flippedIds matched
+
             else
                 player
 
@@ -280,14 +288,17 @@ flipCard index model =
             if turnFinished then
                 if isLocal model.game then
                     List.indexedMap updatePlayerStatsByIndex players
+
                 else
                     List.map updatePlayerStatsById players
+
             else
                 players
 
         newPlayers =
             if roundFinished then
                 PlayerStats.updatePlayers players_
+
             else
                 players_
 
@@ -299,15 +310,17 @@ flipCard index model =
                 -- Only in case of local game are we overriding playerTurn
                 if roundFinished then
                     newTurn
+
                 else
                     (model.playerTurn + 1) % List.length model.game.players
+
             else
                 model.playerTurn
 
         newModel =
             { model | game = newGame, flippedIds = flippedIds, isCompleted = roundFinished, playerTurn = playerTurn }
     in
-        ( newModel, Cmd.batch [ sendGame newGame ] )
+    ( newModel, Cmd.batch [ sendGame newGame ] )
 
 
 updateGame : Model -> Game -> ( Model, Cmd Msg )
@@ -322,19 +335,22 @@ updateGame model game =
                     game_ =
                         { game | turn = 0 }
                 in
-                    ( playAudio "ready", game_ )
+                ( playAudio "ready", game_ )
+
             else
                 ( Cmd.none, game )
 
         playFlipCmd =
             if game.cards.flipped /= model.game.cards.flipped && model.game.cards.flipped /= [] then
                 playAudio "flip"
+
             else
                 Cmd.none
 
         game__ =
             if isSolo game_ then
                 { game_ | turn = 0 }
+
             else
                 game_
 
@@ -344,17 +360,18 @@ updateGame model game =
         playerTurn_ =
             if isLocal game then
                 game__.turn
+
             else
                 playerTurn model.playerId game.players
     in
-        { model
-            | game = game__
-            , flippedIds = game.cards.flipped
-            , playerTurn = playerTurn_
-            , isCompleted = isCompleted
-            , random = game.random
-        }
-            ! [ playReadyCmd, playFlipCmd ]
+    { model
+        | game = game__
+        , flippedIds = game.cards.flipped
+        , playerTurn = playerTurn_
+        , isCompleted = isCompleted
+        , random = game.random
+    }
+        ! [ playReadyCmd, playFlipCmd ]
 
 
 sendGame : Game -> Cmd Msg
@@ -372,7 +389,7 @@ sendCompressedGame model game =
         ( phxSocket, phxCmd ) =
             Phoenix.Socket.push push model.phxSocket
     in
-        Cmd.map PhoenixMsg phxCmd
+    Cmd.map PhoenixMsg phxCmd
 
 
 decoderError : Model -> String -> ( Model, Cmd Msg )
@@ -381,7 +398,7 @@ decoderError model error =
         _ =
             Debug.log "Decoder error" error
     in
-        ( model, Cmd.none )
+    ( model, Cmd.none )
 
 
 cardValueAt : CardData -> Int -> Int
