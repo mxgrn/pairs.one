@@ -217,7 +217,7 @@ flipCard index model =
                 [ index ]
 
             else
-                index :: game.cards.flipped
+                List.Extra.unique (index :: game.cards.flipped)
 
         _ =
             Debug.log "flippedIds" flippedIds
