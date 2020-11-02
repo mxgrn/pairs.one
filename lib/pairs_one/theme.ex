@@ -62,6 +62,12 @@ defmodule PairsOne.Theme do
       title: "Robots",
       cards: 50,
       difficulty: 2,
+      new: false
+    },
+    flags: %{
+      title: "Flags",
+      cards: 50,
+      difficulty: 0,
       new: true
     }
   ]
