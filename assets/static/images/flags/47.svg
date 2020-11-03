@@ -1,20 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 36 24">
-<rect width="36" height="24" fill="#fff"/>
-<g fill="#005293">
-<g id="star" transform="translate(9,6)">
-<g id="c">
-<path id="t" d="M 0,-3 v 3 h 1.5 z" transform="rotate(18 0,-3)"/>
-<use xlink:href="#t" transform="scale(-1,1)"/>
-</g>
-<use xlink:href="#c" transform="rotate(72)"/>
-<use xlink:href="#c" transform="rotate(144)"/>
-<use xlink:href="#c" transform="rotate(216)"/>
-<use xlink:href="#c" transform="rotate(288)"/>
-</g>
-<rect y="12" width="18" height="12"/>
-</g>
-<g fill="#d21034">
-<rect x="18" width="18" height="12"/>
-<use xlink:href="#star" x="18" y="12"/>
-</g>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-60 -40 240 160">
+<rect x="-60" y="-40" width="100%" height="100%" fill="#fe0000"/>
+<rect x="-60" y="-40" width="50%" height="50%" fill="#000095"/>
+<path id="four_rays" d="M 8,0 L 0,30 L -8,0 L 0,-30 M 0,8 L 30,0 L 0,-8 L -30,0" fill="#fff"/>
+<use xlink:href="#four_rays" transform="rotate(30)"/>
+<use xlink:href="#four_rays" transform="rotate(60)"/>
+<circle r="17" fill="#000095"/>
+<circle r="15" fill="#fff"/>
 </svg>

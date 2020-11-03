@@ -455,7 +455,7 @@ themeView theme =
             [ img [ src <| "/images/" ++ theme.name ++ "/1.svg", width 50, height 50 ] []
             , div [ class "theme-title" ]
                 [ text theme.title
-                , sup [ class "text-danger" ] [ text newBadgeText ]
+                , sup [ class "text-danger", style [ ( "font-weight", "bold" ) ] ] [ text newBadgeText ]
                 ]
             ]
 

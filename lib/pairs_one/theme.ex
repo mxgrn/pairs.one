@@ -28,6 +28,12 @@ defmodule PairsOne.Theme do
       difficulty: 0,
       new: false
     },
+    flags: %{
+      title: "Flags",
+      cards: 50,
+      difficulty: 0,
+      new: true
+    },
     pokemon: %{
       title: "Pokémon",
       cards: 50,
@@ -63,12 +69,6 @@ defmodule PairsOne.Theme do
       cards: 50,
       difficulty: 2,
       new: false
-    },
-    flags: %{
-      title: "Flags",
-      cards: 50,
-      difficulty: 0,
-      new: true
     }
   ]
 
