@@ -4,6 +4,7 @@ defmodule PairsOneWeb.LayoutView do
   def lang_select_options do
     locales = %{
       "en" => "English",
+      "de" => "Deutsch",
       "es" => "Castellano",
       "pt" => "Português",
       "fr" => "Français",

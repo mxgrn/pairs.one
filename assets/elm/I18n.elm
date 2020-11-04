@@ -1,5 +1,6 @@
 module I18n exposing (..)
 
+import I18n.De
 import I18n.En
 import I18n.Es
 import I18n.Fr
@@ -14,6 +15,9 @@ translate language translation =
     case language of
         "en" ->
             I18n.En.translate translation
+
+        "de" ->
+            I18n.De.translate translation
 
         "es" ->
             I18n.Es.translate translation
