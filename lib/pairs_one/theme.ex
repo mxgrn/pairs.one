@@ -28,11 +28,17 @@ defmodule PairsOne.Theme do
       difficulty: 0,
       new: false
     },
-    flags: %{
-      title: "Flags",
+    covid19: %{
+      title: "COVID-19",
       cards: 50,
       difficulty: 0,
-      new: true
+      new: false
+    },
+    ecology: %{
+      title: "Ecology",
+      cards: 50,
+      difficulty: 0,
+      new: false
     },
     pokemon: %{
       title: "Pokémon",
@@ -48,6 +54,12 @@ defmodule PairsOne.Theme do
     },
     music: %{
       title: "Music",
+      cards: 50,
+      difficulty: 1,
+      new: false
+    },
+    flags: %{
+      title: "Flags",
       cards: 50,
       difficulty: 1,
       new: false
