@@ -45,7 +45,7 @@
         <%= @inner_content %>
       </div>
 
-      <div class="footer">
+      <div class="footer" style="margin-bottom: 40px;">
         <div class="col-md-3 col-md-push-9 footer__lang">
           <select name="language" id="language">
             <%= for {code, name} <- lang_select_options() do %>

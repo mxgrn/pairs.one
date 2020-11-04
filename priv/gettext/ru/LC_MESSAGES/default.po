@@ -12,7 +12,7 @@ msgstr ""
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:7
 msgid "Play memory/concentration game with friends over the Internet without registration"
-msgstr "Играй в Мемори с друзьями через Интернет без регистрации"
+msgstr "Играй в Мемори с друзьями онлайн без регистрации"
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:69
 msgid "Source code"

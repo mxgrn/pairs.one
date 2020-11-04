@@ -46,6 +46,7 @@ h1.title small {
 #main {
   display: none;
   padding: 0 40px;
+  padding-bottom: 10px;
 }
 
 /* Small screens */
