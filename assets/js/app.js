@@ -115,11 +115,6 @@ $(function(){
 
   $("#player-data input").attr("value", playerName);
 
-  $("select#language").change( function(e){
-    var lang = $(e.target).val();
-    window.location = location.pathname.replace(/\/[a-z-]+\//, "/"+ lang +"/");
-  });
-
   // GameList
 
   $(".elm-game-list").each(
