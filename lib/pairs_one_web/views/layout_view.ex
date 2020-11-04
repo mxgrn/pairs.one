@@ -4,10 +4,11 @@ defmodule PairsOneWeb.LayoutView do
   def lang_select_options do
     locales = %{
       "en" => "English",
-      "ru" => "Русский",
-      "uk" => "Українська",
+      "es" => "Castellano",
       "pt" => "Português",
-      "fr" => "Français"
+      "fr" => "Français",
+      "ru" => "Русский",
+      "uk" => "Українська"
     }
 
     Enum.map(PairsOneWeb.Gettext.supported_locales(), fn locale ->

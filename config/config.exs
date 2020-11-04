@@ -22,7 +22,7 @@ config :logger, :console,
 config :logger,
   backends: [:console, Sentry.LoggerBackend]
 
-config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en ru fr uk pt)
+config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en es ru fr uk pt)
 
 config :pairs_one, :release_sha, System.get_env("GITHUB_SHA") || "?"
 

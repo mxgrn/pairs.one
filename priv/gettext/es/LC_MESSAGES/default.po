@@ -1,0 +1,42 @@
+# # "msgid"s in this file come from POT (.pot) files.
+# #
+# # Do not add, change, or remove "msgid"s manually here as
+# # they're tied to the ones in the corresponding POT file
+# # (with the same domain).
+# #
+# # Use "mix gettext.extract --merge" or "mix gettext.merge"
+# # to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: es\n"
+"Plural-Forms: nplurals=2;\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:7
+msgid "Play memory/concentration game with friends over the Internet without registration"
+msgstr "Juega Memory/Concentration con amigos online sin necesidad de registrarte"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:68
+msgid "Source code"
+msgstr "Código fuente"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:10
+#: lib/pairs_one_web/templates/layout/app.html.eex:42
+msgid "Concentration game: multiplayer and registration-free"
+msgstr "Juego de Concentration: multijugador y sin registro"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:44
+msgid "Unload your mind while improving your memory"
+msgstr "Descarga tu mente mientras mejoras tu memoria"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:72
+msgid "Help with translation"
+msgstr "Ayuda con la traducción"
