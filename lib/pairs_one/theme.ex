@@ -36,7 +36,7 @@ defmodule PairsOne.Theme do
     },
     memes: %{
       title: "Memes",
-      cards: 30,
+      cards: 40,
       difficulty: 0,
       new: true,
       extension: "gif"
