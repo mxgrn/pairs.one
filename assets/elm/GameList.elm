@@ -13,6 +13,9 @@ import Json.Encode as JE
 import Json.Decode as JD exposing (field)
 import Dict exposing (Dict)
 
+import Types.Theme exposing (ThemeData)
+import Types.Game exposing (themeDataEncoder)
+
 
 -- Submodules
 
@@ -34,7 +37,7 @@ type alias GameId =
 
 type alias Game =
     { id : GameId
-    , theme : String
+    , theme : ThemeData
     , size : String
     , players : List Player
     }
@@ -111,7 +114,7 @@ games model =
                     a [ class "game-list__game", href <| "/" ++ model.locale ++ "/games/" ++ game.id ]
                         [ div
                             [ class "game__visual" ]
-                            [ img [ src <| "/images/" ++ game.theme ++ "/1.svg" ] []
+                            [ img [ src <| "/images/" ++ game.theme.name ++ "/1." ++ game.theme.extension ] []
                             , div []
                                 [ strong [] [ text game.size ]
                                 ]
@@ -174,7 +177,10 @@ gameDecoder : JD.Decoder Game
 gameDecoder =
     JD.map4 Game
         (field "id" JD.string)
-        (field "theme" JD.string)
+        (field "theme" (JD.map2 ThemeData
+                (field "name" (JD.string))
+                (field "extension" (JD.string))
+            ))
         (field "size" JD.string)
         (field "players" (JD.list playerDecoder))
 

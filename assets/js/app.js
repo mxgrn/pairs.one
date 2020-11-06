@@ -132,7 +132,7 @@ $(function(){
   $(".elm-game-selector").each(
     function(i, el){
       var defaultSettings = {
-        theme: "eighties",
+        theme: { name: "eighties", extension: "svg"},
         size: 6,
         players: 2,
         visibility: "public"

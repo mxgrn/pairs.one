@@ -12,7 +12,7 @@ defmodule PairsOne.Game do
   defstruct id: "",
             cards: %{cleared: [], flipped: [], seen: [], values: []},
             players: [],
-            theme: "eighties",
+            theme: %{ name: "eighties", extension: "svg"},
             flips: 2,
             turn: -1,
             visibility: "public",
@@ -40,7 +40,7 @@ defmodule PairsOne.Game do
   def create(%{
         "board_size" => board_size,
         "players_number" => players_number,
-        "theme" => theme_name,
+        "theme" => theme,
         "visibility" => visibility,
         "random" => random
       }) do
@@ -64,9 +64,9 @@ defmodule PairsOne.Game do
 
     game = %PairsOne.Game{
       id: id,
-      cards: cards(board_size, Theme.cards_number(theme_name)),
+      cards: cards(board_size, Theme.cards_number(theme["name"])),
       players: players,
-      theme: theme_name,
+      theme: theme,
       visibility: visibility,
       random: random,
       turn: turn
@@ -89,13 +89,13 @@ defmodule PairsOne.Game do
   @doc """
   Given new params, reset completed game
   """
-  def replay(game, %{"theme" => theme_name}) do
+  def replay(game, %{"theme" => theme_data}) do
     players =
       Enum.map(game["players"], fn player ->
         %{player | "score" => 0, "turns" => 0, "inaccurateTurns" => 0}
       end)
 
-    theme = Theme.get(theme_name)
+    theme = Theme.get(theme_data.name)
 
     cards =
       game["cards"]["values"]
@@ -104,7 +104,7 @@ defmodule PairsOne.Game do
       |> round
       |> cards(theme.cards)
 
-    game = %{game | "cards" => cards, "players" => players, "theme" => theme_name}
+    game = %{game | "cards" => cards, "players" => players, "theme" => theme_data.name}
 
     save!(game["id"], game)
   end

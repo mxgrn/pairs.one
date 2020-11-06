@@ -51,7 +51,7 @@ init : Params -> ( Model, Cmd Msg )
 init { id, playerId, host, isSsl, playerName, themes, locale } =
     let
         game =
-            Game "" (CardData [] [] [] []) [] 0 0 "eighties" False "public"
+            Game "" (CardData [] [] [] []) [] 0 0 {name = "eighties", extension = "svg"} False "public"
 
         payload =
             JE.object

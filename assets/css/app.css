@@ -173,6 +173,9 @@ li.right {
   width: 80%;
   height: 80%;
 }
+.back img.gif {
+  object-fit: cover;
+}
 
 .centerer {
   display: inline-block;
@@ -545,6 +548,10 @@ img.screenshot {
 .theme-icon {
   width: 30px;
   margin-right: 5px;
+}
+
+.theme-icon.gif {
+  width: 24px; 
 }
 
 .btn-go-wrapper {

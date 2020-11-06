@@ -34,6 +34,13 @@ defmodule PairsOne.Theme do
       difficulty: 0,
       new: false
     },
+    memes: %{
+      title: "Memes",
+      cards: 30,
+      difficulty: 0,
+      new: true,
+      extension: "gif"
+    },
     ecology: %{
       title: "Ecology",
       cards: 50,
@@ -88,7 +95,7 @@ defmodule PairsOne.Theme do
   Given theme name, returns number of cards in that theme
   """
   def cards_number(name) when is_binary(name) do
-    @themes[String.to_atom(name)].cards
+    themes()[String.to_atom(name)].cards
   end
 
   @doc """
@@ -103,12 +110,17 @@ defmodule PairsOne.Theme do
   """
   def themes do
     @themes
+    |> Enum.map(fn {name, theme} ->
+      extension = (theme |> Map.get(:extension)) || "svg"
+      new_theme = theme |> Map.put(:extension, extension)
+      {name, new_theme}
+    end)
   end
 
   @doc """
   Themes as a list
   """
   def list do
-    @themes |> Enum.map(fn {theme, data} -> Map.merge(data, %{name: theme}) end)
+    themes() |> Enum.map(fn {theme, data} -> Map.merge(data, %{name: theme}) end)
   end
 end

@@ -10,6 +10,7 @@ import Dict exposing (Dict)
 
 import Types.Player exposing (..)
 import Types.Card exposing (..)
+import Types.Theme exposing (ThemeData)
 
 
 type alias GameId =
@@ -25,6 +26,13 @@ cardDataEncoder cardData =
         , ( "values", (List.map JE.int cardData.values) |> JE.list )
         ]
 
+themeDataEncoder : ThemeData -> JE.Value
+themeDataEncoder themeData =
+    JE.object
+        [( "name", (JE.string themeData.name) )
+        , ( "extension", (JE.string themeData.extension) )
+        ]
+
 
 type alias Game =
     { id : GameId
@@ -32,7 +40,7 @@ type alias Game =
     , players : List Player
     , flips : Int
     , turn : Int
-    , theme : String
+    , theme : ThemeData
     , random : Bool
     , visibility : String
     }
@@ -45,7 +53,7 @@ gameEncoder game =
         , ( "players", (List.map playerEncoder game.players) |> JE.list )
         , ( "flips", game.flips |> JE.int )
         , ( "turn", game.turn |> JE.int )
-        , ( "theme", game.theme |> JE.string )
+        , ( "theme", game.theme |> themeDataEncoder )
         ]
 
 
@@ -64,7 +72,10 @@ gameDecoder =
         (field "players" (JD.list playerDecoder))
         (field "flips" JD.int)
         (field "turn" JD.int)
-        (field "theme" JD.string)
+        (field "theme" (JD.map2 ThemeData
+                (field "name" (JD.string))
+                (field "extension" (JD.string))
+            ))
         (field "random" JD.bool)
         (field "visibility" JD.string)
 
