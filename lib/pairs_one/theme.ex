@@ -16,12 +16,6 @@ defmodule PairsOne.Theme do
       difficulty: 0,
       new: false
     },
-    animals2: %{
-      title: "Animals 2",
-      cards: 50,
-      difficulty: 0,
-      new: false
-    },
     fairy_tales: %{
       title: "Fairy Tales",
       cards: 50,
@@ -39,6 +33,18 @@ defmodule PairsOne.Theme do
       cards: 50,
       difficulty: 0,
       new: false
+    },
+    gym: %{
+      title: "Gym",
+      cards: 50,
+      difficulty: 0,
+      new: true
+    },
+    xmas: %{
+      title: "Xmas",
+      cards: 50,
+      difficulty: 0,
+      new: true
     },
     pokemon: %{
       title: "Pokémon",
@@ -81,6 +87,12 @@ defmodule PairsOne.Theme do
       cards: 50,
       difficulty: 2,
       new: false
+    },
+    space: %{
+      title: "Space",
+      cards: 50,
+      difficulty: 2,
+      new: true
     }
   ]
 
