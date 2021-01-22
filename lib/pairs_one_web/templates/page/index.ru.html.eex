@@ -20,7 +20,8 @@
             Играй один - на улучшение точности!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
-            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[theme][name]" value="eighties">
+            <input type="hidden" name="game[theme][extension]" value="svg">
             <input type="hidden" name="game[board_size]" value="6">
             <input type="hidden" name="game[players_number]" value="1">
             <input type="hidden" name="game[visibility]" value="private">
@@ -55,7 +56,8 @@
             Кинь линк на начавшуся игру другу - и вперед!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
-            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[theme][name]" value="eighties">
+            <input type="hidden" name="game[theme][extension]" value="svg">
             <input type="hidden" name="game[board_size]" value="6">
             <input type="hidden" name="game[players_number]" value="2">
             <input type="hidden" name="game[visibility]" value="private">
@@ -75,7 +77,8 @@
             Играй с другом на одном устройстве!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
-            <input type="hidden" name="game[theme]" value="eighties">
+            <input type="hidden" name="game[theme][name]" value="eighties">
+            <input type="hidden" name="game[theme][extension]" value="svg">
             <input type="hidden" name="game[board_size]" value="6">
             <input type="hidden" name="game[players_number]" value="2">
             <input type="hidden" name="game[visibility]" value="local">

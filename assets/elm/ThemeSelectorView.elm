@@ -16,7 +16,7 @@ import Types.Msg exposing (..)
 themeSelectorView : Model -> Html Msg
 themeSelectorView model =
     div [ class "theme-selector" ]
-        (List.map (themeButton model.game.theme) model.themes)
+        (List.map (themeButton model.game.theme.name) model.themes)
 
 
 themeButton : String -> Theme -> Html Msg
@@ -34,7 +34,7 @@ themeButton activeTheme theme =
             else
                 ""
     in
-        label [ class <| "btn btn-default btn-theme " ++ (levelCls theme.difficulty) ++ activeClass, onClick <| ChangeTheme theme.name ]
+        label [ class <| "btn btn-default btn-theme " ++ (levelCls theme.difficulty) ++ activeClass, onClick <| ChangeTheme theme.name theme.extension ]
             [ img [ src <| "/images/" ++ theme.name ++ "/1.svg", width 50, height 50 ] []
             , div [ class "theme-title" ]
                 [ text theme.title

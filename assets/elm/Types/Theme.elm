@@ -6,9 +6,14 @@ type alias Theme =
     , title : String
     , difficulty : Int
     , new : Bool
+    , extension : String
     }
 
+type alias ThemeData =
+    { name : String
+    , extension : String
+    }
 
 defaultTheme : Theme
 defaultTheme =
-    Theme "eighties" "80's" 0 False
+    Theme "eighties" "80's" 0 False "svg"

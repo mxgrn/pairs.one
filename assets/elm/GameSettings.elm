@@ -356,12 +356,15 @@ themeButton model =
     in
         div []
             [ div [ class <| "btn btn-default btn-lg btn-game-setting " ++ (levelCls model.theme.difficulty), onClick ShowThemeSelector ]
-                [ img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1.svg" ]
+                [ img [ class "theme-icon", src <| "/images/" ++ model.theme.name ++ "/1." ++ model.theme.extension 
+                      , class model.theme.extension 
+                    ]
                     []
                 , i [ class "fa fa-caret-down" ]
                     []
                 ]
-            , input [ type_ "hidden", name "game[theme]", value model.theme.name ] []
+            , input [ type_ "hidden", name "game[theme][name]", value model.theme.name ] []
+            , input [ type_ "hidden", name "game[theme][extension]", value model.theme.extension ] []
             ]
 
 
@@ -452,7 +455,7 @@ themeView theme =
                 ""
     in
         label [ class <| "btn btn-default btn-theme " ++ (levelCls theme.difficulty), onClick <| SelectTheme theme.name ]
-            [ img [ src <| "/images/" ++ theme.name ++ "/1.svg", width 50, height 50 ] []
+            [ img [ src <| "/images/" ++ theme.name ++ "/1." ++ theme.extension, width 50, height 50 ] []
             , div [ class "theme-title" ]
                 [ text theme.title
                 , sup [ class "text-danger", style [ ( "font-weight", "bold" ) ] ] [ text newBadgeText ]

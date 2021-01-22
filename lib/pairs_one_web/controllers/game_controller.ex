@@ -54,7 +54,7 @@ defmodule PairsOneWeb.GameController do
     else
       game =
         %{
-          "theme" => "eighties",
+          "theme" => %{"name" => "eighties", "extension" => "svg"},
           "board_size" => "6",
           "players_number" => "2",
           "visibility" => "public",

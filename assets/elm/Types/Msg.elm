@@ -17,7 +17,7 @@ type Msg
     | SendCompressedGame JE.Value
       -- | UpdatePlayer String
     | FlipCard Int
-    | ChangeTheme String
+    | ChangeTheme String String
     | CopyUrl
     | SelectGameUrlInput
     | Replay

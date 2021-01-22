@@ -119,7 +119,8 @@ card model dimension row col ( cardId, card ) =
                     [ class "back" ]
                     [ div [ class "centerer" ] []
                     , img
-                        [ src ("/images/" ++ model.game.theme ++ "/" ++ (toString card.value) ++ ".svg")
+                        [ src ("/images/" ++ model.game.theme.name ++ "/" ++ (toString card.value) ++ "." ++ model.game.theme.extension)
+                        , class model.game.theme.extension
                         ]
                         []
                     ]

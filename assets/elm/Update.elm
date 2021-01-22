@@ -15,7 +15,7 @@ import Types.Game exposing (..)
 import Types.Model exposing (..)
 import Types.Msg exposing (..)
 import Types.Player exposing (..)
-
+import Types.Theme exposing (ThemeData)
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
@@ -125,13 +125,17 @@ update msg model =
             else
                 model ! []
 
-        ChangeTheme theme ->
+        ChangeTheme themeName themeExtension ->
             let
                 game =
                     model.game
+                
+                newTheme : ThemeData
+                newTheme =
+                    { name = themeName, extension = themeExtension }
 
                 game_ =
-                    { game | theme = theme }
+                    { game | theme = newTheme }
             in
             { model | game = game_ } ! []
 
