@@ -23,7 +23,7 @@ config :logger,
   backends: [:console, Sentry.LoggerBackend]
 
 # TODO: finish localization for pt and uk
-config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en de es fr ru)
+config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en de pl es fr ru)
 
 config :pairs_one, :release_sha, System.get_env("GITHUB_SHA") || "?"
 

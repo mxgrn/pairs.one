@@ -5,6 +5,7 @@ defmodule PairsOneWeb.LayoutView do
     locales = %{
       "en" => "English",
       "de" => "Deutsch",
+      "pl" => "Polski",
       "es" => "Castellano",
       "pt" => "Português",
       "fr" => "Français",

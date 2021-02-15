@@ -4,6 +4,7 @@ import I18n.De
 import I18n.En
 import I18n.Es
 import I18n.Fr
+import I18n.Pl
 import I18n.Pt
 import I18n.Ru
 import I18n.Translation exposing (..)
@@ -15,6 +16,9 @@ translate language translation =
     case language of
         "en" ->
             I18n.En.translate translation
+
+        "pl" ->
+            I18n.Pl.translate translation
 
         "de" ->
             I18n.De.translate translation
