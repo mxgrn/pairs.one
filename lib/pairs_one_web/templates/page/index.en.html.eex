@@ -1,6 +1,6 @@
 <div class="row landing-section">
   <div class="col-sm-6 col-sm-push-6">
-    <img src="/images/landing.jpg" alt="sample screenshot" class="img-responsive screenshot"/>
+    <img src="/images/landing.jpg" alt="Concentration game" class="img-responsive screenshot"/>
     <div class="rules">
       <div class="rules-header">
         <span class="header-icon fa fa-question"></span>
