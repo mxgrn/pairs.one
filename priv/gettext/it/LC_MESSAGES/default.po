@@ -1,0 +1,32 @@
+## `msgid`s in this file come from POT (.pot) files.
+##
+## Do not add, change, or remove `msgid`s manually here as
+## they're tied to the ones in the corresponding POT file
+## (with the same domain).
+##
+## Use `mix gettext.extract --merge` or `mix gettext.merge`
+## to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: it\n"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:7
+msgid "Play memory/concentration game with friends over the Internet without registration"
+msgstr "Gioca a giochi di memoria con gli amici su Internet senza registrazione"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:69
+msgid "Source code"
+msgstr "Codice sorgente"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:10
+#: lib/pairs_one_web/templates/layout/app.html.eex:43
+msgid "Concentration game: multiplayer and registration-free"
+msgstr "Gioco di memoria: multiplayer e senza registrazione"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:45
+msgid "Unload your mind while improving your memory"
+msgstr "Scarica la tua mente migliorando la tua memoria"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:73
+msgid "Help with translation"
+msgstr "Aiuto con la traduzione"
