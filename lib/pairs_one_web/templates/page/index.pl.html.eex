@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-primary">Graj z <strong>losowym</strong> graczem</button>
+          <button type="submit" class="btn btn-option-go btn-primary"><strong>Losowy</strong> gracz</button>
         </div>
       </div>
     </form>
