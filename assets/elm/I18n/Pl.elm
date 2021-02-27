@@ -50,6 +50,9 @@ translate t =
         ShareThisUrlRandom ->
             "Szukamy dla Ciebie przeciwnika! Daj nam chwilę lub udostępnij ten adres URL komuś, kto chciałby teraz z Tobą zagrać:"
 
+        HelpMeKeepItAdFree ->
+            "Pomóż mi utrzymać Pairs One bez reklam, przekazując darowiznę na"
+
         Theme ->
             "Motyw"
 

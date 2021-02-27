@@ -20,6 +20,7 @@ type Translation
     | Scoreboard Scoreboard
     | ShareThisUrl
     | ShareThisUrlRandom
+    | HelpMeKeepItAdFree
     | Theme
     | Size
     | Public

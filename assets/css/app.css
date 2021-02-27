@@ -253,6 +253,11 @@ label.game-url {
   margin-bottom: 20px;
 }
 
+.donation-notice {
+  margin-top: 20px;
+  color: #666;
+}
+
 .turn-banner {
   padding: 5px;
   margin-top: 5px;

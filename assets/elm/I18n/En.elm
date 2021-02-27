@@ -31,10 +31,10 @@ translate t =
             "Play again"
 
         Accuracy value ->
-            "Accuracy: " ++ (toString value) ++ "%"
+            "Accuracy: " ++ toString value ++ "%"
 
         Score value ->
-            "Score: " ++ (toString value)
+            "Score: " ++ toString value
 
         Scoreboard t ->
             case t of
@@ -49,6 +49,9 @@ translate t =
 
         ShareThisUrlRandom ->
             "We are looking for an opponent for you! Give us a second, or share this URL with anyone who might want to play with you right now:"
+
+        HelpMeKeepItAdFree ->
+            "Help me keep Pairs One ad-free by donating on"
 
         Theme ->
             "Theme"

@@ -31,10 +31,10 @@ translate t =
             "Rejouer"
 
         Accuracy value ->
-            "Justesse: " ++ (toString value) ++ "%"
+            "Justesse: " ++ toString value ++ "%"
 
         Score value ->
-            "Score: " ++ (toString value)
+            "Score: " ++ toString value
 
         Scoreboard t ->
             case t of
@@ -48,7 +48,10 @@ translate t =
             "Partager cet URL avec votre/vos adversaire(s):"
 
         ShareThisUrlRandom ->
-            "Vous cherchez un adversaire! Donnez-nous une seconde, ou bien partagez cet URL avec quelqu'un qui voudrait jouer avec vous maintenant :"
+            "Aidez-moi à garder Pairs One sans publicité en faisant un don sur"
+
+        HelpMeKeepItAdFree ->
+            ""
 
         Theme ->
             "Thème"

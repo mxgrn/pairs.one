@@ -1,29 +1,27 @@
 module View exposing (view)
 
+-- submodules
+
+import BoardView exposing (..)
+import ChatView exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
-import Json.Decode as Json
-import String
-
-
--- submodules
-
-import ScoreboardView exposing (..)
-import ReplayView exposing (..)
-import BoardView exposing (..)
-import ChatView exposing (..)
-import Types.Model exposing (..)
-import Types.Game exposing (isLocal)
-import Types.Msg exposing (..)
 import I18n exposing (..)
 import I18n.Translation exposing (..)
+import Json.Decode as Json
 import PlayersView exposing (..)
+import ReplayView exposing (..)
+import ScoreboardView exposing (..)
+import String
+import Types.Game exposing (isLocal)
+import Types.Model exposing (..)
+import Types.Msg exposing (..)
 
 
 view : Model -> Html Msg
 view model =
-    case List.length (model.game.cards.values) of
+    case List.length model.game.cards.values of
         0 ->
             loading
 
@@ -41,6 +39,7 @@ game : Model -> Html Msg
 game model =
     if model.isCompleted then
         completedGame model
+
     else
         div [ class "row" ]
             [ prestartOverlay model
@@ -58,14 +57,15 @@ chatArea : Model -> List (Html Msg)
 chatArea model =
     let
         isSinglePlayer =
-            (List.length model.game.players) == 1
+            List.length model.game.players == 1
     in
-        if isLocal model.game || isSinglePlayer then
-            []
-        else
-            [ userName model
-            , chatView model
-            ]
+    if isLocal model.game || isSinglePlayer then
+        []
+
+    else
+        [ userName model
+        , chatView model
+        ]
 
 
 completedGame : Model -> Html Msg
@@ -85,17 +85,17 @@ userName model =
         t =
             I18n.translate model.locale
     in
-        div [ class "user-name-area" ]
-            [ label [] [ text <| t <| YourName ]
-            , div [ class "input-group input-group--name" ]
-                [ input
-                    [ class "form-control", onInput OnInputPlayerName, value model.playerName ]
-                    []
-                , span [ class "input-group-btn" ]
-                    [ button [ class "btn btn-default", onClick SetUserName ] [ text "ok" ]
-                    ]
+    div [ class "user-name-area" ]
+        [ label [] [ text <| t <| YourName ]
+        , div [ class "input-group input-group--name" ]
+            [ input
+                [ class "form-control", onInput OnInputPlayerName, value model.playerName ]
+                []
+            , span [ class "input-group-btn" ]
+                [ button [ class "btn btn-default", onClick SetUserName ] [ text "ok" ]
                 ]
             ]
+        ]
 
 
 prestartOverlay : Model -> Html Msg
@@ -107,31 +107,34 @@ prestartOverlay model =
         hint =
             if model.random then
                 ShareThisUrlRandom
+
             else
                 ShareThisUrl
     in
-        if not <| gameIsActive model then
-            div []
-                [ div [ class "pairs-overlay" ] []
-                , div [ class "pairs-modal" ]
-                    [ div [ class "form-group" ]
-                        [ label [ class "game-url" ] [ span [ class "fa fa-spinner fa-pulse" ] [], text " ", text <| t <| hint ]
-                        , div [ class "input-group clipboard-input" ]
-                            [ input
-                                [ class "form-control game-url"
-                                , value (gameUrl model)
-                                , onClick SelectGameUrlInput
-                                ]
-                                []
-                            , span [ class "input-group-btn" ]
-                                [ button
-                                    [ class "btn btn-default clipboard", onClick CopyUrl ]
-                                    [ img [ src "/images/clippy.svg", alt "copy to clipboard", width 13 ] []
-                                    ]
+    if not <| gameIsActive model then
+        div []
+            [ div [ class "pairs-overlay" ] []
+            , div [ class "pairs-modal" ]
+                [ div [ class "form-group" ]
+                    [ label [ class "game-url" ] [ span [ class "fa fa-spinner fa-pulse" ] [], text " ", text <| t <| hint ]
+                    , div [ class "input-group clipboard-input" ]
+                        [ input
+                            [ class "form-control game-url"
+                            , value (gameUrl model)
+                            , onClick SelectGameUrlInput
+                            ]
+                            []
+                        , span [ class "input-group-btn" ]
+                            [ button
+                                [ class "btn btn-default clipboard", onClick CopyUrl ]
+                                [ img [ src "/images/clippy.svg", alt "copy to clipboard", width 13 ] []
                                 ]
                             ]
                         ]
+                    , div [ class "donation-notice" ] [ text "🙌 ", text <| t <| HelpMeKeepItAdFree, text " ", a [ target "_blank", href "https://patreon.com/mxgrn" ] [ text "Patreon" ] ]
                     ]
                 ]
-        else
-            div [] []
+            ]
+
+    else
+        div [] []
