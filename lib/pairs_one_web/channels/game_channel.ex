@@ -13,10 +13,14 @@ defmodule PairsOneWeb.GameChannel do
   callback, broadcast the updated game to other players.
   """
   def join("game:" <> game_id, %{"playerId" => player_id, "playerName" => player_name}, socket) do
-    game = Game.get(game_id)
-    Game.join_player(game, %{"id" => player_id, "name" => player_name})
-    send(self(), :after_join)
-    {:ok, assign(socket, :data, %{game_id: game_id, player_id: player_id})}
+    if Game.exists?(game_id) do
+      game = Game.get(game_id)
+      Game.join_player(game, %{"id" => player_id, "name" => player_name})
+      send(self(), :after_join)
+      {:ok, assign(socket, :data, %{game_id: game_id, player_id: player_id})}
+    else
+      {:ok, socket}
+    end
   end
 
   @doc """
@@ -54,16 +58,19 @@ defmodule PairsOneWeb.GameChannel do
 
   def handle_info(:after_join, socket) do
     game_id = socket.assigns.data.game_id
-    game = Game.get(game_id)
-    broadcast!(socket, "update_game", %{game: compress_game(game)})
 
-    {:ok, _} =
-      Presence.track(socket, socket.assigns.data.player_id, %{id: socket.assigns.data.player_id})
+    if Game.exists?(game_id) do
+      game = Game.get(game_id)
+      broadcast!(socket, "update_game", %{game: compress_game(game)})
 
-    push(socket, "presence_state", Presence.list(socket))
+      {:ok, _} =
+        Presence.track(socket, socket.assigns.data.player_id, %{id: socket.assigns.data.player_id})
 
-    unless Game.all_players_joined?(game["players"]) do
-      PairsOne.PendingGames.add(game_id)
+      push(socket, "presence_state", Presence.list(socket))
+
+      unless Game.all_players_joined?(game["players"]) do
+        PairsOne.PendingGames.add(game_id)
+      end
     end
 
     {:noreply, socket}
