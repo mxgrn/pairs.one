@@ -64,7 +64,6 @@ defmodule PairsOneWeb.GameChannel do
 
     unless Game.all_players_joined?(game["players"]) do
       PairsOne.PendingGames.add(game_id)
-      # PairsOneWeb.Endpoint.broadcast("game-list", "update", pending_games)
     end
 
     {:noreply, socket}
@@ -83,8 +82,4 @@ defmodule PairsOneWeb.GameChannel do
     |> LZString.compress()
     |> Base.encode64()
   end
-
-  # defp pending_games do
-  #   %{games: PairsOne.PendingGames.data_list()}
-  # end
 end

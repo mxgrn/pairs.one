@@ -115,18 +115,6 @@ $(function(){
 
   $("#player-data input").attr("value", playerName);
 
-  // GameList
-
-  $(".elm-game-list").each(
-    function(i, el){
-      var themes = $(el).data('themes');
-      elm = Elm.GameList.embed(el, {
-        host: location.host,
-        locale: $("html").attr("lang")
-      });
-    }
-  );
-
   // GameSelector
 
   $(".elm-game-selector").each(

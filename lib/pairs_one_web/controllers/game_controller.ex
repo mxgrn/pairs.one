@@ -33,16 +33,9 @@ defmodule PairsOneWeb.GameController do
   end
 
   def index(conn, _params) do
-    games = PairsOne.PendingGames.index()
-    themes = PairsOne.Theme.list() |> Poison.encode!()
-
-    render(
-      conn,
-      "index.html",
-      mini_header: true,
-      has_pending_games?: Enum.any?(games),
-      themes: themes
-    )
+    conn
+    |> put_status(:moved_permanently)
+    |> redirect(to: "/#{locale()}")
   end
 
   def random(conn, _params) do
