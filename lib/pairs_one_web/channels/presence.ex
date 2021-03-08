@@ -79,14 +79,17 @@ defmodule PairsOneWeb.Presence do
   alias PairsOne.Game
 
   def fetch("game:" <> game_id = topic, entries) do
-    game = Game.get(game_id)
-    presences = Phoenix.Tracker.list(__MODULE__, topic)
+    if Game.exists?(game_id) do
+      game = Game.get(game_id)
+      presences = Phoenix.Tracker.list(__MODULE__, topic)
 
-    Game.update_players_online_state(game, presences)
+      Game.update_players_online_state(game, presences)
 
-    if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
-      PairsOne.PendingGames.remove(game_id)
+      if Enum.empty?(presences) || Game.all_players_joined?(game["players"]) do
+        PairsOne.PendingGames.remove(game_id)
+      end
     end
+
     entries
   end
 end
