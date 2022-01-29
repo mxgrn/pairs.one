@@ -1,21 +1,7 @@
 defmodule PairsOneWeb.LayoutView do
-  use PairsOneWeb.Web, :view
+  use PairsOneWeb, :view
 
-  def lang_select_options do
-    locales = %{
-      "en" => "English",
-      "de" => "Deutsch",
-      "pl" => "Polski",
-      "es" => "Castellano",
-      "it" => "Italiana",
-      "pt" => "Português",
-      "fr" => "Français",
-      "ru" => "Русский",
-      "uk" => "Українська"
-    }
-
-    Enum.map(PairsOneWeb.Gettext.supported_locales(), fn locale ->
-      {locale, Map.get(locales, locale, String.upcase(locale))}
-    end)
-  end
+  # Phoenix LiveDashboard is available only in development by default,
+  # so we instruct Elixir to not warn if the dashboard route is missing.
+  @compile {:no_warn_undefined, {Routes, :live_dashboard_path, 2}}
 end

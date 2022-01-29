@@ -8,23 +8,17 @@ defmodule PairsOneWeb.Gettext do
       import PairsOneWeb.Gettext
 
       # Simple translation
-      gettext "Here is the string to translate"
+      gettext("Here is the string to translate")
 
       # Plural translation
-      ngettext "Here is the string to translate",
+      ngettext("Here is the string to translate",
                "Here are the strings to translate",
-               3
+               3)
 
       # Domain-based translation
-      dgettext "errors", "Here is the error message to translate"
+      dgettext("errors", "Here is the error message to translate")
 
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
   use Gettext, otp_app: :pairs_one
-
-  def supported_locales do
-    config()[:locales]
-  end
-
-  defp config, do: Application.get_env(:pairs_one, __MODULE__)
 end

@@ -1,3 +1,0 @@
-#!/bin/bash
-
-pushd tests && elm-make Tests.elm --output tests.js && node tests.js && popd

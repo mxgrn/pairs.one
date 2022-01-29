@@ -1,36 +1,56 @@
 defmodule PairsOneWeb.Router do
-  use PairsOneWeb.Web, :router
+  use PairsOneWeb, :router
 
   pipeline :browser do
-    plug(:accepts, ["html"])
-    plug(:fetch_session)
-    plug(:fetch_flash)
-    plug(:protect_from_forgery)
-    plug(:put_secure_browser_headers)
-    plug(PairsOneWeb.Plug.Locale, "en")
+    plug :accepts, ["html"]
+    plug :fetch_session
+    plug :fetch_live_flash
+    plug :put_root_layout, {PairsOneWeb.LayoutView, :root}
+    plug :protect_from_forgery
+    plug :put_secure_browser_headers
   end
 
   pipeline :api do
-    plug(:accepts, ["json"])
+    plug :accepts, ["json"]
   end
 
   scope "/", PairsOneWeb do
-    pipe_through(:browser)
+    pipe_through :browser
 
-    get("/", PageController, :index)
-    resources("/games", GameController, only: [:new, :create, :show])
+    get "/", PageController, :index
   end
 
-  scope "/:locale", PairsOneWeb do
-    pipe_through(:browser)
+  # Other scopes may use custom stacks.
+  # scope "/api", PairsOneWeb do
+  #   pipe_through :api
+  # end
 
-    get("/", PageController, :index)
-    post("/games/random", GameController, :random)
-    resources("/games", GameController, only: [:new, :create, :show, :index])
+  # Enables LiveDashboard only for development
+  #
+  # If you want to use the LiveDashboard in production, you should put
+  # it behind authentication and allow only admins to access it.
+  # If your application does not have an admins-only section yet,
+  # you can use Plug.BasicAuth to set up some basic authentication
+  # as long as you are also using SSL (which you should anyway).
+  if Mix.env() in [:dev, :test] do
+    import Phoenix.LiveDashboard.Router
 
-    # Diagnostics
-    get("/healthcheck", HealthcheckController, :index)
-    get("/healthcheck/crash", HealthcheckController, :crash)
-    get("/healthcheck/process_crash", HealthcheckController, :process_crash)
+    scope "/" do
+      pipe_through :browser
+
+      live_dashboard "/dashboard", metrics: PairsOneWeb.Telemetry
+    end
+  end
+
+  # Enables the Swoosh mailbox preview in development.
+  #
+  # Note that preview only shows emails that were sent by the same
+  # node running the Phoenix server.
+  if Mix.env() == :dev do
+    scope "/dev" do
+      pipe_through :browser
+
+      forward "/mailbox", Plug.Swoosh.MailboxPreview
+    end
   end
 end

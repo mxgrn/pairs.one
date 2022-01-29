@@ -1,3 +1,3 @@
 defmodule PairsOneWeb.PageView do
-  use PairsOneWeb.Web, :view
+  use PairsOneWeb, :view
 end

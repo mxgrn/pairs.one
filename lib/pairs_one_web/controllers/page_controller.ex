@@ -1,8 +1,7 @@
 defmodule PairsOneWeb.PageController do
-  use PairsOneWeb.Web, :controller
+  use PairsOneWeb, :controller
 
   def index(conn, _params) do
-    themes = PairsOne.Theme.list() |> Poison.encode!()
-    render(conn, "index.#{locale()}.html", themes: themes)
+    render(conn, "index.html")
   end
 end
