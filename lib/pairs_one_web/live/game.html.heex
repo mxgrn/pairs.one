@@ -1,3 +1,12 @@
-<div class=" w-48 h-48 border-4 border-gray-800">
-  game
+<div class="mx-auto w-96 h-96 grid grid-cols-4 gap-2">
+  <%= for {number, {state, image, _}} <- @cards do %>
+    <div id={"card-#{number}"} class={"card h-full #{state}"} phx-click={click_card(number, state)}>
+      <div class="back h-full flex justify-center bg-cyan-100 border border-sky-200">
+        <img class="w-[60%]" src="/images/owl-blue.svg">
+      </div>
+      <div class="front h-full flex justify-center border border-sky-200">
+        <img class="w-[60%]" src={image}>
+      </div>
+    </div>
+  <% end %>
 </div>

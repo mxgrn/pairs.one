@@ -42,3 +42,11 @@ liveSocket.connect()
 // >> liveSocket.disableLatencySim()
 window.liveSocket = liveSocket
 
+window.addEventListener("pairs:flipped", (event) => {
+  const card = event.target
+
+  if ([...document.querySelectorAll(".card")].filter(e => e.classList.contains("flipped")).length <= 1) {
+    card.classList.remove("clickable")
+    card.classList.add("flipped")
+  }
+})

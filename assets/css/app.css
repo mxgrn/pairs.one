@@ -1,3 +1,47 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
+
+.card {
+  transform-style: preserve-3d;
+  transition: transform .2s;
+}
+
+.front, .back {
+  transition: opacity 0.7s;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.card .back {
+  transform: rotateY(0);
+}
+
+.card .front {
+  transform: rotateY(-180deg);
+  display: none;
+}
+
+.card.clickable {
+  cursor: pointer;
+}
+
+.card.flipped {
+  transform: rotateY(180deg);
+}
+
+.card.flipped .front {
+  display: flex;
+}
+
+.card.flipped .back {
+  display: none;
+}
+
+.card.cleared {
+  transform: rotateY(180deg);
+}
+
+.card.cleared .front {
+  display: none;
+}
