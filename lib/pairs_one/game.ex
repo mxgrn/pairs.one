@@ -223,6 +223,40 @@ defmodule PairsOne.Game do
     flipped = game["cards"]["flipped"]
 
     update_cards(game, "flipped", [index | flipped])
+    |> clear_or_flipback()
+  end
+
+  def clear_or_flipback(game) do
+    flipped = game["cards"]["flipped"]
+
+    case Enum.count(flipped) do
+      0 ->
+        game
+
+      1 ->
+        game
+
+      2 ->
+        [second_i, first_i] = flipped
+
+        if flipped_id(game, second_i) == flipped_id(game, first_i) do
+          game
+          |> update_cards("flipped", [])
+          |> update_cards("cleared", [second_i, first_i] ++ game["cards"]["cleared"])
+        else
+          game
+        end
+
+      _ ->
+        [last_i | _] = flipped
+
+        game
+        |> update_cards("flipped", [last_i])
+    end
+  end
+
+  def flipped_id(game, index) do
+    Enum.at(game["cards"]["values"], index)
   end
 
   def update_cards(game, type, values) do
