@@ -24,6 +24,10 @@ defmodule PairsOneWeb do
       import Plug.Conn
       import PairsOneWeb.Gettext
       alias PairsOneWeb.Router.Helpers, as: Routes
+
+      def locale do
+        Gettext.get_locale(PairsOneWeb.Gettext)
+      end
     end
   end
 
@@ -35,7 +39,7 @@ defmodule PairsOneWeb do
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
-        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
+        only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1, get_csrf_token: 0]
 
       # Include shared imports and aliases for views
       unquote(view_helpers())
@@ -47,6 +51,8 @@ defmodule PairsOneWeb do
       use Phoenix.LiveView,
         layout: {PairsOneWeb.LayoutView, "live.html"}
 
+      import Phoenix.Controller, only: [get_csrf_token: 0]
+
       unquote(view_helpers())
     end
   end
@@ -54,6 +60,8 @@ defmodule PairsOneWeb do
   def live_component do
     quote do
       use Phoenix.LiveComponent
+
+      import Phoenix.Controller, only: [get_csrf_token: 0]
 
       unquote(view_helpers())
     end
@@ -98,6 +106,10 @@ defmodule PairsOneWeb do
       import PairsOneWeb.ErrorHelpers
       import PairsOneWeb.Gettext
       alias PairsOneWeb.Router.Helpers, as: Routes
+
+      def locale do
+        Gettext.get_locale(PairsOneWeb.Gettext)
+      end
     end
   end
 

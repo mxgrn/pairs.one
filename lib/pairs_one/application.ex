@@ -14,8 +14,11 @@ defmodule PairsOne.Application do
       PairsOneWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: PairsOne.PubSub},
+      PairsOneWeb.Presence,
+      {PairsOne.RedisRepo, System.get_env("REDIS_URI") || "redis://localhost:6379/0"},
       # Start the Endpoint (http/https)
-      PairsOneWeb.Endpoint
+      PairsOneWeb.Endpoint,
+      PairsOne.PendingGames
       # Start a worker by calling: PairsOne.Worker.start_link(arg)
       # {PairsOne.Worker, arg}
     ]

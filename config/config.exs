@@ -47,6 +47,9 @@ config :logger, :console,
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason
 
+# TODO: finish localization for pt and uk
+config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en de pl es it fr ru)
+
 config :tailwind,
   version: "3.0.15",
   default: [

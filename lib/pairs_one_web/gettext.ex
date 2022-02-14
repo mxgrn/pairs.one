@@ -21,4 +21,10 @@ defmodule PairsOneWeb.Gettext do
   See the [Gettext Docs](https://hexdocs.pm/gettext) for detailed usage.
   """
   use Gettext, otp_app: :pairs_one
+
+  def supported_locales do
+    config()[:locales]
+  end
+
+  defp config, do: Application.get_env(:pairs_one, __MODULE__)
 end

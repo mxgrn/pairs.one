@@ -3,87 +3,110 @@ defmodule PairsOneWeb.Live.Game do
 
   import PairsOneWeb.Live.Game.View
 
-  @impl true
-  def mount(_params, _session, socket) do
-    {:ok,
-     assign(socket, %{
-       cards: %{
-         "1" => {"clickable", "/images/owls/11.svg", 0},
-         "2" => {"clickable", "/images/owls/12.svg", 0},
-         "3" => {"clickable", "/images/owls/22.svg", 0},
-         "4" => {"clickable", "/images/owls/6.svg", 0},
-         "5" => {"clickable", "/images/owls/13.svg", 0},
-         "6" => {"clickable", "/images/owls/8.svg", 0},
-         "7" => {"clickable", "/images/owls/9.svg", 0},
-         "8" => {"clickable", "/images/owls/22.svg", 0},
-         "9" => {"clickable", "/images/owls/7.svg", 0},
-         "10" => {"clickable", "/images/owls/9.svg", 0},
-         "11" => {"clickable", "/images/owls/12.svg", 0},
-         "12" => {"clickable", "/images/owls/13.svg", 0},
-         "13" => {"clickable", "/images/owls/6.svg", 0},
-         "14" => {"clickable", "/images/owls/7.svg", 0},
-         "15" => {"clickable", "/images/owls/8.svg", 0},
-         "16" => {"clickable", "/images/owls/11.svg", 0}
-       },
-       flip_count: 0
-     })}
-  end
+  alias PairsOne.Game
+  alias PairsOneWeb.Endpoint
+  # alias PairsOneWeb.Presence
 
   @impl true
-  def handle_event("card-click", %{"number" => number}, socket) do
-    {:noreply, socket |> update_card_state(number, "flipped") |> update_game()}
-  end
+  def mount(_params, %{"id" => game_id}, socket) do
+    if Game.exists?(game_id) do
+      Endpoint.subscribe("game:#{game_id}")
 
-  def update_game(%{assigns: %{cards: cards}} = socket) do
-    flipped =
-      Enum.filter(cards, fn {_, {state, _, _}} -> state == "flipped" end)
-      |> Enum.sort_by(fn {_, {_, _, n}} -> n end)
+      game = Game.get(game_id)
+      player_id = 1
+      Game.join_player(game, %{"id" => player_id, "name" => "Toni"})
 
-    case Enum.count(flipped) do
-      0 ->
-        socket
+      send(self(), :after_join)
 
-      1 ->
-        socket
-
-      2 ->
-        [{first_n, {_, first_image, _}}, {second_n, {_, second_image, _}}] = flipped
-
-        if first_image == second_image do
-          socket
-          |> update_card_state(first_n, "cleared")
-          |> update_card_state(second_n, "cleared")
-        else
-          socket
-        end
-
-      _ ->
-        [{first_n, {_, first_image, _}}, {second_n, {_, second_image, _}} | _] = flipped
-
-        if first_image == second_image do
-          socket
-          |> update_card_state(first_n, "cleared")
-          |> update_card_state(second_n, "cleared")
-        else
-          socket
-          |> update_card_state(first_n, "clickable")
-          |> update_card_state(second_n, "clickable")
-        end
+      {:ok, assign(socket, game_id: game_id, game: game, player_id: player_id)}
+    else
+      {:ok, socket}
     end
   end
 
-  def update_card_state(socket, number, state) do
-    {_state, image, _flip_count} = Map.get(socket.assigns.cards, number)
+  @impl true
+  def handle_event("card-click", %{"index" => index}, socket) do
+    game =
+      Game.get(socket.assigns.game_id)
+      |> Game.flip(index)
 
-    flip_count =
-      if state do
-        socket.assigns.flip_count + 1
-      else
-        socket.assigns.flip_count
-      end
+    Endpoint.broadcast!(topic(socket), "update_game", %{game: compress_game(game)})
 
-    cards = Map.put(socket.assigns.cards, number, {state, image, flip_count})
+    {:noreply, socket}
+  end
 
-    assign(socket, %{cards: cards, flip_count: flip_count})
+  @impl true
+  def handle_info(%{event: "update_game", payload: %{game: compressed_game}}, socket) do
+    game = decompress_game(compressed_game)
+    Game.save!(socket.assigns.game_id, game)
+    {:noreply, socket |> assign(:game, game)}
+  end
+
+  @impl true
+  def handle_info(%{event: "replay_game", payload: game_data}, socket) do
+    game = Game.get(socket.assigns.game_id) || game_data
+    game = Game.replay(game, game_data)
+    Endpoint.broadcast!(topic(socket), "update_game", %{game: compress_game(game)})
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info(
+        %{event: "set_player_name", payload: %{"player_id" => player_id, "name" => name}},
+        socket
+      ) do
+    game =
+      Game.get(socket.assigns.game_id)
+      |> Game.rename_player(player_id, name)
+
+    Endpoint.broadcast!(topic(socket), "update_game", %{game: compress_game(game)})
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info(
+        %{event: "new_chat_msg", payload: %{"body" => _body, "player_id" => _player_id} = msg},
+        socket
+      ) do
+    # TODO: append to chat messages in the game struct
+    Endpoint.broadcast!(topic(socket), "new_chat_msg", msg)
+    {:noreply, socket}
+  end
+
+  @impl true
+  def handle_info(:after_join, socket) do
+    game_id = socket.assigns.game_id
+    game = Game.get(game_id)
+
+    # Endpoint.broadcast!(topic(socket), "update_game", %{game: compress_game(game)})
+
+    # {:ok, _} =
+    #   Presence.track(socket, socket.assigns.data.player_id, %{id: socket.assigns.data.player_id})
+
+    # Endpoint.push(socket, "presence_state", Presence.list(socket))
+
+    unless Game.all_players_joined?(game["players"]) do
+      PairsOne.PendingGames.add(game_id)
+    end
+
+    {:noreply, socket}
+  end
+
+  defp decompress_game(game) do
+    game
+    |> Base.decode64!()
+    |> LZString.decompress()
+    |> Poison.decode!()
+  end
+
+  defp compress_game(game) do
+    game
+    |> Poison.encode!()
+    |> LZString.compress()
+    |> Base.encode64()
+  end
+
+  defp topic(socket) do
+    "game:#{socket.assigns.game_id}"
   end
 end

@@ -8,6 +8,7 @@ defmodule PairsOneWeb.Router do
     plug :put_root_layout, {PairsOneWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug PairsOneWeb.Plug.Locale, "en"
   end
 
   pipeline :api do
@@ -18,6 +19,15 @@ defmodule PairsOneWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources("/games", GameController, only: [:new, :create, :show])
+  end
+
+  scope "/:locale", PairsOneWeb do
+    pipe_through :browser
+
+    get "/", PageController, :index
+    post "/games/random", GameController, :random
+    resources "/games", GameController, only: [:new, :create, :show, :index]
   end
 
   # Other scopes may use custom stacks.

@@ -1,0 +1,2 @@
+<h2>Start new game</h2>
+<div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token() %>'></div>
