@@ -219,9 +219,6 @@ flipCard index model =
             else
                 List.Extra.unique (index :: game.cards.flipped)
 
-        _ =
-            Debug.log "flippedIds" flippedIds
-
         ( newTurn, matched, turnFinished ) =
             if List.length flippedIds == game.flips then
                 let
