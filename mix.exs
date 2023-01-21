@@ -40,7 +40,7 @@ defmodule PairsOne.Mixfile do
       {:phoenix_live_dashboard, "~> 0.3 or ~> 0.2.9"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.11"},
+      {:gettext, "~> 0.18"},
       {:plug_cowboy, "~> 2.0"},
 
       # Sentry

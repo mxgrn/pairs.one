@@ -1,6 +1,6 @@
 name: Staging
 
-on: 
+on:
   push:
     branches:
       - staging
@@ -13,9 +13,9 @@ jobs:
       matrix:
         app: [pairs_one]
         env: [staging]
-        os: [ubuntu-18.04]
-        otp: [22.3.4]
-        elixir: [1.11.1]
+        os: [ubuntu-latest]
+        otp: [24.3.4.8]
+        elixir: [1.13.4]
         node: [12.x]
 
     steps:
@@ -27,13 +27,18 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node }}
+
+    # https://sirfitz.medium.com/install-elm-0-18-0-in-2021-3f64ce298801
     - name: Install Dependencies
       run: |
         mix local.rebar --force
         mix local.hex --force
         mix deps.get --only prod
         yarn --cwd assets install
-        npm install --global elm@0.18.0
+        curl -L -o elm.tar.gz https://github.com/lydell/elm-old-binaries/releases/download/main/0.18.0-linux-x64.tar.gz
+        tar -xzf elm.tar.gz
+        chmod +x dist_binaries/*
+        mv dist_binaries/* /usr/local/bin/
 
     - name: Prepare release
       run: |
@@ -54,7 +59,7 @@ jobs:
       with:
         key: ${{ secrets.DEPLOYMENT_KEY }}
         username: deploy
-        host: "159.89.26.201,159.89.18.195"
+        host: "46.101.106.59,161.35.200.233"
         source: release.tar.bz2
         target: ${{ matrix.app }}_${{matrix.env}}
 
@@ -62,10 +67,10 @@ jobs:
     # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_staging
     # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_staging
 
-    - name: Unpack and restart release on 159.89.18.195
+    - name: Unpack and restart release on do1
       uses: appleboy/ssh-action@master
       with:
-        host: "159.89.18.195"
+        host: "46.101.106.59"
         username: deploy
         key: ${{ secrets.DEPLOYMENT_KEY }}
         script_stop: true
@@ -82,10 +87,10 @@ jobs:
     - name: Give it 30 seconds to start...
       run: sleep 30
 
-    - name: Unpack and restart release on 159.89.26.201
+    - name: Unpack and restart release on do2
       uses: appleboy/ssh-action@master
       with:
-        host: "159.89.26.201"
+        host: "161.35.200.233"
         username: deploy
         key: ${{ secrets.DEPLOYMENT_KEY }}
         script_stop: true
