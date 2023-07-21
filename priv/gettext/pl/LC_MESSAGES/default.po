@@ -9,7 +9,7 @@
 msgid ""
 msgstr ""
 "Language: pl\n"
-"Plural-Forms: nplurals=3\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:7
 msgid "Play memory/concentration game with friends over the Internet without registration"

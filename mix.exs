@@ -7,7 +7,7 @@ defmodule PairsOne.Mixfile do
       version: "0.0.1",
       elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      compilers: [:phoenix] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -40,8 +40,8 @@ defmodule PairsOne.Mixfile do
       {:phoenix_live_dashboard, "~> 0.3 or ~> 0.2.9"},
       {:telemetry_metrics, "~> 0.4"},
       {:telemetry_poller, "~> 0.4"},
-      {:gettext, "~> 0.18"},
-      {:plug_cowboy, "~> 2.0"},
+      {:gettext, "~> 0.20"},
+      {:plug_cowboy, "~> 2.5"},
 
       # Sentry
       {:sentry, "~> 8.0"},
