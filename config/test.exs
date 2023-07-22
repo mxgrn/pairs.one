@@ -7,13 +7,4 @@ config :pairs_one, PairsOneWeb.Endpoint,
   server: false
 
 # Print only warnings and errors during test
-config :logger, level: :warn
-
-# Configure your database
-config :pairs_one, PairsOneWeb.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "memory_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+config :logger, level: :warning

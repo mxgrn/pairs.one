@@ -11,6 +11,7 @@ config :pairs_one, :env, Mix.env()
 config :pairs_one, PairsOneWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: System.get_env("SECRET_KEY_BASE"),
+  check_origin: ["https://pairs.one", "https://staging.pairs.one"],
   render_errors: [view: PairsOneWeb.ErrorView, accepts: ~w(html json)],
   pubsub_server: PairsOne.PubSub
 
@@ -24,8 +25,6 @@ config :logger,
 
 # TODO: finish localization for pt and uk
 config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en de pl es it fr ru)
-
-config :pairs_one, :release_sha, System.get_env("GITHUB_SHA") || "?"
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

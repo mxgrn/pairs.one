@@ -72,11 +72,3 @@ config :sentry,
     env: "staging"
   },
   included_environments: [:staging]
-
-config :libcluster, :topologies,
-  pairs_one: [
-    strategy: Cluster.Strategy.Epmd,
-    config: [
-      hosts: [:"pairs_one_staging@elixir-1.local", :"pairs_one_staging@elixir-2.local"]
-    ]
-  ]

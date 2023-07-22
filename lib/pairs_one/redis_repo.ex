@@ -5,7 +5,11 @@ defmodule PairsOne.RedisRepo do
   Used in app supervisor.
   """
 
+  require Logger
+
   def start_link(uri) do
+    Logger.info("Starting Redis client with URI: #{uri}")
+
     client = Exredis.start_using_connection_string(uri)
     true = Process.register(client, :redis)
     {:ok, client}
