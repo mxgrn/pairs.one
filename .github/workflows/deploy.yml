@@ -16,7 +16,7 @@ jobs:
         app: [pairs_one]
         prod_env: [prod]
         os: [ubuntu-latest]
-        port: [8060]
+        port: [8010]
     runs-on: ${{ matrix.os }}
 
     steps:
