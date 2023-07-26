@@ -33,7 +33,7 @@ On the server, the game state gets stored in Redis, each game identified with th
 a random string that gets generated at game creation and becomes the last part of the game's URL. The game gets removed
 from Redis after 24 hours of inactivity.
 
->> Why Redis and not an Elixir process? I wanted to make sure ongoing games do not lose their state during deployment.
+> Why Redis and not an Elixir process? I wanted to make sure ongoing games do not lose their state during deployment.
 
 ## Known issues
 
@@ -76,4 +76,4 @@ modifications (based on an example of French):
 If possible, fire up the app and make sure everything compiles and works before submitting the PR.
 
 ---
-Copyright (c) 2017 [Good Bit Labs Limited](http://goodbitlabs.com), released under MIT
+Copyright (c) 2023 [Max Gorin](https://mxgrn.com), released under MIT
