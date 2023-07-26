@@ -1,3 +1,6 @@
+# ## NOTE
+#
+#   - prod_env (prod, staging) is different from MIX_ENV which will always be prod
 name: Production
 
 on:
@@ -7,94 +10,59 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
     name: Deploy
     strategy:
       matrix:
         app: [pairs_one]
-        env: [prod]
-        os: [ubuntu-18.04]
-        otp: [22.3.4]
-        elixir: [1.11.1]
-        node: [12.x]
+        prod_env: [prod]
+        os: [ubuntu-latest]
+        port: [8060]
+    runs-on: ${{ matrix.os }}
 
     steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-elixir@v1
-      with:
-        otp-version: ${{ matrix.otp }}
-        elixir-version: ${{ matrix.elixir }}
-    - uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node }}
-    - name: Install Dependencies
-      run: |
-        mix local.rebar --force
-        mix local.hex --force
-        mix deps.get --only prod
-        yarn --cwd assets install
-        npm install --global elm@0.18.0
+      - name: Checkout
+        uses: actions/checkout@v3
 
-    - name: Prepare release
-      run: |
-        mix compile --warnings-as-errors
-        yarn --cwd assets deploy
-        mix phx.digest
-        mix release
-        tar -cjf release.tar.bz2 _build/${{matrix.env}}
-      env:
-        MIX_ENV: ${{matrix.env}}
-        REDIS_URI: ${{ secrets.REDIS_URI }}
-        RELEASE_COOKIE: ${{ secrets.RELEASE_COOKIE }}
-        SECRET_KEY_BASE: ${{secrets.SECRET_KEY_BASE}}
-        SENTRY_DSN: ${{secrets.SENTRY_DSN}}
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v1
 
-    - name: Upload release to all hosts
-      uses: appleboy/scp-action@master
-      with:
-        key: ${{ secrets.DEPLOYMENT_KEY }}
-        username: deploy
-        host: "159.89.26.201,159.89.18.195"
-        source: release.tar.bz2
-        target: ${{ matrix.app }}_${{matrix.env}}
+      - name: Log into GHCR
+        run: echo "${{secrets.GITHUB_TOKEN}}" | docker login https://ghcr.io -u ${{github.actor}} --password-stdin
 
-    # For these to work, add to /etc/sudoers:
-    # deploy ALL=(ALL) NOPASSWD: /bin/systemctl start pairs_one_prod
-    # deploy ALL=(ALL) NOPASSWD: /bin/systemctl stop pairs_one_prod
+      - name: Build and push
+        uses: docker/build-push-action@v3
+        with:
+          push: true
+          tags: ghcr.io/mxgrn/${{matrix.app}}:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
-    - name: Unpack and restart release on 159.89.18.195
-      uses: appleboy/ssh-action@master
-      with:
-        host: "159.89.18.195"
-        username: deploy
-        key: ${{ secrets.DEPLOYMENT_KEY }}
-        script_stop: true
-        script: |
-          sudo systemctl stop pairs_one_prod
-          cd ${{matrix.app}}_${{matrix.env}}
-          folder=`date '+%Y-%m-%d-%H-%M'`
-          mkdir $folder
-          ln -sfn `readlink -f current` old
-          ln -sfn `readlink -f $folder` current
-          tar -xjf release.tar.bz2 -C current
-          sudo systemctl start pairs_one_prod
-
-    - name: Give it 30 seconds to start...
-      run: sleep 30
-
-    - name: Unpack and restart release on 159.89.26.201
-      uses: appleboy/ssh-action@master
-      with:
-        host: "159.89.26.201"
-        username: deploy
-        key: ${{ secrets.DEPLOYMENT_KEY }}
-        script_stop: true
-        script: |
-          sudo systemctl stop pairs_one_prod
-          cd ${{matrix.app}}_${{matrix.env}}
-          folder=`date '+%Y-%m-%d-%H-%M'`
-          mkdir $folder
-          ln -sfn `readlink -f current` old
-          ln -sfn `readlink -f $folder` current
-          tar -xjf release.tar.bz2 -C current
-          sudo systemctl start pairs_one_prod
+      - name: Pull image on host, restart, run migrations
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{secrets.APP_HOSTS}}
+          sync: true
+          username: deploy
+          key: ${{ secrets.DEPLOYMENT_KEY }}
+          script_stop: true
+          script: |
+            echo "${{secrets.GITHUB_TOKEN}}" | docker login https://ghcr.io -u ${{github.actor}} --password-stdin
+            docker pull ghcr.io/mxgrn/${{matrix.app}}
+            docker stop ${{matrix.app}}_${{matrix.prod_env}} || true
+            docker rm ${{matrix.app}}_${{matrix.prod_env}} || true
+            docker run --name=${{matrix.app}}_${{matrix.prod_env}} -d \
+              --restart always \
+              --network host \
+              -e PORT=${{matrix.port}} \
+              -e SECRET_KEY_BASE=${{secrets.SECRET_KEY_BASE}} \
+              -e REDIS_URI=${{secrets.REDIS_URI}} \
+              -e GITHUB_SHA=${{github.sha}} \
+              -e SENTRY_DSN=${{secrets.SENTRY_DSN}} \
+              -e RELEASE_COOKIE=${{secrets.RELEASE_COOKIE}} \
+              -e PHX_HOST=${{secrets.PHX_HOST_STAGING}} \
+              -e DOCKER_CONTAINER=${{matrix.app}}_${{matrix.prod_env}} \
+              -e HOST=`hostname` \
+              -e PROD_ENV=${{matrix.prod_env}} \
+              ghcr.io/mxgrn/${{matrix.app}}
+            while [ "`docker inspect -f {{.State.Running}} ${{matrix.app}}_${{matrix.prod_env}}`" != "true" ]; do sleep 1; done
+            echo "Done."

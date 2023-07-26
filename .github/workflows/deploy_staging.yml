@@ -40,8 +40,7 @@ jobs:
       - name: Pull image on host, restart, run migrations
         uses: appleboy/ssh-action@master
         with:
-          # secondary host (do2) goes first:
-          host: "161.35.200.233,46.101.106.59"
+          host: ${{secrets.APP_HOSTS}}
           sync: true
           username: deploy
           key: ${{ secrets.DEPLOYMENT_KEY }}
@@ -55,7 +54,6 @@ jobs:
               --restart always \
               --network host \
               -e PORT=${{matrix.port}} \
-              -e POOL_SIZE=3 \
               -e SECRET_KEY_BASE=${{secrets.SECRET_KEY_BASE}} \
               -e REDIS_URI=${{secrets.REDIS_URI_STAGING}} \
               -e GITHUB_SHA=${{github.sha}} \
