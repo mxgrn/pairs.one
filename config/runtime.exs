@@ -55,8 +55,8 @@ if config_env() == :prod do
       strategy: Cluster.Strategy.Epmd,
       config: [
         hosts: [
-          :"pairs_one_#{System.get_env("PROD_ENV")}@do1.local",
-          :"pairs_one_#{System.get_env("PROD_ENV")}@do2.local"
+          :"pairs_one_#{System.get_env("PROD_ENV")}@app1.local",
+          :"pairs_one_#{System.get_env("PROD_ENV")}@app2.local"
         ]
       ]
     ]
