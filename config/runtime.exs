@@ -61,6 +61,8 @@ if config_env() == :prod do
       ]
     ]
 
+  config :pairs_one, :redis_uri, System.get_env("REDIS_URI")
+
   # ## Configuring the mailer
   #
   # In production you need to configure the mailer to use a different adapter.

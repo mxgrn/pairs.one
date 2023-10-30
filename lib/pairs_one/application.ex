@@ -13,9 +13,7 @@ defmodule PairsOne.Application do
        [Application.get_env(:libcluster, :topologies, []), [name: PairsOne.ClusterSupervisor]]},
       {Phoenix.PubSub, name: PairsOne.PubSub},
       PairsOneWeb.Presence,
-      # {PairsOne.RedisRepo, "redis://localhost:6379/0"},
-      # {PairsOne.RedisRepo, System.get_env("REDIS_URI") || "redis://localhost:6379/0"},
-      {PairsOne.RedisRepo, "redis://10.135.0.7:6379/0"},
+      PairsOne.RedisRepo,
       PairsOne.PendingGames,
       PairsOneWeb.Endpoint
     ]

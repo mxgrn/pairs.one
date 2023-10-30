@@ -1,6 +1,6 @@
 # ## NOTE
 #
-#   - prod_env (prod, staging) is different from MIX_ENV which will always be prod
+#   - env (prod, staging) is different from MIX_ENV which will always be prod
 name: Staging
 
 on:
@@ -14,7 +14,8 @@ jobs:
     strategy:
       matrix:
         app: [pairs_one]
-        prod_env: [staging]
+        host: [staging.pairs.one]
+        env: [staging]
         os: [ubuntu-latest]
         port: [8015]
     runs-on: ${{ matrix.os }}
@@ -24,7 +25,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
+        uses: docker/setup-buildx-action@v3
 
       - name: Log into GHCR
         run: echo "${{secrets.GITHUB_TOKEN}}" | docker login https://ghcr.io -u ${{github.actor}} --password-stdin
@@ -37,7 +38,7 @@ jobs:
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
-      - name: Pull image on host, restart, run migrations
+      - name: Pull image on host and restart
         uses: appleboy/ssh-action@master
         with:
           host: ${{secrets.APP_HOSTS}}
@@ -48,9 +49,9 @@ jobs:
           script: |
             echo "${{secrets.GITHUB_TOKEN}}" | docker login https://ghcr.io -u ${{github.actor}} --password-stdin
             docker pull ghcr.io/mxgrn/${{matrix.app}}
-            docker stop ${{matrix.app}}_${{matrix.prod_env}} || true
-            docker rm ${{matrix.app}}_${{matrix.prod_env}} || true
-            docker run --name=${{matrix.app}}_${{matrix.prod_env}} -d \
+            docker stop ${{matrix.app}}_${{matrix.env}} || true
+            docker rm ${{matrix.app}}_${{matrix.env}} || true
+            docker run --name=${{matrix.app}}_${{matrix.env}} -d \
               --restart always \
               --network host \
               -e PORT=${{matrix.port}} \
@@ -59,10 +60,10 @@ jobs:
               -e GITHUB_SHA=${{github.sha}} \
               -e SENTRY_DSN=${{secrets.SENTRY_DSN}} \
               -e RELEASE_COOKIE=${{secrets.RELEASE_COOKIE_STAGING}} \
-              -e PHX_HOST=${{secrets.PHX_HOST_STAGING}} \
-              -e DOCKER_CONTAINER=${{matrix.app}}_${{matrix.prod_env}} \
-              -e HOST=`hostname` \
-              -e PROD_ENV=${{matrix.prod_env}} \
+              -e PHX_HOST=${{matrix.host}} \
+              -e DOCKER_CONTAINER=${{matrix.app}}_${{matrix.env}} \
+              -e PROD_ENV=${{matrix.env}} \
               ghcr.io/mxgrn/${{matrix.app}}
-            while [ "`docker inspect -f {{.State.Running}} ${{matrix.app}}_${{matrix.prod_env}}`" != "true" ]; do sleep 1; done
+            while [ "`docker inspect -f {{.State.Running}} ${{matrix.app}}_${{matrix.env}}`" != "true" ]; do sleep 1; done
+            sleep 5
             echo "Done."

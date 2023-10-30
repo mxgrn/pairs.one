@@ -11,6 +11,7 @@ config :pairs_one, PairsOneWeb.Endpoint,
   debug_errors: true,
   code_reloader: true,
   check_origin: false,
+  secret_key_base: "zgIQx2yeWjd3sfVIyujnify1b/mvRHMRwsu4SWcoBz2ilOrPBFrqRjvGFonUTfAX",
   watchers: [
     node: [
       "node_modules/brunch/bin/brunch",
