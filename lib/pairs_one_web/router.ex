@@ -7,6 +7,9 @@ defmodule PairsOneWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+  end
+
+  pipeline :enforce_locale do
     plug(PairsOneWeb.Plug.Locale, "en")
   end
 
@@ -27,7 +30,7 @@ defmodule PairsOneWeb.Router do
   end
 
   scope "/:locale", PairsOneWeb do
-    pipe_through(:browser)
+    pipe_through([:browser, :enforce_locale])
 
     get("/", PageController, :index)
     post("/games/random", GameController, :random)
