@@ -66,7 +66,7 @@ defmodule PairsOne.Mixfile do
   defp aliases do
     [
       compile: ["compile --warnings-as-errors"],
-      "assets.deploy": ["cmd yarn --cwd assets deploy"]
+      "assets.deploy": ["cmd yarn --cwd assets deploy", "phx.digest"]
     ]
   end
 end
