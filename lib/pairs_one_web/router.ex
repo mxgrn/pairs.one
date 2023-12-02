@@ -19,6 +19,11 @@ defmodule PairsOneWeb.Router do
 
     get("/", PageController, :index)
     resources("/games", GameController, only: [:new, :create, :show])
+
+    # Diagnostics
+    get("/health", HealthcheckController, :index)
+    get("/health/crash", HealthcheckController, :crash)
+    get("/health/process_crash", HealthcheckController, :process_crash)
   end
 
   scope "/:locale", PairsOneWeb do
@@ -27,10 +32,5 @@ defmodule PairsOneWeb.Router do
     get("/", PageController, :index)
     post("/games/random", GameController, :random)
     resources("/games", GameController, only: [:new, :create, :show, :index])
-
-    # Diagnostics
-    get("/healthcheck", HealthcheckController, :index)
-    get("/healthcheck/crash", HealthcheckController, :crash)
-    get("/healthcheck/process_crash", HealthcheckController, :process_crash)
   end
 end

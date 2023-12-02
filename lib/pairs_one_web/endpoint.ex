@@ -16,7 +16,7 @@ defmodule PairsOneWeb.Endpoint do
     longpoll: false
   )
 
-  socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
+  socket("/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]])
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -39,6 +39,10 @@ defmodule PairsOneWeb.Endpoint do
   end
 
   plug(Plug.RequestId)
+
+  # Silence healthchecks, see https://hexdocs.pm/phoenix/Phoenix.Logger.html#module-dynamic-log-level
+  plug(Plug.Telemetry, event_prefix: [:phoenix, :endpoint], log: {__MODULE__, :log_level, []})
+
   plug(Plug.Logger)
 
   plug(
@@ -62,4 +66,7 @@ defmodule PairsOneWeb.Endpoint do
   )
 
   plug(PairsOneWeb.Router)
+
+  def log_level(%{path_info: ["health"]}), do: false
+  def log_level(_), do: :info
 end
