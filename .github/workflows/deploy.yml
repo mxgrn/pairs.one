@@ -65,4 +65,5 @@ jobs:
               -e PROD_ENV=${{matrix.env}} \
               ghcr.io/mxgrn/${{matrix.app}}
             while [ "`docker inspect -f {{.State.Running}} ${{matrix.app}}_${{matrix.env}}`" != "true" ]; do sleep 1; done
+            sleep 10
             echo "Done."
