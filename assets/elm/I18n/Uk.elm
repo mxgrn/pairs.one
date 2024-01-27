@@ -34,7 +34,7 @@ translate t =
             "Точність: " ++ toString value ++ "%"
 
         Score value ->
-            "Score: " ++ toString value
+            "Оцінка: " ++ toString value
 
         Scoreboard t ->
             case t of
@@ -48,70 +48,70 @@ translate t =
             "Поділись лінком з опонентом:"
 
         ShareThisUrlRandom ->
-            "We are looking for an opponent for you! Give us a second, or share this URL with anyone who might want to play with you right now:"
+            "Шукаємо для вас суперника! Дайте нам секунду або поділіться цією URL-адресою з усіма, хто може захотіти пограти з вами прямо зараз:"
 
         HelpMeKeepItAdFree ->
             "Допоможіть мені зберегти Pairs One без реклами, пожертвувавши на"
 
         Theme ->
-            "Theme"
+            "Тема"
 
         Size ->
-            "Size"
+            "Розмір"
 
         Public ->
-            "Public"
+            "Відкрита"
 
         Private ->
-            "Private"
+            "Приватна"
 
         Local ->
-            "Local"
+            "Локальна"
 
         PickTheme ->
-            "Pick a theme"
+            "Обери тему"
 
         Difficulty ->
-            "Difficulty"
+            "Складність"
 
         DifficultyEasy ->
-            "easy"
+            "легка"
 
         DifficultyMedium ->
-            "medium"
+            "середня"
 
         DifficultyHard ->
-            "hard"
+            "складна"
 
         SelectGameMode ->
-            "With whom would you like to play?"
+            "З ким хочеш зіграти?"
 
         GameModeDescription ->
-            "In a 'public' game, someone may join you when choosing a random player to play with. If you want to only play with someone that you'll send the link to - choose 'private'. If you have a friend right next to you and you want to play on the same device, choose 'local'."
+            "У 'відкритій' грі до тебе може приєднатися випадковий гравець, який зайшов на сайт. Якщо ти хочеш грати тільки з тими, кому ти відішлеш посылання - вибери 'приватна'. Якщо ти хочеш зіграти з одним на одному пристрої, вибери 'локальна'."
 
         WillPlayWithStranger ->
-            "I'd like a stranger to join me!"
+            "Я зіграю з випадковим гравцем"
 
         WillSelectOpponents ->
-            "I'll invite my opponent(s) myself"
+            "Я оберу з ким грати"
 
         WillPlayLocally ->
-            "I'll play with someone locally"
+            "Я зіграю з кимось на одному пристрої"
 
         SelectNumberOfPlayers ->
-            "Select number of players"
+            "Обери кількість гравців"
 
         NumberOfPlayersDescription ->
-            "If you select 1, you'll be able to play alone. However, it's much more fun to play with someone over the Internet!"
+            "Якщо ти обереш 1, ти зможеш грати сам. Але набагато цікавіше грати з кимось через інтернет!"
 
         SelectBoardSize ->
-            "Select the size"
+            "Обери розмір"
 
         SelectBoardSizeDescription ->
-            "The bigger the board - the more cards will there be to remember"
+            "Чим більша дошка - тим більше карток тобі доведеться запам'ятати"
 
         StartGame ->
-            "Start game"
+            "Почати гру"
 
         Waiting ->
-            "Waiting"
+            "Очікуємо"

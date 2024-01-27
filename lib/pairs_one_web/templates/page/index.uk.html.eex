@@ -4,9 +4,9 @@
     <div class="rules">
       <div class="rules-header">
         <span class="header-icon fa fa-question"></span>
-        Правила ведь знакомы?
+        Адже правила знайомі?
       </div>
-      <p class="text-muted">По очереди ищите пары одинаковых карточек, переворачивая их по две штуки за раз. Кто находит пару, зарабатывает очко - и может перевернуть еще одну пару. Кто находит больше пар - выигрывает.</p>
+      <p class="text-muted">По черзі шукайте кілька однакових карток, перевертаючи їх по дві штуки за раз. Хтось знаходить пару, заробляє очко - і може перевернути ще одну пару. Хто знаходить більше пар – виграє.</p>
     </div>
   </div>
 
@@ -17,7 +17,7 @@
         <div class="col-md-6 game-option__title">
           <h4>Играть одному</h4>
           <div class="game-option__description">
-            Играй один - на улучшение точности!
+            Грай один на покращення точності
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -27,7 +27,8 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-info">Начать <strong>сольную</strong> игру</button>
+          <button type="submit" class="btn btn-option-go btn-info">
+          Почати <strong>сольну</strong> гру
         </div>
       </div>
     </form>
@@ -36,13 +37,15 @@
       <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Играть со случайным игроком</h4>
+          <h4>Грати з випадковим гравцем</h4>
           <div class="game-option__description">
-            Кто-то уже может ждать, пока ты присоединишься!
+            Хтось вже може чекати, доки ти приєднаєшся
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-primary">Играть с <strong>незнакомцем</strong></button>
+          <button type="submit" class="btn btn-option-go btn-primary">
+          Грати з <strong>незнайомцем</strong>
+          </button>
         </div>
       </div>
     </form>
@@ -50,9 +53,9 @@
     <form class="game-option option-two" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Играть с другом</h4>
+          <h4>Грати з другом</h4>
           <div class="game-option__description">
-            Кинь линк на начавшуся игру другу - и вперед!
+            Кинь посылання на гру, що почалася, другу - і вперед!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -62,7 +65,8 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-            <button type="submit" class="btn btn-option-go btn-success">Начать игру <strong>вдвоем</strong></button>
+            <button type="submit" class="btn btn-option-go btn-success">
+            Почати гру <strong>вдвох</strong>
         </div>
       </div>
     </form>
@@ -72,7 +76,7 @@
         <div class="col-md-6 game-option__title">
           <h4>Локальная игра</h4>
           <div class="game-option__description">
-            Играй с другом на одном устройстве!
+            Грай з другом на одному пристрої
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -82,18 +86,19 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-warning">Начать <strong>локальную</strong> игру</button>
+          <button type="submit" class="btn btn-option-go btn-warning">
+          Почати <strong>локальну</strong> гру
         </div>
       </div>
     </form>
 
     <div class="centered-content more-game-options hidden-xs">
-      <a href="#custom-game"><span class="fa fa-angle-down"></span> Еще варианты</a>
+      <a href="#custom-game"><span class="fa fa-angle-down"></span>Ще варіанти</a>
     </div>
   </div>
 </div>
 
-<h3 id="custom-game" class="centered-content custom-game__title">Создай игру под себя</h3>
+<h3 id="custom-game" class="centered-content custom-game__title">Створи гру під себе</h3>
 <div class="col-sm-12">
   <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token() %>'></div>
 </div>
