@@ -19,10 +19,10 @@ translate t =
             "Sua vez, " ++ name ++ "!"
 
         YourName ->
-            "Your name"
+            "Seu nome"
 
         Chat ->
-            "Chat"
+            "Bater papo"
 
         You name ->
             "Você, " ++ name
@@ -34,7 +34,7 @@ translate t =
             "Percentual de acerto: " ++ toString value ++ "%"
 
         Score value ->
-            "Score: " ++ toString value
+            "Pontuação: " ++ toString value
 
         Scoreboard t ->
             case t of
@@ -48,70 +48,70 @@ translate t =
             "Compartilhe essa URL com seu(s) oponente(s):"
 
         ShareThisUrlRandom ->
-            "As soon as there is another player available, we'll hook you up! If you don't want to wait, share this URL with anybody you want to play with:"
+            "Assim que houver outro jogador disponível, ligaremos para você! Se você não quiser esperar, compartilhe este URL com quem quiser jogar:"
 
         HelpMeKeepItAdFree ->
             "Ajude-me a manter o Pairs One sem anúncios, doando no"
 
         Theme ->
-            "Theme"
+            "Tema"
 
         Size ->
-            "Size"
+            "Tamanho"
 
         Public ->
-            "Public"
+            "Público"
 
         Private ->
-            "Private"
+            "Privado"
 
         Local ->
             "Local"
 
         PickTheme ->
-            "Pick a theme"
+            "Escolha um tema"
 
         Difficulty ->
-            "Difficulty"
+            "Dificuldade"
 
         DifficultyEasy ->
-            "easy"
+            "fácil"
 
         DifficultyMedium ->
-            "medium"
+            "média"
 
         DifficultyHard ->
-            "hard"
+            "dura"
 
         SelectGameMode ->
-            "With whom would you like to play?"
+            "Com quem você gostaria de jogar?"
 
         GameModeDescription ->
-            "In a 'public' game, someone may join you when choosing a random player to play with. If you want to only play with someone that you'll send the link to - choose 'private'. If you have a friend right next to you and you want to play on the same device, choose 'local'."
+            "Em um jogo “público”, alguém pode se juntar a você ao escolher um jogador aleatório para jogar. Se você quiser jogar apenas com alguém para quem enviará o link - escolha 'privado'. Se você tem um amigo próximo a você e deseja jogar no mesmo dispositivo, escolha 'local'."
 
         WillPlayWithStranger ->
-            "I'd like a stranger to join me!"
+            "Eu gostaria que um estranho se juntasse a mim"
 
         WillSelectOpponents ->
-            "I'll invite my opponent(s) myself"
+            "Eu mesmo convidarei meu(s) oponente(s)"
 
         WillPlayLocally ->
-            "I'll play with someone locally"
+            "Vou brincar com alguém localmente"
 
         SelectNumberOfPlayers ->
-            "Select number of players"
+            "Selecione o número de jogadores"
 
         NumberOfPlayersDescription ->
-            "If you select 1, you'll be able to play alone. However, it's much more fun to play with someone over the Internet!"
+            "Se você selecionar 1, poderá jogar sozinho. Porém, é muito mais divertido brincar com alguém pela Internet!"
 
         SelectBoardSize ->
-            "Select the size"
+            "Selecione o tamanho"
 
         SelectBoardSizeDescription ->
-            "The bigger the board - the more cards will there be to remember"
+            "Quanto maior o tabuleiro, mais cartas haverá para lembrar"
 
         StartGame ->
-            "Start game"
+            "Começar o jogo"
 
         Waiting ->
-            "Waiting"
+            "Esperando"

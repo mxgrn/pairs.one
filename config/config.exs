@@ -24,7 +24,7 @@ config :logger,
   backends: [:console, Sentry.LoggerBackend]
 
 # TODO: finish localization for pt and uk
-config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en de pl es it fr ru)
+config :pairs_one, PairsOneWeb.Gettext, locales: ~w(en de pl es it pt fr ru)
 
 # Use Jason for JSON parsing in Phoenix
 config :phoenix, :json_library, Jason

@@ -21,12 +21,12 @@ msgstr "Código fonte"
 #: lib/pairs_one_web/templates/layout/app.html.eex:10
 #: lib/pairs_one_web/templates/layout/app.html.eex:43
 msgid "Concentration game: multiplayer and registration-free"
-msgstr ""
+msgstr "Jogo da memória: multiplayer e sem registro"
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:45
 msgid "Unload your mind while improving your memory"
-msgstr ""
+msgstr "Descarregue sua mente enquanto melhora sua memória"
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:73
 msgid "Help with translation"
-msgstr ""
+msgstr "Ajude com a tradução"

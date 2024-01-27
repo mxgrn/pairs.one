@@ -4,9 +4,9 @@
     <div class="rules">
       <div class="rules-header">
         <span class="header-icon fa fa-question"></span>
-        You know the rules, right?
+        Você conhece as regras, certo?
       </div>
-      <p class="text-muted">Look for pairs of cards by turning them over in turns, 2 at a time. If you find a match, you get a point - and you may turn over 2 more cards. Whoever finds more matches wins.</p>
+      <p class="text-muted">Procure pares de cartas virando-as alternadamente, 2 de cada vez. Se encontrar uma correspondência, você ganha um ponto - e pode virar mais 2 cartas. Quem encontrar mais partidas vence.</p>
     </div>
   </div>
 
@@ -15,9 +15,9 @@
     <form class="game-option option-four" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Play solo</h4>
+          <h4>Jogar sozinho</h4>
           <div class="game-option__description">
-            Play solo to improve your accuracy!
+            Jogue sozinho para melhorar sua precisão!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -27,7 +27,9 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-info">Start <strong>solo</strong> game</button>
+          <button type="submit" class="btn btn-option-go btn-info">
+            Comece o jogo <strong>solo</strong>
+          </button>
         </div>
       </div>
     </form>
@@ -36,9 +38,9 @@
       <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Play with anybody</h4>
+          <h4>Jogue com qualquer</h4>
           <div class="game-option__description">
-            Somebody may be waiting for you to join right now!
+            Alguém pode estar esperando você entrar agora mesmo!
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
@@ -50,9 +52,9 @@
     <form class="game-option option-two" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Play with a friend</h4>
+          <h4>Jogue com um amigo</h4>
           <div class="game-option__description">
-            Simply send a link to your online friend to begin!
+            Basta enviar um link para seu amigo online para começar!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -62,7 +64,9 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-            <button type="submit" class="btn btn-option-go btn-success">Start <strong>2-player</strong> game</button>
+            <button type="submit" class="btn btn-option-go btn-success">
+            Iniciar um jogo <strong>para 2</strong>
+            </button>
         </div>
       </div>
     </form>
@@ -70,9 +74,9 @@
     <form class="game-option option-three" method=post action="/<%= locale() %>/games">
       <div class="row">
         <div class="col-md-6 game-option__title">
-          <h4>Play locally</h4>
+          <h4>Jogue localmente</h4>
           <div class="game-option__description">
-            Play with your friend on the same device!
+            Jogue com seu amigo no mesmo dispositivo!
             <br/>
             <input type="hidden" name="_csrf_token" value="<%= get_csrf_token() %>">
             <input type="hidden" name="game[theme]" value="eighties">
@@ -82,20 +86,22 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-warning">Start <strong>local</strong> game</button>
+          <button type="submit" class="btn btn-option-go btn-warning">
+          Comece um jogo <strong>local</strong>
+          </button>
         </div>
       </div>
     </form>
 
     <div class="centered-content more-game-options hidden-xs">
-      <a href="#custom-game"><span class="fa fa-angle-down"></span> More options</a>
+      <a href="#custom-game"><span class="fa fa-angle-down"></span> Mais opções</a>
     </div>
 
   </div>
 
 </div>
 
-<h3 id="custom-game" class="centered-content custom-game__title">Start a custom game</h3>
+<h3 id="custom-game" class="centered-content custom-game__title">Inicie um jogo personalizado</h3>
 <div class="col-sm-12">
   <div class="elm-game-selector" data-themes='<%= raw @themes %>' data-csrf='<%= get_csrf_token() %>'></div>
 </div>
