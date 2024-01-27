@@ -10,6 +10,7 @@
     <title><%= gettext "Concentration game: multiplayer and registration-free" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link rel="canonical" href="<%= @conn.request_path %>" />
   </head>
 
   <body>
