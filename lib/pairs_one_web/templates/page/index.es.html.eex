@@ -27,7 +27,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-info">Iniciar un juego <strong>en solitario</strong></button>
+          <button type="submit" class="btn btn-option-go btn-info">Juego <strong>en solitario</strong></button>
         </div>
       </div>
     </form>
@@ -42,7 +42,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-primary">Join <strong>random</strong> player</button>
+          <button type="submit" class="btn btn-option-go btn-primary">Jugador(a) <strong>aleatorio(a)</strong></button>
         </div>
       </div>
     </form>
@@ -62,7 +62,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-success">Iniciar juego de <strong>2 jugadores</strong></button>
+          <button type="submit" class="btn btn-option-go btn-success">Juego de <strong>2 jugadores</strong></button>
         </div>
       </div>
     </form>
@@ -82,7 +82,7 @@
           </div>
         </div>
         <div class="col-md-6 btn-option-go__block">
-          <button type="submit" class="btn btn-option-go btn-warning">Iniciar juego <strong>local</strong></button>
+          <button type="submit" class="btn btn-option-go btn-warning">Juego <strong>local</strong></button>
         </div>
       </div>
     </form>
