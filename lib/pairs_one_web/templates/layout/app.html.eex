@@ -54,7 +54,7 @@
         </div>
         <div class="text-muted col-md-6 col-md-pull-6">
           © <%= DateTime.utc_now.year %>
-          <%= link "Max Gorin", to: "https://twitter.com/mxgrn" %>
+          <%= link "Max Gorin", to: "https://mxgrn.com" %>
           <%= link to: "https://github.com/mxgrn/pairs.one" do %>
             <span class="fa fa-github"></span>
             <%= gettext "Source code" %>
