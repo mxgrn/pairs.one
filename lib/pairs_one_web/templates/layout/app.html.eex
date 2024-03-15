@@ -11,6 +11,9 @@
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="canonical" href="<%= @conn.request_path %>" />
+    <%= for {code, _name} <- lang_select_options() do %>
+      <link rel="alternate" href="<%= "https://pairs.one/#{code}" %>" hreflang="<%= code %>"/>
+    <% end %>
   </head>
 
   <body>
