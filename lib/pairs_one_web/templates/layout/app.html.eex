@@ -7,6 +7,7 @@
     <meta name="description" content="<%= gettext "Play memory/concentration game with friends over the Internet without registration" %>">
     <meta name="author" content="Max Gorin">
     <meta content='/images/landing.jpg' property='og:image'>
+    <meta name="google-site-verification" content="6HgdA2r-oUrHPz-pkYYcFUzjzBDovTZcf-ANARIUM_0" />
     <title><%= gettext "Concentration game: multiplayer and registration-free" %></title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto">
