@@ -699,3 +699,11 @@ img.screenshot {
   text-align: left;
   display: none;
 }
+
+.linked-banner {
+  cursor: pointer;
+}
+
+.linked-banner:hover {
+  background-color: #c5e6f6;
+}
