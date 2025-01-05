@@ -8,7 +8,7 @@ defmodule PairsOne.RedisRepo do
   require Logger
 
   def start_link(_uri) do
-    uri = Application.get_env(:pairs_one, :redis_uri)
+    uri = Application.get_env(:pairs_one, :redis_uri) || "redis://localhost:6379/0"
     Logger.info("Starting Redis client with URI: #{uri}")
 
     client = Exredis.start_using_connection_string(uri)
