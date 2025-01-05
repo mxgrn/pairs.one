@@ -11,22 +11,31 @@ msgstr ""
 "Language: it\n"
 
 #: lib/pairs_one_web/templates/layout/app.html.eex:7
+#, elixir-autogen
 msgid "Play memory/concentration game with friends over the Internet without registration"
 msgstr "Gioca a giochi di memoria con gli amici su Internet senza registrazione"
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:69
+#: lib/pairs_one_web/templates/layout/app.html.eex:75
+#, elixir-autogen
 msgid "Source code"
 msgstr "Codice sorgente"
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:10
-#: lib/pairs_one_web/templates/layout/app.html.eex:43
+#: lib/pairs_one_web/templates/layout/app.html.eex:11
+#: lib/pairs_one_web/templates/layout/app.html.eex:46
+#, elixir-autogen
 msgid "Concentration game: multiplayer and registration-free"
 msgstr "Gioco di memoria: multiplayer e senza registrazione"
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:45
+#: lib/pairs_one_web/templates/layout/app.html.eex:53
+#, elixir-autogen
 msgid "Unload your mind while improving your memory"
 msgstr "Scarica la tua mente migliorando la tua memoria"
 
-#: lib/pairs_one_web/templates/layout/app.html.eex:73
+#: lib/pairs_one_web/templates/layout/app.html.eex:72
 msgid "Help with translation"
 msgstr "Aiuto con la traduzione"
+
+#: lib/pairs_one_web/templates/layout/app.html.eex:50
+#, elixir-autogen, elixir-format
+msgid "Discover the all-new, improved Memory game you can play right on Telegram!"
+msgstr "Scopri il nuovo e migliorato Memory che puoi giocare direttamente su Telegram!"

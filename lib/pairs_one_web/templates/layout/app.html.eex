@@ -45,6 +45,15 @@
             </div>
             <div class="col-sm-6"><h2><%= gettext "Concentration game: multiplayer and registration-free" %></h2></div>
           </div>
+          <a href="https://t.me/ultramemorybot">
+          <p class="linked-banner alert alert-info" style="margin-top: 20px; font-size: 1.6rem;" role="alert">
+            🚀🚀🚀 
+ <%= gettext "Discover the all-new, improved Memory game you can play right on Telegram!" %>&nbsp;
+            <span class="fa fa-arrow-right"></span>
+
+
+          </p>
+          </a>
           <h3><%= gettext "Unload your mind while improving your memory" %></h3>
         </header>
       <% end %>
