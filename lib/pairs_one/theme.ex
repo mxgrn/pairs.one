@@ -38,10 +38,40 @@ defmodule PairsOne.Theme do
       title: "Gym",
       cards: 50,
       difficulty: 0,
-      new: true
+      new: false
     },
     xmas: %{
       title: "Xmas",
+      cards: 50,
+      difficulty: 0,
+      new: false
+    },
+    spring: %{
+      title: "Spring",
+      cards: 38,
+      difficulty: 0,
+      new: true
+    },
+    flowers: %{
+      title: "Flowers",
+      cards: 50,
+      difficulty: 0,
+      new: true
+    },
+    birds: %{
+      title: "Birds",
+      cards: 49,
+      difficulty: 0,
+      new: true
+    },
+    pets: %{
+      title: "Pets",
+      cards: 50,
+      difficulty: 0,
+      new: true
+    },
+    workout: %{
+      title: "Workout",
       cards: 50,
       difficulty: 0,
       new: true
@@ -92,7 +122,7 @@ defmodule PairsOne.Theme do
       title: "Space",
       cards: 50,
       difficulty: 2,
-      new: true
+      new: false
     }
   ]
 
