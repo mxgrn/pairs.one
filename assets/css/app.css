@@ -699,3 +699,19 @@ img.screenshot {
   text-align: left;
   display: none;
 }
+
+.top-strip {
+  display: block;
+  padding: 6px 16px;
+  background-color: #222;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+}
+
+.top-strip:hover,
+.top-strip:focus {
+  background-color: #2eb5d8;
+  color: #fff;
+  text-decoration: none;
+}

@@ -24,6 +24,11 @@
   </head>
 
   <body>
+    <%= if locale() == "en" do %>
+      <a class="top-strip" href="https://octomocto.com/memory?utm_source=pairs.one">
+        New! Try the improved Memory game by the same author <span class="fa fa-arrow-right"></span>
+      </a>
+    <% end %>
     <div id="main" class="container <%= if assigns[:full_width], do: "container--full-width" %>">
       <%= if assigns[:mini_header] do %>
         <header class="header clearfix">
