@@ -44,8 +44,3 @@ msgstr "Descarga tu mente mientras mejoras tu memoria"
 #: lib/pairs_one_web/templates/layout/app.html.eex:72
 msgid "Help with translation"
 msgstr "Ayuda con la traducción"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:50
-#, elixir-autogen, elixir-format
-msgid "Discover the all-new, improved Memory game you can play right on Telegram!"
-msgstr "¡Descubre el nuevo y mejorado Memory que puedes jugar directamente en Telegram!"

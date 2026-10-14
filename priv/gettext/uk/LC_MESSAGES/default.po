@@ -34,8 +34,3 @@ msgstr "Розвантаж свій розум, покращуючи пам'ят
 #: lib/pairs_one_web/templates/layout/app.html.eex:72
 msgid "Help with translation"
 msgstr "Допомогти з перекладом"
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:50
-#, elixir-autogen, elixir-format
-msgid "Discover the all-new, improved Memory game you can play right on Telegram!"
-msgstr "Відкрийте для себе абсолютно новий, вдосконалений варіант Memory, в яку можна грати прямо в Telegram!"

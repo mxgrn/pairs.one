@@ -35,8 +35,3 @@ msgstr ""
 #: lib/pairs_one_web/templates/layout/app.html.eex:72
 msgid "Help with translation"
 msgstr ""
-
-#: lib/pairs_one_web/templates/layout/app.html.eex:50
-#, elixir-autogen, elixir-format
-msgid "Discover the all-new, improved Memory game you can play right on Telegram!"
-msgstr ""
