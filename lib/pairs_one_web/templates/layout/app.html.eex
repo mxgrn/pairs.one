@@ -26,7 +26,7 @@
   <body>
     <%= if locale() == "en" do %>
       <a class="top-strip" href="https://octomocto.com/memory?utm_source=pairs.one">
-        New! Try the improved Memory game by the same author <span class="fa fa-arrow-right"></span>
+        Pairs One is getting an upgrade. Try the new Memory <span class="fa fa-arrow-right"></span>
       </a>
     <% end %>
     <div id="main" class="container <%= if assigns[:full_width], do: "container--full-width" %>">
